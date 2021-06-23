@@ -92,7 +92,6 @@ public class _TargetScoreboard : MonoBehaviour
     }
     public void TrackSuccess(float time)
     {
-        sb.Play("click");
         score.trackTimeSuccessful += time;
     }
 
@@ -114,29 +113,34 @@ public class _TargetScoreboard : MonoBehaviour
         score.targetsSuccessful += 1;
         score.targetsAttempted += 1;
 
+        // overrides click sound on clickDestroy
+        sb.Play("destroy");
+
         if (TargetLimitReached())
             CompleteChallenge();
     }
 
-    // handling timeouts
+    // handling timeouts / fail
+    public void TargetFailed()
+    {
+        score.targetsAttempted += 1;
+        sb.Play("fail");
+
+        if (TargetLimitReached())
+            CompleteChallenge();
+    }
     public void ClickTimeout()
     {
         score.targetsAttempted += 1;
 
-        sb.Play("miss");
-
-        if (TargetLimitReached())
-            CompleteChallenge();
+        TargetFailed();
     }
     public void TrackTimeout()
     {
         score.targetsAttempted += 1;
         score.tracksAttempted += 1;
 
-        sb.Play("miss");
-
-        if (TargetLimitReached())
-            CompleteChallenge();
+        TargetFailed();
     }
 
     // handling challenge completion

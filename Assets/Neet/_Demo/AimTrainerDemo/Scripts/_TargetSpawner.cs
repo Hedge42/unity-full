@@ -23,6 +23,7 @@ public class _TargetSpawner : MonoBehaviour
     public Image zoneLeft;
     public Image zoneRight;
     public Image zoneFill;
+    public GameObject zoneMask;
 
     public AccuracyBar accBar;
 
@@ -119,6 +120,8 @@ public class _TargetSpawner : MonoBehaviour
 
         zoneFill.GetComponent<RectTransform>().sizeDelta
             = new Vector2(width * 2 - 1, height * 2 - 1);
+
+        // zoneMask.transform.localScale = new Vector3(width * 2 - 1, 1, height * 2 - 1);
     }
 
 
@@ -444,6 +447,37 @@ public class _TargetSpawner : MonoBehaviour
     private IEnumerator _StartMoving(GameObject target)
     {
         var rb = target.GetComponent<Rigidbody>();
+
+        float timeSinceTickStart = 0f;
+        Vector3 accelVec = GetAccelerationVector(target);
+        while (target != null)
+        {
+            if (timeSinceTickStart > tracking.tickRate)
+            {
+                accelVec = GetAccelerationVector(target);
+                timeSinceTickStart = 0f;
+            }
+
+            // add accelleration, fix velocity
+            rb.AddRelativeForce(accelVec, ForceMode.Acceleration);
+            if (rb.velocity.magnitude > tracking.speedMax)
+                rb.velocity = rb.velocity.normalized * tracking.speedMax;
+            else if (rb.velocity.magnitude < tracking.speedMin)
+                rb.velocity = rb.velocity.normalized * tracking.speedMin;
+            var relativeVelocity = target.transform.InverseTransformVector(rb.velocity);
+
+            // fix transform and direction
+            target.transform.localPosition = localPlayerPos +
+                (target.transform.localPosition - localPlayerPos).normalized
+                * targetDistance;
+            target.transform.LookAt(cam.transform);
+            rb.velocity = target.transform.TransformVector(relativeVelocity);
+
+
+            timeSinceTickStart += Time.fixedDeltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
 
         while (target != null)
         {
