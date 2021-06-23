@@ -1,0 +1,46 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
+using Neet.Audio;
+
+public class AudioSettingUI : MonoBehaviour, ISettingUI<AudioSetting>
+{
+    // public Toggle masterVolumeToggle;
+    public Slider masterVolumeSlider;
+    public TextMeshProUGUI masterVolumeLabel;
+
+    public void Apply(ref AudioSetting profile)
+    {
+        profile.masterVolume = masterVolumeSlider.value;
+
+        AudioManager.instance.LoadSetting(profile);
+        profile.SaveBinary();
+    }
+
+    public void CreateWarnings(GameObject warningPrefab, Transform container)
+    {
+    }
+
+    public void LoadFields(AudioSetting profile)
+    {
+        masterVolumeSlider.value = profile.masterVolume;
+    }
+
+    public void SetUIValidation(UnityAction endAction = null)
+    {
+        // masterVolumeToggle.onValueChanged.AddListener(delegate { });
+
+        masterVolumeSlider.onValueChanged.AddListener(delegate(float value)
+        {
+            UpdateVolumeGUI(value, masterVolumeLabel);
+        });
+    }
+
+    private void UpdateVolumeGUI(float rawValue, TextMeshProUGUI text)
+    {
+        text.text = (rawValue * 100).ToString("f0");
+    }
+}
