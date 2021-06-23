@@ -307,7 +307,7 @@ public class _TargetSpawner : MonoBehaviour
     // determine if the goal is click or track to fire attempt
     private void ProcessGunClick(object sender, object receiver)
     {
-
+        // returns if currentTarget is null
         if (currentTarget.GetData<bool>(Target.TRACK_ACTIVE))
             return;
 
@@ -318,6 +318,7 @@ public class _TargetSpawner : MonoBehaviour
             if (Target.IsTarget(target))
             {
                 waitingForFirstHit = false;
+                scoreboard.sb.Play("click");
                 scoreboard.StartScoring(isChallenge);
                 NextTarget(target);
             }
@@ -372,6 +373,12 @@ public class _TargetSpawner : MonoBehaviour
         else
         {
             scoreboard.ClickFired(false);
+
+            if (aim.failTargetOnMissClick)
+            {
+                scoreboard.ClickTimeout();
+                NextTarget(currentTarget);
+            }
         }
     }
 

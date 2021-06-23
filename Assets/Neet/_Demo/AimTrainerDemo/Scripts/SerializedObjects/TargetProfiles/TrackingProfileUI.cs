@@ -192,10 +192,7 @@ public class TrackingProfileUI : MonoBehaviour, ISettingUI<TrackingProfile>
 
         UnityAction<bool> canTrackDestroyChange = delegate (bool isOn)
         {
-            if (!isOn)
-            {
-                timeToDestroy.interactable = isOn;
-            }
+            timeToDestroy.interactable = isOn;
 
             endAction.Invoke();
         };

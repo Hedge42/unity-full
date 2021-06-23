@@ -23,7 +23,8 @@ public class _TargetScoreboard : MonoBehaviour
 
     public UnityAction ShowResults;
 
-    private SoundBank sb;
+    [HideInInspector]
+    public SoundBank sb;
 
     private void Start()
     {

@@ -18,6 +18,7 @@ public class AimProfile
     public float yMin = 0f;
     public float yMax = 5f;
     public bool showCenterLines = true;
+    public bool failTargetOnMissClick;
 
     public bool canSpawnRotate = false;
     public float spawnRotate = 45;

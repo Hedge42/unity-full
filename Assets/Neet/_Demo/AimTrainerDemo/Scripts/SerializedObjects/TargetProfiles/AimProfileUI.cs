@@ -16,6 +16,7 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
 
     public TMP_InputField spawnRotate;
     public Toggle canSpawnRotate;
+    public Toggle failTargetOnMissClick;
 
     private GameObject radiusWarning;
     private GameObject xLimitWarning;
@@ -39,7 +40,7 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
         if (yMax != null)
             yMax.text = a.yMax.ToString();
 
-
+        failTargetOnMissClick.isOn = a.failTargetOnMissClick;
         canSpawnRotate.isOn = a.canSpawnRotate;
         spawnRotate.text = a.spawnRotate.ToString();
     }
@@ -110,6 +111,11 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
         {
             endAction.Invoke();
         });
+
+        failTargetOnMissClick.onValueChanged.AddListener(delegate
+        {
+            endAction.Invoke();
+        });
     }
 
     public void Apply(ref AimProfile profile)
@@ -121,6 +127,7 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
         profile.yMax = float.Parse(yMax.text);
         profile.yMin = float.Parse(yMin.text);
 
+        profile.failTargetOnMissClick = failTargetOnMissClick.isOn;
         profile.canSpawnRotate = canSpawnRotate.isOn;
         profile.spawnRotate = float.Parse(spawnRotate.text);
     }
