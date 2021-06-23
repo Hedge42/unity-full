@@ -131,13 +131,10 @@ public class _TargetScoreboard : MonoBehaviour
     }
     public void ClickTimeout()
     {
-        score.targetsAttempted += 1;
-
         TargetFailed();
     }
     public void TrackTimeout()
     {
-        score.targetsAttempted += 1;
         score.tracksAttempted += 1;
 
         TargetFailed();
