@@ -17,6 +17,8 @@ public class _TargetSpawner : MonoBehaviour
     public Image centerVertical;
     public Image centerHorizontal;
 
+    public LineTest lines;
+
     // zone preview
     public Image zoneTop;
     public Image zoneBottom;
@@ -75,7 +77,9 @@ public class _TargetSpawner : MonoBehaviour
         isActive = false;
         startPos = transform.position;
 
-        SetZoneTransform();
+        // SetZoneTransform();
+
+        lines.DrawLines(aim.yMax, aim.xMax);
     }
     private void FixedUpdate()
     {
@@ -123,7 +127,6 @@ public class _TargetSpawner : MonoBehaviour
 
         // zoneMask.transform.localScale = new Vector3(width * 2 - 1, 1, height * 2 - 1);
     }
-
 
     public void ResetTransform()
     {
@@ -310,8 +313,7 @@ public class _TargetSpawner : MonoBehaviour
     // determine if the goal is click or track to fire attempt
     private void ProcessGunClick(object sender, object receiver)
     {
-        // returns if currentTarget is null
-        if (currentTarget.GetData<bool>(Target.TRACK_ACTIVE))
+        if (currentTarget == null || currentTarget.GetData<bool>(Target.TRACK_ACTIVE))
             return;
 
         GameExtensions.Cast(sender, receiver, out Gun g, out GameObject target);

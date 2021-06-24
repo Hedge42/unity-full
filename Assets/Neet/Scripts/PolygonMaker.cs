@@ -35,6 +35,8 @@ public class PolygonMaker : MonoBehaviour
     public Color color;
     public float tilingMultiplier;
 
+    // public 
+
     private GameObject[] spawned;
 
 
@@ -90,6 +92,8 @@ public class PolygonMaker : MonoBehaviour
     }
     void Fix()
     {
+        var startRot = transform.rotation;
+
         for (int i = 0; i < numSide; i++)
         {
             transform.Rotate(0, (360 / numSide), 0);
