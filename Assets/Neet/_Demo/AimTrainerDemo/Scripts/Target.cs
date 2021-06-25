@@ -15,6 +15,7 @@ public static class Target
     public const string TRACK_SUCCESS_TIME = "trackSuccessTime";
     public const string TRACK_ATTEMPT_TIME_KEY = "trackAttemptTime";
     public const string TRACK_SUCCESS_NOW = "being tracked";
+    public const string DISTANCE = "dist";
 
     // clicks attempted
     // clicks successful

@@ -17,7 +17,8 @@ public class _TargetSpawner : MonoBehaviour
     public Image centerVertical;
     public Image centerHorizontal;
 
-    public LineTest lines;
+    public CurvedZone minLines;
+    public CurvedZone maxLines;
 
     // zone preview
     public Image zoneTop;
@@ -42,7 +43,6 @@ public class _TargetSpawner : MonoBehaviour
 
     // data
     private Camera cam;
-    private const float targetDistance = 26.48f; // ???
     private bool waitingForFirstHit = true;
     private int targetNum = 0;
     private GameObject currentTarget;
@@ -53,8 +53,11 @@ public class _TargetSpawner : MonoBehaviour
 
     private Vector3 startPos;
 
+    // private const float targetDistance = 26.48f; // ???
+
     private Vector3 localPlayerPos => transform.InverseTransformPoint(cam.transform.position);
-    private Vector3 localSpawnOrigin => localPlayerPos + Vector3.forward * targetDistance;
+    private Vector3 localSpawnOrigin =>
+        localPlayerPos + Vector3.forward * aim.distMin;
 
     private Coroutine ut;
 
@@ -79,7 +82,19 @@ public class _TargetSpawner : MonoBehaviour
 
         // SetZoneTransform();
 
-        lines.DrawLines(aim.yMax, aim.xMax);
+        // UpdateTransform();
+
+        minLines.DrawLines(aim.yMax, aim.xMax);
+        //if (aim.useDistRange)
+        //{
+        //    maxLines.enabled = true;
+        //    var farAngles = MaxDistAngles();
+        //    maxLines.DrawLines(farAngles.y, farAngles.x);
+        //}
+        //else
+        //{
+        //    maxLines.enabled = false;
+        //}
     }
     private void FixedUpdate()
     {
@@ -127,11 +142,48 @@ public class _TargetSpawner : MonoBehaviour
 
         // zoneMask.transform.localScale = new Vector3(width * 2 - 1, 1, height * 2 - 1);
     }
+    private Vector2 MaxDistAngles()
+    {
+        // draw lines forward from max angles at min distances
+        // TODO possible to do without separating x and y
+        var distRange = aim.distMax - aim.distMin;
+
+        var horizontalX = Mathf.Sin(aim.xMax * Mathf.Deg2Rad);
+        var horizontalZ = Mathf.Cos(aim.xMax * Mathf.Deg2Rad);
+        var xMinPos = new Vector3(horizontalX, 0, horizontalZ).normalized * aim.distMin;
+        var xMaxPos = xMinPos + transform.forward * distRange;
+        var xFarAngle = Mathf.Atan2(xMaxPos.x, xMaxPos.z);
+
+        var verticalY = Mathf.Sin(aim.yMax * Mathf.Deg2Rad);
+        var verticalZ = Mathf.Cos(aim.yMax * Mathf.Deg2Rad);
+        var yMinPos = new Vector3(0, verticalY, verticalZ);
+        var yMaxPos = yMinPos + transform.forward * distRange;
+        var yFarAngle = Mathf.Atan2(yMaxPos.y, yMaxPos.z);
+
+        return new Vector2(xFarAngle, yFarAngle);
+    }
 
     public void ResetTransform()
     {
         this.transform.rotation = Quaternion.identity;
         this.transform.position = startPos;
+    }
+    private void UpdateTransform()
+    {
+        KeepDistance(startPos.z, cam.transform);
+        LookAway(cam.transform);
+    }
+    private void KeepDistance(float distance, Transform from)
+    {
+        // https://answers.unity.com/questions/292084/keeping-distance-between-two-gameobjects.html
+        transform.position = (transform.position - from.position)
+            .normalized * distance + from.position;
+    }
+    private void LookAway(Transform from)
+    {
+        // https://answers.unity.com/questions/43001/looking-away-from-a-target.html
+        Vector3 direction = transform.position - from.position;
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     public void Play(bool challenge)
@@ -194,24 +246,6 @@ public class _TargetSpawner : MonoBehaviour
         }
     }
 
-    private void UpdateTransform()
-    {
-        KeepDistance(startPos.z, cam.transform);
-        LookAway(cam.transform);
-    }
-
-    private void KeepDistance(float distance, Transform from)
-    {
-        // https://answers.unity.com/questions/292084/keeping-distance-between-two-gameobjects.html
-        transform.position = (transform.position - from.position)
-            .normalized * distance + from.position;
-    }
-    private void LookAway(Transform from)
-    {
-        // https://answers.unity.com/questions/43001/looking-away-from-a-target.html
-        Vector3 direction = transform.position - from.position;
-        transform.rotation = Quaternion.LookRotation(direction);
-    }
 
     private void SpawnTarget()
     {
@@ -221,7 +255,7 @@ public class _TargetSpawner : MonoBehaviour
 
         var target = Instantiate(targetPrefab, transform);
         target.SetActive(true);
-        target.transform.localScale = Vector3.one * aim.radius * 2;
+        target.transform.localScale = Vector3.one;
         target.SetColor(colors.targetColor);
         SetTargetPosition(target);
         currentTarget = target;
@@ -250,7 +284,8 @@ public class _TargetSpawner : MonoBehaviour
     {
         if (waitingForFirstHit)
         {
-            target.transform.position = cam.transform.position + Vector3.forward * targetDistance;
+            target.transform.position =
+                cam.transform.position + Vector3.forward * aim.distMin;
 
             // instead of vector3.forward
             // get the vector to point to the spawner
@@ -275,14 +310,21 @@ public class _TargetSpawner : MonoBehaviour
             var vRandZ = Mathf.Cos(vRandRad);
             var vRandX = Mathf.Sin(vRandRad);
 
-            //var randUnit = new Vector3(hRandX * LR, 0, hRandZ).normalized;
+            // get unit vector for decided angle
             var randUnit = new Vector3(hRandX * LR, vRandX * UD, hRandZ).normalized;
             randUnit = transform.rotation * randUnit;
 
-            var relativePos = randUnit * targetDistance;
-            var absolutePos = cam.transform.position + relativePos;
+            // get target position at minimum distance
+            var minRelativePos = randUnit * aim.distMin;
+            var minAbsolutePos = cam.transform.position + minRelativePos;
 
-            target.transform.position = absolutePos;
+            // adjust for random distance
+            var distDelta = Random.Range(aim.distMin, aim.distMax) - aim.distMin;
+            var pos = minAbsolutePos + transform.forward * distDelta;
+            var playerDist = Vector3.Distance(cam.transform.position, pos);
+
+            target.transform.position = pos;
+            target.SetData(Target.DISTANCE, playerDist);
         }
     }
 
@@ -471,7 +513,7 @@ public class _TargetSpawner : MonoBehaviour
             // fix transform and direction
             target.transform.localPosition = localPlayerPos +
                 (target.transform.localPosition - localPlayerPos).normalized
-                * targetDistance;
+                * target.GetData<float>(Target.DISTANCE);
             target.transform.LookAt(cam.transform);
             rb.velocity = target.transform.TransformVector(relativeVelocity);
 
@@ -479,29 +521,6 @@ public class _TargetSpawner : MonoBehaviour
             timeSinceTickStart += Time.fixedDeltaTime;
 
             yield return new WaitForFixedUpdate();
-        }
-
-        while (target != null)
-        {
-            var accel_vec = GetAccelerationVector(target);
-            target.transform.LookAt(cam.transform);
-
-            // add accelleration, fix velocity
-            rb.AddRelativeForce(accel_vec, ForceMode.Acceleration);
-            if (rb.velocity.magnitude > tracking.speedMax)
-                rb.velocity = rb.velocity.normalized * tracking.speedMax;
-
-            // fix distance
-            target.transform.position = cam.transform.position
-                + (target.transform.position - cam.transform.position)
-                .normalized * targetDistance;
-
-            // fixing to local
-            target.transform.localPosition = localPlayerPos +
-                (target.transform.localPosition - localPlayerPos).normalized
-                * targetDistance;
-
-            yield return new WaitForSeconds(tracking.tickRate);
         }
     }
 
@@ -572,13 +591,21 @@ public class _TargetSpawner : MonoBehaviour
     {
         // get local direction vector
         Vector3 dir = default;
+        float accel = 0f;
         if (isOutOfBounds(target))
         {
             dir = localSpawnOrigin - target.transform.localPosition;
 
+            var localOrigin = cam.transform.position + 
+                (transform.position - cam.transform.position).normalized *
+                target.GetData<float>(Target.DISTANCE);
+
+            dir = (localOrigin - target.transform.position).normalized;
+
             // since target is facing the opposite direction
             // its left/rights are inverted
             dir = target.transform.localRotation * dir;
+            accel = profile.trackingProfile.accelMax;
         }
         else
         {
@@ -586,11 +613,11 @@ public class _TargetSpawner : MonoBehaviour
             var x = Random.Range(-profile.aimProfile.xMax, profile.aimProfile.xMax);
             var y = Random.Range(-profile.aimProfile.yMax, profile.aimProfile.yMax);
             dir = new Vector3(x, y);
+            accel = Random.Range(profile.trackingProfile.accelMin, profile.trackingProfile.accelMax);
         }
 
         // apply acceleration to direction vector
         dir = dir.normalized;
-        var accel = Random.Range(profile.trackingProfile.accelMin, profile.trackingProfile.accelMax);
         var accel_vec = dir * accel;
 
         return accel_vec;
