@@ -27,5 +27,7 @@ public class AimProfile
     public bool failTargetOnMissClick;
 
     public bool canSpawnRotate = false;
-    public float spawnRotate = 45;
+    public float spawnRotateMin = 15;
+    public float spawnRotateMax = 45;
+
 }

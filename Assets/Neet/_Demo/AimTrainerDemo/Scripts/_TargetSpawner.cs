@@ -241,7 +241,12 @@ public class _TargetSpawner : MonoBehaviour
     {
         if (profile.aimProfile.canSpawnRotate)
         {
-            var angle = Random.Range(-aim.spawnRotate, aim.spawnRotate);
+            // var angle = Random.Range(-aim.spawnRotateMin, aim.spawnRotateMin);
+            // transform.RotateAround(cam.transform.position, Vector3.up, angle);
+
+            var angle = Random.Range(aim.spawnRotateMin, aim.spawnRotateMax);
+            var LR = Random.Range(0, 1) < 1 ? -1 : 1;
+            angle *= LR;
             transform.RotateAround(cam.transform.position, Vector3.up, angle);
         }
     }
@@ -346,8 +351,11 @@ public class _TargetSpawner : MonoBehaviour
     }
     private IEnumerator _WaitForSpawn()
     {
-        float delay = Random.Range(profile.timingProfile.delayMin, profile.timingProfile.delayMax);
-        yield return new WaitForSeconds(delay);
+        if (timing.canDelay)
+        {
+            float delay = Random.Range(timing.delayMin, timing.delayMax);
+            yield return new WaitForSeconds(delay);
+        }
         SpawnTarget();
         currentSpawnWait = null; // reset field once complete
     }
@@ -596,7 +604,7 @@ public class _TargetSpawner : MonoBehaviour
         {
             dir = localSpawnOrigin - target.transform.localPosition;
 
-            var localOrigin = cam.transform.position + 
+            var localOrigin = cam.transform.position +
                 (transform.position - cam.transform.position).normalized *
                 target.GetData<float>(Target.DISTANCE);
 

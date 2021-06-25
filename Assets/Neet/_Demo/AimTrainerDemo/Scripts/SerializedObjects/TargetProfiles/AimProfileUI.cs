@@ -15,8 +15,9 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
     public TMP_InputField yMax;
 
 
-    public TMP_InputField spawnRotate;
     public Toggle canSpawnRotate;
+    public TMP_InputField spawnRotateMin;
+    public TMP_InputField spawnRotateMax;
     public Toggle failTargetOnMissClick;
 
     public Toggle useDistRange;
@@ -28,7 +29,8 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
     private GameObject xMinMaxWarning;
     private GameObject yLimitWarning;
     private GameObject yMinMaxWarning;
-    private GameObject spawnRotateWarning;
+    private GameObject spawnRotateLimitWarning;
+    private GameObject spawnRotateMinMaxWarning;
 
     private GameObject distLimitWarning;
     private GameObject distMinMaxWarning;
@@ -47,8 +49,10 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
         distMax.text = a.distMax.ToString();
 
         failTargetOnMissClick.isOn = a.failTargetOnMissClick;
+
         canSpawnRotate.isOn = a.canSpawnRotate;
-        spawnRotate.text = a.spawnRotate.ToString();
+        spawnRotateMin.text = a.spawnRotateMin.ToString();
+        spawnRotateMax.text = a.spawnRotateMax.ToString();
 
         useDistRange.onValueChanged.Invoke(useDistRange.isOn);
     }
@@ -90,10 +94,13 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
             "Min distance cannot exceed max distance");
 
 
-        spawnRotateWarning = UIHelpers.CreateWarning(warningPrefab,
-            spawnRotate.gameObject, container, "Spawn rotation must be " +
+        spawnRotateLimitWarning = UIHelpers.CreateWarning(warningPrefab,
+            spawnRotateMin.gameObject, container, "Spawn rotation fields must be " +
             "in range [" + AimProfile.SPAWN_ROTATE_MIN + ","
             + AimProfile.SPAWN_ROTATE_MAX + "]");
+
+        spawnRotateMinMaxWarning = UIHelpers.CreateWarning(warningPrefab,
+            spawnRotateMin.gameObject, container, "Min cannot exceed max");
     }
 
     public void SetUIValidation(UnityAction endAction = null)
@@ -109,7 +116,8 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
             yLimitWarning, yMinMaxWarning,
             AimProfile.Y_MIN, AimProfile.Y_MAX, endAction);
 
-        UIHelpers.SetInputValidation(spawnRotate, spawnRotateWarning,
+        UIHelpers.SetInputMinMaxValidation(spawnRotateMin, spawnRotateMax,
+            spawnRotateLimitWarning, spawnRotateMinMaxWarning,
             AimProfile.SPAWN_ROTATE_MIN, AimProfile.SPAWN_ROTATE_MAX, endAction);
 
         UIHelpers.SetInputMinMaxValidation(distMin, distMax,
@@ -169,7 +177,9 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
         profile.distMax = float.Parse(distMax.text);
 
         profile.failTargetOnMissClick = failTargetOnMissClick.isOn;
+
         profile.canSpawnRotate = canSpawnRotate.isOn;
-        profile.spawnRotate = float.Parse(spawnRotate.text);
+        profile.spawnRotateMin = float.Parse(spawnRotateMin.text);
+        profile.spawnRotateMax = float.Parse(spawnRotateMax.text);
     }
 }
