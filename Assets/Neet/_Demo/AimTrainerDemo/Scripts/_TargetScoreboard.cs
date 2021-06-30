@@ -113,6 +113,8 @@ public class _TargetScoreboard : MonoBehaviour
         score.targetsSuccessful += 1;
         score.targetsAttempted += 1;
 
+        score.totalDistance += target.GetData<float>(Target.PLAYER_DIST);
+
         // overrides click sound on clickDestroy
         sb.Play("destroy");
 

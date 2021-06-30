@@ -47,6 +47,13 @@ public class Motor : MonoBehaviour
     public Vector3 deltaPosition { get; private set; }
     private Vector3 lastPosition;
 
+    private float deltaDistance;
+    public float DeltaDistance
+    {
+        get { return deltaDistance; }
+        private set { deltaDistance = value; }
+    }
+
     // condense to class
     [HideInInspector] public KeyCode xpos;
     [HideInInspector] public KeyCode xneg;
@@ -145,10 +152,6 @@ public class Motor : MonoBehaviour
             rb.AddForce(gravity, ForceMode.Acceleration);
         }
     }
-    private void LateUpdate()
-    {
-        UpdateDelta();
-    }
 
     /// <summary>
     /// Set movement settings
@@ -199,6 +202,12 @@ public class Motor : MonoBehaviour
         {
             rb.constraints = unlockedNoY;
         }
+    }
+
+    public void Halt()
+    {
+        TransformVelocity = Vector3.zero;
+        input = Vector3.zero;
     }
 
     // obsolete - use movement profile of some sort
@@ -297,6 +306,7 @@ public class Motor : MonoBehaviour
 
     }
 
+    // call in fixed update
     public void ApplyTransform(MovementProfile m)
     {
         Vector3 dirInput = transform.rotation * input;
@@ -328,12 +338,15 @@ public class Motor : MonoBehaviour
         TransformVelocity = new Vector3(newVelocity.x, 0, newVelocity.z);
 
         transform.position += TransformVelocity * Time.fixedDeltaTime;
+
+        UpdateDelta();
     }
 
 
     private void UpdateDelta()
     {
         deltaPosition = transform.position - lastPosition;
+        DeltaDistance = deltaPosition.magnitude;
         lastPosition = transform.position;
     }
 

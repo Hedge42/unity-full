@@ -80,25 +80,26 @@ public class _TargetSpawner : MonoBehaviour
         isActive = false;
         startPos = transform.position;
 
-        // SetZoneTransform();
-
-        // UpdateTransform();
-
         minLines.DrawLines(aim.yMax, aim.xMax);
-        //if (aim.useDistRange)
-        //{
-        //    maxLines.enabled = true;
-        //    var farAngles = MaxDistAngles();
-        //    maxLines.DrawLines(farAngles.y, farAngles.x);
-        //}
-        //else
-        //{
-        //    maxLines.enabled = false;
-        //}
+
+        // maxLines code
+        {
+            //if (aim.useDistRange)
+            //{
+            //    maxLines.enabled = true;
+            //    var farAngles = MaxDistAngles();
+            //    maxLines.DrawLines(farAngles.y, farAngles.x);
+            //}
+            //else
+            //{
+            //    maxLines.enabled = false;
+            //}
+        }
     }
     private void FixedUpdate()
     {
         motor.ApplyTransform(profile.movementProfile);
+        LogPlayerMovement();
         UpdateTransform();
     }
     private void ApplyColorSettings()
@@ -185,6 +186,19 @@ public class _TargetSpawner : MonoBehaviour
         Vector3 direction = transform.position - from.position;
         transform.rotation = Quaternion.LookRotation(direction);
     }
+    private void MoveSpawner()
+    {
+        if (profile.aimProfile.canSpawnRotate)
+        {
+            // var angle = Random.Range(-aim.spawnRotateMin, aim.spawnRotateMin);
+            // transform.RotateAround(cam.transform.position, Vector3.up, angle);
+
+            var angle = Random.Range(aim.spawnRotateMin, aim.spawnRotateMax);
+            var LR = Random.Range(0, 1) < 1 ? -1 : 1;
+            angle *= LR;
+            transform.RotateAround(cam.transform.position, Vector3.up, angle);
+        }
+    }
 
     public void Play(bool challenge)
     {
@@ -209,13 +223,6 @@ public class _TargetSpawner : MonoBehaviour
         StopAllCoroutines();
     }
 
-    // target spawning
-    private void NextTarget(GameObject target)
-    {
-        Destroy(target);
-        currentTarget = null;
-        WaitForSpawn();
-    }
 
     private IEnumerator AnimateTargetKill(GameObject target)
     {
@@ -237,21 +244,13 @@ public class _TargetSpawner : MonoBehaviour
         Destroy(target);
     }
 
-    private void MoveSpawner()
+    // target spawning
+    private void NextTarget(GameObject target)
     {
-        if (profile.aimProfile.canSpawnRotate)
-        {
-            // var angle = Random.Range(-aim.spawnRotateMin, aim.spawnRotateMin);
-            // transform.RotateAround(cam.transform.position, Vector3.up, angle);
-
-            var angle = Random.Range(aim.spawnRotateMin, aim.spawnRotateMax);
-            var LR = Random.Range(0, 1) < 1 ? -1 : 1;
-            angle *= LR;
-            transform.RotateAround(cam.transform.position, Vector3.up, angle);
-        }
+        Destroy(target);
+        currentTarget = null;
+        WaitForSpawn();
     }
-
-
     private void SpawnTarget()
     {
         // to prevent a double spawn
@@ -434,6 +433,17 @@ public class _TargetSpawner : MonoBehaviour
                 scoreboard.ClickTimeout();
                 NextTarget(currentTarget);
             }
+        }
+    }
+
+    private void LogPlayerMovement()
+    {
+        var target = currentTarget;
+        if (profile.movementProfile.canMove && target != null)
+        {
+            var dist = target.GetData<float>(Target.PLAYER_DIST);
+            dist += motor.DeltaDistance;
+            target.SetData(Target.PLAYER_DIST, dist);
         }
     }
 

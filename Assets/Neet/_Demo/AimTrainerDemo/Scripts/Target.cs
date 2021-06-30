@@ -17,6 +17,8 @@ public static class Target
     public const string TRACK_SUCCESS_NOW = "being tracked";
     public const string DISTANCE = "dist";
 
+    public const string PLAYER_DIST = "player dist";
+
     // clicks attempted
     // clicks successful
 

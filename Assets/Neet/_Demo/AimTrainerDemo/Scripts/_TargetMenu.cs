@@ -59,6 +59,8 @@ public class _TargetMenu : MonoBehaviour
             spawner.ResetTransform();
 
             motor.IsInputActive = false;
+            motor.ResetTransform();
+            motor.Halt();
             spawner.Stop();
             scoreboard.Stop();
 
@@ -73,7 +75,12 @@ public class _TargetMenu : MonoBehaviour
             // give FPS control to player
             rotator.Toggle(true);
 
-            motor.IsInputActive = profile.movementProfile.canMove;
+            if (profile.movementProfile.canMove)
+            {
+                motor.IsInputActive = profile.movementProfile.canMove;
+                motor.Freeze(false);
+            }
+
             player.GetComponent<WeaponHandler>().gun.enabled = false;
         };
 
