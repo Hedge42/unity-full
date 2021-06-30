@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class AreYouSure : MonoBehaviour
+public class ContextMenu : MonoBehaviour
 {
     
 
@@ -79,7 +79,7 @@ public class AreYouSure : MonoBehaviour
 
 public class ConfirmationPrompt
 {
-    public AreYouSure ui;
+    public ContextMenu ui;
     public string infoText = "Are you sure?";
     public string yesText = "Yes";
     public string noText = "No";
@@ -88,7 +88,7 @@ public class ConfirmationPrompt
     public UnityAction onYes = null;
     public UnityAction onNo = null;
 
-    public ConfirmationPrompt(AreYouSure ui)
+    public ConfirmationPrompt(ContextMenu ui)
     {
         this.ui = ui;
     }

@@ -73,7 +73,7 @@ public class _TargetScoreboard : MonoBehaviour
     public void SaveScore()
     {
         profile.scores.Add(score);
-        score.dateSaved = System.DateTime.Now.ToString();
+        score.datePlayed = System.DateTime.Now.ToString();
         PresetCollection.loaded.Save();
     }
 

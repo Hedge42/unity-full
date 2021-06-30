@@ -15,7 +15,7 @@ public class PlayMenuUI : MonoBehaviour
     public ScoreScrollerUI scoreScroller;
     public PresetProfileUI profileUI;
 
-    public AreYouSure areYouSure;
+    public ContextMenu areYouSure;
     public GameObject warningPrefab;
     public Transform settingsContainer;
 

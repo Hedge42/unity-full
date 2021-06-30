@@ -5,52 +5,58 @@ using TMPro;
 
 public class _ScoreResultsUI : MonoBehaviour
 {
+    private const string DEC_F = "f1";
+
     public Transform container;
 
     // results screen references
     public TextMeshProUGUI title;
     public TextMeshProUGUI timeElapsed;
-    public TextMeshProUGUI successRate;
-    public TextMeshProUGUI successRatio;
-    public TextMeshProUGUI flickRatio;
-    public TextMeshProUGUI flickSuccessRate;
-    public TextMeshProUGUI trackRatio;
-    public TextMeshProUGUI trackSuccessRate;
-    public TextMeshProUGUI trackRate;
-    public TextMeshProUGUI dateSaved;
+    public TextMeshProUGUI datePlayed;
+
+    public TextMeshProUGUI overallAccuracy;
+    public TextMeshProUGUI clickAccuracy;
+    public TextMeshProUGUI trackSuccess;
+    public TextMeshProUGUI trackTime;
+    public TextMeshProUGUI distancePerSuccessfulTarget;
 
     public void UpdateGUI(PresetProfile p, ScoreProfile s)
     {
         title.text = p.name + " results";
+        timeElapsed.text = s.timeElapsed.ToString(DEC_F) + " seconds";
+        datePlayed.text = s.datePlayed;
 
-        timeElapsed.text = s.timeElapsed.ToString("f1") + " seconds";
-        successRate.text = s.SuccessRate;
-        successRatio.text = s.SuccessRatio;
+        // accuracy stats
+        overallAccuracy.text = Ratio(s.targetsSuccessful, s.targetsAttempted);
+        clickAccuracy.text = Ratio(s.clicksSuccessful, s.clicksAttempted);
+        trackSuccess.text = Ratio(s.tracksSuccessful, s.tracksAttempted);
+        trackTime.text = s.trackTimeSuccessful.ToString(DEC_F) + "s/" +
+            s.trackTimeAttempted.ToString(DEC_F) + "s -- "
+            + (100 * s.trackTimeSuccessful / s.trackTimeAttempted).ToString(DEC_F) + "%";
 
-        flickRatio.text = s.FlickSuccessRatio;
-        flickSuccessRate.text = s.FlickSuccessRate;
-
-        trackRatio.text = s.TrackSuccessRatio;
-        trackSuccessRate.text = s.TrackSuccessRate;
-        trackRate.text = s.TrackRate;
-
-        dateSaved.text = s.dateSaved;
+        // player movement stats
+        distancePerSuccessfulTarget.text = (s.totalDistance / s.targetsSuccessful)
+            .ToString(DEC_F) + "m";
 
         UpdateVisibility(p);
     }
 
+    private string Ratio(int successful, int attempted)
+    {
+        return successful + "/" + attempted + " -- "
+            + (100 * (float)successful / attempted).ToString(DEC_F) + "%";
+    }
+
     private void UpdateVisibility(PresetProfile p)
     {
-        GetParentObject(flickRatio).SetActive(p.timingProfile.canClickTimeout);
-        GetParentObject(flickSuccessRate).SetActive(p.timingProfile.canClickTimeout);
+        GetParentObject(clickAccuracy).SetActive(
+            p.timingProfile.canClickTimeout || p.aimProfile.failTargetOnMissClick);
 
-        GetParentObject(trackRate).SetActive(p.trackingProfile.canTrack);
+        GetParentObject(trackTime).SetActive(p.trackingProfile.canTrack);
+        GetParentObject(trackSuccess).SetActive(p.trackingProfile.canTrackTimeout);
 
-        // don't show these if there is a click timeout, otherwise it's redundant
-        GetParentObject(trackRatio).SetActive(p.trackingProfile.canTrack
-            && p.timingProfile.canClickTimeout);
-        GetParentObject(trackSuccessRate).SetActive(p.trackingProfile.canTrackTimeout
-            && p.timingProfile.canClickTimeout);
+        GetParentObject(distancePerSuccessfulTarget)
+            .SetActive(p.movementProfile.canMove);
     }
 
     private GameObject GetParentObject(Component c)

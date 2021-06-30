@@ -41,7 +41,7 @@ public class ScoreScrollerUI : MonoBehaviour
             b.gameObject.SetActive(true);
             scoreButtons.Add(b);
             var tmp = b.GetComponentInChildren<TextMeshProUGUI>();
-            tmp.text = preset.scores[i].dateSaved;
+            tmp.text = preset.scores[i].datePlayed;
 
             b.onClick.AddListener(delegate
             {

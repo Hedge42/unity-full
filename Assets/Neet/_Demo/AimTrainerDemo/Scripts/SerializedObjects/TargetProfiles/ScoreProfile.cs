@@ -16,7 +16,9 @@ public class ScoreProfile
     public float trackTimeSuccessful;
     public float trackTimeAttempted;
 
-    public string dateSaved;
+    public float totalDistance;
+
+    public string datePlayed;
 
     public string SuccessRatio
     {
