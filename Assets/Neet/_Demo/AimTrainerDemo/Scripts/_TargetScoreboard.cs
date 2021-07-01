@@ -66,14 +66,16 @@ public class _TargetScoreboard : MonoBehaviour
         // would be called on scene load since pause happens at start
         if (score != null)
         {
+            score.datePlayed = System.DateTime.Now.ToString();
             results.UpdateGUI(profile, score);
+            results.saveScoreAction = SaveScore;
+
             ShowResults?.Invoke();
         }
     }
     public void SaveScore()
     {
         profile.scores.Add(score);
-        score.datePlayed = System.DateTime.Now.ToString();
         PresetCollection.loaded.Save();
     }
 
@@ -145,7 +147,7 @@ public class _TargetScoreboard : MonoBehaviour
     // handling challenge completion
     private void CompleteChallenge()
     {
-        SaveScore();
+        results.SetToggleState(true);
         PauseListener.Pause();
     }
     private bool TargetLimitReached()

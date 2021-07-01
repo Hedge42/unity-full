@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class _ScoreResultsUI : MonoBehaviour
@@ -20,6 +22,9 @@ public class _ScoreResultsUI : MonoBehaviour
     public TextMeshProUGUI trackTime;
     public TextMeshProUGUI distancePerSuccessfulTarget;
 
+    public Toggle saveScoreToggle;
+    public UnityAction saveScoreAction;
+
     public void UpdateGUI(PresetProfile p, ScoreProfile s)
     {
         title.text = p.name + " results";
@@ -32,20 +37,45 @@ public class _ScoreResultsUI : MonoBehaviour
         trackSuccess.text = Ratio(s.tracksSuccessful, s.tracksAttempted);
         trackTime.text = s.trackTimeSuccessful.ToString(DEC_F) + "s/" +
             s.trackTimeAttempted.ToString(DEC_F) + "s -- "
-            + (100 * s.trackTimeSuccessful / s.trackTimeAttempted).ToString(DEC_F) + "%";
+            + GetPercentage(s.tracksSuccessful, s.trackTimeAttempted);
 
         // player movement stats
-        distancePerSuccessfulTarget.text = (s.totalDistance / s.targetsSuccessful)
-            .ToString(DEC_F) + "m";
+        distancePerSuccessfulTarget.text =
+            CullNaN(s.totalDistance / s.targetsSuccessful) + "m";
 
         UpdateVisibility(p);
     }
 
+    private string GetPercentage(float a, float b)
+    {
+        var value = 100 * a / b;
+        return CullNaN(value);
+    }
+    private string CullNaN(float value)
+    {
+        if (float.IsNaN(value))
+            return "0";
+        else
+            return value.ToString(DEC_F);
+    }
     private string Ratio(int successful, int attempted)
     {
         return successful + "/" + attempted + " -- "
-            + (100 * (float)successful / attempted).ToString(DEC_F) + "%";
+            + GetPercentage((float)successful, (float)attempted);
     }
+
+    public void SetToggleState(bool value)
+    {
+        if (saveScoreToggle != null)
+            saveScoreToggle.isOn = value;
+    }
+    public void OnOK()
+    {
+        if (saveScoreToggle.isOn)
+            saveScoreAction?.Invoke();
+    }
+
+    
 
     private void UpdateVisibility(PresetProfile p)
     {

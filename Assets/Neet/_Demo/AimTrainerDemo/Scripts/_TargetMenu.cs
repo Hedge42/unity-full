@@ -112,6 +112,7 @@ public class _TargetMenu : MonoBehaviour
         PauseListener.Resume();
 
         spawner.Play(challenge);
+        scoreboard.results.SetToggleState(false);
     }
 
     public void ShowResults()
