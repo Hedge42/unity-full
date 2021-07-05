@@ -15,6 +15,8 @@ public class Motor : MonoBehaviour
     }
     public MotorType motorType;
 
+    public MovementProfile p;
+
 
     [Range(0, 10f)]
     public float gravityScale = 1.0f;
