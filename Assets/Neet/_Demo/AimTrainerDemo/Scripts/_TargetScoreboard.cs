@@ -33,6 +33,8 @@ public class _TargetScoreboard : MonoBehaviour
         t.onTimerFinished += delegate { CompleteChallenge(); };
         t.onTimerTick += delegate { score.timeElapsed = t.timeElapsed; };
         sb = GetComponent<SoundBank>();
+
+        results.clearScoreAction = delegate { score = null; };
     }
 
     private void Update()

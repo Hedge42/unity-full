@@ -20,7 +20,6 @@ public class ScoreGraph : MonoBehaviour
         TrackAccuracy,
     }
 
-
     private void Start()
     {
         SetupTooltip(results.overallAccuracy.transform, ScoreType.OverallAccuracy);
@@ -35,7 +34,8 @@ public class ScoreGraph : MonoBehaviour
         GameObject tooltipGO = Instantiate(tooltipPrefab, t);
         tooltipGO.SetActive(true);
         tooltipGO.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        EventHandler e = t.gameObject.GetComponent<EventHandler>();
+        EventHandler e = t.GetComponent<EventHandler>();
+
         e.onPointerClick += delegate
         {
             switcher.SwitchTo(2);

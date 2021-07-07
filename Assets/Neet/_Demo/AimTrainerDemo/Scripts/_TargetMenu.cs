@@ -64,7 +64,7 @@ public class _TargetMenu : MonoBehaviour
             spawner.Stop();
             scoreboard.Stop();
 
-            player.GetComponent<WeaponHandler>().gun.enabled = false;
+            player.GetComponent<WeaponHandler>().enabled = false;
         };
 
         onResume = delegate
@@ -81,13 +81,14 @@ public class _TargetMenu : MonoBehaviour
                 motor.Freeze(false);
             }
 
-            player.GetComponent<WeaponHandler>().gun.enabled = false;
+            player.GetComponent<WeaponHandler>().enabled = true;
         };
 
         PauseListener.onPause.AddListener(onPause);
         PauseListener.onResume.AddListener(onResume);
 
         title.text = PresetProfile.current.name;
+        scoreboard.hud.ResetText();
 
         PauseListener.Pause();
     }
@@ -113,6 +114,7 @@ public class _TargetMenu : MonoBehaviour
 
         spawner.Play(challenge);
         scoreboard.results.SetToggleState(false);
+        scoreboard.hud.ResetText();
     }
 
     public void ShowResults()

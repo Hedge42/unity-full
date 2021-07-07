@@ -1,11 +1,7 @@
-﻿using System.Collections;
+﻿using Neet.UI;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
-using System;
-using UnityEngine.Events;
-using Neet.UI;
 
 // UI controller class
 public class PlayMenuUI : MonoBehaviour
@@ -15,15 +11,30 @@ public class PlayMenuUI : MonoBehaviour
     public ScoreScrollerUI scoreScroller;
     public PresetProfileUI profileUI;
 
+    public UISwitcher switcher;
+
     public GameObject warningPrefab;
     public Transform settingsContainer;
 
     public GameObject tooltipPrefab;
 
+    public Button saveButton;
+    public Button revertButton;
+
     // data & properties
-    public bool HasChanges { get { return hasChanges; } }
+    public bool HasChanges
+    {
+        get { return _hasChanges; }
+        set
+        {
+            _hasChanges = value;
+
+            saveButton.interactable = value;
+            revertButton.interactable = value;
+        }
+    }
     private PresetCollection presets => PresetCollection.loaded;
-    private bool hasChanges;
+    private bool _hasChanges;
 
     private ConfirmationPrompt overwriteSettingsPrompt;
     private ConfirmationPrompt deleteScorePrompt;
@@ -32,6 +43,7 @@ public class PlayMenuUI : MonoBehaviour
 
     private void Start()
     {
+        switcher.SwitchTo(0);
         PauseListener.isListeningForKey = false;
         PauseListener.isPaused = true;
         PresetCollection.Load();
@@ -52,7 +64,7 @@ public class PlayMenuUI : MonoBehaviour
     private void SetupUI()
     {
         profileUI.CreateWarnings(warningPrefab, settingsContainer.transform);
-        profileUI.SetUIValidation(delegate { hasChanges = true; });
+        profileUI.SetUIValidation(delegate { HasChanges = true; });
         profileUI.AddAllTooltips(settingsContainer.transform, tooltipPrefab);
     }
     private void SelectCurrentProfile()
@@ -67,7 +79,7 @@ public class PlayMenuUI : MonoBehaviour
         profileUI.LoadCurrentProfile();
         scoreScroller.LoadCurrentProfile();
         scoreScroller.ShowSettingsMenu();
-        hasChanges = false;
+        HasChanges = false;
     }
 
     // deleting
@@ -120,6 +132,10 @@ public class PlayMenuUI : MonoBehaviour
         prompt.infoText = "Overwrite settings? This will clear all scores";
         prompt.yesText = "Yes, overwrite and remove scores";
         prompt.noText = "No, take me back";
+        prompt.shouldShow = delegate
+        {
+            return HasChanges && PresetProfile.current.scores.Count > 0;
+        };
         prompt.onYes = delegate
         {
             profileUI.Apply(ref PresetProfile.current);
@@ -134,6 +150,7 @@ public class PlayMenuUI : MonoBehaviour
             }
 
             // reload the preset scroller
+            PresetProfile.current.scores = new List<ScoreProfile>();
             presets.Save();
             presetScroller.LoadCollection();
 
@@ -141,7 +158,7 @@ public class PlayMenuUI : MonoBehaviour
         };
         prompt.shouldShow = delegate
         {
-            return hasChanges && PresetProfile.current.scores.Count > 0;
+            return HasChanges && PresetProfile.current.scores.Count > 0;
         };
 
         return prompt;
@@ -170,7 +187,7 @@ public class PlayMenuUI : MonoBehaviour
         return prompt;
     }
 
-    
+
 
     // button events
     public void SaveAndApply()
@@ -181,7 +198,7 @@ public class PlayMenuUI : MonoBehaviour
     {
         PresetProfile.current = new PresetProfile();
         LoadCurrentProfile();
-        hasChanges = true;
+        HasChanges = true;
     }
     public void DuplicatePreset()
     {
@@ -197,7 +214,7 @@ public class PlayMenuUI : MonoBehaviour
 
         // TODO create a button
 
-        hasChanges = true;
+        HasChanges = true;
     }
     public void Play()
     {

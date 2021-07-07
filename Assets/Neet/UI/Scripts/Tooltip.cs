@@ -32,7 +32,7 @@ public class Tooltip : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         c = GetComponent<CanvasGroup>();
 
@@ -44,7 +44,6 @@ public class Tooltip : MonoBehaviour
         e.onPointerEnter += delegate { Toggle(true); };
         e.onPointerExit += delegate { Toggle(false); };
     }
-
     public void FixRect()
     {
         rt = GetComponent<RectTransform>();

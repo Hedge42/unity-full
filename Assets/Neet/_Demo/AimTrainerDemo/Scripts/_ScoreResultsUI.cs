@@ -24,6 +24,7 @@ public class _ScoreResultsUI : MonoBehaviour
 
     public Toggle saveScoreToggle;
     public UnityAction saveScoreAction;
+    public UnityAction clearScoreAction;
 
     public void UpdateGUI(PresetProfile p, ScoreProfile s)
     {
@@ -73,6 +74,9 @@ public class _ScoreResultsUI : MonoBehaviour
     {
         if (saveScoreToggle.isOn)
             saveScoreAction?.Invoke();
+
+        // clear the score
+        clearScoreAction?.Invoke();
     }
 
     

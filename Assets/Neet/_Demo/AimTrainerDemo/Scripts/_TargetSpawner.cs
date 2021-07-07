@@ -202,7 +202,6 @@ public class _TargetSpawner : MonoBehaviour
 
     public void Play(bool challenge)
     {
-        // ut = StartCoroutine(_UpdateTransform());
         isChallenge = challenge;
         waitingForFirstHit = true;
         isActive = true;
@@ -210,17 +209,13 @@ public class _TargetSpawner : MonoBehaviour
     }
     public void Stop()
     {
-        if (ut != null)
-        {
-            StopCoroutine(ut);
-            ut = null;
-        }
+        StopAllCoroutines();
+        ut = null;
+        currentSpawnWait = null;
         if (currentTarget != null)
             Destroy(currentTarget);
         waitingForFirstHit = true;
-        currentSpawnWait = null;
         isActive = false;
-        StopAllCoroutines();
     }
 
 

@@ -28,4 +28,11 @@ public class _ScoreboardHUD : MonoBehaviour
         // same regardless of settings
         accuracy.text = s.OverallAccuracyString;
     }
+
+    public void ResetText()
+    {
+        time.text = "--";
+        targets.text = "--";
+        accuracy.text = "--";
+    }
 }
