@@ -43,11 +43,6 @@ public class Tooltip : MonoBehaviour
 
         e.onPointerEnter += delegate { Toggle(true); };
         e.onPointerExit += delegate { Toggle(false); };
-
-        e.onPointerClick += delegate
-        {
-            Neet.UI.ContextMenu.instance.Show("Hello");
-        };
     }
 
     public void FixRect()

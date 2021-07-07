@@ -60,7 +60,11 @@ namespace Neet.UI
         string yesText = "Okay", string noText = "Nevermind",
         UnityAction yesAction = null, UnityAction noAction = null)
         {
-            // show unless manually filtered
+            // user actions called by buttons
+            onYes = yesAction;
+            onNo = noAction;
+
+            // show unless manually filtered out
             if (shouldshow == null || shouldshow())
             {
                 // show canvas and set text
@@ -72,9 +76,12 @@ namespace Neet.UI
                 // only show no button if there is a confirmation action
                 btnNo.gameObject.SetActive(yesAction != null);
 
-                // user actions called by buttons
-                onYes = yesAction;
-                onNo = noAction;
+            }
+
+            // shouldShow is false, just run the method
+            else
+            {
+                onYes.Invoke();
             }
         }
 

@@ -26,6 +26,6 @@ public class _ScoreboardHUD : MonoBehaviour
             targets.text = s.SuccessRatio;
 
         // same regardless of settings
-        accuracy.text = s.SuccessRate;
+        accuracy.text = s.OverallAccuracyString;
     }
 }
