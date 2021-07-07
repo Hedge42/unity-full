@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using Neet.UI;
 
 public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
 {
-    // public TMP_InputField radius;
     public Toggle showCenterLines;
     public TMP_InputField xMin;
     public TMP_InputField xMax;
     public TMP_InputField yMin;
     public TMP_InputField yMax;
-
 
     public Toggle canSpawnRotate;
     public TMP_InputField spawnRotateMin;
@@ -24,16 +23,60 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
     public TMP_InputField distMin;
     public TMP_InputField distMax;
 
-    // private GameObject radiusWarning;
     private GameObject xLimitWarning;
     private GameObject xMinMaxWarning;
     private GameObject yLimitWarning;
     private GameObject yMinMaxWarning;
     private GameObject spawnRotateLimitWarning;
     private GameObject spawnRotateMinMaxWarning;
-
     private GameObject distLimitWarning;
     private GameObject distMinMaxWarning;
+
+    // public TMP_InputField radius;
+    // private GameObject radiusWarning;
+
+    private string rangeText;
+    private string rotationText;
+    private string distText;
+    private string missclickText;
+
+
+    public void AddAllTooltips(Transform container, GameObject tooltipPrefab)
+    {
+        SetContextTexts();
+
+        AddTooltip(xMin.transform, container, rangeText, tooltipPrefab);
+        AddTooltip(yMin.transform, container, rangeText, tooltipPrefab);
+        AddTooltip(canSpawnRotate.transform, container, rotationText, tooltipPrefab);
+        AddTooltip(useDistRange.transform, container, distText, tooltipPrefab);
+        AddTooltip(failTargetOnMissClick.transform, container, missclickText, tooltipPrefab);
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text,
+        GameObject tooltipPrefab)
+    {
+        while (obj.parent != container.transform)
+            obj = obj.parent;
+        Transform label = obj.GetChild(0);
+        UIHelpers.AddTooltip(tooltipPrefab, label, text);
+    }
+
+    public void SetContextTexts()
+    {
+        rangeText = "Range attributes determine the size of the spawn zone relative to "
+            + "the player's FOV\n\nEX, with an FOV of 100 and an X angle of 50, "
+            + "the horizontal range of the spawn zone will stretch to the player's full "
+            + "horizonal FOV";
+
+        distText = "Distance determines the size of the targets relative to the player\n"
+            + "\nIf disabled, all targets will spawn at a uniform distance";
+
+        rotationText = "If enabled, the spawn zone will rotate up to 180° around the "
+            + "player at the beginning of each target's spawn cycle";
+
+        missclickText = "If enabled, a click missing a target will instantly fail it." +
+            "\nif disabled, a miss-click will continue to wait for the timeout.";
+    }
 
     public void LoadFields(AimProfile a)
     {
@@ -139,7 +182,7 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
             endAction.Invoke();
         });
 
-        useDistRange.onValueChanged.AddListener(delegate(bool isOn)
+        useDistRange.onValueChanged.AddListener(delegate (bool isOn)
         {
             distMax.interactable = isOn;
 

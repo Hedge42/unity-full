@@ -32,6 +32,37 @@ public class TrackingProfileUI : MonoBehaviour, ISettingUI<TrackingProfile>
     private GameObject timeLimitWarning;
     private GameObject timeMinMaxWarning;
 
+    private string accelText;
+    private string speedText;
+    private string tickText;
+    private string destroyText;
+    private string timeoutText;
+    private string canMoveText;
+    private string canTrackText;
+
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        SetContextTexts();
+
+        AddTooltip(accelMin.transform, container, accelText, prefab);
+        AddTooltip(speedMin.transform, container, speedText, prefab);
+        AddTooltip(tickRate.transform, container, tickText, prefab);
+        AddTooltip(canTrackDestroy.transform, container, destroyText, prefab);
+        AddTooltip(canTrackTimeout.transform, container, timeoutText, prefab);
+        AddTooltip(canMove.transform, container, canMoveText, prefab);
+        AddTooltip(canTrack.transform, container, canTrackText, prefab);
+        AddTooltip(isMoveInstant.transform, container, canMoveText, prefab);
+        AddTooltip(isTrackInstant.transform, container, canTrackText, prefab);
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        while (obj.parent != container.transform)
+            obj = obj.parent;
+        Transform label = obj.GetChild(0);
+        UIHelpers.AddTooltip(prefab, label, text);
+    }
+
     public void Apply(ref TrackingProfile profile)
     {
         profile.accelMin = float.Parse(accelMin.text);
@@ -108,6 +139,39 @@ public class TrackingProfileUI : MonoBehaviour, ISettingUI<TrackingProfile>
 
         canTrackTimeout.isOn = profile.canTrackTimeout;
         canTrackDestroy.isOn = profile.canTrackDestroy;
+    }
+
+    public void SetContextTexts()
+    {
+        accelText = "The acceleration rate, in m/s^2, applied to moving targets "
+            + "every tick.";
+
+        speedText = "The possible speed values for moving targets. "
+            + "\nA target will start moving at the minimum speed, "
+            + "then will be affected by acceleration. "
+            + "\nNote that more distant targets will appear to move slower, "
+            + "while nearer targets will appear to move more quickly.";
+
+        tickText = "The rate, in seconds, that a moving target will be given a new "
+            + " acceleration vector.";
+
+        destroyText = "If enabled, the target will be destroyed after it has been "
+            + "tracked for this amount of time, in seconds."
+            + "\n\nDisabled, it will wait to be timed out, if relevant.";
+
+        timeoutText = "The time, in seconds, that a target destroy itself after it " +
+            "has started moving.";
+
+        canMoveText = "If Can Move is disabled, targets will always remain static. "
+            + "\n\nIf instant move is enabled, the target will begin moving "
+            + "immediately once it has spawned. If instant is disabled, the target " 
+            + "will only start moving after it has been clicked.";
+
+        canTrackText = "If enabled, targets will use tracking-timer settings " +
+            "after tracking has started.\n\nIf instant track is enabled, the target's " +
+            "tracking-timers will be started immediately after spawning. If instant " +
+            "track is disabled, the target's tracking-timers will wait " +
+            "for the target to be clicked.";
     }
 
     public void SetUIValidation(UnityAction endAction = null)

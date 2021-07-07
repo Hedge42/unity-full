@@ -17,6 +17,9 @@ public class TimingProfileUI : MonoBehaviour, ISettingUI<TimingProfile>
     private GameObject delayLimitWarning;
     private GameObject delayMinMaxWarning;
 
+    private string timeoutText;
+    private string delayText;
+
     public void LoadFields(TimingProfile t)
     {
         if (timeout != null)
@@ -83,5 +86,30 @@ public class TimingProfileUI : MonoBehaviour, ISettingUI<TimingProfile>
         profile.delayMin = float.Parse(delayMin.text);
         profile.delayMax = float.Parse(delayMax.text);
         profile.timeout = float.Parse(timeout.text);
+    }
+
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        SetContextTexts();
+
+        AddTooltip(timeout.transform, container, timeoutText, prefab);
+        AddTooltip(delayMax.transform, container, delayText, prefab);
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        while (obj.parent != container.transform)
+            obj = obj.parent;
+        Transform label = obj.GetChild(0);
+        UIHelpers.AddTooltip(prefab, label, text);
+    }
+
+    public void SetContextTexts()
+    {
+        timeoutText = "If enabled, the target will wait for this amount of time, " +
+            "in seconds, to destroy and fail the target.";
+
+        delayText = "The range of time, in seconds, to wait to spawn a new target " +
+            "after the last one has been destroyed.";
     }
 }

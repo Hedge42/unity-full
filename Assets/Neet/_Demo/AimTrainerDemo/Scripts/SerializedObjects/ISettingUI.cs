@@ -27,4 +27,8 @@ public interface ISettingUI<T>
     void SetUIValidation(UnityAction endAction = null);
 
     void Apply(ref T profile);
+
+    void AddAllTooltips(Transform container, GameObject prefab);
+    void AddTooltip(Transform obj, Transform container, string text, GameObject prefab);
+    void SetContextTexts();
 }

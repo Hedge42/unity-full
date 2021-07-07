@@ -12,6 +12,16 @@ public class AudioSettingUI : MonoBehaviour, ISettingUI<AudioSetting>
     public Slider masterVolumeSlider;
     public TextMeshProUGUI masterVolumeLabel;
 
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Apply(ref AudioSetting profile)
     {
         profile.masterVolume = masterVolumeSlider.value;
@@ -27,6 +37,11 @@ public class AudioSettingUI : MonoBehaviour, ISettingUI<AudioSetting>
     public void LoadFields(AudioSetting profile)
     {
         masterVolumeSlider.value = profile.masterVolume;
+    }
+
+    public void SetContextTexts()
+    {
+        throw new System.NotImplementedException();
     }
 
     public void SetUIValidation(UnityAction endAction = null)

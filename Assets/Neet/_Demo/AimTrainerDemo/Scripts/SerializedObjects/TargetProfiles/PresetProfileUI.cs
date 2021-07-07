@@ -32,6 +32,16 @@ public class PresetProfileUI : MonoBehaviour, ISettingUI<PresetProfile>
         movementProfileUI = GetComponent<MovementProfileUI>();
     }
 
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        aimProfileUI.AddAllTooltips(container, prefab);
+        timingProfileUI.AddAllTooltips(container, prefab);
+        colorProfileUI.AddAllTooltips(container, prefab);
+        challengeProfileUI.AddAllTooltips(container, prefab);
+        trackingProfileUI.AddAllTooltips(container, prefab);
+        movementProfileUI.AddAllTooltips(container, prefab);
+    }
+
     public void Apply(ref PresetProfile profile)
     {
         profile.name = presetName.text;
@@ -151,5 +161,15 @@ public class PresetProfileUI : MonoBehaviour, ISettingUI<PresetProfile>
             newName = name + "(" + (++count).ToString() + ")";
 
         return newName;
+    }
+
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        throw new NotImplementedException();
+    }
+    public void SetContextTexts()
+    {
+        throw new NotImplementedException();
     }
 }

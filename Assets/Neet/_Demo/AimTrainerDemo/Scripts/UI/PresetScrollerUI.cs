@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using System;
+using Neet.UI;
 
 public class PresetScrollerUI : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class PresetScrollerUI : MonoBehaviour
         btn.onClick.AddListener(delegate
         {
             prompt.onYes = delegate { Select(btn); };
-            prompt.Ask();
+            Neet.UI.ContextMenu.instance.Show(prompt);
         });
 
         // add to list

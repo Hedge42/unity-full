@@ -21,6 +21,29 @@ public class MovementProfileUI : MonoBehaviour, ISettingUI<MovementProfile>
     private GameObject accPowWarning;
     private GameObject decPowWarning;
 
+    private string canMoveText;
+    private string speedText;
+    private string accelText;
+    private string accuracyText;
+
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        SetContextTexts();
+
+        AddTooltip(canMove.transform, container, canMoveText, prefab);
+        AddTooltip(maxSpeed.transform, container, speedText, prefab);
+        AddTooltip(accelRate.transform, container, accelText, prefab);
+        AddTooltip(useAccuracyRate.transform, container, accuracyText, prefab);
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        while (obj.parent != container.transform)
+            obj = obj.parent;
+        Transform label = obj.GetChild(0);
+        UIHelpers.AddTooltip(prefab, label, text);
+    }
+
     public void Apply(ref MovementProfile profile)
     {
         profile.canMove = canMove.isOn;
@@ -58,6 +81,17 @@ public class MovementProfileUI : MonoBehaviour, ISettingUI<MovementProfile>
         accuracyRate.text = profile.accuracyRate.ToString();
         accelPow.text = profile.accelPow.ToString();
         decelPow.text = profile.decelPow.ToString();
+    }
+
+    public void SetContextTexts()
+    {
+        canMoveText = "If enabled, the player will be able to move.";
+        speedText = "The max speed of the player in meters / second.";
+        accelText = "The time, in seconds, it takes for the player to reach " +
+            "full speed from a full stop.";
+        accuracyText = "If enabled, shots will not be considered accuracy unless " +
+            "the player's speed at the time of the shot is below this percentage [0,1]" +
+            "of their max speed. \nIf disabled, all shots will be considered accurate.";
     }
 
     public void SetUIValidation(UnityAction endAction = null)

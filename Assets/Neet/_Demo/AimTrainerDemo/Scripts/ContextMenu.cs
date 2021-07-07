@@ -10,6 +10,8 @@ namespace Neet.UI
 {
     public class ContextMenu : MonoBehaviour
     {
+        public static ContextMenu instance { get; private set; }
+
         public TextMeshProUGUI text;
         public Button btnYes;
         public Button btnNo;
@@ -20,6 +22,9 @@ namespace Neet.UI
 
         private void Awake()
         {
+            if (instance == null)
+                instance = this;
+
             canvas = GetComponent<Canvas>();
 
             // button clicks should always hide this panel
@@ -46,23 +51,31 @@ namespace Neet.UI
             btnNo.onClick.AddListener(_onNo);
         }
 
-        public void Show(string text, 
-            string yesText = "Okay", string noText = "Nevermind", 
-            UnityAction yesAction = null, UnityAction noAction = null)
+        public void Show(ConfirmationPrompt c)
         {
-            // show canvas and set text
-            canvas.enabled = true;
-            this.text.text = text;
-            btnYes.GetComponentInChildren<TextMeshProUGUI>().text = yesText;
-            btnNo.GetComponentInChildren<TextMeshProUGUI>().text = noText;
+            Show(c.infoText, c.shouldShow, c.yesText, c.noText, c.onYes, c.onNo);
+        }
 
-            // only show no button if there is a confirmation action
-            btnNo.gameObject.SetActive(yesAction != null);
+        public void Show(string text, Func<bool> shouldshow = null,
+        string yesText = "Okay", string noText = "Nevermind",
+        UnityAction yesAction = null, UnityAction noAction = null)
+        {
+            // show unless manually filtered
+            if (shouldshow == null || shouldshow())
+            {
+                // show canvas and set text
+                canvas.enabled = true;
+                this.text.text = text;
+                btnYes.GetComponentInChildren<TextMeshProUGUI>().text = yesText;
+                btnNo.GetComponentInChildren<TextMeshProUGUI>().text = noText;
 
-            // user actions called by buttons
-            onYes = yesAction;
-            onNo = noAction;
+                // only show no button if there is a confirmation action
+                btnNo.gameObject.SetActive(yesAction != null);
 
+                // user actions called by buttons
+                onYes = yesAction;
+                onNo = noAction;
+            }
         }
 
         public void Ask(string prompt, string yesText, string noText,
@@ -106,34 +119,5 @@ namespace Neet.UI
         public Func<bool> shouldShow = delegate { return true; };
         public UnityAction onYes = null;
         public UnityAction onNo = null;
-
-        public ConfirmationPrompt(ContextMenu ui)
-        {
-            this.ui = ui;
-        }
-
-        public void Ask()
-        {
-            if (shouldShow())
-            {
-                ui.Ask(infoText, yesText, noText, onYes, onNo);
-            }
-            else
-            {
-                onYes?.Invoke();
-            }
-        }
-
-        public void Inform()
-        {
-            if (shouldShow())
-            {
-                ui.Inform(infoText, yesText);
-            }
-            else
-            {
-                onYes?.Invoke();
-            }
-        }
     }
 }

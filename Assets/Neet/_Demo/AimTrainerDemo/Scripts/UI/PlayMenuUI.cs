@@ -15,9 +15,10 @@ public class PlayMenuUI : MonoBehaviour
     public ScoreScrollerUI scoreScroller;
     public PresetProfileUI profileUI;
 
-    public ContextMenu areYouSure;
     public GameObject warningPrefab;
     public Transform settingsContainer;
+
+    public GameObject tooltipPrefab;
 
     // data & properties
     public bool HasChanges { get { return hasChanges; } }
@@ -52,6 +53,7 @@ public class PlayMenuUI : MonoBehaviour
     {
         profileUI.CreateWarnings(warningPrefab, settingsContainer.transform);
         profileUI.SetUIValidation(delegate { hasChanges = true; });
+        profileUI.AddAllTooltips(settingsContainer.transform, tooltipPrefab);
     }
     private void SelectCurrentProfile()
     {
@@ -92,7 +94,7 @@ public class PlayMenuUI : MonoBehaviour
     // confirmation prompts
     private ConfirmationPrompt CreateDeletePresetPrompt()
     {
-        var prompt = new ConfirmationPrompt(areYouSure);
+        var prompt = new ConfirmationPrompt();
 
         prompt.infoText = "Delete this preset? This action cannot be undone.";
         prompt.yesText = "Yes, delete preset";
@@ -104,7 +106,7 @@ public class PlayMenuUI : MonoBehaviour
     }
     private ConfirmationPrompt CreateCantDeletePrompt()
     {
-        var prompt = new ConfirmationPrompt(areYouSure);
+        var prompt = new ConfirmationPrompt();
 
         prompt.infoText = "Cannot delete last remaining preset.";
         prompt.yesText = "OK";
@@ -113,7 +115,7 @@ public class PlayMenuUI : MonoBehaviour
     }
     private ConfirmationPrompt CreateOverwritePrompt()
     {
-        var prompt = new ConfirmationPrompt(areYouSure);
+        var prompt = new ConfirmationPrompt();
 
         prompt.infoText = "Overwrite settings? This will clear all scores";
         prompt.yesText = "Yes, overwrite and remove scores";
@@ -146,7 +148,7 @@ public class PlayMenuUI : MonoBehaviour
     }
     private ConfirmationPrompt CreateDeleteScorePrompt()
     {
-        var prompt = new ConfirmationPrompt(areYouSure);
+        var prompt = new ConfirmationPrompt();
 
         prompt.infoText = "Delete this score? This action cannot be undone.";
         prompt.yesText = "Yes, delete score";
@@ -158,7 +160,7 @@ public class PlayMenuUI : MonoBehaviour
     }
     private ConfirmationPrompt CreatePresetSwitchPrompt()
     {
-        var prompt = new ConfirmationPrompt(areYouSure);
+        var prompt = new ConfirmationPrompt();
 
         prompt.infoText = "You have unsaved changed. Discard changes and switch preset?";
         prompt.yesText = "Yes, discard and switch";
@@ -173,7 +175,7 @@ public class PlayMenuUI : MonoBehaviour
     // button events
     public void SaveAndApply()
     {
-        overwriteSettingsPrompt.Ask();
+        Neet.UI.ContextMenu.instance.Show(overwriteSettingsPrompt);
     }
     public void CreatePreset()
     {
@@ -210,13 +212,13 @@ public class PlayMenuUI : MonoBehaviour
     {
         // prevent deleting the last preset
         if (PresetCollection.loaded.items.Count >= 2)
-            deletePresetPrompt.Ask();
+            Neet.UI.ContextMenu.instance.Show(deletePresetPrompt);
         else
-            cantDeletePrompt.Inform();
+            Neet.UI.ContextMenu.instance.Show(cantDeletePrompt);
     }
     public void DeleteScorePressed()
     {
-        deleteScorePrompt.Ask();
+        Neet.UI.ContextMenu.instance.Show(deleteScorePrompt);
     }
     public void RevertChanges()
     {

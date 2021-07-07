@@ -12,6 +12,16 @@ public class ControlSettingUI : MonoBehaviour, ISettingUI<ControlSetting>
     private GameObject dpiWarning;
     private GameObject inchesWarning;
 
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Apply(ref ControlSetting profile)
     {
         profile.dpi = int.Parse(dpi.text);
@@ -33,6 +43,11 @@ public class ControlSettingUI : MonoBehaviour, ISettingUI<ControlSetting>
     {
         dpi.text = profile.dpi.ToString();
         inches.text = profile.distance.ToString();
+    }
+
+    public void SetContextTexts()
+    {
+        throw new System.NotImplementedException();
     }
 
     public void SetUIValidation(UnityAction endAction = null)

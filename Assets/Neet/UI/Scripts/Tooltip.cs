@@ -1,19 +1,20 @@
-﻿using System.Collections;
+﻿using Neet.UI;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Tooltip : MonoBehaviour, 
-    IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class Tooltip : MonoBehaviour
 {
-    public GameObject toolip;
-
-    public float delay;
-    public float fade;
+    private const float delay = .1f;
+    private const float fade = .1f;
+    private const float maxWidth = 400;
 
     private CanvasGroup c;
-
+    private EventHandler e;
+    private RectTransform rt;
     private Coroutine routine;
 
     private bool isMouseOver;
@@ -31,27 +32,57 @@ public class Tooltip : MonoBehaviour,
         }
     }
 
-
     private void Awake()
     {
-        c = toolip.GetComponent<CanvasGroup>();
+        c = GetComponent<CanvasGroup>();
 
-    }
-    private void OnMouseOver()
-    {
-        // IsMouseOver = true;
-    }
-    private void OnMouseExit()
-    {
-        // FadeOut();
-        // IsMouseOver = false;
+        // add an event handler component to the parent
+        if (GetComponentInParent<EventHandler>() == null)
+            transform.parent.gameObject.AddComponent<EventHandler>();
+        e = GetComponentInParent<EventHandler>();
+
+        e.onPointerEnter += delegate { Toggle(true); };
+        e.onPointerExit += delegate { Toggle(false); };
+
+        e.onPointerClick += delegate
+        {
+            Neet.UI.ContextMenu.instance.Show("Hello");
+        };
     }
 
+    public void FixRect()
+    {
+        rt = GetComponent<RectTransform>();
+        var tmp = GetComponentInChildren<TextMeshProUGUI>();
+        tmp.autoSizeTextContainer = false;
+        Vector2 lineSize = tmp.GetPreferredValues();
+
+        rt.sizeDelta = new Vector2(lineSize.x, rt.sizeDelta.y);
+
+        // figuring out how to scale y
+        { 
+        // float y = GetComponent<RectTransform>().sizeDelta.y - 6.5f;
+        //float rectWidth = lineSize.x;
+        //float rectHeight = lineSize.y;
+        //while (rectWidth > maxWidth)
+        //{
+        //    float subtract = rectWidth - maxWidth;
+        //    if (subtract > maxWidth)
+        //    {
+        //        subtract = maxWidth;
+        //        rectWidth -= subtract;
+        //        rectHeight += lineSize.y;
+        //    }
+
+        //}
+        }
+    }
     public void Toggle(bool value)
     {
         IsMouseOver = value;
     }
 
+    // fade routines
     private Coroutine FadeIn()
     {
         if (routine != null)
@@ -80,7 +111,6 @@ public class Tooltip : MonoBehaviour,
 
         routine = null;
     }
-
     private Coroutine FadeOut()
     {
         if (routine != null)
@@ -107,20 +137,7 @@ public class Tooltip : MonoBehaviour,
             yield return null;
         }
 
+        c.alpha = 0;
         routine = null;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        IsMouseOver = false;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        IsMouseOver = true;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
     }
 }

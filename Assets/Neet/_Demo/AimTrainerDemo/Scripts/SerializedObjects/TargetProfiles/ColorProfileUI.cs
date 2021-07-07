@@ -39,6 +39,11 @@ public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
     private GameObject centerWarning;
     private GameObject trackingWarning;
 
+    private string backgroundText;
+    private string targetText;
+    private string centerText;
+    private string trackingText;
+
     public void CreateWarnings(GameObject warningPrefab, Transform container)
     {
         if (backgroundR != null && backgroundG != null && backgroundB != null)
@@ -204,5 +209,34 @@ public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
             trackingR, trackingG, trackingB, trackingWarning, endAction);
         UIHelpers.SetInputColorValidation(trackingB, trackingPreview,
             trackingR, trackingG, trackingB, trackingWarning, endAction);
+    }
+
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        SetContextTexts();
+
+        AddTooltip(backgroundR.transform, container, backgroundText, prefab);
+        AddTooltip(targetR.transform, container, targetText, prefab);
+        AddTooltip(centerR.transform, container, centerText, prefab);
+        AddTooltip(trackingR.transform, container, trackingText, prefab);
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        while (obj.parent != container.transform)
+            obj = obj.parent;
+        Transform label = obj.GetChild(0);
+        UIHelpers.AddTooltip(prefab, label, text);
+    }
+
+    public void SetContextTexts()
+    {
+        string ex = "The RGB color values \n(0-255, 0-255, 0-255)\n" +
+            "of the ";
+
+        backgroundText = ex + "background fill.";
+        targetText = ex + "targets.";
+        centerText = ex + "spawn zone lines.";
+        trackingText = ex + "targets while they are being successfully tracked.";
     }
 }

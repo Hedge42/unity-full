@@ -16,6 +16,24 @@ public class ChallengeProfileUI : MonoBehaviour, ISettingUI<ChallengeProfile>
     private GameObject timeLimitWarning;
     private GameObject targetLimitWarning;
 
+    private string text;
+
+    public void AddAllTooltips(Transform container, GameObject prefab)
+    {
+        SetContextTexts();
+
+        AddTooltip(isTimeLimit.transform, container, text, prefab);
+        AddTooltip(isTargetLimit.transform, container, text, prefab);
+    }
+
+    public void AddTooltip(Transform obj, Transform container, string text, GameObject prefab)
+    {
+        while(obj.parent != container.transform)
+            obj = obj.parent;
+        Transform label = obj.GetChild(0);
+        UIHelpers.AddTooltip(prefab, label, text);
+    }
+
     public void Apply(ref ChallengeProfile profile)
     {
         profile.timeLimit = int.Parse(timeLimit.text);
@@ -49,6 +67,14 @@ public class ChallengeProfileUI : MonoBehaviour, ISettingUI<ChallengeProfile>
         // because interactability wasn't set initially
         isTimeLimit.onValueChanged.Invoke(profile.isTimeLimit);
         isTargetLimit.onValueChanged.Invoke(profile.isTargetLimit);
+    }
+
+    public void SetContextTexts()
+    {
+        text = "If time limit is enabled, a challenge run will end after " +
+            "the time limit is reached.\n\nOtherwise if target limit is enabled, " +
+            "a challenge run will end after this amount of targets have been " +
+            "failed or completed.";
     }
 
     public void SetUIValidation(UnityAction endAction = null)

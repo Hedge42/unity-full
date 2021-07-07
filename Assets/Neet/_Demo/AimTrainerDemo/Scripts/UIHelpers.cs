@@ -6,9 +6,25 @@ using Neet.Data;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
+using Neet.UI;
 
 public static class UIHelpers
 {
+    public static void AddTooltip(GameObject prefab, Transform parent, string text = "")
+    {
+        GameObject tooltip = GameObject.Instantiate(prefab, parent);
+        tooltip.SetActive(true);
+        tooltip.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+        if (text != "")
+        {
+            parent.GetComponent<Neet.UI.EventHandler>().onPointerClick += delegate
+            {
+                Neet.UI.ContextMenu.instance.Show(text);
+            };
+        }
+    }
+
     /// <summary>
     /// Reusable method to validate float input for input field
     /// </summary>
