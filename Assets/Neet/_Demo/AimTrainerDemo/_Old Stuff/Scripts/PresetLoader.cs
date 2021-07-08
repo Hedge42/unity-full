@@ -13,7 +13,6 @@ public class PresetLoader : MonoBehaviour
     public Button prefab;
     public ReTargetSettingsUI ui;
 
-
     private void Start()
     {
         LoadPresets();

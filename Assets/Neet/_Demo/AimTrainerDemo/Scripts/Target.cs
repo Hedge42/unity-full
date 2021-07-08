@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Neet.Data;
 
-public static class Target
+public class Target
 {
     public const string IS_TARGET_KEY = "isTarget";
     public const string ID_KEY = "num";
@@ -18,6 +18,14 @@ public static class Target
     public const string DISTANCE = "dist";
 
     public const string PLAYER_DIST = "player dist";
+
+    public int id;
+    public float spawnTime;
+    public bool isTrackingSuccessful;
+    public bool isTracking;
+    public float trackStartTime;
+    public float distance;
+    public float playerDistanceMoved;
 
     // clicks attempted
     // clicks successful
@@ -42,6 +50,6 @@ public static class Target
 
     public static bool IsTarget(GameObject g)
     {
-        return g != null && g.GetData<bool>(IS_TARGET_KEY);
+        return g != null && (g.GetData<bool>(IS_TARGET_KEY) || g.GetData<Target>() != null);
     }
 }

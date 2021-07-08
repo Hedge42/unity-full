@@ -252,38 +252,45 @@ public class _TargetSpawner : MonoBehaviour
         if (currentTarget != null)
             return;
 
-        var target = Instantiate(targetPrefab, transform);
-        target.SetActive(true);
-        target.transform.localScale = Vector3.one;
-        target.SetColor(colors.targetColor);
-        SetTargetPosition(target);
-        currentTarget = target;
+        var goTarget = Instantiate(targetPrefab, transform);
+        Target t = new Target();
+        goTarget.SetData(t);
+        goTarget.SetActive(true);
+        goTarget.transform.localScale = Vector3.one;
+        goTarget.SetColor(colors.targetColor);
+        SetTargetPosition(goTarget);
+        currentTarget = goTarget;
 
-        target.SetData(Target.IS_TARGET_KEY, true);
+        goTarget.SetData(Target.IS_TARGET_KEY, true);
+
+
         if (waitingForFirstHit)
             return;
 
         // a monobehavior might be better?
-        target.SetData(Target.ID_KEY, targetNum++);
-        target.SetData(Target.SPAWN_TIME_KEY, Time.time);
-        target.SetData(Target.TRACK_ACTIVE, false);
+        t.id = targetNum++;
+        goTarget.SetData(Target.ID_KEY, targetNum++);
+        t.spawnTime = Time.time;
+        goTarget.SetData(Target.SPAWN_TIME_KEY, Time.time);
+        t.isTracking = false;
+        goTarget.SetData(Target.TRACK_ACTIVE, false);
 
 
         if (tracking.isMoveInstant)
         {
-            StartMoving(target);
+            StartMoving(goTarget);
             if (tracking.isTrackInstant)
-                StartTracking(target);
+                StartTracking(goTarget);
         }
 
         if (timing.canClickTimeout && !waitingForFirstHit)
-            WaitForClickTimeout(target);
+            WaitForClickTimeout(goTarget);
     }
-    private void SetTargetPosition(GameObject target)
+    private void SetTargetPosition(GameObject goTarget)
     {
         if (waitingForFirstHit)
         {
-            target.transform.position =
+            goTarget.transform.position =
                 cam.transform.position + Vector3.forward * aim.distMin;
 
             // instead of vector3.forward
@@ -322,8 +329,10 @@ public class _TargetSpawner : MonoBehaviour
             var pos = minAbsolutePos + transform.forward * distDelta;
             var playerDist = Vector3.Distance(cam.transform.position, pos);
 
-            target.transform.position = pos;
-            target.SetData(Target.DISTANCE, playerDist);
+            goTarget.transform.position = pos;
+
+            goTarget.GetData<Target>().distance = playerDist;
+            goTarget.SetData(Target.DISTANCE, playerDist);
         }
     }
 
@@ -389,11 +398,13 @@ public class _TargetSpawner : MonoBehaviour
         if (Target.IsTarget(target) && motor.IsAccurate())
         {
             target.SetData(Target.TRACK_SUCCESS_NOW, true);
+            target.GetData<Target>().isTrackingSuccessful = true;
         }
         else //  if (currentTarget != null) // current target should never be null here
         {
             // other stuff happening elsewhere
             currentTarget.SetData(Target.TRACK_SUCCESS_NOW, false);
+            currentTarget.GetData<Target>().isTrackingSuccessful = false;
         }
     }
     private void ClickAttempt(GameObject target)
@@ -439,6 +450,8 @@ public class _TargetSpawner : MonoBehaviour
             var dist = target.GetData<float>(Target.PLAYER_DIST);
             dist += motor.DeltaDistance;
             target.SetData(Target.PLAYER_DIST, dist);
+
+            target.GetData<Target>().playerDistanceMoved += dist;
         }
     }
 
