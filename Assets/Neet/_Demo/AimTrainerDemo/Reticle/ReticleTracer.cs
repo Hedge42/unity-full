@@ -28,7 +28,7 @@ public class ReticleTracer : MonoBehaviour
         container.parent = transform.parent;
 
         ret = GetComponent<Reticle>();
-        colorA = ret.dotColor;
+        colorA = ret.profile.color;
         colorB = new Color(colorA.r, colorA.g, colorA.b, 0);
     }
 

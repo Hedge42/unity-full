@@ -255,18 +255,22 @@ public static class UIHelpers
 
     public static void SetInputColorValidation(TMP_InputField f, Image preview,
         TMP_InputField r, TMP_InputField g, TMP_InputField b,
-        GameObject limitWarning, UnityAction endAction)
+        GameObject limitWarning, UnityAction endAction, TMP_InputField a = null)
     {
         int MIN = 0;
         int MAX = 255;
 
-        Func<Color> getRGB = delegate
+        Func<Color> getColor = delegate
         {
             int _r = int.Parse(r.text);
             int _g = int.Parse(g.text);
             int _b = int.Parse(b.text);
+            int _a = 255;
 
-            return new Color(_r / 255f, _g / 255f, _b / 255f);
+            if (a != null)
+                _a = int.Parse(a.text);
+
+            return new Color(_r / 255f, _g / 255f, _b / 255f, _a / 255f);
         };
 
         UnityAction<string> change = delegate (string s)
@@ -296,19 +300,26 @@ public static class UIHelpers
             bool validR = int.TryParse(r.text, out int rResult);
             bool validG = int.TryParse(g.text, out int gResult);
             bool validB = int.TryParse(b.text, out int bResult);
+            bool validA = true;
 
-            if (validR && validG && validB)
+            int aResult = 255;
+
+            if (a != null)
+                validA = int.TryParse(a.text, out aResult);
+
+            if (validR && validG && validB && validA)
             {
                 // see if ALL values are in range [MIN, MAX]
                 bool rInRange = rResult >= MIN && rResult <= MAX;
                 bool gInRange = gResult >= MIN && gResult <= MAX;
                 bool bInRange = bResult >= MIN && bResult <= MAX;
+                bool aInRange = aResult >= MIN && aResult <= MAX;
 
                 // update preview if all in range
-                bool isRangeValid = rInRange && gInRange && bInRange;
+                bool isRangeValid = rInRange && gInRange && bInRange && aInRange;
                 if (isRangeValid)
-                    preview.color =
-                    new Color(rResult / 255f, gResult / 255f, bResult / 255f);
+                    preview.color = new Color
+                    (rResult / 255f, gResult / 255f, bResult / 255f, aResult / 255f);
 
                 // if one fails, show warning
                 limitWarning.SetActive(!isRangeValid);
@@ -328,7 +339,7 @@ public static class UIHelpers
                 f.text = result.ToString();
             }
 
-            preview.color = getRGB();
+            preview.color = getColor();
             endAction.Invoke();
         };
 

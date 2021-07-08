@@ -133,6 +133,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorType: 1
+  p:
+    canMove: 1
+    maxSpeed: 5
+    useAccel: 1
+    accelRate: 0.2
+    accelPow: 1
+    decelPow: 1
+    useAccuracyRate: 0
+    accuracyRate: 0
   gravityScale: 0
   hasGravity: 0
   acceleration: 10
