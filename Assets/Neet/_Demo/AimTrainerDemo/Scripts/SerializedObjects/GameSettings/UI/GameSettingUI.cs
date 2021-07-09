@@ -8,8 +8,8 @@ public class GameSettingUI : MonoBehaviour
     public GameObject warningPrefab;
     public Transform container;
 
-    private ControlSetting control;
-    private AudioSetting audio;
+    private ControlSetting controlSetting;
+    private AudioSetting audioSetting;
 
     private ControlSettingUI controlUI;
     private AudioSettingUI audioUI;
@@ -20,8 +20,8 @@ public class GameSettingUI : MonoBehaviour
     {
         controlUI = GetComponent<ControlSettingUI>();
         audioUI = GetComponent<AudioSettingUI>();
-        control = ControlSetting.Load();
-        audio = AudioSetting.Load();
+        controlSetting = ControlSetting.Load();
+        audioSetting = AudioSetting.Load();
 
         controlUI.CreateWarnings(warningPrefab, container);
         audioUI.CreateWarnings(warningPrefab, container);
@@ -39,15 +39,18 @@ public class GameSettingUI : MonoBehaviour
 
     public void Apply()
     {
-        controlUI.Apply(ref control);
-        control.SaveBinary();
+        if (hasChanges)
+            print("Set me up");
 
-        audioUI.Apply(ref audio);
-        audio.SaveBinary();
+        controlUI.Apply(ref controlSetting);
+        controlSetting.SaveBinary();
+
+        audioUI.Apply(ref audioSetting);
+        audioSetting.SaveBinary();
     }
     public void LoadFields()
     {
-        controlUI.LoadFields(control);
-        audioUI.LoadFields(audio);
+        controlUI.LoadFields(controlSetting);
+        audioUI.LoadFields(audioSetting);
     }
 }

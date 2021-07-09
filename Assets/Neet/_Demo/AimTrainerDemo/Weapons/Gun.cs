@@ -51,7 +51,7 @@ public class Gun : MonoBehaviour
     public event Action<RaycastHit> onRaycast;
     public event Action<Collider> onShotHit;
     public event Action onShotMissed;
-    public event Action<RaycastHit> onActiveRaycast;
+    // public event Action<RaycastHit> onActiveRaycast;
     public event Action<RaycastHit> onPassiveRaycast;
 
 

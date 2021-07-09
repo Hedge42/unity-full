@@ -56,6 +56,7 @@ public static class GameExtensions
         try
         {
             MaterialPropertyBlock block = new MaterialPropertyBlock();
+            // g.GetComponent<Renderer>().GetPropertyBlock(block);
             return block.GetColor("_Color");
             // return g.GetComponent<Renderer>().material.color;
         }

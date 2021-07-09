@@ -24,8 +24,8 @@ public class WeaponHandler : MonoBehaviour
     public List<KeyCode> alternateFireKeys;
     public List<KeyCode> reloadKeys;
 
-    public event UnityAction<List<KeyCode>> onPrimaryFireDown;
-    public event UnityAction<List<KeyCode>> onPrimaryFireHold;
+    // public event UnityAction<List<KeyCode>> onPrimaryFireDown;
+    // public event UnityAction<List<KeyCode>> onPrimaryFireHold;
 
     private void Awake()
     {

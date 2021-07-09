@@ -17,6 +17,7 @@ namespace Neet.Scroller
 
         private DirectoryItem item;
 
+#pragma warning disable CS0649
         private ClickStrategy onClick;
         public void ClickButton()
         {

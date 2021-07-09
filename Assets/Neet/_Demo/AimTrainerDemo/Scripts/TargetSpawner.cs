@@ -25,7 +25,6 @@ namespace Neet.AimTrainer
         public Image zoneLeft;
         public Image zoneRight;
         public Image zoneFill;
-        public GameObject zoneMask;
 
         public AccuracyBar accBar;
 
@@ -48,7 +47,6 @@ namespace Neet.AimTrainer
         private Coroutine currentSpawnWait;
 
         private bool isChallenge;
-        private bool isActive = false;
 
         private Vector3 startPos;
 
@@ -57,8 +55,6 @@ namespace Neet.AimTrainer
         private Vector3 localPlayerPos => transform.InverseTransformPoint(cam.transform.position);
         private Vector3 localSpawnOrigin =>
             localPlayerPos + Vector3.forward * aim.distMin;
-
-        private Coroutine ut;
 
         // initialization
         private void Awake()
@@ -76,7 +72,6 @@ namespace Neet.AimTrainer
             cam = Camera.main;
 
             ApplyColorSettings();
-            isActive = false;
             startPos = transform.position;
 
             minLines.DrawLines(aim.yMax, aim.xMax);
@@ -198,43 +193,52 @@ namespace Neet.AimTrainer
         {
             isChallenge = challenge;
             waitingForFirstHit = true;
-            isActive = true;
             SpawnTarget();
         }
         public void Stop()
         {
             StopAllCoroutines();
-            ut = null;
             currentSpawnWait = null;
             if (currentTarget != null)
                 Destroy(currentTarget);
             waitingForFirstHit = true;
-            isActive = false;
         }
 
-        private IEnumerator AnimateTargetKill(GameObject target)
+        private IEnumerator AnimateTargetKill(GameObject _target, bool success)
         {
-            float animTime = .5f;
+            var target = Instantiate(targetPrefab, transform);
+            target.SetActive(true);
+            target.transform.localScale = Vector3.one;
+            var color = profile.colorProfile.targetColor;
+            target.SetColor(color);
+            target.transform.position = _target.transform.position;
+
+            float animTime = .2f;
             float startTime = Time.time;
             float startScale = target.transform.localScale.magnitude;
-            var color = target.GetColor();
+            float endScale = success ? 1.5f : 0;
             while (Time.time < startTime + animTime)
             {
                 var t = (Time.time - startTime) / animTime;
                 float alpha = Mathf.Lerp(1, 0, t);
-                float scale = Mathf.Lerp(startScale, startScale * 2, t);
+                float scale = Mathf.Lerp(startScale, startScale * endScale, t);
 
                 target.SetColor(new Color(color.r, color.g, color.b, alpha));
-                target.transform.localScale = Vector3.one * scale;
+                target.transform.localScale = Vector3.one.normalized * scale;
+
+                print(target.GetColor() + "\n" + target.transform.localScale);
+
                 yield return null;
             }
 
+            print("aa");
             Destroy(target);
         }
 
         // target spawning
-        private void NextTarget(GameObject target)
+        private void NextTarget(GameObject target, bool success)
         {
+            StartCoroutine(AnimateTargetKill(target, success));
             target.RemoveData();
             Destroy(target);
             currentTarget = null;
@@ -367,7 +371,7 @@ namespace Neet.AimTrainer
                     waitingForFirstHit = false;
                     scoreboard.sb.Play("click");
                     scoreboard.StartScoring(isChallenge);
-                    NextTarget(target);
+                    NextTarget(target, true);
                 }
             }
             else
@@ -404,7 +408,7 @@ namespace Neet.AimTrainer
                 if (!tracking.canTrack)
                 {
                     scoreboard.ClickDestroyed(target);
-                    NextTarget(target);
+                    NextTarget(target, true);
                 }
 
                 else
@@ -424,7 +428,7 @@ namespace Neet.AimTrainer
                 if (aim.failTargetOnMissClick)
                 {
                     scoreboard.ClickTimeout();
-                    NextTarget(currentTarget);
+                    NextTarget(currentTarget, false);
                 }
             }
         }
@@ -475,7 +479,7 @@ namespace Neet.AimTrainer
                     if (tracking.canTrackDestroy && timeTracked >= tracking.timeToDestroy)
                     {
                         scoreboard.TrackDestroyed(target);
-                        NextTarget(target);
+                        NextTarget(target, true);
                     }
                 }
 
@@ -556,7 +560,7 @@ namespace Neet.AimTrainer
             if (target != null && !t.isTracking)
             {
                 scoreboard.ClickTimeout();
-                NextTarget(target);
+                NextTarget(target, false);
             }
         }
         private Coroutine WaitForTrackTimeout(GameObject target)
@@ -574,7 +578,7 @@ namespace Neet.AimTrainer
             if (target != null)
             {
                 scoreboard.TrackTimeout();
-                NextTarget(target);
+                NextTarget(target, false);
             }
         }
 
