@@ -7,69 +7,118 @@ namespace Neet.Data
 {
     public static class UserDataExtensions
     {
+        /// <summary>
+        /// Stores value in a static dictionary using self as key
+        /// </summary>
         public static void SetData(this object o, object value)
         {
-            if (UserData.entries == null)
-                UserData.entries = new Dictionary<object, UserData>();
-
-            if (!UserData.entries.ContainsKey(o))
-                UserData.entries[o] = new UserData();
-
-            UserData.entries[o].SetData(value);
+            UserData.staticData[o] = value;
         }
+
+        /// <summary>
+        /// Stores value in a static dictionary using given key
+        /// </summary>
         public static void SetData(this object o, object key, object value)
         {
-            if (UserData.entries == null)
-                UserData.entries = new Dictionary<object, UserData>();
-
             if (!UserData.entries.ContainsKey(o))
-                UserData.entries[o] = new UserData();
+                UserData.entries.Add(o, new UserData());
 
-            UserData.entries[o].SetData(key, value);
+            UserData.entries[o].SetUserData(key, value);
         }
+
+        /// <summary>
+        /// Removes value set by SetData with self as key
+        /// </summary>
+        public static void RemoveData(this object o)
+        {
+            if (UserData.entries.ContainsKey(o))
+                UserData.entries[o].RemoveUserData(o);
+        }
+
+        /// <summary>
+        /// Removes value set by SetData with given key
+        /// </summary>
+        public static void RemoveData(this object o, object key)
+        {
+            if (UserData.entries.ContainsKey(o))
+                UserData.entries[o].RemoveUserData(key);
+        }
+
+        /// <summary>
+        /// Retrieves value set by SetData with self as key
+        /// </summary>
         public static T GetData<T>(this object o)
         {
-            if (o.HasData())
+            try
             {
-                return UserData.entries[o].GetData<T>();
+                return (T)UserData.staticData[o];
             }
-            else
-            {
-                return default(T);
-            }
-        }
-        public static T GetData<T>(this object o, object key)
-        {
-            if (o.HasData())
-            {
-                return UserData.entries[o].GetData<T>(key);
-            }
-            else
+            catch
             {
                 return default(T);
             }
         }
 
-        public static bool HasData(this object o)
+        /// <summary>
+        /// Retrives value set by SetData with given key.<br/>
+        /// Returns default on failure
+        /// </summary>
+        public static T GetData<T>(this object o, object key)
         {
-            return o != null 
+            try
+            {
+                return UserData.entries[o].GetUserValue<T>(key);
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
+
+        private static bool HasData(this object key)
+        {
+            return key != null 
                 && UserData.entries != null 
-                && UserData.entries.ContainsKey(o);
+                && UserData.entries.ContainsKey(key);
         }
     }
 
     public class UserData
     {
-        public static Dictionary<object, UserData> entries;
-        public static Dictionary<object, object> staticData;
-        public Dictionary<object, object> keyDict;
-        public Dictionary<System.Type, object> typeDict;
+        private static Dictionary<object, UserData> _entries;
+        public static Dictionary<object, UserData> entries
+        {
+            get
+            {
+                if (_entries == null)
+                    _entries = new Dictionary<object, UserData>();
+                return _entries;
+            }
+        }
+        private static Dictionary<object, object> _staticData;
+        public static Dictionary<object, object> staticData
+        {
+            get
+            {
+                if (_staticData == null)
+                    _staticData = new Dictionary<object, object>();
+                return _staticData;
+            }
+        }
+
+        private Dictionary<object, object> _keyDict;
+        public Dictionary<object, object> keyDict
+        {
+            get
+            {
+                if (_keyDict == null)
+                    _keyDict = new Dictionary<object, object>();
+                return _keyDict;
+            }
+        }
 
         public static void SetStaticData(object key, object value)
         {
-            if (staticData == null)
-                staticData = new Dictionary<object, object>();
-
             staticData[key] = value;
         }
         public static T GetStaticData<T>(object key)
@@ -80,42 +129,32 @@ namespace Neet.Data
                 return default(T);
 
         }
+        public static void RemoveStaticData(object key)
+        {
+            if (HasStaticData(key))
+                staticData.Remove(key);
+        }
         public static bool HasStaticData(object key)
         {
-            return staticData != null && staticData.ContainsKey(key);
+            return staticData.ContainsKey(key);
         }
 
-        public void SetData(object value)
+        public void SetUserData(object key, object value)
         {
-            if (typeDict == null)
-                typeDict = new Dictionary<System.Type, object>();
-            typeDict[value.GetType()] = value;
-        }
-        public void SetData(object key, object value)
-        {
-            if (keyDict == null)
-                keyDict = new Dictionary<object, object>();
             keyDict[key] = value;
         }
-
-        public T GetData<T>(object key)
+        public void RemoveUserData(object key)
         {
-            if (keyDict != null && keyDict.ContainsKey(key) && keyDict[key].GetType() == typeof(T))
-            {
+            keyDict.Remove(key);
+        }
+        public T GetUserValue<T>(object key)
+        {
+            if (keyDict.ContainsKey(key) && keyDict[key].GetType() == typeof(T))
                 return (T)keyDict[key];
-            }
             else
                 return default(T);
         }
-        public T GetData<T>()
-        {
-            if (typeDict != null && typeDict.ContainsKey(typeof(T)))
-            {
-                return (T)typeDict[typeof(T)];
-            }
-            else
-                return default(T);
-        }
+
         public string[] ReadData()
         {
             object[] keys = keyDict.Keys.ToArray();
