@@ -409,4 +409,12 @@ public static class UIHelpers
 
         return obj.GetSiblingIndex();
     }
+
+    public static Transform GetParentUnderContainer(Transform obj, Transform container)
+    {
+        var t = obj.transform;
+        while (t.parent != container)
+            t = t.parent;
+        return t;
+    }
 }

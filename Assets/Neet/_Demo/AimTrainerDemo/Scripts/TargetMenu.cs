@@ -90,6 +90,7 @@ namespace Neet.AimTrainer
             PauseListener.onResume.AddListener(onResume);
 
             title.text = PresetProfile.current.name;
+            scoreboard.hud.Initialize(PresetProfile.current);
             scoreboard.hud.ResetText();
 
             PauseListener.Pause();

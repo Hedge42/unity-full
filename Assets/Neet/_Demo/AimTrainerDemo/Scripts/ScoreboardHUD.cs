@@ -7,11 +7,15 @@ namespace Neet.AimTrainer
 {
     public class ScoreboardHUD : MonoBehaviour
     {
+        public Transform container;
+
         public TextMeshProUGUI time;
         public TextMeshProUGUI accuracy;
         public TextMeshProUGUI targets;
 
-        public AccuracyBar acc;
+        bool isTargetsRelevant;
+        bool isAccuracyClicks;
+        bool isAccuracyTracking;
 
         public void UpdateText(ScoreProfile s, ChallengeProfile c, bool isChallenge)
         {
@@ -22,13 +26,39 @@ namespace Neet.AimTrainer
                 time.text = s.timeElapsed.ToString("f1");
 
             // targets remaining vs ratio
-            if (isChallenge && c.isTargetLimit)
-                targets.text = s.targetsAttempted + " / " + c.targetLimit.ToString();
-            else
-                targets.text = s.SuccessRatio;
+            if (targets.enabled)
+            {
+                if (isChallenge && c.isTargetLimit)
+                    targets.text = s.targetsAttempted + " / " + c.targetLimit.ToString();
+                else
+                    targets.text = s.OverallRatio;
+            }
 
-            // same regardless of settings
-            accuracy.text = s.OverallAccuracyString;
+            if (isAccuracyClicks)
+                accuracy.text = s.ClickRate.ToString("f0") + "%";
+            else if (isAccuracyTracking)
+                accuracy.text = s.TrackRate.ToString("f0") + "%";
+            else
+                accuracy.text = s.OverallRate.ToString("f0") + "%";
+        }
+
+        /// <summary>
+        /// Updates target visibility and determines what accuracy should refer to
+        /// </summary>
+        public void Initialize(PresetProfile p)
+        {
+            isTargetsRelevant = p.timingProfile.canClickTimeout
+                || p.aimProfile.failTargetOnMissClick
+                || p.trackingProfile.canTrackTimeout
+                || p.trackingProfile.canTrackDestroy;
+            UIHelpers.GetParentUnderContainer(targets.transform, container)
+                .gameObject.SetActive(isTargetsRelevant);
+
+
+            isAccuracyClicks = !p.trackingProfile.canTrack;
+            isAccuracyTracking = !(p.timingProfile.canClickTimeout
+                || p.aimProfile.failTargetOnMissClick)
+                && p.trackingProfile.canTrack;
         }
 
         public void ResetText()

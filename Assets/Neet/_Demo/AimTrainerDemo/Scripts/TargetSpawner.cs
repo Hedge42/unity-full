@@ -226,12 +226,12 @@ namespace Neet.AimTrainer
                 target.SetColor(new Color(color.r, color.g, color.b, alpha));
                 target.transform.localScale = Vector3.one.normalized * scale;
 
-                print(target.GetColor() + "\n" + target.transform.localScale);
+                // print(target.GetColor() + "\n" + target.transform.localScale);
 
                 yield return null;
             }
 
-            print("aa");
+            // print("aa");
             Destroy(target);
         }
 

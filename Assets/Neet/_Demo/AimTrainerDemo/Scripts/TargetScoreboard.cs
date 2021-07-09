@@ -92,6 +92,10 @@ namespace Neet.AimTrainer
                 sb.Play("click");
                 score.clicksSuccessful += 1;
             }
+            else
+            {
+                score.clicksMissed += 1;
+            }
         }
         public void TrackElapsed(float time)
         {
@@ -105,7 +109,8 @@ namespace Neet.AimTrainer
         // target success methods
         public void ClickDestroyed(GameObject target)
         {
-            // redundant method for consistency and flexibility
+            score.clickCyclesAttempted += 1;
+            score.totalClickTime += (Time.time - target.GetData<Target>().spawnTime);
             TargetDestroyed(target);
         }
         public void TrackDestroyed(GameObject target)
@@ -122,7 +127,7 @@ namespace Neet.AimTrainer
 
             var t = target.GetData<Target>();
 
-            score.totalDistance += t.playerDistanceMoved;
+            score.distanceSuccessTotal += t.playerDistanceMoved;
 
             // overrides click sound on clickDestroy
             sb.Play("destroy");
@@ -142,6 +147,8 @@ namespace Neet.AimTrainer
         }
         public void ClickTimeout()
         {
+            score.clickCyclesAttempted += 1;
+            score.clicksTimedOut += 1;
             TargetFailed();
         }
         public void TrackTimeout()

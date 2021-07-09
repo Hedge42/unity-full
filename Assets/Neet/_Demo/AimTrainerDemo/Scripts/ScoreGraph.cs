@@ -54,9 +54,9 @@ namespace Neet.AimTrainer
             foreach (ScoreProfile score in profile.scores)
             {
                 if (type == ScoreType.ClickAccuracy)
-                    values.Add(score.ClickAccuracy);
+                    values.Add(score.ClickRate);
                 else if (type == ScoreType.OverallAccuracy)
-                    values.Add(score.OverallAccuracy);
+                    values.Add(score.OverallRate);
                 else if (type == ScoreType.TargetsDestroyed)
                     values.Add(score.targetsSuccessful);
                 else if (type == ScoreType.TimeElapsed)

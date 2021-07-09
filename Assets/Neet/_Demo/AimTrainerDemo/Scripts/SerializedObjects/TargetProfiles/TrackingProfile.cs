@@ -27,5 +27,4 @@ public class TrackingProfile
 
     public float timeToDestroy = 1f;
     public float trackTimeout = 2f;
-
 }
