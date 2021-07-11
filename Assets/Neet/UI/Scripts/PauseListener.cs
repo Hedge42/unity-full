@@ -48,6 +48,12 @@ namespace Neet.UI
             }
         }
 
+        void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus)
+                Pause();
+        }
+
         private void Update()
         {
             if (isListeningForKey && UnityEngine.Input.GetKeyDown(KeyCode.Escape))
