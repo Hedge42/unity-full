@@ -49,6 +49,7 @@ namespace Neet.AimTrainer
         private bool isChallenge;
 
         private Vector3 startPos;
+        private List<GameObject> animations;
 
         // private const float targetDistance = 26.48f; // ???
 
@@ -73,6 +74,8 @@ namespace Neet.AimTrainer
 
             ApplyColorSettings();
             startPos = transform.position;
+
+            animations = new List<GameObject>();
 
             minLines.DrawLines(aim.yMax, aim.xMax);
 
@@ -198,6 +201,7 @@ namespace Neet.AimTrainer
         public void Stop()
         {
             StopAllCoroutines();
+            DestroyAnimations();
             currentSpawnWait = null;
             if (currentTarget != null)
                 Destroy(currentTarget);
@@ -206,16 +210,17 @@ namespace Neet.AimTrainer
 
         private IEnumerator AnimateTargetKill(GameObject _target, bool success)
         {
-            var target = Instantiate(targetPrefab, transform);
-            target.SetActive(true);
-            target.transform.localScale = Vector3.one;
+            var anim = Instantiate(targetPrefab, transform);
+            anim.SetActive(true);
+            anim.transform.localScale = Vector3.one;
             var color = profile.colorProfile.targetColor;
-            target.SetColor(color);
-            target.transform.position = _target.transform.position;
+            anim.SetColor(color);
+            anim.transform.position = _target.transform.position;
+            animations.Add(anim);
 
             float animTime = .2f;
             float startTime = Time.time;
-            float startScale = target.transform.localScale.magnitude;
+            float startScale = anim.transform.localScale.magnitude;
             float endScale = success ? 1.5f : 0;
             while (Time.time < startTime + animTime)
             {
@@ -223,8 +228,8 @@ namespace Neet.AimTrainer
                 float alpha = Mathf.Lerp(1, 0, t);
                 float scale = Mathf.Lerp(startScale, startScale * endScale, t);
 
-                target.SetColor(new Color(color.r, color.g, color.b, alpha));
-                target.transform.localScale = Vector3.one.normalized * scale;
+                anim.SetColor(new Color(color.r, color.g, color.b, alpha));
+                anim.transform.localScale = Vector3.one.normalized * scale;
 
                 // print(target.GetColor() + "\n" + target.transform.localScale);
 
@@ -232,7 +237,16 @@ namespace Neet.AimTrainer
             }
 
             // print("aa");
-            Destroy(target);
+            animations.Remove(anim);
+            Destroy(anim);
+        }
+
+        private void DestroyAnimations()
+        {
+            foreach (GameObject g in animations)
+                Destroy(g);
+
+            animations.Clear();
         }
 
         // target spawning
@@ -427,6 +441,7 @@ namespace Neet.AimTrainer
 
                 if (aim.failTargetOnMissClick)
                 {
+                    scoreboard.ClickFail();
                     NextTarget(currentTarget, false);
                 }
             }

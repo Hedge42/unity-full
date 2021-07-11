@@ -115,6 +115,13 @@ namespace Neet.AimTrainer
             
             TargetDestroyed(target);
         }
+        public void ClickFail()
+        {
+            score.clickCyclesAttempted += 1;
+
+            TargetFailed();
+        }
+
         public void TrackDestroyed(GameObject target)
         {
             score.tracksAttempted += 1;
@@ -150,6 +157,7 @@ namespace Neet.AimTrainer
         {
             sounds.Play("timeout");
             score.clickCyclesAttempted += 1;
+            score.clicksAttempted += 1;
             score.clicksTimedOut += 1;
             TargetFailed();
         }
