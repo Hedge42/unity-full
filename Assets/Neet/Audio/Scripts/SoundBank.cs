@@ -15,77 +15,90 @@ namespace Neet.Audio
         [Range(0f, 1f)]
         public float volume;
 
+        [Range(-3f, 3f)]
+        public float pitch;
+
+        public bool loop;
+
+        [HideInInspector]
+        public bool isLooping;
+
         [HideInInspector]
         public AudioSource source;
 
-        [Button]
-        private void Preview()
+        public Sound()
+        {
+            pitch = 1f;
+            volume = 1f;
+
+        }
+
+        [Button("Preview"), ShowIf("@!this.isLooping")]
+        public void Play()
         {
             // get to outer class?
             source.clip = clip;
             source.volume = volume;
+            source.pitch = pitch;
+            source.loop = loop;
             source.Play();
+
+            if (loop)
+                isLooping = true;
+        }
+
+        [Button("Stop"), ShowIf("@this.isLooping")]
+        public void Stop()
+        {
+            source.Stop();
+            isLooping = false;
         }
     }
 
     public class SoundBank : MonoBehaviour
     {
-
         [Required]
         public AudioSource source;
 
-        [OnInspectorGUI("SetSoundSources")]
         public Sound[] sounds;
 
-        private void SetSoundSources()
+        [OnInspectorGUI]
+        public void SetSoundSources()
         {
             if (sounds != null)
             {
-                foreach (Sound s in sounds)
+                for (int i = 0; i < sounds.Length; i++)
                 {
-                    s.source = source;
+                    sounds[i].source = source;
                 }
             }
         }
-
 
         // Methods
         public void Play(int index)
         {
-            Sound sound = null;
-            if (index >= 0 && index < sounds.Length)
+            try
             {
-                sound = sounds[index];
-
-                if (sound.source != null && sound.clip != null)
-                {
-                    sound.source.Play();
-                }
-
-                else
-                    Debug.LogWarning("Clip or source null.");
+                sounds[index].Play();
             }
-            else
-                Debug.LogWarning("Index out of range.");
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to play sound with index "
+                    + index + "\n" + e.Message);
+            }
         }
         public void Play(string name)
         {
-
-            Sound sound = Array.Find(sounds, s => s.name == name);
-            if (sound != null)
+            try
             {
-                if (sound.clip != null)
-                {
-                    source.clip = sound.clip;
-                    source.volume = sound.volume;
-                    sound.source.Play();
-                }
-
-                else
-                    Debug.LogWarning("No clip on sound " + name);
+                Sound sound = Array.Find(sounds, s => s.name == name);
+                sound.Play();
             }
-            else
-                Debug.LogWarning("No sound found with name " + name);
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to play sound with name " + name
+                    + "\n" + e.Message);
+            }
         }
     }
 }

@@ -71,7 +71,7 @@ public class ScoreProfile
     {
         get
         {
-            var value = (float)clicksSuccessful / (float)clicksAttempted;
+            var value = (float)clicksSuccessful / (float)clickCyclesAttempted;
             if (float.IsNaN(value))
                 value = 0f;
             return (value * 100f);

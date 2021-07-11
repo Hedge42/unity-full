@@ -38,10 +38,13 @@ namespace Neet.AimTrainer
         private PresetCollection presets => PresetCollection.loaded;
         private bool _hasChanges;
 
-        private ConfirmationPrompt overwriteSettingsPrompt;
-        private ConfirmationPrompt deleteScorePrompt;
-        private ConfirmationPrompt deletePresetPrompt;
-        private ConfirmationPrompt cantDeletePrompt;
+        private ContextPrompt cpOverwriteSettings;
+        private ContextPrompt cpDeleteScore;
+        private ContextPrompt cpDeletePreset;
+        private ContextPrompt cpCantDelete;
+        private ContextPrompt cpPlay;
+        private ContextPrompt cpReturn;
+        private ContextPrompt cpRevert;
 
         private void Start()
         {
@@ -51,11 +54,16 @@ namespace Neet.AimTrainer
             PresetCollection.Load();
 
             // prompts handle delete actions
-            deleteScorePrompt = CreateDeleteScorePrompt();
-            deletePresetPrompt = CreateDeletePresetPrompt();
-            cantDeletePrompt = CreateCantDeletePrompt();
-            overwriteSettingsPrompt = CreateOverwritePrompt();
+            cpDeleteScore = CreateDeleteScorePrompt();
+            cpDeletePreset = CreateDeletePresetPrompt();
+            cpCantDelete = CreateCantDeletePrompt();
+            cpOverwriteSettings = CreateOverwritePrompt();
+            cpPlay = CreatePlayPrompt();
+            cpReturn = CreateReturnPrompt();
+            cpRevert = CreateRevertPrompt();
+
             presetScroller.SetClickPrompt(CreatePresetSwitchPrompt(), LoadCurrentProfile);
+
 
             SetupUI();
             presetScroller.LoadCollection();
@@ -106,9 +114,9 @@ namespace Neet.AimTrainer
         }
 
         // confirmation prompts
-        private ConfirmationPrompt CreateDeletePresetPrompt()
+        private ContextPrompt CreateDeletePresetPrompt()
         {
-            var prompt = new ConfirmationPrompt();
+            var prompt = new ContextPrompt();
 
             prompt.infoText = "Delete this preset? This action cannot be undone.";
             prompt.yesText = "Yes, delete preset";
@@ -118,18 +126,18 @@ namespace Neet.AimTrainer
 
             return prompt;
         }
-        private ConfirmationPrompt CreateCantDeletePrompt()
+        private ContextPrompt CreateCantDeletePrompt()
         {
-            var prompt = new ConfirmationPrompt();
+            var prompt = new ContextPrompt();
 
             prompt.infoText = "Cannot delete last remaining preset.";
             prompt.yesText = "OK";
 
             return prompt;
         }
-        private ConfirmationPrompt CreateOverwritePrompt()
+        private ContextPrompt CreateOverwritePrompt()
         {
-            var prompt = new ConfirmationPrompt();
+            var prompt = new ContextPrompt();
 
             prompt.infoText = "Overwrite settings? This will clear all scores";
             prompt.yesText = "Yes, overwrite and remove scores";
@@ -165,9 +173,9 @@ namespace Neet.AimTrainer
 
             return prompt;
         }
-        private ConfirmationPrompt CreateDeleteScorePrompt()
+        private ContextPrompt CreateDeleteScorePrompt()
         {
-            var prompt = new ConfirmationPrompt();
+            var prompt = new ContextPrompt();
 
             prompt.infoText = "Delete this score? This action cannot be undone.";
             prompt.yesText = "Yes, delete score";
@@ -177,9 +185,9 @@ namespace Neet.AimTrainer
 
             return prompt;
         }
-        private ConfirmationPrompt CreatePresetSwitchPrompt()
+        private ContextPrompt CreatePresetSwitchPrompt()
         {
-            var prompt = new ConfirmationPrompt();
+            var prompt = new ContextPrompt();
 
             prompt.infoText = "You have unsaved changed. Discard changes and switch preset?";
             prompt.yesText = "Yes, discard and switch";
@@ -188,13 +196,57 @@ namespace Neet.AimTrainer
 
             return prompt;
         }
+        private ContextPrompt CreatePlayPrompt()
+        {
+            var prompt = new ContextPrompt();
 
+            prompt.infoText = "You have unsaved changes. Would you like to save "
+                + "changes and continue to play?";
 
+            prompt.yesText = "Yes, save changes and play";
+            prompt.noText = "No, continue editing";
+            prompt.shouldShow = delegate { return HasChanges; };
+
+            prompt.onYes = delegate
+            {
+                PresetCollection.loaded.Save(); // preserves last loaded
+                SceneSwitcher2.instance.SwitchTo(2);
+            };
+
+            return prompt;
+        }
+        private ContextPrompt CreateReturnPrompt()
+        {
+            ContextPrompt c = new ContextPrompt();
+
+            c.infoText = "You have unsaved changes. Discard and return to main?";
+            c.yesText = "Yes, discard and return";
+            c.noText = "No, stay here";
+            c.shouldShow = delegate { return HasChanges; };
+
+            c.onYes = delegate
+            {
+                SceneSwitcher2.instance.SwitchTo(0);
+            };
+
+            return c;
+        }
+        private ContextPrompt CreateRevertPrompt()
+        {
+            ContextPrompt c = new ContextPrompt();
+            c.infoText = "Discard changes? This cannot be undone.";
+            c.yesText = "Yes, revert to last saved state";
+            c.noText = "No, continue editing";
+            c.shouldShow = delegate { return HasChanges; };
+            c.onYes = LoadCurrentProfile;
+
+            return c;
+        }
 
         // button events
         public void SaveAndApply()
         {
-            Neet.UI.ContextMenu.instance.Show(overwriteSettingsPrompt);
+            cpOverwriteSettings.Process();
         }
         public void CreatePreset()
         {
@@ -220,28 +272,27 @@ namespace Neet.AimTrainer
         }
         public void Play()
         {
-            PresetCollection.loaded.Save(); // to preserve last loaded index
-            SceneSwitcher2.instance.SwitchTo(2);
+            cpPlay.Process();
         }
         public void ReturnToMain()
         {
-            SceneSwitcher2.instance.SwitchTo(0);
+            cpReturn.Process();
         }
         public void DeletePresetPressed()
         {
             // prevent deleting the last preset
             if (PresetCollection.loaded.items.Count >= 2)
-                Neet.UI.ContextMenu.instance.Show(deletePresetPrompt);
+                cpDeletePreset.Process();
             else
-                Neet.UI.ContextMenu.instance.Show(cantDeletePrompt);
+                cpCantDelete.Process();
         }
         public void DeleteScorePressed()
         {
-            Neet.UI.ContextMenu.instance.Show(deleteScorePrompt);
+            cpDeleteScore.Process();
         }
         public void RevertChanges()
         {
-            Debug.Log("This has not been set up yet");
+            cpRevert.Process();
         }
     }
 }

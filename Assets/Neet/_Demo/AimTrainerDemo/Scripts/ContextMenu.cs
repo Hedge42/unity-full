@@ -51,7 +51,17 @@ namespace Neet.UI
             btnNo.onClick.AddListener(_onNo);
         }
 
-        public void Show(ConfirmationPrompt c)
+        /// <summary>
+        /// Equivalent to ContextMenu.Show, redundant for semantics
+        /// </summary>
+        public void Process(ContextPrompt c)
+        {
+            Show(c.infoText, c.shouldShow, c.yesText, c.noText, c.onYes, c.onNo);
+        }
+        /// <summary>
+        /// Equivalent to ContextMenu.Process, redundant for semantics
+        /// </summary>
+        public void Show(ContextPrompt c)
         {
             Show(c.infoText, c.shouldShow, c.yesText, c.noText, c.onYes, c.onNo);
         }
@@ -116,7 +126,7 @@ namespace Neet.UI
         }
     }
 
-    public class ConfirmationPrompt
+    public class ContextPrompt
     {
         public ContextMenu ui;
         public string infoText = "Are you sure?";
@@ -126,5 +136,13 @@ namespace Neet.UI
         public Func<bool> shouldShow = delegate { return true; };
         public UnityAction onYes = null;
         public UnityAction onNo = null;
+
+        /// <summary>
+        /// Calls ContextMenu singleton instance
+        /// </summary>
+        public void Process()
+        {
+            Neet.UI.ContextMenu.instance.Process(this);
+        }
     }
 }

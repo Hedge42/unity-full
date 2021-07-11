@@ -202,7 +202,7 @@ public class ReticleUI : MonoBehaviour, ISettingUI<ReticleProfile>
     {
         Func<bool> shouldShow = delegate { return hasChanges; };
 
-        ConfirmationPrompt save = new ConfirmationPrompt();
+        ContextPrompt save = new ContextPrompt();
         save.infoText = "Are you sure you want to overwrite previous settings?";
         save.yesText = "Yes, overwrite and save";
         save.noText = "Nevermind";
@@ -215,7 +215,7 @@ public class ReticleUI : MonoBehaviour, ISettingUI<ReticleProfile>
             hasChanges = false;
         };
 
-        ConfirmationPrompt back = new ConfirmationPrompt();
+        ContextPrompt back = new ContextPrompt();
         back.infoText = "You have unsaved changes.";
         back.yesText = "Discard changes and return to main";
         back.noText = "Continue editing";
@@ -228,12 +228,12 @@ public class ReticleUI : MonoBehaviour, ISettingUI<ReticleProfile>
 
         saveButton.onClick.AddListener(delegate
         {
-            Neet.UI.ContextMenu.instance.Show(save);
+            Neet.UI.ContextMenu.instance.Process(save);
         });
 
         returnButton.onClick.AddListener(delegate
         {
-            Neet.UI.ContextMenu.instance.Show(back);
+            Neet.UI.ContextMenu.instance.Process(back);
         });
     }
 }

@@ -27,7 +27,7 @@ namespace Neet.AimTrainer
         public UnityAction ShowResults;
 
         [HideInInspector]
-        public SoundBank sb;
+        public SoundBank sounds;
 
         private void Start()
         {
@@ -35,7 +35,7 @@ namespace Neet.AimTrainer
             t = new Timer();
             t.onTimerFinished += delegate { CompleteChallenge(); };
             t.onTimerTick += delegate { score.timeElapsed = t.timeElapsed; };
-            sb = GetComponent<SoundBank>();
+            sounds = GetComponent<SoundBank>();
 
             results.clearScoreAction = delegate { score = null; };
         }
@@ -84,16 +84,18 @@ namespace Neet.AimTrainer
             PresetCollection.loaded.Save();
         }
 
-        public void ClickFired(bool success)
+        public void ClickFired(bool success, Target target)
         {
             score.clicksAttempted += 1;
             if (success)
             {
-                sb.Play("click");
+                sounds.Play("click");
+                score.totalClickTime += (Time.time - target.spawnTime);
                 score.clicksSuccessful += 1;
             }
             else
             {
+                sounds.Play("missclick");
                 score.clicksMissed += 1;
             }
         }
@@ -110,7 +112,7 @@ namespace Neet.AimTrainer
         public void ClickDestroyed(GameObject target)
         {
             score.clickCyclesAttempted += 1;
-            score.totalClickTime += (Time.time - target.GetData<Target>().spawnTime);
+            
             TargetDestroyed(target);
         }
         public void TrackDestroyed(GameObject target)
@@ -130,7 +132,7 @@ namespace Neet.AimTrainer
             score.distanceSuccessTotal += t.playerDistanceMoved;
 
             // overrides click sound on clickDestroy
-            sb.Play("destroy");
+            sounds.Play("destroy");
 
             if (TargetLimitReached())
                 CompleteChallenge();
@@ -140,19 +142,20 @@ namespace Neet.AimTrainer
         public void TargetFailed()
         {
             score.targetsAttempted += 1;
-            sb.Play("fail");
 
             if (TargetLimitReached())
                 CompleteChallenge();
         }
         public void ClickTimeout()
         {
+            sounds.Play("timeout");
             score.clickCyclesAttempted += 1;
             score.clicksTimedOut += 1;
             TargetFailed();
         }
         public void TrackTimeout()
         {
+            sounds.Play("timeout");
             score.tracksAttempted += 1;
 
             TargetFailed();

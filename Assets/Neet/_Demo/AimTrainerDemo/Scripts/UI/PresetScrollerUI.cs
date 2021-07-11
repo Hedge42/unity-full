@@ -14,7 +14,7 @@ public class PresetScrollerUI : MonoBehaviour
     private List<Button> presetButtons;
 
     private GameObject prefab;
-    private ConfirmationPrompt prompt;
+    private ContextPrompt prompt;
     private UnityAction LoadAction;
 
     private void Start()
@@ -26,7 +26,7 @@ public class PresetScrollerUI : MonoBehaviour
         prefab.SetActive(false);
     }
 
-    public void SetClickPrompt(ConfirmationPrompt prompt, UnityAction loadAction)
+    public void SetClickPrompt(ContextPrompt prompt, UnityAction loadAction)
     {
         this.LoadAction = loadAction;
         this.prompt = prompt;
@@ -57,7 +57,7 @@ public class PresetScrollerUI : MonoBehaviour
         btn.onClick.AddListener(delegate
         {
             prompt.onYes = delegate { Select(btn); };
-            Neet.UI.ContextMenu.instance.Show(prompt);
+            Neet.UI.ContextMenu.instance.Process(prompt);
         });
 
         // add to list

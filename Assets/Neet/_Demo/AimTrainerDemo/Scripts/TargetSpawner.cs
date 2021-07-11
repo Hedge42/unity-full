@@ -369,7 +369,7 @@ namespace Neet.AimTrainer
                 if (Target.IsTarget(target))
                 {
                     waitingForFirstHit = false;
-                    scoreboard.sb.Play("click");
+                    scoreboard.sounds.Play("click");
                     scoreboard.StartScoring(isChallenge);
                     NextTarget(target, true);
                 }
@@ -400,9 +400,9 @@ namespace Neet.AimTrainer
         }
         private void ClickAttempt(GameObject target)
         {
-            if (Target.IsTarget(target) && motor.IsAccurate())
+            if (Target.IsTarget(target, out Target _target) && motor.IsAccurate())
             {
-                scoreboard.ClickFired(true);
+                scoreboard.ClickFired(true, _target);
 
                 // only click-destroy on this condition
                 if (!tracking.canTrack)
@@ -423,11 +423,10 @@ namespace Neet.AimTrainer
             }
             else
             {
-                scoreboard.ClickFired(false);
+                scoreboard.ClickFired(false, _target);
 
                 if (aim.failTargetOnMissClick)
                 {
-                    scoreboard.ClickTimeout();
                     NextTarget(currentTarget, false);
                 }
             }
