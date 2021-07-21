@@ -6,13 +6,18 @@ namespace Neet.Fighter
 {
     public class InputEvent
     {
-        public int value;
-        public int valueDown;
+        public int dir { get; set; }
+        public int dirBit { get; set; }
 
-        public InputEvent(int value = 0, int valueDown = 0)
+        public int dirDown { get; set; }
+        public int dirDownBit { get; set; }
+
+        public int btn { get; set; }
+        public int btnDown { get; set; }
+
+        public InputEvent()
         {
-            this.value = value;
-            this.valueDown = valueDown;
+            dir = 5;
         }
     }
 }

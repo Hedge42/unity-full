@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Neet.Audio;
-using Neet.Events;
+using Neet.Extensions;
 
 public class Gun : MonoBehaviour
 {

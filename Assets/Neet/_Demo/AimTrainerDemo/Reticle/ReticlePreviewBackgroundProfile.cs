@@ -21,7 +21,7 @@ public class ReticlePreviewBackgroundProfile
 
     public void Save()
     {
-        FileManager.instance.SaveGameObjectBinary(this, filename);
+        FileManager.instance.SavePersistentGameObjectBinary(this, filename);
     }
 
     public int r;

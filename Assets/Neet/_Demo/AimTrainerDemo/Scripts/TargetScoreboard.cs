@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Neet.Data;
+using Neet.Extensions;
 using UnityEngine.Events;
 using Neet.UI;
 using Neet.Audio;

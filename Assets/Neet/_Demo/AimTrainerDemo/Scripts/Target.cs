@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Neet.Data;
+using Neet.Extensions;
 
 namespace Neet.AimTrainer
 {

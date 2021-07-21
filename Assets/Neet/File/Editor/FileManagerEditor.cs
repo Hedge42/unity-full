@@ -25,7 +25,7 @@ namespace Neet.File
             }
             if (GUILayout.Button("GameDataFolder"))
             {
-                FileManager.instance.OpenExplorer(FileManager.instance.GameDataFolder);
+                FileManager.instance.OpenExplorer(FileManager.instance.PersistentGameDataFolder);
             }
         }
     }

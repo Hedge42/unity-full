@@ -24,7 +24,7 @@ public class ReticleProfile
     }
     public void Save()
     {
-        FileManager.instance.SaveGameObjectBinary(this, filename);
+        FileManager.instance.SavePersistentGameObjectBinary(this, filename);
     }
 
     [Range(0, OFFSET_MAX)]

@@ -15,7 +15,7 @@ namespace Neet.Fighter
             InputHandler _target = (InputHandler)target;
 
             if (GUILayout.Button("Set default keys"))
-                _target.input = new InputSetting();
+                _target.inputSetting = new InputSetting();
         }
     }
 }

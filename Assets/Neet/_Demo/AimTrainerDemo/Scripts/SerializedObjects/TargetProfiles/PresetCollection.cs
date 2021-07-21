@@ -85,7 +85,7 @@ public class PresetCollection
     }
     public void Save()
     {
-        FileManager.instance.SaveGameObjectBinary(this, fileNameBinary);
+        FileManager.instance.SavePersistentGameObjectBinary(this, fileNameBinary);
     }
 
     // adding and removing

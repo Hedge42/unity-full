@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using Neet.Data;
+using Neet.Extensions;
 
 public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
 {

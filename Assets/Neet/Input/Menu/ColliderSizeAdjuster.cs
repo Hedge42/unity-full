@@ -2,40 +2,31 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// This class exists to make a 2D object's collider automatically
 /// resize to match its RectTransform
 /// </summary>
-public class ColliderSizeAdjuster : MonoBehaviour
+[ExecuteAlways]
+public class ColliderSizeAdjuster : UIBehaviour
 {
     public bool validate;
 
     // check this for free positioning
     public bool ignorePivot;
-    private void OnValidate()
+
+    protected override void OnRectTransformDimensionsChange()
     {
         FixSize();
     }
-    private void Start()
-    {
-        // delayed start method because collider would sometimes use the wrong size
-        // when controlled by other elements during start like a layout group
-        StartCoroutine(DelayStart());
-    }
-
-    private IEnumerator DelayStart()
-    {
-        yield return new WaitForEndOfFrame();
-        FixSize();
-    }
-
     private void FixSize()
     {
-        Vector2 rect = GetComponent<RectTransform>().rect.size;
+        RectTransform rt = GetComponent<RectTransform>();
+        Vector2 size = rt.rect.size;
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
 
-        collider.size = rect;
+        collider.size = size;
 
         // adjust for anchors
         // find the function...
@@ -46,7 +37,7 @@ public class ColliderSizeAdjuster : MonoBehaviour
         if (!ignorePivot)
         {
             Vector2 pivot = GetComponent<RectTransform>().pivot;
-            collider.offset = new Vector2(rect.x / 2 - pivot.x * rect.x, rect.y / 2 - pivot.y * rect.y);
+            collider.offset = new Vector2(size.x / 2 - pivot.x * size.x, size.y / 2 - pivot.y * size.y);
         }
     }
 }

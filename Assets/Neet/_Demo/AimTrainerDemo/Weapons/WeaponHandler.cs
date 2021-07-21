@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.Events;
-using UnityEngine.Events;
+using Neet.Extensions;
 
 public class WeaponHandler : MonoBehaviour
 {

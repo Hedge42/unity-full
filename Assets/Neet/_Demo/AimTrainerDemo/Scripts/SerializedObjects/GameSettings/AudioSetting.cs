@@ -24,7 +24,7 @@ public class AudioSetting
     }
     public void SaveBinary()
     {
-        FileManager.instance.SaveGameObjectBinary(this, fileNameBinary);
+        FileManager.instance.SavePersistentGameObjectBinary(this, fileNameBinary);
     }
 
     // values

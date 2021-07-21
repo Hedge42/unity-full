@@ -4,7 +4,7 @@ using UnityEngine;
 using Neet.UI;
 using UnityEngine.Events;
 using TMPro;
-using Neet.Events;
+using Neet.Extensions;
 
 namespace Neet.AimTrainer
 {

@@ -28,7 +28,7 @@ public class ControlSetting
     }
     public void SaveBinary()
     {
-        FileManager.instance.SaveGameObjectBinary(this, fileNameBinary);
+        FileManager.instance.SavePersistentGameObjectBinary(this, fileNameBinary);
     }
 
     public int dpi = 800;

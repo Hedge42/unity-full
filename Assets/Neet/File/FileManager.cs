@@ -75,7 +75,7 @@ namespace Neet.File
             }
         }
 
-        public string GameDataFolder
+        public string PersistentGameDataFolder
         {
             get
             {
@@ -238,6 +238,16 @@ namespace Neet.File
                 Debug.LogWarning(typeof(T).ToString() + " at " + path + " could not be loaded for some reason or another. x_x");
             }
         }
+        // Deerialize from bytes (BinaryFormatter)
+        public static T DeserializeFromBytes<T>(byte[] source)
+        {
+            using (var stream = new MemoryStream(source))
+            {
+                var formatter = new BinaryFormatter();
+                stream.Seek(0, SeekOrigin.Begin);
+                return (T)formatter.Deserialize(stream);
+            }
+        }
         public string SerializeJson(object o, string directory, string fileName)
         {
             if (!fileName.EndsWith(".json"))
@@ -294,23 +304,23 @@ namespace Neet.File
 
         public T LoadGameObjectJSON<T>(string fileName)
         {
-            DeserializeJson<T>(GameDataFolder + fileName, out T obj);
+            DeserializeJson<T>(PersistentGameDataFolder + fileName, out T obj);
 
             return obj;
         }
         public void SaveGameObjectJSON<T>(T obj, string fileName)
         {
-            SerializeJson(obj, GameDataFolder, fileName);
+            SerializeJson(obj, PersistentGameDataFolder, fileName);
         }
 
         public T LoadGameObjectBinary<T>(string fileName)
         {
-            DeserializeBinary<T>(out T obj, GameDataFolder + fileName);
+            DeserializeBinary<T>(out T obj, PersistentGameDataFolder + fileName);
             return obj;
         }
-        public void SaveGameObjectBinary<T>(T obj, string fileName)
+        public void SavePersistentGameObjectBinary<T>(T obj, string fileName)
         {
-            SerializeBinary(obj, GameDataFolder + fileName);
+            SerializeBinary(obj, PersistentGameDataFolder + fileName);
         }
     }
 }
