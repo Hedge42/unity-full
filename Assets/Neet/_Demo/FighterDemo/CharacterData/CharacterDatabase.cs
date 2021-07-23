@@ -1,43 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using Neet.File;
 
 namespace Neet.Fighter
 {
-    [Serializable]
-    public class CharacterDatabase
+    [CreateAssetMenu]
+    public class CharacterDatabase : ScriptableObject
     {
-        public static string path
+        private List<Character> _characters;
+        public List<Character> characters
         {
             get
             {
-                return Application.dataPath
-                    + "/Neet/_Demo/FighterDemo/CharacterData/characterData.sav";
+                if (_characters == null)
+                    _characters = new List<Character>();
+                return _characters;
+            }
+            set
+            {
+                _characters = value;
             }
         }
 
-        public List<Character> characters;
-
-        public CharacterDatabase()
+        public string[] GetCharacterNames()
         {
-            characters = new List<Character>();
+            List<string> names = new List<string>();
+
+            for (int i = 0; i < characters.Count; i++)
+                names.Add(i + ": " + characters[i].name);
+
+            return names.ToArray();
         }
 
-        public static CharacterDatabase Load()
+        public bool GetCharacterNames(out string[] names)
         {
-            FileManager.instance.DeserializeBinary(out CharacterDatabase cd, path);
+            names = null;
+            try
+            {
+                names = GetCharacterNames();
 
-            if (cd == default(CharacterDatabase))
-                cd = new CharacterDatabase();
-
-            return cd;
-        }
-
-        public void Save()
-        {
-            FileManager.instance.SerializeBinary(this, path);
+                return names.Length > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

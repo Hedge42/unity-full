@@ -41,6 +41,9 @@ namespace Neet.Fighter
         {
             moves = new List<Move>();
             name = "EX name";
+            health = Fighter.DEFAULT_HEALTH;
+            size = new Vector2(Fighter.DEFAULT_SIZE_X, Fighter.DEFAULT_SIZE_Y);
+            walkSpeed = Fighter.DEFAULT_WALKSPEED;
         }
     }
 }

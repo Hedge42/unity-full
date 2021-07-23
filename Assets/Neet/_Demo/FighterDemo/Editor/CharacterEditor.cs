@@ -24,13 +24,18 @@ namespace Neet.Fighter
         private ListData stateData;
         private ListData hitboxPositionData;
         private ListData hitboxSizeData;
+        private ListData characterTemplateData;
+        private ListData moveTemplateData;
 
         private CharacterDatabase db;
-        private CharacterEditorComponent cmp;
+        private CharacterDatabase characterTemplates;
+        private MoveDatabase moveTemplates;
+
+        private CharacterEditorComponent _target;
 
         private int previewFrame = -1;
-
-        private GameObject hurtboxPreview;
+        private int characterTemplateIndex = 0;
+        private int moveTemplateIndex = 0;
 
         private void OnEnable()
         {
@@ -46,49 +51,49 @@ namespace Neet.Fighter
             // hitbox specifc
             hitboxPositionData = new ListData();
             hitboxSizeData = new ListData();
-        }
 
+            // templates
+            characterTemplateData = new ListData();
+            characterTemplateData.index = 0;
+
+            moveTemplateData = new ListData();
+            moveTemplateData.index = 0;
+        }
         private void OnDisable()
         {
-            cmp = (CharacterEditorComponent)target;
-            cmp.active = false;
+            _target = (CharacterEditorComponent)target;
+            _target.active = false;
+        }
+
+        private void OnSceneGUI()
+        {
+            _target = (CharacterEditorComponent)target;
+
+            UpdatePreview(Selection.activeGameObject == _target.gameObject);
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            cmp = (CharacterEditorComponent)target;
+            _target = (CharacterEditorComponent)target;
 
-            EditorGUI.BeginChangeCheck();
+            // EditorGUI.BeginChangeCheck();
 
-            if (db == null)
+            db = _target.db;
+            moveTemplates = _target.moveTemplates;
+            characterTemplates = _target.characterTemplates;
+
+            if (db != null)
             {
-                if (GUILayout.Button("Load"))
-                    db = CharacterDatabase.Load();
-            }
-            else
-            {
-                if (GUILayout.Button("Save"))
-                {
-                    db.Save();
-                }
-                else if (GUILayout.Button("Revert changes"))
-                {
-                    ResetAllListData();
-                    db = CharacterDatabase.Load();
-                }
-
                 MakeList(typeof(Character), db.characters, characterData,
                     "Characters", ResetCharacterListData, GetCharacterName);
                 EditCharacter();
             }
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                UpdatePreview();
-                UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
-            }
+            //if (EditorGUI.EndChangeCheck())
+            //{
+            //}
         }
 
         private void ResetAllListData()
@@ -233,25 +238,27 @@ namespace Neet.Fighter
             }
         }
 
-        private void UpdatePreview()
+        private void UpdatePreview(bool selected)
         {
-            cmp.active = true;
-
             try
             {
-                cmp.active = true;
+                db = _target.db;
+                _target.active = selected;
                 Character c = null;
                 Move m = null;
 
                 if (GetCurrent(out c, characterData, db.characters))
                     GetCurrent(out m, moveData, c.moves);
 
-                cmp.SetState(c, m, previewFrame);
+                _target.SetState(c, m, previewFrame);
             }
-            catch
+            catch (Exception e)
             {
-                cmp.active = false;
+                Debug.LogError(e);
+                _target.active = false;
             }
+
+            UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
         }
 
         private void ItemAdded<T>(List<T> list, int newIndex) where T : new()
@@ -278,13 +285,16 @@ namespace Neet.Fighter
                 data.index -= 1;
         }
 
-
         private void EditCharacter()
         {
             if (GetCurrent(out Character c, characterData, db.characters))
             {
+                HandleCharacterTemplate();
+
                 c.name = EditorGUILayout.TextField("Name", c.name);
                 c.size = EditorGUILayout.Vector2Field("Size", c.size);
+                c.walkSpeed = EditorGUILayout.FloatField("Walkspeed", c.walkSpeed);
+                c.health = EditorGUILayout.IntField("Health", c.health);
 
                 EditorFunctions.EndLine();
 
@@ -296,10 +306,10 @@ namespace Neet.Fighter
         {
             if (GetCurrent(out Move m, moveData, c.moves))
             {
-                GUILayout.Space(10);
-                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
                 EditorGUILayout.LabelField(m.name + " properties",
                     EditorStyles.boldLabel);
+
+                HandleMoveTemplate();
 
                 m.name = EditorGUILayout.TextField("Name", m.name);
                 m.frames = EditorFunctions.IntFieldBounded("Frames", m.frames, 0, 300);
@@ -348,10 +358,9 @@ namespace Neet.Fighter
                     "Hitbox position adjustments");
                 EditHitboxPositions(h);
 
-                //MakeList(typeof(VectorInterpolation), h.ipSize, hitboxSizeData,
-                    //"Hitbox size adjustments");
-
-                // EditHitboxSizeAdjustments(h);
+                MakeList(typeof(VectorInterpolation), h.ipSize, hitboxSizeData,
+                    "Hitbox size adjustments");
+                EditHitboxSizeAdjustments(h);
 
                 EditorFunctions.EndLine();
             }
@@ -361,7 +370,12 @@ namespace Neet.Fighter
             if (GetCurrent(out StateChange s, stateData, m.stateChanges))
             {
                 s.frame = EditorFunctions.IntFieldBounded("Frame", s.frame, 0, m.frames - 1);
-                s.newState = EditorFunctions.EnumPopup("State", s.newState);
+
+                s.ground = EditorGUILayout.Toggle("Ground", s.ground);
+                s.stand = EditorGUILayout.Toggle("Stand", s.stand);
+                s.attack = EditorGUILayout.Toggle("Attack", s.attack);
+                s.guard = EditorGUILayout.Toggle("Guard", s.guard);
+                s.knockdown = EditorGUILayout.Toggle("Knockdown", s.knockdown);
 
                 EditorFunctions.EndLine();
             }
@@ -390,7 +404,6 @@ namespace Neet.Fighter
                 v.change = EditorGUILayout.Vector2Field("Delta", v.change);
             }
         }
-
         private void EditHitboxSizeAdjustments(Hitbox h)
         {
             if (GetCurrent(out VectorInterpolation v, hitboxSizeData, h.ipSize))
@@ -403,11 +416,95 @@ namespace Neet.Fighter
             }
         }
 
-
-        private int MoveDropdown()
+        private void HandleCharacterTemplate()
         {
-            // EditorGUILayout.Popup("Followup", character.GetMoveNames(), )
-            return 0;
+            if (characterTemplates != null)
+            {
+                characterTemplateData.foldout = EditorGUILayout.
+                    Foldout(characterTemplateData.foldout, "Character templates");
+
+                bool hasTemplates = characterTemplates.GetCharacterNames(out string[] names);
+
+                if (characterTemplateData.foldout)
+                {
+                    if (hasTemplates)
+                        characterTemplateIndex = EditorGUILayout.Popup("Select", characterTemplateIndex, names);
+
+                    if (GUILayout.Button("Add this character to templates"))
+                    {
+                        Character clone = db.characters[characterData.index].Clone();
+                        characterTemplates.characters.Add(clone);
+                    }
+
+                    if (hasTemplates)
+                    {
+                        if (GUILayout.Button("Remove selected template"))
+                        {
+                            characterTemplates.characters.RemoveAt(characterTemplateIndex);
+                        }
+
+                        if (GUILayout.Button("Overwrite template with this character"))
+                        {
+                            Character clone = db.characters[characterData.index].Clone();
+                            characterTemplates.characters[characterTemplateIndex] = clone;
+                        }
+
+                        if (GUILayout.Button("Overwrite character from this template"))
+                        {
+                            // clone the character
+                            Character clone = characterTemplates.characters[characterTemplateIndex].Clone();
+                            db.characters[characterData.index] = clone;
+                        }
+
+                    }
+                    EditorFunctions.EndLine();
+                }
+            }
+        }
+        private void HandleMoveTemplate()
+        {
+            if (moveTemplates != null)
+            {
+                moveTemplateData.foldout = EditorGUILayout.Foldout(moveTemplateData.foldout, "Move templates");
+
+                bool hasTemplates = moveTemplates.GetMoveNames(out string[] names);
+
+                if (moveTemplateData.foldout)
+                {
+                    if (hasTemplates)
+                        moveTemplateIndex = EditorGUILayout.Popup("Select move template", moveTemplateIndex, names);
+
+                    if (GUILayout.Button("Add this move to templates"))
+                    {
+                        Move clone = db.characters[characterData.index].moves[moveData.index].Clone();
+                        moveTemplates.moves.Add(clone);
+                    }
+
+                    if (hasTemplates)
+                    {
+
+                        if (GUILayout.Button("Remove selected template"))
+                        {
+                            moveTemplates.moves.RemoveAt(moveTemplateIndex);
+                        }
+
+                        if (GUILayout.Button("Overwrite template with this move"))
+                        {
+                            Move clone = db.characters[characterData.index].moves[moveData.index].Clone();
+                            moveTemplates.moves[moveTemplateIndex] = clone;
+                        }
+
+                        if (GUILayout.Button("Overwrite move from this template"))
+                        {
+                            // clone the character
+                            Move clone = moveTemplates.moves[moveTemplateIndex].Clone();
+                            db.characters[characterData.index].moves[moveData.index] = clone;
+                        }
+                    }
+
+                    EditorFunctions.EndLine();
+                }
+            }
         }
     }
 }

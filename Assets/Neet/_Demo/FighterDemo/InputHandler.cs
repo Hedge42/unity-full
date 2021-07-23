@@ -11,7 +11,11 @@ namespace Neet.Fighter
 
         public InputSetting inputSetting;
 
-        private Command[] cmdList;
+        private FighterMotor motor;
+
+        private Character c;
+
+        // private Command[] cmdList;
 
         private void Start()
         {
@@ -19,15 +23,16 @@ namespace Neet.Fighter
 
             SetupInputStream();
 
-            cmdList = new MoveListStandard().commands;
+            // cmdList = new MoveListStandard().commands;
+
+            motor = GetComponent<FighterMotor>();
+            c = GetComponent<CharacterSelectorComponent>().character;
         }
 
         private void FixedUpdate()
         {
             UpdateInput();
-
-            print(ShowButtonBits());
-            print(ShowDirectionBits());
+            motor.Walk(c, inputStream[inputStream.Count - 1]);
         }
 
         private void SetupInputStream()

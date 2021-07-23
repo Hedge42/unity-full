@@ -40,7 +40,6 @@ namespace Neet.Fighter
                 startSizeY = value.y;
             }
         }
-
         public Vector2 startPos
         {
             get
@@ -53,7 +52,6 @@ namespace Neet.Fighter
                 startPosY = value.y;
             }
         }
-
         public Vector2 deltaSize
         {
             get
@@ -66,7 +64,6 @@ namespace Neet.Fighter
                 deltaSizeY = value.y;
             }
         }
-
         public Vector2 deltaPos
         {
             get
@@ -79,7 +76,6 @@ namespace Neet.Fighter
                 deltaPosY = value.y;
             }
         }
-
        
 
         public List<VectorInterpolation> ipPosition;
@@ -89,6 +85,11 @@ namespace Neet.Fighter
         {
             ipSize = new List<VectorInterpolation>();
             ipPosition = new List<VectorInterpolation>();
+
+            startSize = new Vector2(50, 100);
+            startPos = new Vector2(70, 0);
+
+            level = AttackLevel.High;
         }
 
         public Vector2 GetPosition(int frame)

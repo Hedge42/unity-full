@@ -29,6 +29,9 @@ namespace Neet.Fighter
 
             hitboxes = new List<Hitbox>();
             stateChanges = new List<StateChange>();
+            stateChanges.Add(new StateChange());
+            stateChanges.Add(new StateChange() { attack = false, frame = frames });
+
             positionChanges = new List<VectorInterpolation>();
             hurtboxChanges = new List<VectorInterpolation>();
         }
@@ -37,65 +40,38 @@ namespace Neet.Fighter
         {
             foreach (Hitbox h in hitboxes)
             {
-                if (h.startFrame > frames)
-                    h.startFrame = frames;
-                if (h.endFrame > frames)
-                    h.endFrame = frames;
-
-                if (h.disconnectFrame < h.startFrame)
-                    h.disconnectFrame = h.startFrame;
-                else if (h.disconnectFrame > h.endFrame)
-                    h.disconnectFrame = h.endFrame;
+                Fighter.ForceIntRange(ref h.startFrame, 0, frames);
+                Fighter.ForceIntRange(ref h.endFrame, h.startFrame, frames);
+                Fighter.ForceIntRange(ref h.disconnectFrame, h.startFrame, h.endFrame);
 
                 foreach (var pos in h.ipPosition)
                 {
-                    if (pos.startFrame < h.startFrame)
-                        pos.startFrame = h.startFrame;
-                    if (pos.endFrame > h.endFrame)
-                        pos.endFrame = h.endFrame;
+                    Fighter.ForceIntRange(ref pos.startFrame, h.startFrame, frames);
+                    Fighter.ForceIntRange(ref pos.endFrame, pos.startFrame, frames);
                 }
 
                 foreach (var size in h.ipSize)
                 {
-                    if (size.startFrame < h.startFrame)
-                        size.startFrame = h.startFrame;
-                    if (size.endFrame > h.endFrame)
-                        size.endFrame = h.endFrame;
+                    Fighter.ForceIntRange(ref size.startFrame, h.startFrame, frames);
+                    Fighter.ForceIntRange(ref size.endFrame, size.startFrame, frames);
                 }
             }
 
             foreach (StateChange s in stateChanges)
             {
-                if (s.frame < 0)
-                    s.frame = 0;
-                else if (s.frame > frames)
-                    s.frame = frames;
+                Fighter.ForceIntRange(ref s.frame, 0, frames);
             }
 
             foreach (var p in positionChanges)
             {
-                if (p.startFrame < 0)
-                    p.startFrame = 0;
-                else if (p.startFrame > frames)
-                    p.startFrame = frames;
-
-                if (p.endFrame < p.startFrame)
-                    p.endFrame = p.startFrame;
-                if (p.endFrame > frames)
-                    p.endFrame = frames;
+                Fighter.ForceIntRange(ref p.startFrame, 0, frames);
+                Fighter.ForceIntRange(ref p.endFrame, p.startFrame, frames);
             }
 
             foreach (var s in hurtboxChanges)
             {
-                if (s.startFrame < 0)
-                    s.startFrame = 0;
-                else if (s.startFrame > frames)
-                    s.startFrame = frames;
-
-                if (s.endFrame < s.startFrame)
-                    s.endFrame = s.startFrame;
-                else if (s.endFrame > frames)
-                    s.endFrame = frames;
+                Fighter.ForceIntRange(ref s.startFrame, 0, frames);
+                Fighter.ForceIntRange(ref s.endFrame, s.startFrame, frames);
             }
         }
 
@@ -115,6 +91,19 @@ namespace Neet.Fighter
             }
 
             return h;
+        }
+
+        public List<StateChange> GetActiveStates(int frame)
+        {
+            List<StateChange> s = new List<StateChange>();
+
+            foreach (StateChange c in stateChanges)
+            {
+                ///if (frame >= b.startFrame && frame <= b.endFrame)
+                    // h.Add(b);
+            }
+
+            return s;
         }
     }
 }

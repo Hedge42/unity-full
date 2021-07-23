@@ -2,9 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Neet.Fighter
 {
+    // ground or air
+    // stand or crouch
+    // command or passive
+    // guard or not
+    // stunned or not
+    // down or active
+
+    public enum xState
+    {
+        Ground, // or air
+        Stand , // or crouch
+        Attack, // or...not
+        Stun, // or...not
+        Guard, // or...not
+        Knockdown, // or active
+    }
+    
     public enum State
     {
         Stand,
@@ -48,6 +67,11 @@ namespace Neet.Fighter
         public const int INPUT_STREAM_LENGTH = 60;
         public const int BTN_BUFFER = 3;
 
+        public const int DEFAULT_HEALTH = 1000;
+        public const int DEFAULT_SIZE_X = 50;
+        public const int DEFAULT_SIZE_Y = 100;
+        public const int DEFAULT_WALKSPEED = 50;
+
         public const int P_BIT = (int)Button.Punch;
         public const int K_BIT = (int)Button.Kick;
         public const int S_BIT = (int)Button.Special;
@@ -85,6 +109,8 @@ namespace Neet.Fighter
         public const int ATTACKING_VALUE = 1 << ATTACKING_BIT;
         public const int STUN_VALUE = 1 << STUN_BIT;
         public const int GUARD_VALUE = 1 << GUARD_BIT;
+
+        public const int xSTAND_BIT = (int)xState.Stand;
 
         /// <summary>
         /// Converts numerical [1-9] notation to bit value
@@ -196,6 +222,28 @@ namespace Neet.Fighter
         public static bool IsBitOn(this int value, int pos)
         {
             return ((value >> pos) & 1) == 1;
+        }
+
+        public static T Clone<T>(this T obj)
+        {
+            using (MemoryStream memory_stream = new MemoryStream())
+            {
+                // Serialize the object into the memory stream.
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(memory_stream, obj);
+
+                // Rewind the stream and use it to create a new object.
+                memory_stream.Position = 0;
+                return (T)formatter.Deserialize(memory_stream);
+            }
+        }
+
+        public static void ForceIntRange(ref int i, int min, int max)
+        {
+            if (i < min)
+                i = min;
+            else if (i > max)
+                i = max;
         }
     }
 }

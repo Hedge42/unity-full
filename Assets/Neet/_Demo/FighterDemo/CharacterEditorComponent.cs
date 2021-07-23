@@ -5,81 +5,35 @@ using Neet.File;
 
 namespace Neet.Fighter
 {
+    [RequireComponent(typeof(GizmoDrawer))]
     public class CharacterEditorComponent : MonoBehaviour
     {
-        public Vector3 localPreviewOrigin;
-        public Color startColor;
-        public Color movementColor;
-        public Color hitboxColor;
+        public CharacterDatabase db;
+        public CharacterDatabase characterTemplates;
+        public MoveDatabase moveTemplates;
 
-        [HideInInspector]
-        public Character c;
-        [HideInInspector]
-        public Move m;
-        [HideInInspector]
-        public int frame;
-        [HideInInspector]
-        public bool active;
+        private GizmoDrawer _drawer;
 
-        private void OnDrawGizmos()
+        public GizmoDrawer drawer
         {
-            if (active)
+            get
             {
-                Vector3 origin = transform.TransformPoint(localPreviewOrigin);
-
-                if (c != null)
-                {
-                    Gizmos.color = startColor;
-                    Gizmos.DrawWireCube(origin, c.size);
-
-                    if (m != null)
-                    {
-                        var characterPos = origin + (Vector3)m.GetPosition(frame);
-
-                        Gizmos.color = movementColor;
-                        Gizmos.DrawWireCube(characterPos, c.size);
-
-                        Gizmos.color = hitboxColor;
-                        foreach (var h in m.GetActiveHitboxes(frame))
-                        {
-                            Vector3 pos = Vector3.zero;
-                            if (h.disconnect && h.disconnectFrame <= frame)
-                            {
-                                // get position at disconnect frame
-
-                                var localPosAtDisconnect = 
-                                    (Vector3)h.GetPosition(h.disconnectFrame);
-                                var localDeltaPosAfterDisconnect = 
-                                    (Vector3)h.GetPosition(frame) - localPosAtDisconnect;
-
-                                var characterPosAtDisconnect = 
-                                    origin + (Vector3)m.GetPosition(h.disconnectFrame);
-
-                                var posAtDisconnect = characterPosAtDisconnect +
-                                    localPosAtDisconnect;
-
-                                pos = posAtDisconnect + localDeltaPosAfterDisconnect;
-                            }
-                            else
-                            {
-                                pos = characterPos + (Vector3)h.GetPosition(frame);
-                            }
-
-                            var size = h.GetSize(frame);
-
-                            Gizmos.DrawWireCube(pos, size);
-                        }
-                    }
-                }
+                if (_drawer == null)
+                    _drawer = GetComponent<GizmoDrawer>();
+                return _drawer;
             }
         }
-
+        public bool active
+        {
+            get { return drawer.active; }
+            set { drawer.active = value; }
+        }
 
         public void SetState(Character c, Move m, int frame)
         {
-            this.c = c;
-            this.m = m;
-            this.frame = frame;
+            drawer.c = c;
+            drawer.m = m;
+            drawer.frame = frame;
         }
     }
 }
