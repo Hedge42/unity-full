@@ -22,6 +22,11 @@ namespace Neet.Fighter
             UpdateDelta();
         }
 
+        public void HandleGravity(Character c)
+        {
+
+        }
+
         private Vector2 GetDirectionVector(InputEvent e)
         {
             if (e.dirBit.IsBitOn(Fighter.LEFT_BIT))

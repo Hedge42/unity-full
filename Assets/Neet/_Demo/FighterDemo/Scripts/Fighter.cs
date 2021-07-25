@@ -67,6 +67,7 @@ namespace Neet.Fighter
         public const int INPUT_STREAM_LENGTH = 60;
         public const int BTN_BUFFER = 3;
 
+        // character stats
         public const int DEFAULT_HEALTH = 1000;
         public const int DEFAULT_SIZE_X = 50;
         public const int DEFAULT_SIZE_Y = 100;

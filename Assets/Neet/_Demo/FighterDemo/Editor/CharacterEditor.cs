@@ -78,11 +78,13 @@ namespace Neet.Fighter
 
             _target = (CharacterEditorComponent)target;
 
-            // EditorGUI.BeginChangeCheck();
+            //EditorGUI.BeginChangeCheck();
 
             db = _target.db;
             moveTemplates = _target.moveTemplates;
             characterTemplates = _target.characterTemplates;
+
+            HandleSaveData();
 
             if (db != null)
             {
@@ -91,9 +93,49 @@ namespace Neet.Fighter
                 EditCharacter();
             }
 
-            //if (EditorGUI.EndChangeCheck())
-            //{
-            //}
+        }
+
+        private void HandleSaveData()
+        {
+            GUIStyle s = new GUIStyle();
+
+            if (GUILayout.Button(new GUIContent("Save data", "Data will only be saved " +
+                "while Unity is open unless this is pressed")))
+            {
+                EditorUtility.SetDirty(_target);
+                EditorUtility.SetDirty(_target.db);
+                EditorUtility.SetDirty(_target.moveTemplates);
+                EditorUtility.SetDirty(_target.characterTemplates);
+
+                AssetDatabase.SaveAssets();
+            }
+            GUILayout.Space(10);
+        }
+        private void UpdatePreview(bool selected)
+        {
+            _target.active = selected;
+
+            try
+            {
+                if (selected)
+                {
+                    db = _target.db;
+                    _target.active = selected;
+                    Character c = null;
+                    Move m = null;
+
+                    if (GetCurrent(out c, characterData, db.characters))
+                        GetCurrent(out m, moveData, c.moves);
+
+                    _target.SetState(c, m, previewFrame);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+
+            UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
         }
 
         private void ResetAllListData()
@@ -144,36 +186,14 @@ namespace Neet.Fighter
             else
                 return false;
         }
-
-        private string GetMoveName(int i)
-        {
-            try
-            {
-                return db.characters[characterData.index].moves[i].name;
-            }
-            catch
-            {
-                return "null";
-            }
-        }
-        private string GetCharacterName(int i)
-        {
-            try
-            {
-                return db.characters[i].name;
-            }
-            catch
-            {
-                return "null";
-            }
-        }
-
         private void MakeList<T>(Type t, List<T> list, ListData data,
             string label, Action onEditClick = null,
             Func<int, string> getName = null) where T : new()
         {
             data.foldout = EditorGUILayout.Foldout(data.foldout,
-                label + " (" + list.Count + ")");
+                label + " (" + list.Count + ")", EditorStyles.foldout.Bold());
+
+
 
             if (data.foldout)
             {
@@ -238,29 +258,6 @@ namespace Neet.Fighter
             }
         }
 
-        private void UpdatePreview(bool selected)
-        {
-            try
-            {
-                db = _target.db;
-                _target.active = selected;
-                Character c = null;
-                Move m = null;
-
-                if (GetCurrent(out c, characterData, db.characters))
-                    GetCurrent(out m, moveData, c.moves);
-
-                _target.SetState(c, m, previewFrame);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-                _target.active = false;
-            }
-
-            UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
-        }
-
         private void ItemAdded<T>(List<T> list, int newIndex) where T : new()
         {
             list[newIndex] = new T();
@@ -283,6 +280,29 @@ namespace Neet.Fighter
                 data.index += 1;
             else if (movingIndex == data.index + 1)
                 data.index -= 1;
+        }
+
+        private string GetMoveName(int i)
+        {
+            try
+            {
+                return db.characters[characterData.index].moves[i].name;
+            }
+            catch
+            {
+                return "null";
+            }
+        }
+        private string GetCharacterName(int i)
+        {
+            try
+            {
+                return db.characters[i].name;
+            }
+            catch
+            {
+                return "null";
+            }
         }
 
         private void EditCharacter()

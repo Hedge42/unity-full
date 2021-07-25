@@ -65,24 +65,24 @@ namespace Neet.Fighter
                 i.btn += Fighter.G_VALUE;
 
             if (UnityEngine.Input.GetKeyDown(inputSetting.up))
-                i.dirDown += 3;
+                i.dirDownNum += 3;
             if (UnityEngine.Input.GetKeyDown(inputSetting.down))
-                i.dirDown -= 3;
+                i.dirDownNum -= 3;
             if (UnityEngine.Input.GetKeyDown(inputSetting.left))
-                i.dirDown -= 1;
+                i.dirDownNum -= 1;
             if (UnityEngine.Input.GetKeyDown(inputSetting.right))
-                i.dirDown += 1;
-            i.dirDownBit = Fighter.DirToBitValue(i.dirDown);
+                i.dirDownNum += 1;
+            i.dirDownBit = Fighter.DirToBitValue(i.dirDownNum);
 
             if (UnityEngine.Input.GetKey(inputSetting.up))
-                i.dir += 3;
+                i.dirNum += 3;
             if (UnityEngine.Input.GetKey(inputSetting.down))
-                i.dir -= 3;
+                i.dirNum -= 3;
             if (UnityEngine.Input.GetKey(inputSetting.left))
-                i.dir -= 1;
+                i.dirNum -= 1;
             if (UnityEngine.Input.GetKey(inputSetting.right))
-                i.dir += 1;
-            i.dirBit = Fighter.DirToBitValue(i.dir);
+                i.dirNum += 1;
+            i.dirBit = Fighter.DirToBitValue(i.dirNum);
 
             inputStream.Add(i);
             inputStream.RemoveAt(0);

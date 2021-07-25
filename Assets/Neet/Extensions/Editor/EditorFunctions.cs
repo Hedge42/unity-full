@@ -7,7 +7,7 @@ using Neet.Extensions;
 
 namespace Neet.Functions
 {
-    public class EditorFunctions
+    public static class EditorFunctions
     {
         public static void GUIColorLerp(string label, ref Color a, ref Color b)
         {
@@ -322,6 +322,40 @@ namespace Neet.Functions
             else if (x > max)
                 x = max;
             return x;
+        }
+
+        public static GUIStyle FontStyle(this GUIStyle style, FontStyle s)
+        {
+            GUIStyle g = new GUIStyle(style);
+            g.fontStyle = s;
+            return g;
+        }
+        public static GUIStyle Bold(this GUIStyle style)
+        {
+            return style.FontStyle(UnityEngine.FontStyle.Bold);
+        }
+        public static GUIStyle FontSize(this GUIStyle style, int fontSize)
+        {
+            GUIStyle g = new GUIStyle(style);
+            g.fontSize = fontSize;
+            return g;
+        }
+        public static GUIStyle TextColor(this GUIStyle style, Color c)
+        {
+            GUIStyle g = new GUIStyle(style);
+            g.normal.textColor = c;
+            return g;
+        }
+        public static GUIStyle Rich(this GUIStyle style)
+        {
+            GUIStyle s = new GUIStyle(style);
+            s.richText = true;
+            return s;
+        }
+
+        public static GUIContent Tooltip(this string s, string tooltip)
+        {
+            return new GUIContent(s, tooltip);
         }
     }
 }

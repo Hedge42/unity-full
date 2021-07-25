@@ -45,7 +45,15 @@ namespace Neet.Fighter
 
                 if (c != null)
                 {
-                    if (m != null)
+                    // just draw the character
+                    if (m == null)
+                    {
+                        Gizmos.color = colors.clrDefault;
+                        Gizmos.DrawWireCube(origin, c.size);
+                    }
+
+                    // draw using move data
+                    else
                     {
                         var characterPos = origin + (Vector3)m.GetPosition(frame);
 

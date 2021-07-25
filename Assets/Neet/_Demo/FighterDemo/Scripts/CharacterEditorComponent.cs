@@ -13,7 +13,6 @@ namespace Neet.Fighter
         public MoveDatabase moveTemplates;
 
         private GizmoDrawer _drawer;
-
         public GizmoDrawer drawer
         {
             get

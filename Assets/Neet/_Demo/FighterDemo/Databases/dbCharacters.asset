@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6643300be20242ba59dc5064fe7ac, type: 3}
   m_Name: dbCharacters
   m_EditorClassIdentifier: 
-  characters: []
+  hasChanges: 0
+  _characters:
+  - name: EX name
+    walkSpeed: 50
+    health: 1000
+    moves: []
+    sizeX: 50
+    sizeY: 100
+  - name: EX name
+    walkSpeed: 50
+    health: 1000
+    moves: []
+    sizeX: 50
+    sizeY: 100
