@@ -1,3 +1,0 @@
-* can be held
-? optional input
-+ button can be pressed later
