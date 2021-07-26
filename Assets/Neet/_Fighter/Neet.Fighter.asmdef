@@ -1,0 +1,15 @@
+{
+    "name": "Neet.Fighter",
+    "references": [
+        "GUID:d42dc60d617885441b7b5e90ba69b4d3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
