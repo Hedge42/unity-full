@@ -11,14 +11,14 @@
 		_BorderWidth("BorderWidth", Float) = 10
 		_BorderColor("BorderColor", Color) = (0, 0, 0, 1)
 
-		_InnerShadowColor("InnerShadowColor", Color) = (0, 0, 0, 1)
-		_InnerShadowLength("InnerShadowLength", Float) = 6
+		_FillShadowColor("FillShadowColor", Color) = (0, 0, 0, 1)
+		_FillShadowLength("FillShadowLength", Float) = 6
 
 		_OuterShadowColor("OuterShadowColor", Color) = (0, 0, 0, 1)
 		_OuterShadowLength("OuterShadowLength", Float) = 2
 
-		_BorderInnerShadowColor("BorderInnerShadowColor", Color) = (0, 0, 0, 1)
-		_BorderInnerShadowLength("BorderInnerShadowLength", Float) = 1
+		_BorderShadowColor("BorderShadowColor", Color) = (0, 0, 0, 1)
+		_BorderShadowLength("BorderShadowLength", Float) = 1
 
 		_OverlayColor("OverlayColor", Color) = (1, .6, 0, .3)
 	}
@@ -51,40 +51,16 @@
 			float _BorderWidth;
 			float4 _BorderColor;
 
-			float _InnerShadowLength;
-			float4 _InnerShadowColor;
+			float _FillShadowLength;
+			float4 _FillShadowColor;
 
 			float _OuterShadowLength;
 			float4 _OuterShadowColor;
 
-			float4 _BorderInnerShadowColor;
-			float _BorderInnerShadowLength;
+			float4 _BorderShadowColor;
+			float _BorderShadowLength;
 
 			float4 _OverlayColor;
-
-
-
-			struct MeshData
-			{
-				float4 vertex : POSITION;
-				float2 uv : TEXCOORD0;
-			};
-
-			struct Interpolators
-			{
-				float2 uv : TEXCOORD0;
-				float4 vertex : SV_POSITION;
-				float3 worldPos : TEXCOORD1;
-			};
-
-			Interpolators vert(MeshData v)
-			{
-				Interpolators o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.worldPos = mul(UNITY_MATRIX_M, float4(v.vertex.xyz, 1));
-				o.uv = v.uv;
-				return o;
-			}
 
 			float inverseLerp(float a, float b, float v) {
 				return (v - a) / (b - a);
@@ -108,9 +84,12 @@
 				return c;
 			}
 			float4 additiveOverlay(float4 base, float4 top) {
+				//if (!top.w)
+					//return base;
+
 				float4 c = lerp(base, top, clamp(top.w, 0, 1));
 				c.w += base.w;
-				return c;
+				return clamp(c, 0, 1);
 			}
 			float4 aa_additiveOverlay(float2 uv, float dist, float4 base, float4 top) {
 				float4 c = lerp(base, top, clamp(top.w, 0, 1) * aa(uv, dist));
@@ -130,11 +109,61 @@
 			}*/
 
 
+
+			struct MeshData
+			{
+				float4 vertex : POSITION;
+				float2 uv : TEXCOORD0;
+			};
+
+			struct Interpolators
+			{
+				float2 uv : TEXCOORD0;
+				float4 vertex : SV_POSITION;
+				float3 worldPos : TEXCOORD1;
+
+				float2 outerShadowRange : TEXCOORD2;
+				float2 borderShadowRangeB : TEXCOORD3;
+			};
+
+			Interpolators vert(MeshData v)
+			{
+				Interpolators o;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.worldPos = mul(UNITY_MATRIX_M, v.vertex);
+				o.uv = v.uv;
+
+				float borderFadeOuterEdge = _Radius; // -_OuterShadowLength;
+				float borderOuterEdge = borderFadeOuterEdge - _OuterShadowLength;
+				float borderInnerShadowOuterEdge = borderOuterEdge - _BorderShadowLength;
+				float borderInnerEdge = borderOuterEdge - _BorderWidth;
+				float borderInnerShadowInnerEdge = borderInnerEdge + _BorderShadowLength;
+				float borderFadeInnerEdge = borderInnerEdge - _FillShadowLength;
+
+				o.outerShadowRange = float2(borderOuterEdge, _Radius);
+				o.borderShadowRangeB = float2(borderInnerShadowOuterEdge, borderOuterEdge);
+
+				return o;
+			}
+
 			fixed4 frag(Interpolators i) : SV_Target
 			{
+				/*float width = _Width;
+				float height = _Height;
+				float d = distance(float2(0, 0), i.uv);
+				
+				if (d > 0) {
+					float4 pos = mul(UNITY_MATRIX_M, i.uv) / d;
+					width = pos.x;
+					height = pos.y;
+				}*/
+
+
 				float2 coords = i.uv;
 				coords.x *= _Width;
 				coords.y *= _Height;
+				//coords.x *= width;
+				//coords.y *= height;
 
 				float fadeStart = _Radius;//  +(_Border + _BorderFadeOut * 2);
 
@@ -146,73 +175,65 @@
 
 				float borderFadeOuterEdge = _Radius; // -_OuterShadowLength;
 				float borderOuterEdge = borderFadeOuterEdge - _OuterShadowLength;
-				float borderInnerShadowOuterEdge = borderOuterEdge - _BorderInnerShadowLength;
+				float borderInnerShadowOuterEdge = borderOuterEdge - _BorderShadowLength;
 				float borderInnerEdge = borderOuterEdge - _BorderWidth;
-				float borderInnerShadowInnerEdge = borderInnerEdge + _BorderInnerShadowLength;
-				float borderFadeInnerEdge = borderInnerEdge - _InnerShadowLength;
+				float borderInnerShadowInnerEdge = borderInnerEdge + _BorderShadowLength;
+				float borderFadeInnerEdge = borderInnerEdge - _FillShadowLength;
 
 				// inspector properties
 				float4 transparent = float4(0, 0, 0, 0);
 
 				float4 color = float4(1, 0, 0, 1);
 
-				
+				//float aa_mask = saturate((borderOuterEdge / dist) / fwidth(length(i.uv)));
 
-				if (dist <= borderFadeInnerEdge)
-				{
-					color = _FillColor;
-				}
+				float pwidth = fwidth(aaDist);
+				float aa_mask = smoothstep(0.5, 0.5 - pwidth * 1.5, aaDist);
+
+				// fill
+				float fillMask = (dist <= borderOuterEdge) * _FillColor.a;// *aa_mask;
+				float4 fillColor = float4(_FillColor.rgb, fillMask);
+
+
+				// border
+				//float innerShadowMask = dist >= borderFadeInnerEdge && dist <= borderInnerEdge;
+				float borderMask = dist >= borderInnerEdge && dist <= borderOuterEdge;
+				borderMask *= _BorderColor.a;
+				float4 borderColor = float4(_BorderColor.rgb, borderMask);
+
+				// border inner shadow
+				// get the distance to the nearest border edge to find shadow alpha
+				float borderInnerEdgeDist = distance(dist, borderInnerEdge);
+				float borderOuterEdgeDist = distance(dist, borderOuterEdge);
+				float borderEdgeDist = min(distance(dist, borderInnerEdge), distance(dist, borderOuterEdge));
+
+				// float borderEdgeDist = distance(dist, (clamp(dist, borderInnerEdge, borderOuterEdge)));
+				float borderShadowAlpha = (1 - saturate(borderEdgeDist / _BorderShadowLength)) * _BorderShadowColor.a;
+				float borderShadowMask = borderShadowAlpha * borderMask;
+				float4 borderShadowColor = float4(_BorderShadowColor.rgb, borderShadowMask);
 
 				// fill shadow
-				else if (dist <= borderInnerEdge) {
-					float t = (dist - borderFadeInnerEdge) / _InnerShadowLength;
-					float shadowAlpha = t * _InnerShadowColor.w;
+				// get distance to inner border edge to find fill shadow alpha
+				float borderDist = distance(dist, borderInnerEdge);
+				float fillShadowMask = (1 - saturate(borderDist / _FillShadowLength)) * _FillShadowColor.a * fillMask;
+				float4 fillShadowColor = float4(_FillShadowColor.rgb, fillShadowMask);
 
-					color = overlay(_FillColor, float4(_InnerShadowColor.rgb, shadowAlpha));
-				}
+				// outer shadow
+				// get distance from outer border edge to find outer shadow alpha
+				float edgeDist = distance(dist, borderOuterEdge);
+				float outerShadowMask = dist >= borderOuterEdge && dist <= _Radius;
+				outerShadowMask *= (1 - saturate(edgeDist / _OuterShadowLength));
+				float4 outerShadowColor = float4(_OuterShadowColor.rgb, outerShadowMask);
 
-				else if (dist <= borderOuterEdge) {
+				float overlayMask = (i.uv.y > .5) * fillMask * _OverlayColor.a;
+				float4 overlayColor = float4(_OverlayColor.rgb, overlayMask);
 
-					//float4 borderBase = additiveOverlay(i.uv * 2 - 1, aaDist, _FillColor, _BorderColor);
-					float4 borderBase = additiveOverlay(_FillColor, _BorderColor);
-					float4 shadowBase = additiveOverlay(_BorderColor, _BorderInnerShadowColor);
-
-					// border inner shadow A
-					if (dist <= borderInnerShadowInnerEdge) {
-						float t = (dist - borderInnerEdge) / _BorderInnerShadowLength;
-						float alpha = (1 -t) * _BorderInnerShadowColor.w;
-						//color = aa_overlay(i.uv, _BorderColor, float4(_BorderInnerShadowColor.xyz, alpha));
-						color = additiveOverlay(borderBase, float4(_BorderInnerShadowColor.xyz, alpha));
-					}
-
-					// border inner shadow B
-					else if (dist >= borderInnerShadowOuterEdge) {
-						float t = (dist - borderInnerShadowOuterEdge) / _BorderInnerShadowLength;
-						float alpha = t * _BorderInnerShadowColor.w;
-						color = additiveOverlay(borderBase, float4(_BorderInnerShadowColor.xyz, alpha));
-					}
-					else {
-						//color = aa_overlay(i.uv, _InnerShadowColor, _BorderColor);
-						color = borderBase;
-					}
-
-				}
-				else {// if (dist <= borderFadeOuterEdge) {
-					//color = lerp(_OuterShadowColor, transparent, (dist - borderOuterEdge) / _OuterShadowLength);
-
-					float t = (dist - borderOuterEdge) / _OuterShadowLength;
-					float alpha = (1 - t) * _OuterShadowColor.w;
-					color = additiveOverlay(transparent, float4(_OuterShadowColor.rgb, alpha));
-				}
-
-
-				if (i.uv.y > 0.5)
-					color = overlay(color, _OverlayColor);
-				// float alpha = inverseLerp(_Radius - _Smoothing, _Radius, dist);
-
-
-
-
+				color = fillColor;
+				color = additiveOverlay(color, fillShadowColor);
+				color = additiveOverlay(color, borderColor);
+				color = additiveOverlay(color, borderShadowColor);
+				color = additiveOverlay(color, outerShadowColor);
+				color = additiveOverlay(color, overlayColor);
 				return color;
 			}
 

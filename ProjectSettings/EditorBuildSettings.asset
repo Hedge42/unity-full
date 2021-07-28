@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Neet/_AimTrainer/Scenes/_Training Room.unity
     guid: 1504e8905ca7da14590adf108058ac9a
   - enabled: 1
-    path: Assets/Neet/_AimTrainer/Reticle/ReticleEditor.unity
+    path: Assets/Neet/_AimTrainer/Scenes/ReticleEditor.unity
     guid: ed82d497185fac443bdbb741c8f6a0c6
   m_configObjects: {}

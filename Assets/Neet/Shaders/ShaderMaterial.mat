@@ -60,11 +60,13 @@ Material:
     - _BorderFadeIn: 10.92
     - _BorderFadeOut: 0
     - _BorderInnerShadowLength: 0
-    - _BorderWidth: 10
+    - _BorderShadowLength: 1.49
+    - _BorderWidth: 9.1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _FillShadowLength: 4.94
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -73,24 +75,26 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OuterShadowLength: 0
+    - _OuterShadowLength: 1.55
     - _Parallax: 0.02
-    - _Radius: 33
+    - _Radius: 30.53
     - _Smoothing: 2.22
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Width: 390.4
+    - _Width: 459.2
     - _ZWrite: 1
     m_Colors:
     - _BorderColor: {r: 0.47076362, g: 0.49193892, b: 0.6698113, a: 1}
     - _BorderInnerShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BorderShadowColor: {r: 0, g: 0, b: 0, a: 0.5686275}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FillColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    - _FillShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _InnerShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _OuterFadeColor: {r: 0, g: 0, b: 0, a: 1}
     - _OuterShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OverlayColor: {r: 1, g: 1, b: 1, a: 0.2627451}
+    - _OverlayColor: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_BuildTextureStacks: []

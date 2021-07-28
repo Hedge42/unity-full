@@ -1,0 +1,17 @@
+{
+    "name": "Neet.AimTrainer.Editor",
+    "references": [
+        "GUID:0388db4f6990bb44b8f6c8976660089c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

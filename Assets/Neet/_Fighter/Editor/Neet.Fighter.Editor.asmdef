@@ -1,0 +1,18 @@
+{
+    "name": "Neet.Fighter.Editor",
+    "references": [
+        "GUID:6cacbb79a15586844822c319eb9ba79b",
+        "GUID:33dc2dd0c778c22448be2f030bae4212"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

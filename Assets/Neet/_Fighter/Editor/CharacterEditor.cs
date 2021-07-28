@@ -97,8 +97,6 @@ namespace Neet.Fighter
 
         private void HandleSaveData()
         {
-            GUIStyle s = new GUIStyle();
-
             if (GUILayout.Button(new GUIContent("Save data", "Data will only be saved " +
                 "while Unity is open unless this is pressed")))
             {
