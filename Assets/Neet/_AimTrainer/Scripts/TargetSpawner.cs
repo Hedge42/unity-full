@@ -26,6 +26,7 @@ namespace Neet.AimTrainer
         public Image zoneFill;
 
         public AccuracyBar accBar;
+        public TurnIndicator turnIndicator;
 
         public TargetScoreboard scoreboard;
 
@@ -185,7 +186,7 @@ namespace Neet.AimTrainer
             if (profile.aimProfile.canSpawnRotate)
             {
                 var angle = Random.Range(aim.spawnRotateMin, aim.spawnRotateMax);
-                var LR = Random.Range(0, 1) < 1 ? -1 : 1;
+                var LR = Random.Range(0f, 1f) < .5f ? -1 : 1;
                 angle *= LR;
                 transform.RotateAround(cam.transform.position, Vector3.up, angle);
             }
@@ -193,12 +194,14 @@ namespace Neet.AimTrainer
 
         public void Play(bool challenge)
         {
+            turnIndicator.enabled = true;
             isChallenge = challenge;
             waitingForFirstHit = true;
             SpawnTarget();
         }
         public void Stop()
         {
+            turnIndicator.enabled = false;
             StopAllCoroutines();
             DestroyAnimations();
             currentSpawnWait = null;
@@ -253,7 +256,7 @@ namespace Neet.AimTrainer
         {
             StartCoroutine(AnimateTargetKill(target, success));
             target.RemoveData();
-            Destroy(target);
+            DestroyImmediate(target);
             currentTarget = null;
             WaitForSpawn();
         }
@@ -263,26 +266,31 @@ namespace Neet.AimTrainer
             if (currentTarget != null)
                 return;
 
+            // instantiate with scale and color
             var goTarget = Instantiate(targetPrefab, transform);
             goTarget.SetActive(true);
             goTarget.transform.localScale = Vector3.one;
             goTarget.SetColor(colors.targetColor);
 
+            // give data container
             Target t = new Target();
             goTarget.SetData(t);
 
+            // set position and spawner data
             SetTargetPosition(goTarget);
             currentTarget = goTarget;
+            turnIndicator.Target = goTarget.transform;
 
+            // for start-target
             if (waitingForFirstHit)
                 return;
 
-            // a monobehavior might be better?
+            // set target data
             t.id = targetNum++;
             t.spawnTime = Time.time;
             t.isTracking = false;
 
-
+            // handle insta-move and insta-track
             if (tracking.isMoveInstant)
             {
                 StartMoving(goTarget);
@@ -290,6 +298,7 @@ namespace Neet.AimTrainer
                     StartTracking(goTarget);
             }
 
+            // handle click timeout
             if (timing.canClickTimeout && !waitingForFirstHit)
                 WaitForClickTimeout(goTarget);
         }
