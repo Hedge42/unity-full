@@ -91,6 +91,11 @@ namespace Neet.File
             System.Diagnostics.Process.Start(path);
         }
 
+        public static void SelectFile(string folder)
+        {
+
+        }
+
         // helper methods
         public static string GetUniqueFilename(string directory, string filename)
         {
