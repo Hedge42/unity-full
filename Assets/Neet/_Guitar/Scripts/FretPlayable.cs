@@ -15,6 +15,7 @@ public class FretObject : Fret
         mono.fret = (Fret)this;
 
         this.mono = mono;
+        this.rect = mono.GetComponent<RectTransform>();
         this.rowIndex = stringIndex;
         this.fretNum = fret;
         this.fretboardUI = tab;

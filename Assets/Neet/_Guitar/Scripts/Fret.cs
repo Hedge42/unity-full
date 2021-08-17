@@ -26,6 +26,7 @@ public abstract class Fret
     }
 
     public FretUI mono;
+    public RectTransform rect;
     public FretToggleMode displayMode;
     public FretboardUI fretboardUI;
     public int fretNum;

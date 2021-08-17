@@ -10,6 +10,7 @@ public class BorderObject : Fret
         mono.gameObject.SetActive(true);
         mono.fret = (Fret)this;
 
+        this.rect = mono.GetComponent<RectTransform>();
         this.mono = mono;
         this.fretNum = fretNum;
         this.fretboardUI = fretboardUI;

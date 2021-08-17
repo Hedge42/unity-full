@@ -7,12 +7,40 @@ public class Scale
 {
     private readonly int[] cMajor = new int[] { 0, 2, 4, 5, 7, 9, 11 };
 
-    [Range(0, 11)] public int key;
-    [Range(0, 6)] public int mode;
+    private int _key;
+    public int key
+    {
+        get { return _key; }
+        set
+        {
+            if (value != key)
+            {
+                _key = value;
+                notes = BuildScale(_key, _mode);
+            }
+        }
+    }
+
+    private int _mode;
+    public int mode
+    {
+        get { return _mode; }
+        set
+        {
+            _mode = value;
+            notes = BuildScale(_key, _mode);
+        }
+    }
 
     public bool preferFlats;
     public int[] notes;
 
+    public Scale()
+    {
+        key = 0;
+        mode = 0;
+        preferFlats = true;
+    }
     public Scale(int key, int mode, bool preferFlats = true)
     {
         this.notes = BuildScale(key, mode);
@@ -110,6 +138,16 @@ public class Scale
         return scale;
     }
 
+    public static string[] AllNoteNames(bool preferFlats)
+    {
+        var list = new List<string>();
+
+        for (int i = 0; i < 12; i++)
+            list.Add(NoteValueToName(i, preferFlats, false));
+
+        return list.ToArray();
+    }
+
     public static string NoteValueToName(int value, bool preferFlats, bool pad)
     {
         value %= 12;
@@ -159,6 +197,32 @@ public class Scale
             return "Locrian";
         else
             return "?";
+    }
+
+    public string[] AllModeNames()
+    {
+        var list = new List<string>();
+        for (int i = 0; i < notes.Length; i++)
+            list.Add(AdjectateInt(i + 1));
+
+        return list.ToArray();
+    }
+
+    public static string AdjectateInt(int i)
+    {
+        string s = i.ToString();
+
+        if (i >= 11 && i <= 13)
+            s += "th";
+        else if (s.EndsWith("1"))
+            s += "st";
+        else if (s.EndsWith("2"))
+            s += "nd";
+        else if (s.EndsWith("3"))
+            s += "rd";
+        else
+            s += "th";
+        return s;
     }
 
     public override string ToString()
