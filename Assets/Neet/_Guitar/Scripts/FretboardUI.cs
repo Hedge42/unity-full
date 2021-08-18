@@ -99,7 +99,7 @@ public class FretboardUI : MonoBehaviour
         gridRect = gridLayout.GetComponent<RectTransform>();
         //gridBackground.position 
 
-        canvas.GetComponent<RectTransformDimensionsChangedHandler>().onChange +=
+        canvas.GetComponent<RectChangedHandler>().onChange +=
             delegate { UpdateStringLines(); UpdateFretLines(); };
     }
 

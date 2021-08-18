@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using System;
 
 [ExecuteAlways]
-public class RectTransformDimensionsChangedHandler : UIBehaviour
+public class RectChangedHandler : UIBehaviour
 {
     public event Action onChange;
 
