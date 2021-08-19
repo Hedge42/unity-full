@@ -30,12 +30,12 @@ namespace Neet.Guitar
 
             if (GUILayout.Button("Skip to next timing point"))
             {
-                ui.SkipTo(ui.mIndex);
+                ui.SkipTo(ui.beatIndex);
             }
 
             if (GUILayout.Button("Skip to previous timing point"))
             {
-                ui.SkipTo(ui.mIndex - 1);
+                ui.SkipTo(ui.beatIndex - 1);
             }
 
             if (GUILayout.Button("Make Timing Points"))

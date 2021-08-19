@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Neet.Audio;
 using TMPro;
 
 namespace Neet.Guitar
 {
     public class LaneUI : MonoBehaviour
     {
+
         public GameObject horizontalLinePrefab;
         public GameObject verticalLinePrefab;
         public GameObject beatLinePrefab;
@@ -21,13 +21,31 @@ namespace Neet.Guitar
         public VerticalLayoutGroup stringLayout;
         public int numStrings; // don't store this here
 
-        public float distancePerSecond;
+        public float scrollSpeed; // seconds
 
         public float time;
-        public int mIndex;
+        public int beatIndex;
         private bool isPause = true;
 
-        private TimeMarker[] timeMarkers;
+        private TimeMarker[] beatMarkers;
+        private List<LaneObject> laneObjects;
+
+        private RectTransform[] gStrings;
+
+        private FretboardUI _fretboard;
+        public FretboardUI fretboard
+        {
+            get
+            {
+                if (_fretboard == null)
+                    _fretboard = GameObject.FindObjectOfType<FretboardUI>();
+                return _fretboard;
+            }
+            set
+            {
+                _fretboard = value;
+            }
+        }
 
         private Chart _chart;
         public Chart chart
@@ -59,20 +77,29 @@ namespace Neet.Guitar
             }
             if (UnityEngine.Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                SkipTo(mIndex - 1);
+                SkipTo(beatIndex - 1);
             }
             if (UnityEngine.Input.GetKeyDown(KeyCode.RightArrow))
             {
-                SkipTo(mIndex + 1);
+                SkipTo(beatIndex + 1);
             }
+
+            var mouseWheel = UnityEngine.Input.mouseScrollDelta;
+            print(mouseWheel);
+            if (Mathf.Abs(mouseWheel.y) > .8)
+                SkipTo((int)(beatIndex + mouseWheel.y));
         }
 
         private void Start()
         {
-            mIndex = 0;
+            beatIndex = 0;
             time = 0f;
 
+            laneObjects = new List<LaneObject>();
+            TrimGuitarStrings(fretboard.tuning.numStrings);
             MakeTimeMarkers();
+
+            SetupFretboard();
         }
 
         public void Pause(bool isPause)
@@ -81,7 +108,6 @@ namespace Neet.Guitar
             if (!isPause)
                 StartCoroutine(_Play());
         }
-
         private IEnumerator _Play()
         {
             while (!isPause)
@@ -95,13 +121,13 @@ namespace Neet.Guitar
                 }
                 else
                 {
-                    var idx = GetMarkerIndex(time);
+                    var idx = GetBeatIndex(time);
 
                     // update index and play metronome
-                    if (idx > mIndex)
+                    if (idx > beatIndex)
                     {
-                        mIndex = idx;
-                        GetComponent<SoundBank>().Play(0);
+                        beatIndex = idx;
+                        GetComponent<Neet.Audio.SoundBank>().Play(0);
                     }
                 }
 
@@ -112,12 +138,17 @@ namespace Neet.Guitar
             }
         }
 
+        private void SetupFretboard()
+        {
+            fretboard.onFretClicked += AddLaneObject;
+        }
+
         // TODO limit number of markers spawned
         private void UpdateTimingPoints()
         {
-            foreach (TimeMarker t in timeMarkers)
+            foreach (TimeMarker t in beatMarkers)
             {
-                t.gameObject.transform.position = judgementLine.position + Vector3.right * distancePerSecond * (t.time - time);
+                t.gameObject.transform.position = judgementLine.position + Vector3.right * scrollSpeed * (t.time - time);
             }
         }
 
@@ -127,7 +158,7 @@ namespace Neet.Guitar
                 time = 0f;
 
             this.time = time;
-            this.mIndex = GetMarkerIndex(time);
+            this.beatIndex = GetBeatIndex(time);
 
             UpdateScrollPosition();
         }
@@ -137,29 +168,29 @@ namespace Neet.Guitar
             if (timeIdx < 0)
                 timeIdx = -1;
 
-            this.mIndex = timeIdx;
-            this.time = GetMarkerTime(mIndex);
+            this.beatIndex = timeIdx;
+            this.time = GetBeatTime(beatIndex);
 
             UpdateScrollPosition();
         }
-        private float GetMarkerTime(int i)
+        private float GetBeatTime(int i)
         {
             if (i < 0)
                 return 0f;
-            else if (i >= timeMarkers.Length)
+            else if (i >= beatMarkers.Length)
                 return chart.duration;
             else
-                return timeMarkers[i].time;
+                return beatMarkers[i].time;
         }
-        private int GetMarkerIndex(float f)
+        private int GetBeatIndex(float f)
         {
-            int i = mIndex;
+            int i = beatIndex;
 
             // seek previous until begninning found or reference time is passed
-            while (i > 0 && GetMarkerTime(i) > f)
+            while (i > 0 && GetBeatTime(i) > f)
                 i--;
 
-            while (i < timeMarkers.Length && GetMarkerTime(i) < f)
+            while (i < beatMarkers.Length && GetBeatTime(i) < f)
                 i++;
 
             // being passed the final marker will result in a marker time at the end of the chart
@@ -167,21 +198,22 @@ namespace Neet.Guitar
         }
         public void UpdateScrollPosition()
         {
-            scrollArea.position = judgementLine.position + Vector3.left * time * distancePerSecond;
+            scrollArea.position = judgementLine.position + Vector3.left * time * scrollSpeed;
         }
 
-        public void AddLaneObject(int gtrString, int fret)
+        public void AddLaneObject(int fret, int gString)
         {
+            // print("adding...");
             var go = Instantiate(laneObjectPrefab, laneObjectContainer);
-
-            // (judgementLine, stringY)
-            //go.GetComponent<RectTransform>().anchoredPosition = new Vector2(judgementLine.position.x, strings)
-
             go.GetComponentInChildren<TextMeshProUGUI>().text = fret.ToString();
+            go.SetActive(true);
 
-            // length = snapping length
+            var rect = go.GetComponent<RectTransform>();
+            rect.position = new Vector2(judgementLine.position.x, gStrings[gString].position.y);
+            // rect.anchoredPosition = rect.localPosition;
 
-            // store in chart
+            // TODO length = snapping length
+            laneObjects.Add(new LaneObject(go, fret, time, 1));
         }
 
         private bool OnTimingPoint()
@@ -221,12 +253,20 @@ namespace Neet.Guitar
                         DestroyImmediate(t.gameObject);
                 }
             }
+
+            // initialize array
+            List<RectTransform> _stringList = new List<RectTransform>();
+            foreach (Transform t in stringLayout.transform)
+            {
+                _stringList.Add(t.GetComponent<RectTransform>());
+            }
+            gStrings = _stringList.ToArray();
         }
         public void MakeTimeMarkers()
         {
             DestroyTimeMarkers();
 
-            timeMarkers = null;
+            beatMarkers = null;
 
             var _timeMarkers = new List<TimeMarker>();
 
@@ -260,7 +300,7 @@ namespace Neet.Guitar
                     go.SetActive(true);
 
                     go.transform.position = judgementLine.position
-                        + Vector3.right * distancePerSecond * _time;
+                        + Vector3.right * scrollSpeed * _time;
 
                     _timeMarkers.Add(new TimeMarker(go, _time));
 
@@ -268,7 +308,7 @@ namespace Neet.Guitar
                 }
             }
 
-            timeMarkers = _timeMarkers.ToArray();
+            beatMarkers = _timeMarkers.ToArray();
         }
         private void DestroyTimeMarkers()
         {

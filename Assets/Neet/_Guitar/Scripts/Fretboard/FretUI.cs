@@ -21,7 +21,7 @@ public class FretUI : MonoBehaviour, IPointerClickHandler
         get { return fret.displayMode; }
         set { fret.displayMode = value; }
     }
-    public FretboardUI tab
+    public FretboardUI fretboard
     {
         get { return fret.fretboardUI; }
         set { fret.fretboardUI = value; }
@@ -47,6 +47,9 @@ public class FretUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (fret is FretObject)
+            fretboard.FretObjectClicked(fret.fretNum, fret.rowIndex);
+
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             fret.Hide();

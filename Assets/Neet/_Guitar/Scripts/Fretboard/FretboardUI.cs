@@ -9,6 +9,32 @@ public class FretboardUI : MonoBehaviour
 {
     private const int MAX_FRETS = 25; // includes open
 
+    private static FretboardUI _instance;
+    public static FretboardUI instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = GameObject.FindObjectOfType<FretboardUI>();
+            return _instance;
+        }
+        set
+        {
+            _instance = value;
+        }
+    }
+
+    private Fretboard _data;
+    public Fretboard data
+    {
+        get
+        {
+            if (_data == null)
+                _data = new Fretboard();
+            return null;
+        }
+    }
+
     public FretUI fretPrefab;
     public Fret[] frets;
 
@@ -67,6 +93,8 @@ public class FretboardUI : MonoBehaviour
 
     public Canvas canvas;
 
+    public event Action<int, int> onFretClicked;
+
     private void Start()
     {
         Display();
@@ -86,6 +114,11 @@ public class FretboardUI : MonoBehaviour
         CreateFretLines();
         UpdateStringLines();
         UpdateFretLines();
+    }
+
+    public void FretObjectClicked(int fret, int gString)
+    {
+        onFretClicked.Invoke(fret, gString);
     }
 
     private void InitializeGrid()

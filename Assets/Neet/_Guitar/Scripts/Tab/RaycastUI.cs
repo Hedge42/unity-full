@@ -1,29 +1,15 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-[ExecuteAlways]
-public class FretboardMouseHandler : MonoBehaviour
+class RaycastUI : MonoBehaviour
 {
-    private FretboardUI _ui;
-    private FretboardUI ui
-    {
-        get
-        {
-            //return GetComponent<FretboardUI>();
-
-            if (_ui == null)
-                _ui = GetComponent<FretboardUI>();
-            return _ui;
-        }
-        set
-        {
-            _ui = value;
-        }
-    }
-
+    // raycast stuff
     // https://forum.unity.com/threads/how-to-raycast-onto-a-unity-canvas-ui-image.855259/
 
     private PointerEventData pointerEventData;
@@ -37,7 +23,6 @@ public class FretboardMouseHandler : MonoBehaviour
             return _raycaster;
         }
     }
-
     private EventSystem _eventSystem;
     private EventSystem eventSystem
     {
@@ -48,25 +33,9 @@ public class FretboardMouseHandler : MonoBehaviour
             return _eventSystem;
         }
     }
-
-    private void Update()
-    {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    if (RaycastFret(out Fret f))
-        //        f.ToggleMode();
-        //}
-        //else if (Input.GetMouseButtonDown(1))
-        //{
-        //    if (RaycastFret(out Fret f))
-        //        f.Hide();
-        //}
-
-    }
-
     private bool RaycastFret(out Fret f)
     {
-        var results = RaycastUI();
+        var results = _RaycastUI();
 
         f = null;
         foreach (var result in results)
@@ -80,7 +49,7 @@ public class FretboardMouseHandler : MonoBehaviour
         }
         return false;
     }
-    private List<RaycastResult> RaycastUI()
+    private List<RaycastResult> _RaycastUI()
     {
         var pointerEventData = new PointerEventData(EventSystem.current);
         pointerEventData.position = Input.mousePosition;
@@ -88,4 +57,5 @@ public class FretboardMouseHandler : MonoBehaviour
         EventSystem.current.RaycastAll(pointerEventData, results);
         return results;
     }
+    // ----
 }
