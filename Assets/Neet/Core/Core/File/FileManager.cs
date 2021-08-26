@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
-namespace Neet.File
+namespace Neat.File
 {
     public class FileManager : MonoBehaviour
     {

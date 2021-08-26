@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet
+namespace Neat
 {
     public static class Keys
     {

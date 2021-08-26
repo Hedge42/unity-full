@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Neet.Scroller
+namespace Neat.Scroller
 {
     public interface ClickStrategy
     {
@@ -44,7 +44,7 @@ namespace Neet.Scroller
 
             try
             {
-                Neet.Audio.MusicPlayer.MusicPlayer.instance.LoadSong(item.path, true);
+                Neat.Audio.MusicPlayer.MusicPlayer.instance.LoadSong(item.path, true);
             }
             catch
             {

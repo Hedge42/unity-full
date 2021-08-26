@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using Neet.Functions;
+using Neat.Functions;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	[CustomEditor(typeof(FretboardUI))]
 	public class FretboardUIEditor : Editor

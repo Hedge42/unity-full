@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Neet.UI
+namespace Neat.UI
 {
     public class EventHandler : MonoBehaviour,
         IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler

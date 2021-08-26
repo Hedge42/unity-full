@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Neet.Collections
+namespace Neat.Collections
 {
     public class Tree<T> where T : IComparable
     {

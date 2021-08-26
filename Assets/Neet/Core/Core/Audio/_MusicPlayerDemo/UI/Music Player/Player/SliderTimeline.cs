@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 
-namespace Neet.Audio.MusicPlayer
+namespace Neat.Audio.MusicPlayer
 {
     public class SliderTimeline : MonoBehaviour
     {

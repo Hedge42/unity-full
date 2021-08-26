@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.File
+namespace Neat.File
 {
 
     [System.Serializable]

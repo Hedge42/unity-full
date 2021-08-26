@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Neet.Extensions;
+using Neat.Extensions;
 
-namespace Neet.AimTrainer
+namespace Neat.AimTrainer
 {
     public class AccuracyBar : MonoBehaviour
     {

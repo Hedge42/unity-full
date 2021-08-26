@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using Neet.Audio;
-using Neet.Extensions;
+using Neat.Audio;
+using Neat.Extensions;
 
 public class Gun : MonoBehaviour
 {

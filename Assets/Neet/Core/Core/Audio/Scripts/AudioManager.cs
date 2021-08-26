@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 
-namespace Neet.Audio
+namespace Neat.Audio
 {
     public class AudioManager : MonoBehaviour
     {

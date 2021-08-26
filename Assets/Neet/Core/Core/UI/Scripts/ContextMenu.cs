@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-namespace Neet.UI
+namespace Neat.UI
 {
     public class ContextMenu : MonoBehaviour
     {
@@ -142,7 +142,7 @@ namespace Neet.UI
         /// </summary>
         public void Process()
         {
-            Neet.UI.ContextMenu.instance.Process(this);
+            Neat.UI.ContextMenu.instance.Process(this);
         }
     }
 }

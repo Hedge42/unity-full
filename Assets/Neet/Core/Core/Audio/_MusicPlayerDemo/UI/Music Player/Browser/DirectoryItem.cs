@@ -1,7 +1,7 @@
 ﻿using System;
-using Neet.Collections;
+using Neat.Collections;
 
-namespace Neet.Scroller
+namespace Neat.Scroller
 {
     public class DirectoryItem : IComparable
     {

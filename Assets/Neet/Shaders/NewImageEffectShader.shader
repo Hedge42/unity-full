@@ -1,4 +1,4 @@
-﻿Shader "Neet/UI/NewImageEffectShader"
+﻿Shader "Neat/UI/NewImageEffectShader"
 {
 	Properties
 	{

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using Neet.Extensions;
+using Neat.Extensions;
 
-namespace Neet.Functions
+namespace Neat.Functions
 {
     public static class EditorFunctions
     {

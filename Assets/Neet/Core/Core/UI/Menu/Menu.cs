@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     /// <summary>
     /// There should only be one menu active at a time.

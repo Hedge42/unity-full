@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.IO;
 using TMPro;
-using Neet.File;
+using Neat.File;
 using UnityEngine.UI;
 
-namespace Neet.Scroller
+namespace Neat.Scroller
 {
     public class BrowserItem : MonoBehaviour
     {

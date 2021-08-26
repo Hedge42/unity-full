@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     public class DeviceListener : MonoBehaviour
     {

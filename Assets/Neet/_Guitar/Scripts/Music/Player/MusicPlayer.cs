@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Neet.File;
+using Neat.File;
 using Neat.FileBrowser;
-using Neet.Audio;
+using Neat.Audio;
 using System;
 using System.IO;
 using System.Linq;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Neet.Extensions;
+using Neat.Extensions;
 
-namespace Neet.UI
+namespace Neat.UI
 {
     // TabSystem is semi-automated.
     // Drag screens under the ScreenContainer

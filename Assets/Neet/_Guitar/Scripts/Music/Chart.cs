@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Neet.File;
+using Neat.File;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     [System.Serializable]
     public class Chart

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     [System.Serializable]
     public class TimeSignature

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.Input.DeviceMaps
+namespace Neat.Input.DeviceMaps
 {
     public class KeyboardMap : IDeviceMap
     {

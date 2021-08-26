@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.Fighter
+namespace Neat.Fighter
 {
     public class InputEvent
     {

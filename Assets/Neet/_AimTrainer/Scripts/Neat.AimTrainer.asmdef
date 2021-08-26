@@ -1,11 +1,10 @@
 {
-    "name": "Neet.AimTrainer.Editor",
+    "name": "Neat.AimTrainer",
     "references": [
-        "GUID:0388db4f6990bb44b8f6c8976660089c"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:d42dc60d617885441b7b5e90ba69b4d3"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

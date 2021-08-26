@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Neet.Audio
+namespace Neat.Audio
 {
     public class MicManager : MonoBehaviour
     {

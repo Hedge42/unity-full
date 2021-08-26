@@ -13,7 +13,7 @@ using Note = Melanchall.DryWetMidi.Interaction.Note;
 using Input = UnityEngine.Input;
 using Melanchall.DryWetMidi.Composing;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	public class MidiWriter : MonoBehaviour
 	{

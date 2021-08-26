@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     public class DeviceFinder
     {

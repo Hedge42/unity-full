@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using Neet.Audio;
+using Neat.Audio;
 
 public class AudioSettingUI : MonoBehaviour, ISettingUI<AudioSetting>
 {

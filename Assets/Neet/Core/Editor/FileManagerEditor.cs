@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Diagnostics;
 using UnityEditor;
 
-namespace Neet.File
+namespace Neat.File
 {
     [CustomEditor(typeof(FileManager))]
     public class FileManagerEditor : Editor

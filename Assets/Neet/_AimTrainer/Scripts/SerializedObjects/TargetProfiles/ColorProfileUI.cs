@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using Neet.Extensions;
+using Neat.Extensions;
 
 public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
 {
@@ -107,17 +107,17 @@ public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
         if (backgroundR != null)
         {
             backgroundR.text = c.backgroundR.ToString();
-            backgroundR.SetData(Neet.Keys.LAST_VALID, c.backgroundR);
+            backgroundR.SetData(Neat.Keys.LAST_VALID, c.backgroundR);
         }
         if (backgroundG != null)
         {
             backgroundG.text = c.backgroundG.ToString();
-            backgroundG.SetData(Neet.Keys.LAST_VALID, c.backgroundG);
+            backgroundG.SetData(Neat.Keys.LAST_VALID, c.backgroundG);
         }
         if (backgroundB != null)
         {
             backgroundB.text = c.backgroundB.ToString();
-            backgroundB.SetData(Neet.Keys.LAST_VALID, c.backgroundB);
+            backgroundB.SetData(Neat.Keys.LAST_VALID, c.backgroundB);
         }
         if (backgroundPreview != null)
             backgroundPreview.color = c.backgroundColor;
@@ -126,17 +126,17 @@ public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
         if (targetR != null)
         {
             targetR.text = c.targetR.ToString();
-            targetR.SetData(Neet.Keys.LAST_VALID, c.targetR);
+            targetR.SetData(Neat.Keys.LAST_VALID, c.targetR);
         }
         if (targetG != null)
         {
             targetG.text = c.targetG.ToString();
-            targetG.SetData(Neet.Keys.LAST_VALID, c.targetG);
+            targetG.SetData(Neat.Keys.LAST_VALID, c.targetG);
         }
         if (targetB != null)
         {
             targetB.text = c.targetB.ToString();
-            targetB.SetData(Neet.Keys.LAST_VALID, c.targetB);
+            targetB.SetData(Neat.Keys.LAST_VALID, c.targetB);
         }
         if (targetPreview != null)
             targetPreview.color = c.targetColor;
@@ -145,17 +145,17 @@ public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
         if (centerR != null)
         {
             centerR.text = c.centerR.ToString();
-            centerR.SetData(Neet.Keys.LAST_VALID, c.centerR);
+            centerR.SetData(Neat.Keys.LAST_VALID, c.centerR);
         }
         if (centerG != null)
         {
             centerG.text = c.centerG.ToString();
-            centerG.SetData(Neet.Keys.LAST_VALID, c.centerG);
+            centerG.SetData(Neat.Keys.LAST_VALID, c.centerG);
         }
         if (centerB != null)
         {
             centerB.text = c.centerB.ToString();
-            centerB.SetData(Neet.Keys.LAST_VALID, c.centerB);
+            centerB.SetData(Neat.Keys.LAST_VALID, c.centerB);
         }
         if (centerPreview != null)
             centerPreview.color = c.centerColor;
@@ -164,17 +164,17 @@ public class ColorProfileUI : MonoBehaviour, ISettingUI<ColorProfile>
         if (trackingR != null)
         {
             trackingR.text = c.trackingR.ToString();
-            trackingR.SetData(Neet.Keys.LAST_VALID, c.trackingR);
+            trackingR.SetData(Neat.Keys.LAST_VALID, c.trackingR);
         }
         if (trackingG != null)
         {
             trackingG.text = c.trackingG.ToString();
-            trackingG.SetData(Neet.Keys.LAST_VALID, c.trackingG);
+            trackingG.SetData(Neat.Keys.LAST_VALID, c.trackingG);
         }
         if (trackingB != null)
         {
             trackingB.text = c.trackingB.ToString();
-            trackingB.SetData(Neet.Keys.LAST_VALID, c.trackingB);
+            trackingB.SetData(Neat.Keys.LAST_VALID, c.trackingB);
         }
         if (trackingPreview != null)
             trackingPreview.color = c.trackingColor;

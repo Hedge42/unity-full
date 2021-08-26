@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-namespace Neet.Audio.MusicPlayer
+namespace Neat.Audio.MusicPlayer
 {
     public class TMPSongTitle : MonoBehaviour
     {

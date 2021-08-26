@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-namespace Neet.AimTrainer
+namespace Neat.AimTrainer
 {
     public class ScoreScrollerUI : MonoBehaviour
     {

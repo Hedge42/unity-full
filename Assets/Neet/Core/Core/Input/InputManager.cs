@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     public class InputManager : MonoBehaviour
     {

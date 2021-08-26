@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     public class MenuDropdown : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     public class LaneUI : MonoBehaviour
     {
@@ -127,7 +127,7 @@ namespace Neet.Guitar
                     if (idx > beatIndex)
                     {
                         beatIndex = idx;
-                        GetComponent<Neet.Audio.SoundBank>().Play(0);
+                        GetComponent<Neat.Audio.SoundBank>().Play(0);
                     }
                 }
 

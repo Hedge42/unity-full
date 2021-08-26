@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     public class TimeMarker
     {

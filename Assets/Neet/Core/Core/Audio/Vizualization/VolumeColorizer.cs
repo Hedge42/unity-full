@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.Audio.Vizualization
+namespace Neat.Audio.Vizualization
 {
     public class VolumeColorizer : MonoBehaviour
     {

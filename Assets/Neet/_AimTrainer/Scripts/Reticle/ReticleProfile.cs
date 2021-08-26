@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.File;
+using Neat.File;
 
 [System.Serializable]
 public class ReticleProfile

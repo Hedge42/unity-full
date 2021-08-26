@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-namespace Neet.Audio.MusicPlayer
+namespace Neat.Audio.MusicPlayer
 {
     public class SliderVolume : MonoBehaviour
     {

@@ -7,14 +7,14 @@ namespace Ludiq.PeekCore
 {
 	public sealed class Assignment
 	{
-		public Assignment(Member assigner, Type assigneeType)
+		public Assignment(Member assigner, Type assigNeatype)
 		{
-			Ensure.That(nameof(assigneeType)).IsNotNull(assigneeType);
+			Ensure.That(nameof(assigNeatype)).IsNotNull(assigNeatype);
 			
 			this.assigner = assigner;
 
 			var assignsAttribute = assigner.info.GetAttribute<AssignsAttribute>();
-			assignee = new Member(assigneeType, assignsAttribute?.memberName ?? assigner.name.FirstCharacterToLower());
+			assignee = new Member(assigNeatype, assignsAttribute?.memberName ?? assigner.name.FirstCharacterToLower());
 			requiresAPI = assigner.info.HasAttribute<RequiresUnityAPIAttribute>();
 			cache = assignsAttribute?.cache ?? true;
 

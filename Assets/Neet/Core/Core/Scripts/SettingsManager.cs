@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.Audio;
-using Neet.File;
+using Neat.Audio;
+using Neat.File;
 
 public class SettingsManager : MonoBehaviour
 {

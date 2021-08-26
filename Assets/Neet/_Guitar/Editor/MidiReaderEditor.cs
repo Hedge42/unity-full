@@ -7,7 +7,7 @@ using System.Linq;
 using Melanchall.DryWetMidi.Interaction;
 using System;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	[CustomEditor(typeof(MidiReader))]
 	public class MidiReaderEditor : Editor

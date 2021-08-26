@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neet.UI
+namespace Neat.UI
 {
     public class MinMaxSliderUI : MonoBehaviour
     {

@@ -11,7 +11,7 @@ using System.Threading;
 using System.Collections;
 using Note = Melanchall.DryWetMidi.Interaction.Note;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     public class MidiReader : MonoBehaviour
     {
@@ -37,7 +37,7 @@ namespace Neet.Guitar
 
         public void OpenPath()
         {
-            Neet.File.FileManager.OpenExplorer(path);
+            Neat.File.FileManager.OpenExplorer(path);
         }
         public void ReadFile()
         {

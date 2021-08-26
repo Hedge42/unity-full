@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Neet.Input;
+using Neat.Input;
 using UnityEngine;
 
-namespace Neet.Input.Exp
+namespace Neat.Input.Exp
 {
 
     public class Cursor : MonoBehaviour

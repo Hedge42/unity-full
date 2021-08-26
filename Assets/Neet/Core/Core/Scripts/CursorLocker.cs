@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.UI;
+using Neat.UI;
 
 public class CursorLocker : MonoBehaviour
 {

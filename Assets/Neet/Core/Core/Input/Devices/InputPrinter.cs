@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     public class InputPrinter
     {

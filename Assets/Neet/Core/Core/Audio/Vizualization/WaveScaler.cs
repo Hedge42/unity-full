@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neet.Audio.Vizualization
+namespace Neat.Audio.Vizualization
 {
     public class WaveScaler : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     [System.Serializable]
     public class MenuDropdownItem

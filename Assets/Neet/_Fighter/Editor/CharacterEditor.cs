@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Neet.Functions;
+using Neat.Functions;
 using System;
 
-namespace Neet.Fighter
+namespace Neat.Fighter
 {
     [CustomEditor(typeof(CharacterEditorComponent))]
     public class CharacterEditor : Editor

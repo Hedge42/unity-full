@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     public class LaneObject
     {

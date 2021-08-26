@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.Audio;
 
-namespace Neet.Audio
+namespace Neat.Audio
 {
     [Serializable]
     public class Sound

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Neet.Input.DeviceMaps
+namespace Neat.Input.DeviceMaps
 {
     public interface IDeviceMap
     {

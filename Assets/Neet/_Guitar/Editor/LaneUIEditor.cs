@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
     [CustomEditor(typeof(LaneUI))]
     public class LaneUIEditor : Editor

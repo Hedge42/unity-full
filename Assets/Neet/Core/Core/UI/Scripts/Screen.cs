@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neet.UI
+namespace Neat.UI
 {
     [ExecuteInEditMode]
     public class Screen : MonoBehaviour

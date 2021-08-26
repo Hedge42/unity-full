@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Neet.Fighter
+namespace Neat.Fighter
 {
 
     [CustomEditor(typeof(CharacterSelectorComponent))]

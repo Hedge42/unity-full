@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     [System.Serializable]
     public class MenuItemOverrides

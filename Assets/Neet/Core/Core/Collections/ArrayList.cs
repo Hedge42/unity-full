@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Neet.Collections
+namespace Neat.Collections
 {
     public class ArrayList<T> : IList<T>
     {

@@ -1,9 +1,12 @@
 {
-    "name": "Neet.Fighter",
+    "name": "Neat.Core.Editor",
     "references": [
-        "GUID:d42dc60d617885441b7b5e90ba69b4d3"
+        "GUID:d42dc60d617885441b7b5e90ba69b4d3",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

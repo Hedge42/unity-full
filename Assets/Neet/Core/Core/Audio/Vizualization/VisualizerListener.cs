@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neet.Audio.Vizualization
+namespace Neat.Audio.Vizualization
 {
     // https://www.youtube.com/watch?v=0KqwmcQqg0s
     public class VisualizerListener : MonoBehaviour

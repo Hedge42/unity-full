@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 
     class RaycastUI : MonoBehaviour

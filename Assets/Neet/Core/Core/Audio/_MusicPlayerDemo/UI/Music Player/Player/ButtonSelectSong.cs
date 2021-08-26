@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Neet.File;
+using Neat.File;
 
-namespace Neet.Audio.MusicPlayer
+namespace Neat.Audio.MusicPlayer
 {
     public class ButtonSelectSong : MonoBehaviour
     {

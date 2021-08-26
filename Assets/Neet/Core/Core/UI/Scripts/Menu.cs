@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Neet.UI
+namespace Neat.UI
 {
 
     [ExecuteInEditMode]

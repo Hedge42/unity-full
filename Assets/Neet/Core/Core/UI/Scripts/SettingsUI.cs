@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Neet.Audio;
+using Neat.Audio;
 
 
 public class SettingsUI : MonoBehaviour

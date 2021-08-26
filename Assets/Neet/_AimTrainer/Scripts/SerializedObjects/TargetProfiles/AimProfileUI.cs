@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using Neet.UI;
+using Neat.UI;
 
 public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
 {

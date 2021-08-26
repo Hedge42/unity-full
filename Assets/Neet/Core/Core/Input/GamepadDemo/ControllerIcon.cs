@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     public class ControllerIcon : MonoBehaviour
     {

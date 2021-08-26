@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.UI;
-using Neet.AimTrainer;
+using Neat.UI;
+using Neat.AimTrainer;
 
-namespace Neet.AimTrainer
+namespace Neat.AimTrainer
 {
     public class ScoreGraph : MonoBehaviour
     {

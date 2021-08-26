@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Neet.Extensions;
+using Neat.Extensions;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
-using Neet.UI;
+using Neat.UI;
 
 public static class UIHelpers
 {
@@ -18,9 +18,9 @@ public static class UIHelpers
 
         if (text != "")
         {
-            parent.GetComponent<Neet.UI.EventHandler>().onPointerClick += delegate
+            parent.GetComponent<Neat.UI.EventHandler>().onPointerClick += delegate
             {
-                Neet.UI.ContextMenu.instance.Show(text);
+                Neat.UI.ContextMenu.instance.Show(text);
             };
         }
     }
@@ -66,13 +66,13 @@ public static class UIHelpers
                 endAction?.Invoke();
 
                 // set last valid to be able to revert
-                inp.SetData(Neet.Keys.LAST_VALID, result);
+                inp.SetData(Neat.Keys.LAST_VALID, result);
             }
 
             // revert to last valid value
             else
             {
-                inp.text = inp.GetData<float>(Neet.Keys.LAST_VALID).ToString();
+                inp.text = inp.GetData<float>(Neat.Keys.LAST_VALID).ToString();
             }
 
             warning.SetActive(false);
@@ -125,13 +125,13 @@ public static class UIHelpers
                 endAction?.Invoke();
 
                 // set last valid to be able to revert
-                inp.SetData(Neet.Keys.LAST_VALID, result);
+                inp.SetData(Neat.Keys.LAST_VALID, result);
             }
 
             // revert to last valid value
             else
             {
-                inp.text = inp.GetData<int>(Neet.Keys.LAST_VALID).ToString();
+                inp.text = inp.GetData<int>(Neat.Keys.LAST_VALID).ToString();
             }
 
             warning.SetActive(false);
@@ -187,7 +187,7 @@ public static class UIHelpers
             else
             {
                 // set to last valid input
-                inpMin.text = inpMin.GetData<float>(Neet.Keys.LAST_VALID).ToString();
+                inpMin.text = inpMin.GetData<float>(Neat.Keys.LAST_VALID).ToString();
             }
 
             // force < max
@@ -199,7 +199,7 @@ public static class UIHelpers
                 inpMin.text = minResult.ToString();
             }
 
-            inpMin.SetData(Neet.Keys.LAST_VALID, minResult);
+            inpMin.SetData(Neat.Keys.LAST_VALID, minResult);
             endAction.Invoke();
 
             minMaxWarning.SetActive(false);
@@ -222,7 +222,7 @@ public static class UIHelpers
             else
             {
                 // set to last valid input
-                inpMax.text = inpMax.GetData<float>(Neet.Keys.LAST_VALID).ToString();
+                inpMax.text = inpMax.GetData<float>(Neat.Keys.LAST_VALID).ToString();
             }
 
             // force > min
@@ -234,7 +234,7 @@ public static class UIHelpers
                 inpMax.text = maxResult.ToString();
             }
 
-            inpMax.SetData(Neet.Keys.LAST_VALID, maxResult);
+            inpMax.SetData(Neat.Keys.LAST_VALID, maxResult);
             endAction.Invoke();
 
             minMaxWarning.SetActive(false);
@@ -287,13 +287,13 @@ public static class UIHelpers
             if (!int.TryParse(s, out int result))
             {
                 // reset to last valid
-                f.text = f.GetData<int>(Neet.Keys.LAST_VALID).ToString();
+                f.text = f.GetData<int>(Neat.Keys.LAST_VALID).ToString();
                 return; // I think this works?
             }
             else if (result >= MIN && result <= MAX)
             {
                 // set last valid if in range
-                f.SetData(Neet.Keys.LAST_VALID, result);
+                f.SetData(Neat.Keys.LAST_VALID, result);
             }
 
 
@@ -365,7 +365,7 @@ public static class UIHelpers
             // only accept parsable int
             if (!int.TryParse(s, out int result))
             {
-                f.text = f.GetData<int>(Neet.Keys.LAST_VALID).ToString();
+                f.text = f.GetData<int>(Neat.Keys.LAST_VALID).ToString();
             }
         };
 

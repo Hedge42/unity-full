@@ -1,8 +1,8 @@
-﻿using Neet.Collections;
+﻿using Neat.Collections;
 using System.IO;
-using Neet.File;
+using Neat.File;
 
-namespace Neet.Scroller
+namespace Neat.Scroller
 {
     public class DirectoryTree
     {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using TMPro;
-using Neet.Extensions;
+using Neat.Extensions;
 
 public class SceneSwitcher : MonoBehaviour
 {

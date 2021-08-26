@@ -1,8 +1,7 @@
 {
-    "name": "Neet.Guitar.Editor",
+    "name": "Neat.AimTrainer.Editor",
     "references": [
-        "GUID:17fb134d2650fee4493e1ff1f0aab980",
-        "GUID:33dc2dd0c778c22448be2f030bae4212"
+        "GUID:0388db4f6990bb44b8f6c8976660089c"
     ],
     "includePlatforms": [
         "Editor"

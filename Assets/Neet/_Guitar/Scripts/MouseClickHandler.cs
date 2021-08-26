@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	public class MouseClickHandler
 	{

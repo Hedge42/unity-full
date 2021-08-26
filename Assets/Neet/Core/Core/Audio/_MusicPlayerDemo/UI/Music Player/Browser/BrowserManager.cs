@@ -2,9 +2,9 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using Neet.Collections;
+using Neat.Collections;
 
-namespace Neet.Scroller
+namespace Neat.Scroller
 {
     // Scroller manager currently blank
     public class BrowserManager : MonoBehaviour

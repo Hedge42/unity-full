@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.Extensions;
-using Neet.File;
+using Neat.Extensions;
+using Neat.File;
 
 public class CapsuleExtender : MonoBehaviour
 {

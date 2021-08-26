@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Neet.Audio;
-using Neet.File;
+using Neat.Audio;
+using Neat.File;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	using Input = UnityEngine.Input;
 	public class SongScroller : MonoBehaviour

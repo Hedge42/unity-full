@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	public class ScaleUI : MonoBehaviour
 	{

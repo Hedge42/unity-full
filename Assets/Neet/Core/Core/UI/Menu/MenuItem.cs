@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neet.Input;
+using Neat.Input;
 using System;
 using UnityEngine.Events;
 
-namespace Neet.Input
+namespace Neat.Input
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(ColliderSizeAdjuster))]

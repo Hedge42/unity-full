@@ -6,7 +6,7 @@ using TMPro;
 using System;
 using System.Threading.Tasks;
 
-namespace Neet.Guitar
+namespace Neat.Guitar
 {
 	public class FretboardUI : MonoBehaviour
 	{
