@@ -43,7 +43,7 @@ namespace Neet.Audio.MusicPlayer
 
         public void Skip(float timestamp)
         {
-
+            source.time = timestamp;
         }
     }
 }

@@ -5,36 +5,33 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-[ExecuteAlways]
-public class FretboardMouseHandler : MonoBehaviour
+namespace Neet.Guitar
 {
-    private FretboardUI _ui;
-    private FretboardUI ui
+    public class FretboardMouseHandler : MonoBehaviour
     {
-        get
+        private FretboardUI _ui;
+        private FretboardUI ui
         {
-            //return GetComponent<FretboardUI>();
+            get
+            {
+                //return GetComponent<FretboardUI>();
 
-            if (_ui == null)
-                _ui = GetComponent<FretboardUI>();
-            return _ui;
+                if (_ui == null)
+                    _ui = GetComponent<FretboardUI>();
+                return _ui;
+            }
+            set
+            {
+                _ui = value;
+            }
         }
-        set
+
+        private void Update()
         {
-            _ui = value;
+
         }
-    }
 
 
-
-    public event Action onFretClick;
-    public event Action onEdgeClick;
-
-    private void Update()
-    {
 
     }
-
-
-    
 }

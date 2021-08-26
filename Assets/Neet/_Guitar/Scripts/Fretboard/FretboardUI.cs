@@ -4,306 +4,206 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Threading.Tasks;
 
-public class FretboardUI : MonoBehaviour
+namespace Neet.Guitar
 {
-    private const int MAX_FRETS = 25; // includes open
+	public class FretboardUI : MonoBehaviour
+	{
+		public const int MAX_FRETS = 25; // includes open
 
-    private static FretboardUI _instance;
-    public static FretboardUI instance
-    {
-        get
-        {
-            if (_instance == null)
-                _instance = GameObject.FindObjectOfType<FretboardUI>();
-            return _instance;
-        }
-        set
-        {
-            _instance = value;
-        }
-    }
+		private static FretboardUI _instance;
+		public static FretboardUI instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = GameObject.FindObjectOfType<FretboardUI>();
+				return _instance;
+			}
+			set
+			{
+				_instance = value;
+			}
+		}
 
-    private Fretboard _data;
-    public Fretboard data
-    {
-        get
-        {
-            if (_data == null)
-                _data = new Fretboard();
-            return null;
-        }
-    }
+		private Fretboard _data;
+		public Fretboard data
+		{
+			get
+			{
+				if (_data == null)
+					_data = new Fretboard();
+				return null;
+			}
+		}
 
-    public FretUI fretPrefab;
-    public Fret[] frets;
+		public FretUI fretPrefab;
+		public Fret[] frets;
 
-    // public Color foregroundColor;
-    // public Color backgroundColor;
+		// public Color foregroundColor;
+		// public Color backgroundColor;
 
-    private Scale _scale;
-    public Scale scale
-    {
-        get
-        {
-            if (_scale == null)
-                _scale = new Scale();
-            return _scale;
-        }
-        set
-        {
-            _scale = value;
-        }
-    }
+		private Scale _scale;
+		public Scale scale
+		{
+			get
+			{
+				if (_scale == null)
+					_scale = new Scale();
+				return _scale;
+			}
+			set
+			{
+				_scale = value;
+			}
+		}
 
-    private GuitarTuning _tuning;
-    public GuitarTuning tuning
-    {
-        get
-        {
-            if (_tuning == null)
-                _tuning = new GuitarTuning();
-            return _tuning;
-        }
-        set
-        {
-            _tuning = value;
-        }
-    }
+		private GuitarTuning _tuning;
+		public GuitarTuning tuning
+		{
+			get
+			{
+				if (_tuning == null)
+					_tuning = new GuitarTuning();
+				return _tuning;
+			}
+			set
+			{
+				_tuning = value;
+			}
+		}
 
-    [HideInInspector] public int key;
-    [HideInInspector] public int mode;
+		[HideInInspector] public int key;
+		[HideInInspector] public int mode;
 
-    [HideInInspector] public int minFret;
-    [HideInInspector] public int maxFret;
+		[HideInInspector] public int minFret;
+		[HideInInspector] public int maxFret;
 
-    [HideInInspector] public bool preferFlats;
-    public GridLayoutGroup gridLayout;
-    private RectTransform gridRect;
-    [HideInInspector] public Fret.BorderMode borderMode;
-    [HideInInspector] public Fret.PlayableMode fretMode;
+		[HideInInspector] public bool preferFlats;
+		public GridLayoutGroup gridLayout;
+		public RectTransform gridRect;
+		[HideInInspector] public Fret.BorderMode borderMode;
+		[HideInInspector] public Fret.PlayableMode fretMode;
 
-    private RectTransform[] stringLines;
-    public RectTransform stringLinePrefab;
-    public RectTransform stringLineContainer;
+		public RectTransform[] horizontalLines;
+		public RectTransform stringLinePrefab;
+		public RectTransform stringLineContainer;
 
-    private RectTransform[] fretLines;
-    public RectTransform fretLinePrefab;
-    public RectTransform fretLineContainer;
+		public RectTransform[] verticalLines;
+		public RectTransform fretLinePrefab;
+		public RectTransform fretLineContainer;
 
-    public Canvas canvas;
+		public Canvas canvas;
 
-    public event Action<int, int> onFretClicked;
+		public event Action<int, int> onFretClicked;
 
-    private void Start()
-    {
-        Display();
-    }
+		private FretboardLineDrawer lineDrawer;
 
-    public void Display()
-    {
-        SetupFrets();
-        SetupBorders();
-        UpdateStrings();
+		private void Start()
+		{
+			Load();
+		}
 
-        InitializeGrid();
+		public void Load()
+		{
+			// UpdateGridLayout();
 
-        UpdateFretActivity();
+			InstantiateCells();
 
-        CreateStringLines();
-        CreateFretLines();
-        UpdateStringLines();
-        UpdateFretLines();
-    }
+			ApplyFretRange();
+			UpdateGridLayout();
 
-    public void FretObjectClicked(int fret, int gString)
-    {
-        onFretClicked.Invoke(fret, gString);
-    }
+			GetComponent<FretboardLineDrawer>().UpdateLines();
+		}
 
-    private void InitializeGrid()
-    {
-        // to update in editor, otherwise would be updated next frame
-        gridLayout.CalculateLayoutInputHorizontal();
-        gridLayout.CalculateLayoutInputVertical();
-        gridLayout.SetLayoutHorizontal();
-        gridLayout.SetLayoutVertical();
+		public void FretClickedHandler(int fret, int gString)
+		{
+			onFretClicked.Invoke(fret, gString);
+		}
 
-        gridRect = gridLayout.GetComponent<RectTransform>();
-        //gridBackground.position 
+		private void UpdateGridLayout()
+		{
+			gridRect = gridLayout.GetComponent<RectTransform>();
 
-        canvas.GetComponent<RectChangedHandler>().onChange +=
-            delegate { UpdateStringLines(); UpdateFretLines(); };
-    }
+			// to update in editor, otherwise would be updated next frame
+			gridLayout.CalculateLayoutInputHorizontal();
+			gridLayout.CalculateLayoutInputVertical();
+			gridLayout.SetLayoutHorizontal();
+			gridLayout.SetLayoutVertical();
+		}
 
-    private void CreateStringLines()
-    {
-        stringLines = null;
-        DestroyChildren(stringLineContainer);
+		/// <summary>
+		/// Updates grid constraint and enables/disables cells
+		/// </summary>
+		private void ApplyFretRange()
+		{
+			gridLayout.constraintCount = maxFret - minFret + 1;
 
-        var lineList = new List<RectTransform>();
+			// disable frets outside of fret range
+			foreach (Fret f in frets)
+				f.mono.gameObject.SetActive(f.fretNum >= minFret && f.fretNum <= maxFret);
+		}
 
-        for (int i = 0; i < tuning.numStrings; i++)
-        {
-            // instantiate the prefab
-            var go = Instantiate(stringLinePrefab.gameObject, stringLineContainer);
-            go.SetActive(true);
+		/// <summary>
+		/// Instantiates cells
+		/// </summary>
+		private void InstantiateCells()
+		{
+			this.frets = null;
+			DestroyChildren(gridLayout.transform);
 
-            lineList.Add(go.GetComponent<RectTransform>());
-        }
+			int max = 25;
+			List<Fret> fretList = new List<Fret>();
 
-        stringLines = lineList.ToArray();
-    }
-    private void CreateFretLines()
-    {
-        fretLines = null;
-        DestroyChildren(fretLineContainer);
+			// border 1
+			for (int i = 0; i < max; i++)
+				fretList.Add(new BorderObject(fretPrefab, gridLayout.transform, this, i));
 
-        var lineList = new List<RectTransform>();
+			// strings
+			for (int i = 0; i < tuning.numStrings; i++)
+			{
+				for (int j = 0; j < max; j++)
+				{
+					fretList.Add(new FretObject(fretPrefab, gridLayout.transform, this, i, j));
+				}
+			}
 
-        for (int i = 0; i < MAX_FRETS - 1; i++)
-        {
-            var go = Instantiate(fretLinePrefab.gameObject, fretLineContainer);
-            go.SetActive(true);
+			// border 2
+			for (int i = 0; i < max; i++)
+				fretList.Add(new BorderObject(fretPrefab, gridLayout.transform, this, i));
 
-            lineList.Add(go.GetComponent<RectTransform>());
-        }
+			this.frets = fretList.ToArray();
+		}
 
-        fretLines = lineList.ToArray();
-    }
-    private void UpdateStringLines()
-    {
-        for (int i = 0; i < stringLines.Length; i++)
-        {
-            // set the dimensions
-            var idx = MAX_FRETS * (i + 1); // +1 to skip border
-            var fretRect = frets[idx].rect;
-            var coords = fretRect.position + Vector3.left * fretRect.rect.width / 2;
-            var rect = stringLines[i];
-            rect.position = (Vector3)coords;
-            rect.sizeDelta = new Vector2(gridRect.sizeDelta.x, 1 / canvas.transform.localScale.y);
-        }
-    }
-    private void UpdateFretLines()
-    {
-        for (int i = 0; i < fretLines.Length; i++)
-        {
-            var rect = fretLines[i];
-            var fretRect = frets[i].rect;
+		/// <summary>
+		/// Destroys all children below t
+		/// </summary>
+		private void DestroyChildren(Transform t)
+		{
+			List<GameObject> children = new List<GameObject>();
+			foreach (Transform child in t.transform)
+				children.Add(child.gameObject);
 
-            var posY = gridRect.position.y;
-            var posX = fretRect.position.x + fretRect.sizeDelta.x / 2f * canvas.transform.localScale.x;
-            rect.position = new Vector3(posX, posY);
-            rect.sizeDelta = new Vector2(1 / canvas.transform.localScale.x, gridRect.rect.height);
-        }
-    }
+			foreach (GameObject g in children)
+			{
+				if (Application.isPlaying)
+					Destroy(g);
+				else
+					DestroyImmediate(g);
+			}
 
-    private void UpdateFretActivity()
-    {
-        gridLayout.constraintCount = maxFret - minFret + 1;
-        // disable frets outside of fret range
-        foreach (Fret f in frets)
-            f.mono.gameObject.SetActive(f.fretNum >= minFret && f.fretNum <= maxFret);
-    }
+		}
 
-    private void SetupFrets()
-    {
-        this.frets = null;
-        DestroyChildren(gridLayout.transform);
+		private void UpdateBorders()
+		{
+			int offset = tuning.numStrings * MAX_FRETS;
+			for (int i = 0; i <= MAX_FRETS; i++)
+			{
+				frets[i].UpdateDisplay();
+				frets[i + offset].UpdateDisplay();
+			}
+		}
+	}
 
-        int max = 25;
-        List<Fret> fretList = new List<Fret>();
-
-        // border 1
-        for (int i = 0; i < max; i++)
-            fretList.Add(new BorderObject(fretPrefab, gridLayout.transform, this, i));
-
-        // strings
-        for (int i = 0; i < tuning.numStrings; i++)
-        {
-            for (int j = 0; j < max; j++)
-            {
-                fretList.Add(new FretObject(fretPrefab, gridLayout.transform, this, i, j));
-            }
-        }
-
-        // border 2
-        for (int i = 0; i < max; i++)
-            fretList.Add(new BorderObject(fretPrefab, gridLayout.transform, this, i));
-
-        this.frets = fretList.ToArray();
-    }
-    private void DestroyChildren(Transform t)
-    {
-        List<GameObject> children = new List<GameObject>();
-        foreach (Transform child in t.transform)
-            children.Add(child.gameObject);
-
-        foreach (GameObject g in children)
-        {
-            if (Application.isPlaying)
-                Destroy(g);
-            else
-                DestroyImmediate(g);
-        }
-
-    }
-
-    private void UpdateBorders()
-    {
-        int offset = tuning.numStrings * MAX_FRETS;
-        for (int i = 0; i <= MAX_FRETS; i++)
-        {
-            frets[i].UpdateDisplay();
-            frets[i + offset].UpdateDisplay();
-        }
-    }
-    private void UpdateStrings()
-    {
-        int offset = MAX_FRETS;
-        for (int i = 0; i < tuning.numStrings; i++)
-        {
-            for (int j = 0; j < MAX_FRETS; j++)
-            {
-                var fo = (FretObject)frets[offset + j + MAX_FRETS * i];
-
-                if (!Scale.HasNote(scale.notes, fo.note))
-                    fo.displayMode = Fret.FretToggleMode.Hidden;
-
-                fo.UpdateDisplay();
-            }
-        }
-    }
-    private void SetupBorders()
-    {
-        // using default settings
-
-        // +1 to include other border
-        int offset = (tuning.numStrings + 1) * MAX_FRETS;
-        for (int i = 0; i < MAX_FRETS; i++)
-        {
-            var j = i % 12;
-
-            if (j == 0)
-            {
-                frets[i].displayMode = Fret.FretToggleMode.Emphasized;
-                frets[i + offset].displayMode = Fret.FretToggleMode.Emphasized;
-            }
-
-            else if (j == 3 || j == 5 || j == 7 || j == 9)
-            {
-                frets[i].displayMode = Fret.FretToggleMode.Normal;
-                frets[i + offset].displayMode = Fret.FretToggleMode.Normal;
-            }
-            else
-            {
-                frets[i].displayMode = Fret.FretToggleMode.Hidden;
-                frets[i + offset].displayMode = Fret.FretToggleMode.Hidden;
-            }
-
-            frets[i].UpdateDisplay();
-            frets[i + offset].UpdateDisplay();
-        }
-    }
 }
-

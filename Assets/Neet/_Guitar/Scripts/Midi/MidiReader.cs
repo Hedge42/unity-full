@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Melanchall.DryWetMidi.Devices;
 using System.Threading;
 using System.Collections;
+using Note = Melanchall.DryWetMidi.Interaction.Note;
 
 namespace Neet.Guitar
 {
@@ -16,89 +17,9 @@ namespace Neet.Guitar
     {
         // https://melanchall.github.io/drywetmidi/
 
-        // data
         public string path;
-        private MidiFile midiFile;
-        private Playback playback;
-        private OutputDevice output;
-        private bool isPlaying;
-
-        // mono
-        private void Start()
-        {
-            playback = GetPlayback();
-            SetErrorListener();
-        }
-        private void Update()
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
-            {
-                if (isPlaying)
-                    playback.Stop();
-                else
-                    Play();
-
-                isPlaying = !isPlaying;
-            }
-        }
-        private void OnDisable()
-        {
-            Dispose();
-        }
-        private void OnApplicationPause(bool pause)
-        {
-            if (pause)
-                Dispose();
-        }
-        private void OnApplicationQuit()
-        {
-            Dispose();
-        }
-
-        // playback
-        private Playback GetPlayback()
-        {
-            var midiFile = MidiFile.Read(path);
-
-
-
-            //output = OutputDevice.GetByName("Microsoft GS Wavetable Synth");
-            output = OutputDevice.GetById(0);
-
-            playback = midiFile.GetPlayback(output, new PlaybackSettings()
-            {
-                ClockSettings = new MidiClockSettings()
-                {
-                    CreateTickGeneratorCallback = () => null
-                }
-            });
-
-            return playback;
-        }
-        private IEnumerator _Play()
-        {
-            playback.Start();
-
-            while (playback.IsRunning)
-            {
-                yield return null;
-                playback.TickClock();
-            }
-
-            playback.Dispose();
-            output.Dispose();
-
-            print("here?");
-        }
-        public void Play()
-        {
-            StartCoroutine(_Play());
-        }
-        public void Stop()
-        {
-            playback.Stop();
-        }
-
+        public MidiFile midiFile;
+        
         private MidiFile LoadMidi()
         {
             this.midiFile = MidiFile.Read(path,
@@ -112,23 +33,7 @@ namespace Neet.Guitar
                 });
             return midiFile;
         }
-        private void Dispose()
-        {
-            try
-            {
-                playback.Stop();
 
-                output.Dispose();
-                playback.Dispose();
-
-            }
-            catch { }
-        }
-
-        private void SetErrorListener()
-        {
-            playback.DeviceErrorOccurred += delegate { print("oops"); Dispose(); };
-        }
 
         public void OpenPath()
         {
@@ -137,26 +42,43 @@ namespace Neet.Guitar
         public void ReadFile()
         {
             LoadMidi();
-            midiFile = midiFile.Clone();
-            var tm = midiFile.GetTempoMap();
+            
+        } 
 
-            ICollection<Melanchall.DryWetMidi.Interaction.Note> notes = midiFile.GetNotes();
+        public static void ReadChunks(MidiFile m)
+		{
+            print(m.GetTrackChunks().Count() + " chunks");
+            foreach (TrackChunk t in m.GetTrackChunks())
+			{
+                print(t.GetNotes().Count);
 
-            Quantize(notes, tm);
-        }
+                // t.
+			}
+		}
 
-        private void Quantize(ICollection<Melanchall.DryWetMidi.Interaction.Note> notes, TempoMap tm)
+        public ICollection<Note> GetNotesBetween()
+		{
+            //midiFile.GetNotes().Where(note => note.Time > 0f);
+            return midiFile.GetNotes();
+            throw new System.NotImplementedException();
+		}
+
+        public static void Quantize(MidiFile m, ICollection<Note> notes, MusicalTimeSpan span)
         {
-            NotesQuantizer nq = new NotesQuantizer();
-            var settings = new NotesQuantizingSettings();
-            settings.FixOppositeEnd = true;
+            var tm = m.GetTempoMap();
+            var settings = new NotesQuantizingSettings() { FixOppositeEnd = true };
             var grid = new SteppedGrid(MusicalTimeSpan.Eighth);
-            nq.Quantize(notes, grid, tm, settings);
-            foreach (var n in notes)
-                PrintNote(n, tm);
+            new NotesQuantizer().Quantize(notes, grid, tm, settings);
         }
 
-        private void PrintNote(Melanchall.DryWetMidi.Interaction.Note s, TempoMap tm)
+        public static void PrintNotes(MidiFile m)
+		{
+            var tm = m.GetTempoMap();
+            foreach (Note n in m.GetNotes())
+                PrintNote(n, tm);
+		}
+
+        private static void PrintNote(Note s, TempoMap tm)
         {
             print("note(" + s.NoteNumber + ") "
                     + "metricTime(" + s.TimeAs(TimeSpanType.Metric, tm) + ") "
@@ -164,8 +86,6 @@ namespace Neet.Guitar
                     + "barBeatTime(" + s.TimeAs<BarBeatFractionTimeSpan>(tm) + ") "
                     + "barBeatLength(" + s.LengthAs<BarBeatFractionTimeSpan>(tm) + ") "
                     );
-
-            s.TimeAs<BarBeatFractionTimeSpan>(midiFile.GetTempoMap());
         }
 
 

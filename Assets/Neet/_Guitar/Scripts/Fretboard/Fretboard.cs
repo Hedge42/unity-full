@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fretboard
+namespace Neet.Guitar
 {
-    public Fret[] frets;
+	public class Fretboard
+	{
+		public Fretboard()
+		{
+			Fret[] Frets;
 
-
-
-    public Fretboard()
-    {
-
-    }
+			// guitar strings - class?
+			int[] strings;
+		}
+	}
 }

@@ -365,6 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835340370}
   - component: {fileID: 1835340371}
+  - component: {fileID: 1835340372}
   m_Layer: 0
   m_Name: MidiReader
   m_TagString: Untagged
@@ -399,3 +400,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: E:\Projects\FL Studio\gtr_holy_orders.mid
+--- !u!114 &1835340372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835340369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae18602a5c97c534f805074b84b413c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

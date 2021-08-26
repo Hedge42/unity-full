@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neet.Guitar
 {
+    [System.Serializable]
     public class TimeSignature
     {
         public float startTime;

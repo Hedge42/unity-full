@@ -85,9 +85,9 @@ namespace Neet.Guitar
             }
 
             var mouseWheel = UnityEngine.Input.mouseScrollDelta;
-            print(mouseWheel);
+            //print(mouseWheel);
             if (Mathf.Abs(mouseWheel.y) > .8)
-                SkipTo((int)(beatIndex + mouseWheel.y));
+                SkipTo((int)(beatIndex - mouseWheel.y));
         }
 
         private void Start()

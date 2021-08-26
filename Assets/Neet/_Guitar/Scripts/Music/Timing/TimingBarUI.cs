@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TabClickHandler : MonoBehaviour
+public class TimingBarUI : MonoBehaviour
 {
+	public TimingBarUI(TimingBar data)
+	{
 
+	}
 }

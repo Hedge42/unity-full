@@ -46,7 +46,7 @@ namespace Neet.Audio
         }
         /// <summary>
         /// Accepts [0,1] range
-        /// </summary>
+        /// </summary>Z
         public void UpdateSfxVolume(float linear)
         {
             // https://www.youtube.com/watch?v=9tqi1aXlcpE
@@ -82,6 +82,8 @@ namespace Neet.Audio
         /// <summary> Accepts the path to an audio file, converts it into an audioClip, and attaches it to the source. </summary>
         public IEnumerator GetClip(string path, AudioSource source, Action onLoad = null)
         {
+            Debug.Log("Loading clip at: " + path);
+
             AudioClip clip = null;
             float startTime = Time.time;
 
@@ -125,6 +127,11 @@ namespace Neet.Audio
 
             if (onLoad != null)
                 onLoad.Invoke();
+        }
+
+        public static void LoadClip(string path, AudioSource source, Action onLoad = null)
+        {
+            instance.StartCoroutine(instance.GetClip(path, source, onLoad));
         }
     }
 }

@@ -46,7 +46,7 @@ public class Something
     }
 
 
-    public Fret[] data;
+    // public Fret[] data;
 
     public Something()
     {
