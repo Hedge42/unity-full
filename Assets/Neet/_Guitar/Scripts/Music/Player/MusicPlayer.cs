@@ -16,7 +16,6 @@ public class MusicPlayer : MonoBehaviour
     public event Action<AudioClip> onClipLoaded;
 
     // inspector, references
-    public Button btnLoad;
     public Slider timeSlider;
     public Slider volumeSlider;
     public TMPro.TextMeshProUGUI tmpTime;
@@ -28,11 +27,12 @@ public class MusicPlayer : MonoBehaviour
     private AudioSource source => AudioManager.instance.musicSource;
     string[] filters = new string[] { ".mp3", ".wav" };
 
+    public float time { get { return source.time; } }
+
     // mono
     private void Start()
     {
         // initialize ui
-        btnLoad.onClick.AddListener(OpenFileBrowser);
         volumeSlider.value = AudioManager.instance.musicSource.volume;
         timeSlider.onValueChanged.AddListener(UpdateTimeText);
         UpdateTimeText(0f);
@@ -57,10 +57,11 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    // file select
-    private void OpenFileBrowser()
+    // class for this?
+    public void OpenFileBrowser()
     {
         FileBrowser.instance.Show(defaultPath, OnFileSelect, filters);
+
     }
     private void OnFileSelect(string path)
     {
@@ -73,7 +74,6 @@ public class MusicPlayer : MonoBehaviour
             Debug.LogError("Not a valid audio file: " + path + "\n" + e.Message);
         }
     }
-
     private void SongLoaded()
     {
         InitializeSlider();

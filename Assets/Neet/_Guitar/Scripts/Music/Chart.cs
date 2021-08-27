@@ -14,6 +14,8 @@ namespace Neat.Guitar
 
         public TimeSignature[] timeSignatures;
 
+        public TimingMap timingMap;
+
         public Chart()
         {
             name = "name";

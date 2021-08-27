@@ -15,7 +15,7 @@ namespace Neat.Audio
         public AudioSource masterAudioSource;
         public AudioSource musicSource;
 
-        public AudioMixer master;
+        public AudioMixer masterMixer;
         public AudioMixerGroup masterGroup;
         public AudioMixerGroup sfxGroup;
         public AudioMixerGroup musicGroup;
@@ -29,6 +29,12 @@ namespace Neat.Audio
                 Destroy(gameObject);
 
             masterAudioSource = GetComponent<AudioSource>();
+
+
+            foreach (var a in masterMixer.FindMatchingGroups(""))
+            {
+                // print("found one");
+            }
         }
 
         public void LoadSetting(AudioSetting setting)
@@ -42,7 +48,7 @@ namespace Neat.Audio
         public void UpdateMasterVolume(float linear)
         {
             // https://www.youtube.com/watch?v=9tqi1aXlcpE
-            master.SetFloat("myMasterVolume", LinearToDb(linear));
+            masterMixer.SetFloat("myMasterVolume", LinearToDb(linear));
         }
         /// <summary>
         /// Accepts [0,1] range
@@ -50,7 +56,7 @@ namespace Neat.Audio
         public void UpdateSfxVolume(float linear)
         {
             // https://www.youtube.com/watch?v=9tqi1aXlcpE
-            master.SetFloat("mySfxVolume", LinearToDb(linear));
+            masterMixer.SetFloat("mySfxVolume", LinearToDb(linear));
         }
         /// <summary>
         /// Accepts [0,1] range
@@ -58,7 +64,32 @@ namespace Neat.Audio
         public void UpdateMusicVolume(float linear)
         {
             // https://www.youtube.com/watch?v=9tqi1aXlcpE
-            master.SetFloat("myMusicVolume", LinearToDb(linear));
+            masterMixer.SetFloat("myMusicVolume", LinearToDb(linear));
+        }
+
+        public float GetMixerVolumeLinear(AudioMixerGroup group)
+        {
+            string param = GetVolumeParameter(group);
+            masterMixer.GetFloat(param, out float f);
+            return DbToLinear(f);
+        }
+        public void SetMixerVolumeLinear(AudioMixerGroup group, float linear)
+        {
+            string param = GetVolumeParameter(group);
+            masterMixer.SetFloat(param, LinearToDb(linear));
+        }
+
+        private string GetVolumeParameter(AudioMixerGroup group)
+        {
+            if (group == masterGroup)
+                return "myMasterVolume";
+            else if (group == musicGroup)
+                return "myMusicVolume";
+            else if (group == sfxGroup)
+                return "mySfxVolume";
+
+            Debug.LogError("Group parameter not set up");
+            return "?";
         }
 
         private float LinearToDb(float linear)
@@ -128,7 +159,6 @@ namespace Neat.Audio
             if (onLoad != null)
                 onLoad.Invoke();
         }
-
         public static void LoadClip(string path, AudioSource source, Action onLoad = null)
         {
             instance.StartCoroutine(instance.GetClip(path, source, onLoad));
