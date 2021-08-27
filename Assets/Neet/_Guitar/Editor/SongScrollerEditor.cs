@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Neat.File;
 
 namespace Neat.Guitar
 {
@@ -13,6 +14,10 @@ namespace Neat.Guitar
             base.OnInspectorGUI();
 
             var _target = (SongScroller)target;
+
+            if (GUILayout.Button("Open chart directory"))
+            {
+            }
         }
     }
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Neat.Guitar
 {
+	[System.Serializable]
 	public class TimingMap
 	{
+		[System.Serializable]
 		private class Tick
 		{
 			int value;
@@ -15,6 +17,7 @@ namespace Neat.Guitar
 		/// use factorials to ensure even divisions
 		/// </summary>
 
+		[System.Serializable]
 		public class Beat
 		{
 			/// <summary>
@@ -31,6 +34,7 @@ namespace Neat.Guitar
 		/// <summary>
 		/// Contains bpm, has a start time
 		/// </summary>
+		[System.Serializable]
 		public class TimeSignature
 		{
 			private const long ticksPerSecond = 10000;
@@ -171,9 +175,6 @@ namespace Neat.Guitar
 				throw new System.NotImplementedException();
 			}
 		}
-
-
-
 
 
 		public List<TimeSignature> timeSignatures;

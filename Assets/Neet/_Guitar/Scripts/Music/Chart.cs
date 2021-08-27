@@ -7,21 +7,42 @@ namespace Neat.Guitar
     [System.Serializable]
     public class Chart
     {
+        public static string directory
+        {
+            get
+            {
+                return "C:/Users/tyler/Desktop/Charts/";
+            }
+        }
+        public static string ext
+        {
+            get
+            {
+                return ".chart";
+            }
+        }
+
         // data
         public string name;
         public float duration;
         public string path;
 
-        public TimeSignature[] timeSignatures;
-
         public TimingMap timingMap;
+
+        public TimingMap.TimeSignature[] timeSignatures
+        {
+            get
+            {
+                return timingMap.timeSignatures.ToArray();
+            }
+        }
 
         public Chart()
         {
             name = "name";
             duration = 15; // seconds
 
-            timeSignatures = new TimeSignature[] { new TimeSignature() };
+            timingMap = new TimingMap();
         }
 
         void GetNotesBetween(float a, float b) { }

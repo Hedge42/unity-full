@@ -283,7 +283,7 @@ namespace Neat.Guitar
 
                 // end is next time signature position
                 else
-                    endTime = chart.timeSignatures[i + 1].startTime;
+                    endTime = chart.timeSignatures[i + 1].offset;
 
                 int whileCount = 0;
                 while (_time < endTime)
@@ -304,7 +304,7 @@ namespace Neat.Guitar
 
                     _timeMarkers.Add(new TimeMarker(go, _time));
 
-                    _time += 60 / chart.timeSignatures[i].bpm;
+                    _time += 60 / chart.timeSignatures[i].beatsPerMinute;
                 }
             }
 
