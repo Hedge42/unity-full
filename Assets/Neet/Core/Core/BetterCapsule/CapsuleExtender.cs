@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Neat.Extensions;
-using Neat.File;
+using Neat.FileManagement;
 
 public class CapsuleExtender : MonoBehaviour
 {

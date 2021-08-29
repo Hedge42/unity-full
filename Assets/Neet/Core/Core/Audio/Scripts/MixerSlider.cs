@@ -7,15 +7,13 @@ using UnityEngine.UI;
 namespace Neat.Audio
 {
     [RequireComponent(typeof(Slider))]
-    public class VolumeSlider : MonoBehaviour
+    public class MixerSlider : MonoBehaviour
     {
         public int targetMixerGroup;
         private Slider slider;
 
         private void Start()
         {
-            
-
             slider = GetComponent<Slider>();
             slider.minValue = 0f;
             slider.maxValue = 1f;

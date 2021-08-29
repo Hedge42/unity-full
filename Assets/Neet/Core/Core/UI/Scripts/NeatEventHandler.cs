@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Neat.UI
 {
-    public class EventHandler : MonoBehaviour,
+    public class NeatEventHandler : MonoBehaviour,
         IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         public UnityAction<PointerEventData> onPointerEnter { get; set; }

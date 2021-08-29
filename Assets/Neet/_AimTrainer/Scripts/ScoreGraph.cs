@@ -32,12 +32,12 @@ namespace Neat.AimTrainer
             SetupTooltip(results.timeElapsed.transform, ScoreType.TimeElapsed);
         }
 
-        private EventHandler SetupTooltip(Transform t, ScoreType type)
+        private NeatEventHandler SetupTooltip(Transform t, ScoreType type)
         {
             GameObject tooltipGO = Instantiate(tooltipPrefab, t);
             tooltipGO.SetActive(true);
             tooltipGO.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-            EventHandler e = t.GetComponent<EventHandler>();
+            NeatEventHandler e = t.GetComponent<NeatEventHandler>();
 
             e.onPointerClick += delegate
             {

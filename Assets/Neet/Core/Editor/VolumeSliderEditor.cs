@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 namespace Neat.Audio
 {
-    [CustomEditor(typeof(VolumeSlider))]
+    [CustomEditor(typeof(MixerSlider))]
     public class VolumeSliderEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -15,7 +15,7 @@ namespace Neat.Audio
 
             // create popup of all mixers
 
-            var _target = (VolumeSlider)target;
+            var _target = (MixerSlider)target;
 
             string[] names = new string[3];
             names[0] = "Master";

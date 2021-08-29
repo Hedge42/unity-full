@@ -13,7 +13,7 @@ public class Tooltip : MonoBehaviour
     private const float maxWidth = 400;
 
     private CanvasGroup c;
-    private EventHandler e;
+    private NeatEventHandler e;
     private RectTransform rt;
     private Coroutine routine;
 
@@ -37,9 +37,9 @@ public class Tooltip : MonoBehaviour
         c = GetComponent<CanvasGroup>();
 
         // add an event handler component to the parent
-        if (GetComponentInParent<EventHandler>() == null)
-            transform.parent.gameObject.AddComponent<EventHandler>();
-        e = GetComponentInParent<EventHandler>();
+        if (GetComponentInParent<NeatEventHandler>() == null)
+            transform.parent.gameObject.AddComponent<NeatEventHandler>();
+        e = GetComponentInParent<NeatEventHandler>();
 
         e.onPointerEnter += delegate { Toggle(true); };
         e.onPointerExit += delegate { Toggle(false); };

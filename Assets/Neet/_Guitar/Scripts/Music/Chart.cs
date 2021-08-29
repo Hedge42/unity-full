@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Neat.File;
+using Neat.FileManagement;
 
 namespace Neat.Guitar
 {
@@ -27,9 +27,12 @@ namespace Neat.Guitar
         public float duration;
         public string path;
 
+        public string musicPath;
+
         public TimingMap timingMap;
 
-        public TimingMap.TimeSignature[] timeSignatures
+        // obsolete
+        public TimeSignature[] timeSignatures
         {
             get
             {
@@ -40,9 +43,8 @@ namespace Neat.Guitar
         public Chart()
         {
             name = "name";
-            duration = 15; // seconds
-
             timingMap = new TimingMap();
+            path = "";
         }
 
         void GetNotesBetween(float a, float b) { }

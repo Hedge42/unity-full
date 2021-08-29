@@ -4,20 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Neat.Audio;
-using Neat.File;
+using Neat.FileManagement;
 
 namespace Neat.Guitar
 {
-    public class SongScrollerToolbar : MonoBehaviour
+    public class ChartToolbar : MonoBehaviour
     {
-        private SongScroller _scroller;
-        public SongScroller scroller
+        private class ToolbarState
+        {
+            bool hasChart;
+            bool hasMusic;
+            bool hasTimeSignature;
+        }
+
+        private ChartPlayer _player;
+        public ChartPlayer player
         {
             get
             {
-                if (_scroller == null)
-                    _scroller = GetComponent<SongScroller>();
-                return _scroller;
+                if (_player == null)
+                    _player = GetComponent<ChartPlayer>();
+                return _player;
             }
         }
 
@@ -30,6 +37,9 @@ namespace Neat.Guitar
         public Button btnBpmDown;
         public TMP_InputField ipfBpm;
         public Button btnBpmUp;
+
+        // time signature
+        public Button btnNewTimeSignature;
 
         // scroller.snapping
         public Button btnSnapping;
@@ -48,13 +58,10 @@ namespace Neat.Guitar
 
         private void Start()
         {
-            SetUIEvents();
-        }
-
-        private void SetUIEvents()
-        {
             ipfNumerator.onValueChanged.AddListener(NumeratorInputChange);
             ipfDenominator.onValueChanged.AddListener(DenominatorInputChange);
+
+            btnNewTimeSignature.onClick.AddListener(NewTimeSignatureClick);
 
             btnBpmDown.onClick.AddListener(BpmDownClick);
             btnBpmUp.onClick.AddListener(BpmUpClick);
@@ -65,18 +72,39 @@ namespace Neat.Guitar
             ipfSnapping.onValueChanged.AddListener(SnappingInputChange);
 
             btnFindMusic.onClick.AddListener(FindMusicClick);
+
             btnNewChart.onClick.AddListener(NewChartClick);
             btnLoadChart.onClick.AddListener(LoadChartClick);
             btnSaveChart.onClick.AddListener(SaveChartClick);
         }
+
         // need reference to current time signature
+        public void NewTimeSignatureClick()
+        {
+            bool validNum = int.TryParse(ipfNumerator.text, out int num);
+            bool validDen = int.TryParse(ipfDenominator.text, out int den);
+            bool validBpm = float.TryParse(ipfBpm.text, out float bpm);
+
+            if (validNum && validDen && validBpm)
+            {
+                var ts = new TimeSignature();
+                ts.offset = player.time;
+                ts.numerator = num;
+                ts.denominator = den;
+                ts.beatsPerMinute = bpm;
+                player.chart.timingMap.AddTimeSignature(ts);
+
+                print("created a time signature!");
+            }
+
+        }
         public void NumeratorInputChange(string s) { }
         public void DenominatorInputChange(string s) { }
 
         public void BpmClick() { }
         public void BpmDownClick()
         {
-            var ts = scroller.chart.timingMap.GetTimeSignature(scroller.player.time);
+            var ts = player.chart.timingMap.GetSignatureAtTime(player.musicPlayer.time);
             ts.beatsPerMinute -= 1;
         }
         public void BpmInputchanged(string s)
@@ -85,14 +113,19 @@ namespace Neat.Guitar
         }
         public void BpmUpClick()
         {
-            var ts = scroller.chart.timingMap.GetTimeSignature(scroller.player.time);
+            var ts = player.chart.timingMap.GetSignatureAtTime(player.musicPlayer.time);
             ts.beatsPerMinute += 1;
+        }
+
+        public void UpdateBpmText()
+        {
+            ipfBpm.text = player.timeSignature.beatsPerMinute.ToString("f3");
         }
 
         public void SnappingClick() { }
         public void SnappingDownClick()
         {
-            scroller.snap = Mathf.Clamp(scroller.snap - 1, 1, 16);
+            player.snap = Mathf.Clamp(player.snap - 1, 1, 16);
         }
         public void SnappingInputChange(string s)
         {
@@ -100,12 +133,12 @@ namespace Neat.Guitar
         }
         public void SnappingUpClick()
         {
-            scroller.snap = Mathf.Clamp(scroller.snap + 1, 1, 16);
+            player.snap = Mathf.Clamp(player.snap + 1, 1, 16);
         }
 
         public void NewChartClick()
         {
-            scroller.chart = new Chart();
+            player.LoadChart(new Chart());
         }
         public void LoadChartClick()
         {
@@ -125,24 +158,13 @@ namespace Neat.Guitar
 
             // Chart.directory 
 
-            var chart = scroller.chart;
+            var chart = player.chart;
 
             FileManager.SerializeBinary(chart, Chart.directory + chart.name + Chart.ext);
         }
         public void FindMusicClick()
         {
-            Neat.FileBrowser.FileBrowser.instance.
-                Show(FileManager.RootPath, OnMusicSelect, ".mp3", ".wav");
-        }
-        private void OnMusicSelect(string path)
-        {
-            AudioManager.LoadClip(path, AudioManager.instance.musicSource, SongLoaded);
-        }
-        private void SongLoaded()
-        {
-            // throw new System.NotImplementedException();
-
-            print("do something");
+            player.musicPlayer.LoadFile();
         }
     }
 }

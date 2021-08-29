@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Neat.Audio;
-using Neat.File;
+using Neat.FileManagement;
 
 public class SettingsManager : MonoBehaviour
 {

@@ -37,7 +37,7 @@ namespace Neat.Guitar
 
         public void OpenPath()
         {
-            Neat.File.FileManager.OpenExplorer(path);
+            Neat.FileManagement.FileManager.OpenExplorer(path);
         }
         public void ReadFile()
         {

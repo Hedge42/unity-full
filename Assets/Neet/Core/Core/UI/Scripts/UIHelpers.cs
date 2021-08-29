@@ -18,7 +18,7 @@ public static class UIHelpers
 
         if (text != "")
         {
-            parent.GetComponent<Neat.UI.EventHandler>().onPointerClick += delegate
+            parent.GetComponent<Neat.UI.NeatEventHandler>().onPointerClick += delegate
             {
                 Neat.UI.ContextMenu.instance.Show(text);
             };

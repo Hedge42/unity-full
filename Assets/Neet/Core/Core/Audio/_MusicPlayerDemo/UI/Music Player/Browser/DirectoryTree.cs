@@ -1,6 +1,6 @@
 ﻿using Neat.Collections;
 using System.IO;
-using Neat.File;
+using Neat.FileManagement;
 
 namespace Neat.Scroller
 {
