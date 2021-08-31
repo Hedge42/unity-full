@@ -9,18 +9,20 @@ using TMPro;
 using Neat.FileBrowser;
 using System.IO;
 using Neat.Music;
+using UnityEngine.Events;
 
 namespace Neat.Guitar
 {
     using Input = UnityEngine.Input;
-    public class ChartPlayer : MonoBehaviour
+    public class ChartController : MonoBehaviour
     {
-        public MusicPlayer musicPlayer;
+        public MusicPlayer player;
+        public Metronome metronome;
+
         public Chart chart;
 
         public RectTransform movingContainer;
         public RectTransform staticWindow;
-        public float distancePerSecond;
 
         public TextMeshProUGUI tmpTitle;
         public TextMeshProUGUI tmpInfo;
@@ -48,28 +50,57 @@ namespace Neat.Guitar
             }
         }
 
+        public bool isPaused;
+        // 
+        private float _time;
         public float time
         {
             get
             {
-                return musicPlayer.time;
+                if (player.hasClip)
+                    _time = player.time;
+
+                // else use internal time
+                return _time;
             }
-        }
-        public float scrollerEndTime
-        {
-            get
+            set
             {
-                return time + Mathf.Abs(judgementLine.position.x - staticWindow.rect.xMax) / distancePerSecond;
-            }
-        }
-        public float scrollerStartTime
-        {
-            get
-            {
-                return time - Mathf.Abs(judgementLine.position.x - staticWindow.rect.xMin) / distancePerSecond;
+                OnSkip(value);
             }
         }
 
+
+
+        // TODO change what's serialized, maybe min-max time?
+        public float distancePerSecond;
+        public float maxTime
+        {
+            get
+            {
+                var maxPos = staticWindow.position + Vector3.right * staticWindow.rect.width / 2;
+                var rightOffset = judgementLine.InverseTransformPoint(maxPos) / distancePerSecond;
+                return time + rightOffset.x;
+            }
+        }
+        public float minTime
+        {
+            get
+            {
+                var minPos = staticWindow.position + Vector3.left * staticWindow.rect.width / 2;
+                var leftOffset = judgementLine.InverseTransformPoint(minPos) / distancePerSecond;
+                return time + leftOffset.x; // leftOffset will be negative
+            }
+        }
+        public float scrollFullDuration
+        {
+            get { return maxTime - minTime; }
+        }
+        public float scrollDuration
+        {
+            get { return maxTime - time; }
+        }
+
+        // obsolete remove me
         public TimeSignature timeSignature
         {
             get
@@ -84,65 +115,73 @@ namespace Neat.Guitar
 
         private void Start()
         {
-            print(scrollerStartTime + " < " + time + " < " + scrollerEndTime);
+            player.onSourceTick += OnTimeTick;
+            player.onSkip += OnSkip;
+            player.onClipLoaded += OnMusicLoaded;
 
-            musicPlayer.onTick += UpdatePosition;
-            musicPlayer.onClipLoaded += OnMusicLoaded;
+            beatDrawer.onBeatPassed.AddListener(PlayMetronome);
 
+            OnSkip(0f);
         }
 
-        private void Update()
+        private void PlayMetronome(Beat b)
         {
-            UpdateInfoText();
-        }
-
-        private IEnumerator _Play()
-        {
-            yield return null;
-        }
-
-        public void DrawBars()
-        {
-            beatDrawer.DrawBars(0f, 10f);
+            metronome.Play(b.isMeasureStart);
         }
 
         public void LoadChart(Chart c)
-        { 
+        {
+            if (c == null)
+                c = new Chart();
+
             chart = c;
             chart.timingMap.onChange.RemoveAllListeners();
-            chart.timingMap.onChange.AddListener(TimingChanged);
+            chart.timingMap.onChange.AddListener(TimingMapChanged);
 
-            // chart.musicPath
-
-            // load music from chart path
-
-            DrawBars();
+            // onChartLoaded?
+            UpdateWidth();
+            OnSkip(0f);
+            print("Loaded chart: " + chart.name);
         }
-        public void TimingChanged()
+        public void TimingMapChanged()
         {
-            DrawBars();
+            beatDrawer.OnTimeSet(time);
         }
 
+
+        // event handling
+        public void OnTimeTick(float t)
+        {
+            UpdatePosition(t);
+        }
+        public void OnSkip(float value)
+        {
+            UpdatePosition(value);
+            beatDrawer.OnTimeSet(value);
+        }
         public void OnMusicLoaded(AudioClip clip)
         {
-            print("found " + clip.name);
-
             chart.duration = clip.length;
             UpdateWidth();
         }
 
+
+        // transforming
         public void UpdateWidth()
         {
-            var newx = chart.duration * distancePerSecond;
+            float newx;
+            if (player.hasClip)
+                newx = player.clip.length * distancePerSecond;
+            else
+                newx = 0f;
+
             movingContainer.sizeDelta = new Vector2(newx, movingContainer.sizeDelta.y);
         }
-
         private void UpdatePosition(float f)
         {
             movingContainer.anchoredPosition = Vector2.left * f * distancePerSecond;
         }
-
-        void UpdateInfoText()
+        private void UpdateInfoText()
         {
             if (chart == null)
             {

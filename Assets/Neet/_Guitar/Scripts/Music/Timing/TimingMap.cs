@@ -32,7 +32,43 @@ namespace Neat.Guitar
             }
         }
 
-        public List<TimeSignature> Sort()
+        public float startTime
+        {
+            get
+            {
+                if (timeSignatures.Count > 0)
+                    return timeSignatures[0].offset;
+                else
+                    return 0f;
+            }
+        }
+
+        public Beat FirstBeat
+        {
+            get
+            {
+                if (timeSignatures.Count > 0)
+                    return new Beat(timeSignatures[0], 0);
+                else
+                    return null;
+            }
+        }
+
+        private void ProcessSignatures()
+        {
+            Sort();
+
+            // set prev, next
+            for (int i = 0; i < timeSignatures.Count; i++)
+            {
+                if (i != 0)
+                    timeSignatures[i].prev = timeSignatures[i - 1];
+                if (i < timeSignatures.Count - 1)
+                    timeSignatures[i].next = timeSignatures[i + 1];
+            }
+        }
+
+        private List<TimeSignature> Sort()
         {
             bool flag = true;
 
@@ -63,13 +99,15 @@ namespace Neat.Guitar
         public void AddTimeSignature(TimeSignature t)
         {
             timeSignatures.Add(t);
-            Sort();
+            ProcessSignatures();
 
             onChange?.Invoke();
         }
         public void RemoveTimeSignature(TimeSignature t)
         {
             timeSignatures.Remove(t);
+            ProcessSignatures();
+
             onChange?.Invoke();
         }
 
@@ -98,138 +136,108 @@ namespace Neat.Guitar
             index = -1;
             return null;
         }
-        public TimeSignature GetSignatureAtIndex(int i)
+
+        public List<Beat> _BeatsUntil(float endTime, int beatDiv)
         {
-            if (i >= 0 && i < timeSignatures.Count)
-                return timeSignatures[i];
+            var beats = new List<Beat>();
+            for (int i = 0; i < timeSignatures.Count; i++)
+            {
+                var t = timeSignatures[i];
+
+                // until time, or until next signature start
+                float end = endTime;
+                if (i < timeSignatures.Count - 1)
+                    end = timeSignatures[i + 1].offset;
+
+                float duration = end - t.offset;
+                beats.AddRange(t._BeatsUntil(duration, beatDiv));
+            }
+            return beats;
+        }
+        public List<Beat> _BeatsUntil(float endTime)
+        {
+            var beats = new List<Beat>();
+            for (int i = 0; i < timeSignatures.Count; i++)
+            {
+                var t = timeSignatures[i];
+
+                // until time, or until next signature start
+                float end = endTime;
+                if (i < timeSignatures.Count - 1)
+                    end = timeSignatures[i + 1].offset;
+
+                float duration = end - t.offset;
+                beats.AddRange(t._BeatsUntil(duration, t.denominator));
+            }
+            return beats;
+        }
+        public List<Beat> _BeatsFrom(float startTime, float duration, int beatDiv)
+        {
+            var beats = new List<Beat>();
+            var t = GetSignatureAtTime(startTime, out int i);
+            float endTime = startTime + duration;
+
+            for (; i >= 0 && i < timeSignatures.Count; i++)
+            {
+                t = timeSignatures[i];
+
+                // until time, or until next signature start
+                float end = endTime;
+                if (i < timeSignatures.Count - 1)
+                    end = timeSignatures[i + 1].offset;
+
+                float _duration = end - t.offset;
+                beats.AddRange(t._BeatsUntil(_duration, beatDiv));
+            }
+
+            return beats;
+        }
+
+        public List<Beat> NextBeatsUntil(float endTime)
+        {
+            List<Beat> beats = new List<Beat>();
+
+            Beat b = FirstBeat;
+            while (b.time < endTime)
+                beats.Add(b.next);
+
+            return beats;
+        }
+        public List<Beat> NextBeatsBetween(float startTime, float endTime)
+        {
+            List<Beat> beats = new List<Beat>();
+            var b = Earliest(startTime);
+            while (b.time < endTime)
+            {
+                beats.Add(b);
+                b = b.next;
+            }
+            return beats;
+        }
+
+        public Beat Earliest(float time)
+        {
+            // has to have a time signature to run
+            if (time < 0) time = 0;
+
+            var ts = GetSignatureAtTime(time);
+            if (ts != null)
+            {
+                float beatF = time / ts.TimePerDivision(ts.denominator);
+                int beatNum = (int)beatF;
+                return new Beat(ts, beatNum);
+            }
+
+            // time is before the first time signature
+            else if (timeSignatures.Count > 0)
+            {
+                return timeSignatures[0].FirstBeat();
+            }
+
             else
                 return null;
         }
-        public (TimeSignature, TimeSignature) GetAdjacentSignatures(float time)
-        {
-            int idx = GetSignatureAtTimeIndex(time);
-            var currentSignature = GetSignatureAtIndex(idx);
-            var nextSignature = GetSignatureAtIndex(idx + 1);
 
-            return (currentSignature, nextSignature);
-        }
-        public List<TimeSignature> GetSignaturesBetween(float startTime, float endTime)
-        {
-            var list = new List<TimeSignature>();
-
-            // loop backward through signatures
-            // to ensure previous time signature is included
-
-            GetSignatureAtTime(startTime, out int index);
-            for (int i = index; i >= 0 && i < timeSignatures.Count; i++)
-            {
-                var t = timeSignatures[i];
-                list.Add(t);
-
-                // valid range
-                if (!(t.offset >= startTime && t.offset < endTime))
-                    break;
-            }
-
-            // instead
-            foreach (var t in timeSignatures)
-            {
-            }
-            return list;
-        }
-        public List<Beat> GetBarsBetween(float startTime, float endTime)
-        {
-            var bars = new List<Beat>();
-
-            var ts = GetSignaturesBetween(startTime, endTime);
-
-            for (int i = 0; i < ts.Count; i++)
-            {
-                float end = endTime;
-                float start = startTime;
-
-                // start is startTime or signature offset
-                if (i > 0)
-                    start = ts[i].offset;
-
-                // end is next time signature offset or duration
-                if (i < ts.Count - 1)
-                    end = ts[i + 1].offset;
-
-
-                bars.AddRange(ts[i].GetBarsBetween(start, end));
-            }
-
-            return bars;
-        }
-        public int GetSignatureAtTimeIndex(float time)
-        {
-            int toReturn = -1;
-            for (int i = 0; i < timeSignatures.Count; i++)
-            {
-                if (time >= timeSignatures[i].offset)
-                    toReturn = i;
-
-                else
-                    return toReturn;
-            }
-
-            return toReturn;
-        }
-        
-
-        // metronome?
-        public float GetNextBeatTime(float time, int div)
-        {
-            var sigs = GetAdjacentSignatures(time);
-            var a = sigs.Item1;
-            var b = sigs.Item2;
-
-            if (a == null)
-            {
-                // no beats found
-                if (b == null)
-                    return -1f;
-                else
-                    return sigs.Item2.offset;
-            }
-            else
-            {
-                float beatTime = a.NextBeatTime(time, div);
-
-                // there is no next time signature
-                // could also return the end of the chart
-                if (b == null)
-                    return beatTime;
-                else
-                    return Mathf.Min(beatTime, b.offset);
-            }
-        }
-
-
-
-        List<Beat> AllBars()
-        {
-            throw new System.NotImplementedException();
-            //foreach (var t in timeSignatures)
-            //{
-            //	var time = t.GetTimeOfBeat()
-            //}
-        }
-        List<Beat> AllBeats(int div)
-        {
-            throw new System.NotImplementedException();
-        }
-        void GetBarsBetween(float a, float b, int division) { }
-
-
-
-
-
-        // class Timing
-        // has local & global time
-        // has TimeSignature, measure, beat references
-        // other data?
 
         private class Timing
         {

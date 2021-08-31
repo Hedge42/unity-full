@@ -368,7 +368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000013118486}
+  m_AnchoredPosition: {x: 0, y: -116684.61}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &391612020
@@ -2283,7 +2283,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 989680710}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.8496872
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3849,10 +3849,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243332157413449558, guid: af864b356c8794b40867041fa7b532f8, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 1580770b9a3679b4cb23f4b555f9136e, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.7
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3992,7 +3992,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243953027151497700, guid: af864b356c8794b40867041fa7b532f8, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4157,7 +4157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterAudioSource: {fileID: 6189484934982401227}
   musicSource: {fileID: 6189484934982401227}
-  master: {fileID: 24100000, guid: af864b356c8794b40867041fa7b532f8, type: 2}
+  masterMixer: {fileID: 24100000, guid: af864b356c8794b40867041fa7b532f8, type: 2}
   masterGroup: {fileID: 24300002, guid: af864b356c8794b40867041fa7b532f8, type: 2}
   sfxGroup: {fileID: 243332157413449558, guid: af864b356c8794b40867041fa7b532f8, type: 2}
   musicGroup: {fileID: 243953027151497700, guid: af864b356c8794b40867041fa7b532f8, type: 2}

@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine.EventSystems;
 using Neat.UI;
+using UnityEngine.Events;
 
 namespace Neat.Music
 {
@@ -19,52 +20,96 @@ namespace Neat.Music
     {
         // public const string defaultPath = "D:/Music";
 
-        public event Action<float> onTick;
         public event Action<AudioClip> onClipLoaded;
+        public event Action onPlay;
+        public event Action onClipFinished;
+        public event Action<float> onSourceTick;
+        public event Action<float> onSkip;
+
 
         public MusicSlider timeSlider;
 
         // inspector, references
         public string defaultPath;
+        string[] filters = new string[] { ".mp3", ".wav" };
 
-        // data
         private bool isPaused = true;
         private bool wasPlaying; // for slider drag
 
-        private AudioSource source => AudioManager.instance.musicSource;
-        string[] filters = new string[] { ".mp3", ".wav" };
-        public float time => source.time;
-        public bool hasClip => source?.clip != null;
+        private bool _isPlaying;
+        public bool isPlaying
+        {
+            get
+            {
+                if (hasClip)
+                    _isPlaying = source.isPlaying;
+                return _isPlaying;
+            }
+        }
+        public AudioSource source
+        {
+            get
+            {
+                return AudioManager.instance.musicSource;
+            }
+        }
+        public AudioClip clip
+        {
+            get
+            {
+                return source.clip;
+            }
+        }
 
-        // mono
+        public float time
+        {
+            get
+            {
+                return source.time;
+            }
+            set
+            {
+                // force time=0 when no clip is loaded
+                if (hasClip)
+                    source.time = Mathf.Clamp(value, 0f, source.clip.length);
+                else
+                    source.time = 0f;
+            }
+        }
+
+        public bool hasClip
+        {
+            get
+            {
+                return source != null && source.clip != null;
+            }
+        }
+
+        private MediaControls _controls;
+        public MediaControls controls
+        {
+            get
+            {
+                if (_controls == null)
+                    _controls = GetComponent<MediaControls>();
+                return _controls;
+            }
+        }
+
         private void Start()
         {
             // initialize ui
             if (timeSlider != null)
             {
-                onTick += timeSlider.UpdateTime;
+                onSourceTick += timeSlider.UpdateTime;
                 timeSlider.interactable = false;
                 timeSlider.onDragStart.AddListener(OnDragStart);
                 timeSlider.onDragEnd.AddListener(OnDragEnd);
             }
-        }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Backspace))
+
+            if (controls != null)
             {
-                SkipTo(0f);
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                SkipTo(source.time + 5f);
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                SkipTo(source.time - 5f);
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Pause(!isPaused);
+                controls.SetTarget(PauseToggle, Skip, SkipTo);
             }
         }
 
@@ -85,10 +130,9 @@ namespace Neat.Music
                 Debug.LogError("Not a valid audio file: " + path + "\n" + e.Message);
             }
         }
-
-        // successful load
         private void SongLoaded()
         {
+            // successful load
             if (timeSlider != null)
             {
                 timeSlider.interactable = true;
@@ -114,12 +158,33 @@ namespace Neat.Music
         }
 
         // media functions
+        private IEnumerator _Play()
+        {
+            source.Play();
+            onPlay?.Invoke();
+
+            while (!isPaused)
+            {
+                if (source.isPlaying)
+                {
+                    onSourceTick?.Invoke(time);
+                }
+                else
+                {
+                    Pause(true);
+                    onClipFinished?.Invoke();
+                }
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
         public void Pause(bool isPaused)
         {
+            this.isPaused = isPaused;
+
             // stay paused if there is no clip
-            if (source.clip != null)
+            if (hasClip)
             {
-                this.isPaused = isPaused;
                 if (isPaused)
                 {
                     source.Pause();
@@ -128,31 +193,25 @@ namespace Neat.Music
                 else
                     StartCoroutine(_Play());
             }
-            else
-                this.isPaused = true;
+        }
+        public void PauseToggle()
+        {
+            Pause(!isPaused);
         }
         public void Play()
         {
             Pause(false);
         }
+
+        public void Skip(float delta)
+        {
+            time += delta;
+            onSkip?.Invoke(time);
+        }
         public void SkipTo(float time)
         {
-            if (source.clip != null)
-            {
-                time = Mathf.Clamp(time, 0, source.clip.length);
-                source.time = time;
-                onTick?.Invoke(source.time);
-            }
-        }
-        private IEnumerator _Play()
-        {
-            source.Play();
-            // don't break on chart missing for now
-            while (!isPaused && source.time < source.clip.length)
-            {
-                onTick?.Invoke(source.time);
-                yield return new WaitForEndOfFrame();
-            }
+            this.time = time;
+            onSkip?.Invoke(time);
         }
     }
 }

@@ -10,6 +10,11 @@ namespace Neat.Guitar
     [System.Serializable]
     public class TimeSignature
     {
+        [HideInInspector]
+        public TimeSignature next;
+        [HideInInspector]
+        public TimeSignature prev;
+
         // StartTime in the song
         [SerializeField] public float offset = 0f;
 
@@ -20,187 +25,91 @@ namespace Neat.Guitar
         public float beatsPerSecond => beatsPerMinute / 60f;
 
         // 4/4 common time
-        public int numerator;
-        public int denominator;
+        [SerializeField]
+        [Range(1, 16)]
+        public int numerator = 4;
+        [SerializeField]
+        [Range(1,16)]
+        public int denominator = 4;
 
-        public int SubDivisionsPerBar(int div)
+        public float TimePerDivision(int div)
         {
-            // EXAMPLES
+            // div is the denominator...
+            // 4 is a quarter note, 8 is an eigth note, 1 is a whole note
 
-            // divs = num * (div) / denom
-            // 6/8 and 1/2 divs → 6 * 2 / 8 = 1.5 divs
-            // 2/2 →
-
-            // num * denom / div
-            // 6/8 2s → 6 * 8 / 2 = 24
-
-            // div * 4 / denom
-            // 6 * 2 * 4 / 8
-
-            // (num / denom) * div
-            // (6 / 8) * (4 * 2) = 6
-            // (2 / 2) * (4 * 3) = 12
-
-            return (int)((float)(numerator / denominator) * (4 * div));
+            return beatsPerSecond * div / 4f;
         }
-        public float TimePerBeatDivision(float div)
+        public float TimePerMeasure()
         {
-            // beatsPerSecond is technically quarter notes (1 div) per scond
-            return beatsPerSecond * div;
+            return numerator * TimePerDivision(denominator);
+        }
+        public float DivisionsPerMeasureF(int div)
+        {
+            return (float)numerator * (float)div / (float)denominator;
+        }
+        public int DivisionsPerMeasure(int div)
+        {
+            return numerator * div / denominator;
         }
 
-        public float TimePerBar()
+        public List<Beat> _BeatsUntil(float duration, int beatDiv)
         {
-            // EXAMPLES
-            // num/dem → (num * (4 / denom)) * quarterNotesPerSecond
-            // 4/4 -> (4 * (4 / 4)) = 4 seconds
-            // 3/8 -> (3 * (4 / 8)) = 1.5
-            // 2/2 -> (2 * (4 / 2)) = 4
-            return (numerator * (4f / (float)denominator)) / beatsPerSecond;
-        }
-        public float TimeOfBar(int barNum)
-        {
-            return offset + LocalTimeOfBar(barNum);
-        }
-        public float LocalTimeOfBar(int barNum)
-        {
-            return barNum + TimePerBar();
-        }
+            List<Beat> beats = new List<Beat>();
 
-        public float TimePerBeat()
-        {
-            return beatsPerMinute / 60f;
-        }
-        public float TimeOfBeat(Beat b, int beatDivs)
-        {
-            return offset + LocalTimeOfBeat(b, beatDivs);
-        }
-        public float LocalTimeOfBeat(Beat b, int beatDivs)
-        {
-            return b.bar * TimePerBar()
-                + b.beat * TimePerBeat()
-                + b.subDiv * TimePerBeatDivision(beatDivs);
-        }
+            // calculate how many divs can exist during this time
+            float timePerDiv = TimePerDivision(beatDiv);
+            /*int divsPerMeasure = DivisionsPerMeasure(beatDiv);*/
+            int divsPerMeasure = DivisionsPerMeasure(beatDiv);
+            int numDivs = (int)(duration / timePerDiv);
 
-        public float DivisionsPerSecond(int div)
-        {
-            return beatsPerSecond / div;
-        }
-
-        public List<Beat> BeatsBetween(float startTime, float endTime, int div)
-        {
-            var beats = new List<Beat>();
-
-            // item1 or item2?
-            var beat = GetAdjacentBeats(startTime, div).Item1;
-            var divsBefore = (int)(DivisionsPerSecond(div) * startTime);
-            var numDivs = endTime - startTime;
-
-            // next → add ?? add → next
             for (int i = 0; i < numDivs; i++)
             {
-                beats.Add(beat);
-                beat = NextBeat(beat, div);
+                float localTime = timePerDiv * i;
+                if (localTime > duration)
+                    break;
+
+                int measureNum =  i / divsPerMeasure;
+                int beatNum = i;
+
+                Beat b = new Beat(localTime, localTime + offset, measureNum, beatNum, beatDiv);
+                beats.Add(b);
             }
 
             return beats;
-
         }
-        public List<Beat> BarsBetween(float startTime, float endTime)
+        public List<Beat> _BeatsFrom(float startTime, float duration, int beatDiv)
         {
-            var bars = new List<Beat>();
-            throw new System.NotImplementedException();
-        }
-        public (Beat, Beat) GetAdjacentBeats(float time, int subDivs)
-        {
-            int bar = (int)(time / TimePerBar());
-            float remaining = (float)(time - bar);
-            int beat = (int)(remaining / TimePerBeat());
-            remaining -= beat;
-            int subBeat = (int)(remaining / TimePerBeatDivision(subDivs));
+            List<Beat> beats = new List<Beat>();
 
-            Beat a = new Beat(0f, bar, beat, subBeat);
-            a.time = TimeOfBeat(a, subDivs);
-            Beat b = a.Clone();
+            float timePerDiv = TimePerDivision(beatDiv);
+            int divsPerMeasure = DivisionsPerMeasure(beatDiv);
+            float endTime = startTime + duration;
 
-            b.subDiv += 1;
-            bool newBeat = b.subDiv / subDivs >= 1;
-            if (newBeat)
+            // first div after the startTime
+            int i = (int)(startTime / timePerDiv) + 1;
+            float nextTime = i * timePerDiv;
+            while (nextTime < endTime)
             {
-                b.subDiv %= subDivs;
-                b.beat += 1;
+                int beatNum = i;
+                int measure = i / divsPerMeasure;
 
-                bool newBar = b.beat > SubDivisionsPerBar(1);
-                if (newBar)
-                {
-                    b.beat -= SubDivisionsPerBar(1);
-                    b.bar += 1;
-                }
+                beats.Add(new Beat(nextTime, nextTime + offset, measure, beatNum, beatDiv));
+
+                i += 1;
+                nextTime = i * timePerDiv;
             }
 
-            (Beat, Beat) t = (a, b);
-
-            return t;
-        }
-        public Beat NextBeat(Beat a, int subDivs)
-        {
-            Beat b = a.Clone();
-
-            b.subDiv += 1;
-            bool newBeat = b.subDiv / subDivs >= 1;
-            if (newBeat)
-            {
-                b.subDiv %= subDivs;
-                b.beat += 1;
-
-                bool newBar = b.beat > SubDivisionsPerBar(1);
-                if (newBar)
-                {
-                    b.beat -= SubDivisionsPerBar(1);
-                    b.bar += 1;
-                }
-            }
-
-            return b;
+            return beats;
         }
 
-        public (Beat, Beat) GetAdjacentBars(float time)
+        public Beat FirstBeat()
         {
-            time = time - offset;
-
-            int barNum = (int)(time / TimePerBar());
-            var a = new Beat(time, barNum, 0, 0);
-            var b = new Beat(time + TimePerBar(), barNum + 1, 0, 0);
-            return (a, b);
-        }
-        public List<Beat> GetBarsBetween(float startTime, float endTime)
-        {
-            float localStart = startTime - offset;
-            float localEnd = endTime - offset;
-
-            float timePerBar = TimePerBar();
-
-            // the first bar found after startTime
-            int barNum = (int)(localStart / timePerBar);
-
-
-
-            var bars = new List<Beat>();
-            for (; ; barNum++)
-            {
-                // add bar to list if in range
-                float barTime = barNum * timePerBar;
-                if (barTime < localEnd)
-                    bars.Add(new Beat(barTime + offset, barNum, 0, 0));
-                else
-                    break;
-            }
-            return bars;
+            return new Beat(this, 0);
         }
 
-        public float NextBeatTime(float time, float div)
+        private void ProcessBeat(Beat b)
         {
-            throw new System.NotImplementedException();
+            // has beatNum
         }
 
         public override string ToString()

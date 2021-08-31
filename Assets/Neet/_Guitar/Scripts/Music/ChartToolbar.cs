@@ -10,20 +10,13 @@ namespace Neat.Guitar
 {
     public class ChartToolbar : MonoBehaviour
     {
-        private class ToolbarState
-        {
-            bool hasChart;
-            bool hasMusic;
-            bool hasTimeSignature;
-        }
-
-        private ChartPlayer _player;
-        public ChartPlayer player
+        private ChartController _player;
+        public ChartController player
         {
             get
             {
                 if (_player == null)
-                    _player = GetComponent<ChartPlayer>();
+                    _player = GetComponent<ChartController>();
                 return _player;
             }
         }
@@ -93,8 +86,6 @@ namespace Neat.Guitar
                 ts.denominator = den;
                 ts.beatsPerMinute = bpm;
                 player.chart.timingMap.AddTimeSignature(ts);
-
-                print("created a time signature!");
             }
 
         }
@@ -104,7 +95,7 @@ namespace Neat.Guitar
         public void BpmClick() { }
         public void BpmDownClick()
         {
-            var ts = player.chart.timingMap.GetSignatureAtTime(player.musicPlayer.time);
+            var ts = player.chart.timingMap.GetSignatureAtTime(player.player.time);
             ts.beatsPerMinute -= 1;
         }
         public void BpmInputchanged(string s)
@@ -113,7 +104,7 @@ namespace Neat.Guitar
         }
         public void BpmUpClick()
         {
-            var ts = player.chart.timingMap.GetSignatureAtTime(player.musicPlayer.time);
+            var ts = player.chart.timingMap.GetSignatureAtTime(player.player.time);
             ts.beatsPerMinute += 1;
         }
 
@@ -164,7 +155,21 @@ namespace Neat.Guitar
         }
         public void FindMusicClick()
         {
-            player.musicPlayer.LoadFile();
+            player.player.LoadFile();
         }
+
+
+
+
+
     }
+
+    // idea
+    public class ToolbarState
+    {
+        bool hasChart;
+        bool hasMusic;
+        bool hasTimeSignature;
+    }
+
 }

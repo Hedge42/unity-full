@@ -12,12 +12,15 @@ namespace Neat.Music
     public class MusicSlider : MonoBehaviour
     {
         // TODO
-        public MusicPlayer player;
+        // public MusicPlayer player;
 
         public TextMeshProUGUI tmp;
 
+        [HideInInspector]
         public UnityEvent<float> onDragStart;
+        [HideInInspector]
         public UnityEvent<float> onDragEnd;
+        [HideInInspector]
         public UnityEvent<float> onDrag;
 
         public bool interactable
@@ -80,6 +83,7 @@ namespace Neat.Music
             slider.maxValue = range;
         }
 
+        // these need to be set in the inspector...
         private bool isDragging;
         public void OnValueChanged()
         {

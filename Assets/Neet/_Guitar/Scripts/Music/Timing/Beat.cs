@@ -9,37 +9,128 @@ namespace Neat.Guitar
     [System.Serializable]
     public class Beat
     {
+        public enum BeatType
+        {
+            TimeSignature = 0,
+            Measure = 1,
+            MajorDivision = 2,
+            MinorSubdivision = 3,
+        }
+
+        public BeatType beatType
+        {
+            get;
+            private set;
+        }
+
+        public TimeSignature signature;
+
         public float time;
+        public float localTime;
 
         // Measure # in the timing signature
-        public int bar;
-
-        // Beat # (quarter notes) in the measure
-        public int beat;
+        public int measure;
+        public int beatNum;
 
         // SubBeat # (< quarter notes) in the quater-note beat
-        public int subDiv;
+        public int beatDiv;
 
-        public Beat(float time, int bar, int beat, int subDiv)
+        // derived
+        public string measureString
         {
+            get
+            {
+                return (measure + 1) + "_" + (localBeatNum + 1) + "/" + beatDiv;
+            }
+        }
+        public string timeString
+        {
+            get
+            {
+                return time.ToString("f3");
+            }
+        }
+        public bool isSignatureStart
+        {
+            get
+            {
+                return measure == 0 && beatNum == 0;
+            }
+        }
+        public bool isMeasureStart
+        {
+            get
+            {
+                return beatNum % beatDiv == 0;
+            }
+        }
+        public int localBeatNum
+        {
+            get
+            {
+                return beatNum % beatDiv;
+            }
+        }
+
+        public Beat next
+        {
+            get
+            {
+                return Next();
+            }
+        }
+
+        public Beat(TimeSignature t, int beatNum)
+        {
+            this.beatDiv = t.denominator;
+            this.signature = t;
+            this.beatNum = beatNum;
+
+            this.measure = beatNum / beatDiv;
+            this.localTime = beatNum * t.TimePerDivision(beatDiv);
+            this.time = localTime + t.offset;
+        }
+
+        public Beat(float localTime, float time, int measure, int beatNum, int beatDiv)
+        {
+            this.localTime = localTime;
             this.time = time;
-            this.bar = bar;
-            this.beat = beat;
-            this.subDiv = subDiv;
+            this.measure = measure;
+            this.beatNum = beatNum;
+            this.beatDiv = beatDiv;
         }
         public Beat Clone()
         {
-            return new Beat(time, bar, beat, subDiv);
+            return new Beat(localTime, time, measure, beatNum, beatDiv);
+        }
+
+        public Beat Next()
+        {
+            var b = new Beat(signature, beatNum + 1);
+
+            // return the first beat of the next time signature
+            // if the next beat's time is greater than it's offset
+
+            if (signature.next != null)
+            {
+                if (b.time >= signature.next.offset)
+                    return signature.next.FirstBeat();
+            }
+
+            return b;
         }
 
         public bool Equals(Beat b)
         {
-            return bar == b.bar && beat == b.beat && subDiv == b.subDiv;
+            if (b == null)
+                return false;
+
+            return beatNum == b.beatNum && beatDiv == b.beatDiv;
         }
 
         public override string ToString()
         {
-            return bar + " - " + beat + "/" + subDiv + " (" + time.ToString("f3") + ")";
+            return measureString + "(" + timeString + ")";
         }
     }
 }

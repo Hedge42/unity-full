@@ -13,11 +13,6 @@ namespace Neat.Guitar
             base.OnInspectorGUI();
 
             var _target = (BeatDrawer)target;
-
-            if (GUILayout.Button("Draw"))
-            {
-                _target.DrawBars(0f, _target.GetComponent<ChartPlayer>().chart.duration);
-            }
         }
     }
 }

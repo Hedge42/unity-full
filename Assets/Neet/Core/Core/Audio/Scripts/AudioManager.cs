@@ -9,7 +9,16 @@ namespace Neat.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager instance;
+        private static AudioManager _instance;
+        public static AudioManager instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = GameObject.FindObjectOfType<AudioManager>();
+                return _instance;
+            }
+        }
         public static event Action<AudioManager> onClipLoaded;
 
         public AudioSource masterAudioSource;
@@ -23,8 +32,8 @@ namespace Neat.Audio
 
         private void Awake()
         {
-            if (instance == null)
-                instance = this;
+            if (_instance == null)
+                _instance = this;
             else
                 Destroy(gameObject);
 

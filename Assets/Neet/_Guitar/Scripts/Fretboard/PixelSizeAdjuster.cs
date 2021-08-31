@@ -87,6 +87,16 @@ public class PixelSizeAdjuster : MonoBehaviour
 
     private bool isSubscribed;
 
+    private void OnEnable()
+    {
+        UpdateSize();
+    }
+
+    private void OnDestroy()
+    {
+        handler.onChange -= UpdateSize;
+    }
+
     private void Initialize()
     {
         if (!isSubscribed && handler != null)
@@ -95,7 +105,6 @@ public class PixelSizeAdjuster : MonoBehaviour
             isSubscribed = true;
         }
     }
-
     public void UpdateSize()
     {
         Initialize();
