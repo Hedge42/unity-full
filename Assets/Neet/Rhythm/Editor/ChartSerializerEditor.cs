@@ -19,9 +19,15 @@ namespace Neat.Music
             //    Chart.Load
             //}
 
+
+
             if (GUILayout.Button("Save"))
             {
                 _target.chart.Save();
+            }
+            if (GUILayout.Button("Open directory"))
+            {
+                Chart.OpenDirectory();
             }
         }
     }

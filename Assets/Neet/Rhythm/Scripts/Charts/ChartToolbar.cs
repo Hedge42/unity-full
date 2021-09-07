@@ -85,7 +85,7 @@ namespace Neat.Music
                 ts.numerator = num;
                 ts.denominator = den;
                 ts.beatsPerMinute = bpm;
-                player.chart.timingMap.AddTimeSignature(ts);
+                player.chart.timingMap.Add(ts);
             }
 
         }

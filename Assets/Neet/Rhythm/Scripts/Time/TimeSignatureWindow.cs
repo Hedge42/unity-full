@@ -8,7 +8,7 @@ namespace Neat.Music
 {
     public class TimeSignatureWindow : MonoBehaviour
     {
-        // can only edit one at once
+        // singleton - can only edit one at a time
         private static TimeSignatureWindow _instance;
         public static TimeSignatureWindow instance
         {
@@ -20,20 +20,21 @@ namespace Neat.Music
             }
         }
 
-        // ui references
-        public Button bpmUp;
+        // ui references - componentUI pattern?
+        public Button offsetDown;
+        public TMP_InputField offsetText;
+        public Button offsetUp;
         public Button bpmDown;
         public TMP_InputField bpmText;
+        public Button bpmUp;
         public TMP_InputField numText;
         public TMP_InputField denText;
 
         // data
-        private TimeSignature timeSignature;
-        private float bpm;
-        private int num;
-        private int den;
+        public TimeSignature cloned { get; private set; }
+        public TimeSignatureUI ui { get; private set; }
 
-
+        // references
         private ChartController _controller;
         public ChartController controller
         {
@@ -55,61 +56,80 @@ namespace Neat.Music
             }
         }
 
+        // mono
         private void Start()
         {
             SetEvents();
         }
 
-        public static void Edit(TimeSignatureUI t)
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Return))
+            {
+                ApplyAndClose();
+            }
+        }
+
+        // functions
+        public static void Open(TimeSignatureUI t)
         {
             instance.gameObject.SetActive(true);
             instance.Load(t);
-        }
-
-        public void Load(TimeSignatureUI t)
-        {
-            SetTimeSignature(t.timeSignature);
-            rect.anchoredPosition = t.rect.anchoredPosition;
         }
         public static void Close()
         {
             instance.gameObject.SetActive(false);
         }
-
-        public void SetTransform(TimeSignatureUI t)
+        public static void Apply()
         {
-            rect.SetParent(t.transform);
+            instance.ApplyChanges();
+        }
+        public static void ApplyAndClose()
+        {
+            instance.ApplyChanges();
+            Close();
         }
 
-        public void SetTimeSignature(TimeSignature t)
+        private void Load(TimeSignatureUI t)
         {
-            timeSignature = t;
-            bpm = t.beatsPerMinute;
-            num = t.numerator;
-            den = t.denominator;
+            // set data
+            cloned = t.timeSignature.Clone();
+            ui = t;
 
-            bpmText.text = t.beatsPerMinute.ToString("f3");
-            // offsetText.text = t.offset.ToString("f3");
-            numText.text = t.numerator.ToString();
-            denText.text = t.denominator.ToString();
+            // set position
+            rect.position = t.rect.position;
+
+            // set text
+            UpdateText();
+        }
+        private void UpdateText()
+        {
+            bpmText.text = cloned.beatsPerMinute.ToString("f3");
+            offsetText.text = cloned.offset.ToString("f3");
+            numText.text = cloned.numerator.ToString();
+            denText.text = cloned.denominator.ToString();
         }
         private void ApplyChanges()
         {
-            timeSignature.beatsPerMinute = bpm;
-            timeSignature.numerator = num;
-            timeSignature.denominator = den;
+            ui.controller.chart.timingMap.Overwrite(ui.timeSignature, cloned);
+            ui.controller.SetTime(cloned.offset);
         }
 
         private void SetEvents()
         {
+            // offset
+            offsetUp.onClick.AddListener(OnOffsetUp);
+            offsetDown.onClick.AddListener(OnOffsetDown);
+            offsetText.onSubmit.AddListener(OnOffsetTextChange);
+
+            // bpm
             bpmUp.onClick.AddListener(OnBpmUp);
             bpmDown.onClick.AddListener(OnBpmDown);
-
-            // bpmText.onValueChanged.AddListener(OnBpmTextChange);
             bpmText.onSubmit.AddListener(OnBpmTextChange);
             bpmText.onDeselect.AddListener(OnBpmTextChange);
             bpmText.onEndEdit.AddListener(OnBpmTextChange);
 
+            // offset
             numText.onValueChanged.AddListener(OnNumTextChange);
             denText.onValueChanged.AddListener(OnDenTextChange);
         }
@@ -120,7 +140,7 @@ namespace Neat.Music
             {
                 f = Mathf.Clamp(f, 20f, 300f);
 
-                bpm = f;
+                cloned.beatsPerMinute = f;
                 UpdateBpmText();
             }
             else
@@ -130,39 +150,68 @@ namespace Neat.Music
         }
         private void UpdateBpmText()
         {
-            bpmText.text = bpm.ToString("f3");
+            bpmText.text = cloned.beatsPerMinute.ToString("f3");
         }
         private void OnBpmUp()
         {
-            print("bpm up click");
-            bpm += 1;
+            cloned.beatsPerMinute += 1;
             UpdateBpmText();
         }
         private void OnBpmDown()
         {
-            print("bpm down click");
-            bpm -= 1;
+            cloned.beatsPerMinute -= 1;
             UpdateBpmText();
         }
+
+        private void OnOffsetTextChange(string s)
+        {
+            if (float.TryParse(s, out float f))
+            {
+                f = Mathf.Clamp(f, 20f, 300f);
+
+                cloned.offset = f;
+
+                UpdateOffsetText();
+            }
+            else
+            {
+                UpdateOffsetText();
+            }
+        }
+        private void UpdateOffsetText()
+        {
+            offsetText.text = cloned.offset.ToString("f3");
+        }
+        private void OnOffsetUp()
+        {
+            cloned.offset += 1;
+            UpdateOffsetText();
+        }
+        private void OnOffsetDown()
+        {
+            cloned.offset -= 1;
+            UpdateOffsetText();
+        }
+
         private void OnNumTextChange(string s)
         {
             if (int.TryParse(s, out int value))
             {
                 value = Mathf.Clamp(value, 1, 64);
-                num = value;
+                cloned.numerator = value;
             }
 
-            numText.text = num.ToString();
+            numText.text = cloned.numerator.ToString();
         }
         private void OnDenTextChange(string s)
         {
             if (int.TryParse(s, out int value))
             {
                 value = Mathf.Clamp(value, 1, 64);
-                den = value;
+                cloned.denominator = value;
             }
 
-            denText.text = den.ToString();
+            denText.text = cloned.denominator.ToString();
         }
     }
 }

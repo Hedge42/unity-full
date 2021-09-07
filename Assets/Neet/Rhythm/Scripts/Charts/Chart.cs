@@ -25,7 +25,7 @@ namespace Neat.Music
         }
 
         public string name = "new_chart";
-        public string path = "";
+        public string path => directory + name + ext;
         public string musicPath;
 
         public TimingMap timingMap;
@@ -35,7 +35,12 @@ namespace Neat.Music
         {
             name = "name";
             timingMap = new TimingMap();
-            path = "";
+            tracks = new List<Track>();
+        }
+
+        public static void OpenDirectory()
+        {
+            FileManagement.FileManager.OpenExplorer(directory);
         }
 
         public void Save()

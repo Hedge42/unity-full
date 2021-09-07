@@ -11,33 +11,54 @@ namespace Neat.Music
     public class TimeSignature
     {
         [HideInInspector]
+        [NonSerialized]
         public TimeSignature next;
+        [NonSerialized]
         [HideInInspector]
         public TimeSignature prev;
 
         // StartTime in the song
-        [SerializeField] public float offset = 0f;
+        [SerializeField]
+        public float offset = 0f;
 
         // quarter notes per minute
-        [SerializeField] public float beatsPerMinute = 120f;
+        [SerializeField]
+        public float beatsPerMinute = 120f;
 
         // quarter notes per second
         public float beatsPerSecond => beatsPerMinute / 60f;
 
-        public TimingMap timingMap { get; set; }
+        [NonSerialized] // fixes serialization loop
+        public TimingMap _timingMap;
+        public TimingMap timingMap
+        {
+            get { return _timingMap; }
+            set { _timingMap = value; }
+        }
 
         // 4/4 common time
         [SerializeField]
         [Range(1, 16)]
         public int numerator = 4;
         [SerializeField]
-        [Range(1,16)]
+        [Range(1, 16)]
         public int denominator = 4;
 
-        public TimeSignature()
+        public TimeSignature Clone()
         {
+            var ts = new TimeSignature();
+            ts.offset = offset;
+            ts.numerator = numerator;
+            ts.denominator = denominator;
+            ts.timingMap = timingMap;
+            ts.beatsPerMinute = beatsPerMinute;
+            ts.prev = prev;
+            ts.next = next;
 
+            return ts;
         }
+
+        public TimeSignature() { }
         public TimeSignature(float offset)
         {
             this.offset = offset;
@@ -45,12 +66,8 @@ namespace Neat.Music
 
         public float TimePerDivision(int div)
         {
-            // div is the denominator...
-            // 4 is a quarter note, 8 is an eigth note, 1 is a whole note
-
-            var r = (div / 4f) / beatsPerSecond;
-            //Debug.Log("div: " + div + " at " + beatsPerSecond + " bps - " + r + "tpd");
-            return r;
+            // time per beat = 1 / beats per time
+            return (4f / div) / beatsPerSecond;
         }
         public float TimePerMeasure()
         {

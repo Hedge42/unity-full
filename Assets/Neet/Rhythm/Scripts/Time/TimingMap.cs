@@ -21,6 +21,7 @@ namespace Neat.Music
         }
 
         //public event Action onChange;
+        [NonSerialized]
         private UnityEvent _onChange;
         public UnityEvent onChange
         {
@@ -70,6 +71,9 @@ namespace Neat.Music
             // set timing map reference
             foreach (TimeSignature t in timeSignatures)
                 t.timingMap = this;
+
+
+            Debug.Log("Processed " + timeSignatures.Count + " time signatures");
         }
 
         private List<TimeSignature> Sort()
@@ -82,15 +86,14 @@ namespace Neat.Music
 
                 for (int i = 0; i < timeSignatures.Count - 1; i++)
                 {
-                    // swap?
                     var a = timeSignatures[i];
                     var b = timeSignatures[i + 1];
+                    // swap?
                     if (a.offset > b.offset)
                     {
-                        // swap
-                        var temp = a;
-                        a = b;
-                        b = temp;
+                        var temp = a; // ??????
+                        timeSignatures[i] = b;
+                        timeSignatures[i + 1] = temp;
 
                         // raise flag if swap occured
                         flag = true;
@@ -100,14 +103,21 @@ namespace Neat.Music
 
             return timeSignatures;
         }
-        public void AddTimeSignature(TimeSignature t)
+        public void Add(TimeSignature t)
         {
             timeSignatures.Add(t);
             ProcessSignatures();
 
             onChange?.Invoke();
         }
-        public void RemoveTimeSignature(TimeSignature t)
+        public void Overwrite(TimeSignature _prev, TimeSignature _new)
+        {
+            int i = timeSignatures.IndexOf(_prev);
+            timeSignatures[i] = _new;
+
+            ProcessSignatures();
+        }
+        public void Remove(TimeSignature t)
         {
             timeSignatures.Remove(t);
             ProcessSignatures();
@@ -133,7 +143,6 @@ namespace Neat.Music
                 {
                     index = i;
                     return timeSignatures[i];
-
                 }
             }
 

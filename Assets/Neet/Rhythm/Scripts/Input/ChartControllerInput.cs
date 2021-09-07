@@ -37,7 +37,7 @@ namespace Neat.Music
                 //controller.EditTimeSignature();
 
                 var t = new TimeSignature(controller.time);
-                controller.chart.timingMap.AddTimeSignature(t);
+                controller.chart.timingMap.Add(t);
                 // TimeSignatureWindow.Edit()
             }
 

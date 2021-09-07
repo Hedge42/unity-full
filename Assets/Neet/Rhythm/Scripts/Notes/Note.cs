@@ -12,9 +12,10 @@ namespace Neat.Music.Notes
     [System.Serializable]
     public class Track
     {
-        public Composition composition; // parent ref
+        public string name;
+        //public Composition composition; // parent ref
 
-        public NoteMap notes;
+        //public NoteMap notes;
     }
     public class KeySignature
     {

@@ -29,7 +29,7 @@ namespace Neat.Music
 
         public TimeSignature timeSignature { get; private set; }
 
-        private ChartController controller;
+        public ChartController controller { get; private set; }
 
         public static TimeSignatureUI Create(GameObject prefab, Transform container, TimeSignature t, ChartController controller)
         {
@@ -44,13 +44,16 @@ namespace Neat.Music
 
         private void ToggleWindow()
         {
-            if (TimeSignatureWindow.instance.gameObject.activeInHierarchy)
+            bool close = TimeSignatureWindow.instance.gameObject.activeInHierarchy
+                && TimeSignatureWindow.instance.ui == this;
+
+            if (close)
             {
                 TimeSignatureWindow.Close();
             }
             else
             {
-                TimeSignatureWindow.Edit(this);
+                TimeSignatureWindow.Open(this);
             }
         }
 
