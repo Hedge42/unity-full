@@ -2,23 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// made a class to serialize tunings
-public class GuitarTuning
+namespace Neat.Music
 {
-    public string name;
-
-    public int numStrings { get { return stringValues.Length; } }
-
-    public int[] stringValues;
-
-    public GuitarTuning()
+    // made a class to serialize tunings
+    public class GuitarTuning
     {
-        this.stringValues = new int[] { 4, 9, 2, 7, 0, 5 };
-        this.name = "Standard";
-    }
-    
-    private static GuitarTuning Standard()
-    {
-        return new GuitarTuning();
+        public string name;
+
+        public int numStrings { get { return stringValues.Length; } }
+
+        public int[] stringValues;
+
+        public GuitarTuning()
+        {
+            this.stringValues = new int[] {
+                4 + 12 * 2,
+                9 + 12 * 2,
+                2 + 12 * 3,
+                7 + 12 * 3,
+                11 + 12 * 3,
+                4 + 12 * 4
+            };
+            this.name = "Standard";
+        }
+
+        private static GuitarTuning Standard()
+        {
+            return new GuitarTuning();
+        }
+
+        public List<Note> Notes()
+        {
+            List<Note> _notes = new List<Note>();
+            foreach (int note in stringValues)
+                _notes.Add(new Note(note));
+            return _notes;
+        }
     }
 }

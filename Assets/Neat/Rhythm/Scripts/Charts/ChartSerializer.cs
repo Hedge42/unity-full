@@ -7,5 +7,6 @@ namespace Neat.Music
     public class ChartSerializer : MonoBehaviour
     {
         public Chart chart;
+        public Track track;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace Neat.Music
 {
-    public class NoteSelectHandler : UIEventHandler
+    public class NoteTrackHandler : UIEventHandler
     {
         public override void OnPointerClick(PointerEventData eventData)
         {

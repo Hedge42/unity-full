@@ -7,36 +7,33 @@ namespace Neat.Music
 {
     public class UIEventHandler : MonoBehaviour, IPointerClickHandler,
         IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler,
-        IDragHandler, IInitializePotentialDragHandler
+        IDragHandler, IInitializePotentialDragHandler, IEndDragHandler
     {
         public virtual void OnDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+        }
+        public virtual void OnEndDrag(PointerEventData eventData)
+        {
         }
 
         public virtual void OnInitializePotentialDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
         }
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
-            throw new NotImplementedException();
         }
 
         public virtual void OnPointerDown(PointerEventData eventData)
         {
-            throw new NotImplementedException();
         }
 
-        public virtual void OnPointerEnter(PointerEventData eventData)
+        public void OnPointerEnter(PointerEventData eventData)
         {
-            throw new NotImplementedException();
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
-            throw new NotImplementedException();
         }
     }
 }

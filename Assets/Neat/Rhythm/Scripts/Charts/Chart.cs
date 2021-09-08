@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Neat.FileManagement;
-using Neat.Music.Notes;
 using UnityEngine;
 
 namespace Neat.Music
@@ -23,20 +22,14 @@ namespace Neat.Music
                 return ".chart";
             }
         }
-
-        public string name = "new_chart";
         public string path => directory + name + ext;
         public string musicPath;
 
-        public TimingMap timingMap;
-        public List<Track> tracks;
+        public string name = "new_chart";
 
-        public Chart()
-        {
-            name = "name";
-            timingMap = new TimingMap();
-            tracks = new List<Track>();
-        }
+        public TimingMap timingMap = new TimingMap();
+
+        public List<Track> tracks = new List<Track>();
 
         public static void OpenDirectory()
         {

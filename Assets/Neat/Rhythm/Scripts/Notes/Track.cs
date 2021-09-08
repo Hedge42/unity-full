@@ -8,7 +8,9 @@ namespace Neat.Music
 {
     public class Track
     {
-        public string instrument;
-        public List<Note> notes;
+        public string instrument = "keyboard";
+        public NoteMap noteMap = new NoteMap();
+
+
     }
 }

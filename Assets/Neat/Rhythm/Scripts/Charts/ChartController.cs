@@ -7,6 +7,7 @@ namespace Neat.Music
     {
         // references
         public GameObject timeSignaturePrefab;
+        public NoteUI notePrefab;
 
         private ChartSerializer _serializer;
         public ChartSerializer serializer
@@ -22,6 +23,25 @@ namespace Neat.Music
         {
             get { return serializer.chart; }
             set { serializer.chart = value; }
+        }
+
+        private Track _track;
+        public Track track
+        {
+            get
+            {
+                if (_track == null)
+                {
+                    if (chart.tracks.Count == 0)
+                        chart.tracks.Add(new Track());
+                    _track = chart.tracks[0];
+                }
+                return _track;
+            }
+            set
+            {
+                _track = value;
+            }
         }
 
         public MusicPlayer player;
@@ -102,8 +122,6 @@ namespace Neat.Music
                 return _toolbar;
             }
         }
-
-        
 
         // 
         public float time

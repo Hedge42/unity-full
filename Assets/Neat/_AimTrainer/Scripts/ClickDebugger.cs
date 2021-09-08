@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[ExecuteAlways]
 public class ClickDebugger : MonoBehaviour
 {
     public bool debug;
