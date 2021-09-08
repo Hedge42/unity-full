@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Neet/_AimTrainer/Scenes/_Main Menu.unity
+    path: Assets/Neat/_AimTrainer/Scenes/_Main Menu.unity
     guid: aa7e888f31e475d4384479fb1cfa5b33
   - enabled: 1
-    path: Assets/Neet/_AimTrainer/Scenes/_Play Menu.unity
+    path: Assets/Neat/_AimTrainer/Scenes/_Play Menu.unity
     guid: f0e34b5c34a3e304f88522e4d88eb3c0
   - enabled: 1
-    path: Assets/Neet/_AimTrainer/Scenes/_Training Room.unity
+    path: Assets/Neat/_AimTrainer/Scenes/_Training Room.unity
     guid: 1504e8905ca7da14590adf108058ac9a
   - enabled: 1
-    path: Assets/Neet/_AimTrainer/Scenes/ReticleEditor.unity
+    path: Assets/Neat/_AimTrainer/Scenes/ReticleEditor.unity
     guid: ed82d497185fac443bdbb741c8f6a0c6
   m_configObjects: {}
