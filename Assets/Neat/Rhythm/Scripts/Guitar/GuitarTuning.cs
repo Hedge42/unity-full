@@ -34,8 +34,8 @@ namespace Neat.Music
         public List<Note> Notes()
         {
             List<Note> _notes = new List<Note>();
-            foreach (int note in stringValues)
-                _notes.Add(new Note(note));
+            for (int i = 0; i < stringValues.Length; i++)
+                _notes.Add(new Note(stringValues[i], i, 0));
             return _notes;
         }
     }

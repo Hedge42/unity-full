@@ -9,20 +9,37 @@ namespace Neat.Music
         public float off;
         public int value;
         public int lane;
+        public int fret;
+
+        public int min
+        {
+            get { return value - fret; }
+        }
+        public int max
+        {
+            get { return min + 24; }
+        }
 
         public float duration
         {
             get { return off - on; }
         }
-
         public Note(int value)
         {
             this.value = value;
         }
+        public Note(int value, int lane, int fret)
+        {
+            this.value = value;
+            this.lane = lane;
+            this.fret = fret;
+        }
+
         public Note Clone()
         {
             var note = new Note(value);
             note.lane = lane;
+            note.fret = fret;
             note.on = on;
             note.off = off;
             return note;
@@ -67,6 +84,22 @@ namespace Neat.Music
         public string FullName(bool preferFlats = true)
         {
             return Name(preferFlats) + Octave();
+        }
+        public string TimeLabel()
+        {
+            return on.ToString("f3") + "-" + off.ToString("f3");
+        }
+        public string FretName(bool preferFlats = true)
+        {
+            return fret + "(" + Name() + ")";
+        }
+        public string FretFullName(bool preferFlats = true)
+        {
+            return fret + "(" + FullName() + ")";
+        }
+        public string FullFullName(bool preferFlats = true)
+        {
+            return FretFullName() + " @ " + TimeLabel();
         }
     }
 }

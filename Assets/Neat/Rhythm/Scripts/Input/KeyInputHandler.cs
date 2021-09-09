@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace Neat.Music
 {
-    public class NoteOverlayHandler : UIEventHandler
+    public class KeyInputHandler : UIEventHandler
     {
         private NoteUI _ui;
         public NoteUI ui
@@ -23,7 +23,25 @@ namespace Neat.Music
 
         public override void OnPointerClick(PointerEventData eventData)
         {
+            // create track note from overlay
+            print("Overlay note clicked " + ui.note.FullName());
+            float duration = GetDuration();
+            Note note = SetTimings(duration);
 
+            ui.overlay.track.CreateTrackNote(note);
+        }
+
+        private Note SetTimings(float duration)
+        {
+            // clone and set timings
+            var note = ui.note.Clone();
+            note.on = ui.overlay.controller.time;
+            note.off = note.on + duration;
+            return note;
+        }
+
+        private float GetDuration()
+        {
             // find length of note
             var controller = ui.overlay.controller;
             var timingMap = controller.chart.timingMap;
@@ -34,17 +52,9 @@ namespace Neat.Music
             else
                 duration = Mathf.Min(1f, timingMap.
                     Earliest(controller.time).time - controller.time);
-
-            // clone and set timings
-            var note = ui.note.Clone();
-            note.on = ui.overlay.controller.time;
-            note.off = note.on + duration;
-
-            ui.overlay.track.CreateTrackNote(note);
-
-            print("Created " + ui.note.FullName()
-                + "(" + note.on + "-" + note.off + ")");
+            return duration;
         }
+
 
         public override void OnInitializePotentialDrag(PointerEventData eventData)
         {

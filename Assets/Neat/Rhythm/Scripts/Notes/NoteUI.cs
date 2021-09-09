@@ -7,20 +7,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using Neat.States;
 
 namespace Neat.Music
 {
     public class NoteUI : MonoBehaviour
     {
-        public UIEventHandler eventHandler;
-
-        public TextMeshProUGUI text;
+        // references
+        public TextMeshProUGUI tmpMain;
+        public TextMeshProUGUI tmpSub;
+        public Image foreground;
         public Image background;
+        public Button btn;
+        public RectMask2D mask;
 
+
+        [HideInInspector]
         public Note note;
-
-        public NoteOverlay overlay { get; private set; }
-
+        [HideInInspector]
+        public UIEventHandler eventHandler;
+        public KeyOverlay overlay { get; private set; }
         private RectTransform _rect;
         public RectTransform rect
         {
@@ -32,22 +38,31 @@ namespace Neat.Music
             }
         }
 
-        public void SetData(Note n, NoteOverlay o)
+        public void SetData(Note n, KeyOverlay o)
         {
             note = n;
             overlay = o;
-            text.text = n.FullName();
+
+            UpdateText();
+        }
+        public void UpdateText()
+        {
+            // fret for now
+            tmpMain.text = note.fret.ToString();
+            tmpSub.text = note.FullName();
         }
 
-        public void UpdateTrackPosition(Note n, NoteOverlay o)
+        public void SetInput<T>() where T : UIEventHandler
         {
-            // requires reference to overlay
-            float dps = o.controller.scroller.distancePerSecond;
-            float width = n.duration * dps;
-            float xPos = n.on * dps;
-            float yPos = o.GetY(n.lane);
-            rect.position = new Vector2(xPos, yPos);
-            rect.sizeDelta = new Vector2(width, rect.sizeDelta.y);
+            if (eventHandler != null)
+                Destroyer.Destroy(eventHandler);
+
+            eventHandler = btn.gameObject.AddComponent<T>();
+        }
+
+        public void ToggleHighlight(bool value)
+        {
+            mask.enabled = value;
         }
     }
 }

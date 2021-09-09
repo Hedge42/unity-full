@@ -53,7 +53,7 @@ namespace Neat.Music
         private void UpdatePosition()
         {
             //rect.anchoredPosition = controller.scroller.GetLocalPosition(beat.time);
-            rect.localPosition = controller.scroller.GetLocalPosition(beat.time);
+            rect.localPosition = controller.ui.scroller.GetLocalPosition(beat.time);
         }
         private void UpdateColor()
         {
@@ -75,7 +75,7 @@ namespace Neat.Music
 
             if (beat.isSignatureStart)
             {
-                GameObject p = controller.timeSignaturePrefab;
+                GameObject p = controller.ui.timeSignaturePrefab;
                 tsm = TimeSignatureUI.Create(p, this.transform, beat.signature, controller);
             }
         }

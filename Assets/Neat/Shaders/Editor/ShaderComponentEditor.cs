@@ -25,8 +25,8 @@ public class ShaderComponentEditor : Editor
 
         _target.width = EditorGUILayout.Slider(_target.width, 0, 800);
 
-        //float maxRadius = Mathf.Min(_target.rt.rect.size.x, _target.rt.rect.size.y) / 2f;
-        //_target.radius = EditorGUILayout.Slider(_target.radius, 0, maxRadius);
+        float maxRadius = Mathf.Min(_target.rt.rect.size.x, _target.rt.rect.size.y) / 2f;
+        _target.radius = EditorGUILayout.Slider(_target.radius, 0, maxRadius);
 
         if (EditorGUI.EndChangeCheck())
         {

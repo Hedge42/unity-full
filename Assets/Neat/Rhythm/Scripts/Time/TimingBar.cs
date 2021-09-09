@@ -119,7 +119,7 @@ namespace Neat.Music
             {
                 // calculates beats
                 DiscardAll();
-                var _beats = timingMap.TimingsBetween(f, controller.scroller.maxTime);
+                var _beats = timingMap.TimingsBetween(f, controller.ui.scroller.maxTime);
                 foreach (Timing b in _beats)
                     Add(b);
 
@@ -136,7 +136,7 @@ namespace Neat.Music
         {
             // draw up to end
             var next = latestBeat.Next();
-            while (next.time <= controller.scroller.maxTime)
+            while (next.time <= controller.ui.scroller.maxTime)
             {
                 Add(next);
                 next = next.Next();
@@ -157,13 +157,13 @@ namespace Neat.Music
         {
             // draw up to end
             var next = latestBeat.Next();
-            while (next.time <= controller.scroller.maxTime)
+            while (next.time <= controller.ui.scroller.maxTime)
             {
                 Add(next);
                 next = next.Next();
             }
 
-            float minTime = showFullWindow ? controller.scroller.minTime : controller.time;
+            float minTime = showFullWindow ? controller.ui.scroller.minTime : controller.time;
             minTime = controller.time;
 
             // remove up to start
@@ -175,7 +175,7 @@ namespace Neat.Music
             }
 
             // play metronome only once, even if multiple were passed.
-            if (ticked != null && controller.clock.isActive)
+            if (ticked != null && controller.states.clock.isActive)
                 PlayMetronome(ticked);
         }
 
@@ -203,7 +203,7 @@ namespace Neat.Music
 
         public void CreateAll()
         {
-            var beats = timingMap.TimingsBetween(controller.time, controller.scroller.maxTime);
+            var beats = timingMap.TimingsBetween(controller.time, controller.ui.scroller.maxTime);
             foreach (Timing b in beats)
                 Add(b);
         }

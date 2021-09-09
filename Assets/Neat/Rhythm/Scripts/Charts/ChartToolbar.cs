@@ -10,14 +10,14 @@ namespace Neat.Music
 {
     public class ChartToolbar : MonoBehaviour
     {
-        private ChartController _player;
-        public ChartController player
+        private ChartController _controller;
+        public ChartController controller
         {
             get
             {
-                if (_player == null)
-                    _player = GetComponent<ChartController>();
-                return _player;
+                if (_controller == null)
+                    _controller = GetComponent<ChartController>();
+                return _controller;
             }
         }
 
@@ -81,11 +81,11 @@ namespace Neat.Music
             if (validNum && validDen && validBpm)
             {
                 var ts = new TimeSignature();
-                ts.offset = player.time;
+                ts.offset = controller.time;
                 ts.numerator = num;
                 ts.denominator = den;
                 ts.beatsPerMinute = bpm;
-                player.chart.timingMap.Add(ts);
+                controller.chart.timingMap.Add(ts);
             }
 
         }
@@ -129,7 +129,7 @@ namespace Neat.Music
 
         public void NewChartClick()
         {
-            player.LoadChart(new Chart());
+            controller.LoadChart(new Chart());
         }
         public void LoadChartClick()
         {
@@ -149,13 +149,13 @@ namespace Neat.Music
 
             // Chart.directory 
 
-            var chart = player.chart;
+            var chart = controller.chart;
 
             FileManager.SerializeBinary(chart, Chart.directory + chart.name + Chart.ext);
         }
         public void FindMusicClick()
         {
-            player.player.LoadFile();
+            controller.ui.player.LoadFile();
         }
 
 

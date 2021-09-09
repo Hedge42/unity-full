@@ -44,7 +44,7 @@ namespace Neat.Music
             }
             if (GUILayout.Button("Remove All"))
             {
-                _target.timingBar.DiscardAll();
+                _target.ui.timingBar.DiscardAll();
             }
         }
     }

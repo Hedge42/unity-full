@@ -4,14 +4,14 @@ using UnityEditor;
 namespace Neat.Music
 {
 
-    [CustomEditor(typeof(NoteOverlay))]
+    [CustomEditor(typeof(KeyOverlay))]
     public class NoteOverlayEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            var _target = (NoteOverlay)target;
+            var _target = (KeyOverlay)target;
 
             if (GUILayout.Button("Destroy"))
             {
@@ -20,6 +20,7 @@ namespace Neat.Music
             else if (GUILayout.Button("From Tuning"))
             {
                 _target.UpdateOverlay(new GuitarTuning().Notes());
+                _target.SetColors();
             }
         }
     }
