@@ -51,6 +51,28 @@ namespace Neat.Music
 
             UpdateText();
         }
+
+        public void UpdateTransform()
+        {
+            // switch to left-alignment
+            rect.pivot = new Vector2(0, rect.pivot.y);
+
+            float dps = overlay.controller.ui.scroller.distancePerSecond;
+            var overlayNote = overlay.existing[note.lane];
+
+            // note length
+            var length = note.timeSpan.duration * dps;
+            rect.sizeDelta = new Vector2(length, overlayNote.rect.sizeDelta.y);
+            print("Timespan: " + note.timeSpan.duration + " — Length: " + length);
+
+            // position calculations
+            var x = note.timeSpan.on * overlay.controller.ui.scroller.distancePerSecond;
+            var y = overlayNote.rect.position.y;
+
+            // anchored x, global y
+            rect.anchoredPosition = new Vector2(x, 0);
+            rect.position = new Vector3(rect.position.x, y);
+        }
         public void UpdateText()
         {
             // fret for now
@@ -66,6 +88,7 @@ namespace Neat.Music
                 tmpSub.text = "";
             }
         }
+
         public void SetInput<T>() where T : UIEventHandler
         {
             if (eventHandler != null)

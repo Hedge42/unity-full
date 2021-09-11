@@ -49,6 +49,9 @@ namespace Neat.Music
         // later: multi-select support
         public static NoteUI selected;
 
+        // use this for drag
+        private Vector2 mouseDownPos;
+
         // passive input state
         public override void OnDrag(PointerEventData eventData)
         {
@@ -62,21 +65,27 @@ namespace Neat.Music
             // up or down - change string
 
             var mouse = Input.mousePosition;
-            if (mouse.y > ui.rect.position.y)
+
+            // center origin?
+            if (mouse.y > ui.rect.position.y + ui.rect.sizeDelta.y)
             {
                 // change string up
+                StringUp();
             }
-            else if (mouse.y < ui.rect.position.y + ui.rect.sizeDelta.y)
+            else if (mouse.y < ui.rect.position.y - ui.rect.sizeDelta.y)
             {
                 // change string down
+                StringDown();
             }
             else if (mouse.x < ui.rect.position.x)
             {
                 // set note start to previous timing
+                TimingBack();
             }
-            else if (mouse.x > ui.rect.position.x + ui.rect.sizeDelta.x)
+            else if (mouse.x > ui.rect.position.x + ui.rect.sizeDelta.x / 2)
             {
                 // set note end to next timing
+                TimingForward();
             }
         }
 
@@ -86,43 +95,71 @@ namespace Neat.Music
             int maxLane = 5; // notes don't have this reference
             bool hasNote = false; // is there already a note there?
 
-            if (ui.note.lane < maxLane) // there is a higher string
+            if (!hasNote && ui.note.lane < maxLane) // there is a higher string
             {
                 ui.note.lane += 1;
+                ui.UpdateText();
+                ui.UpdateTransform();
             }
-            //else if () // there is already a note there
-            //{
-            //}
-
-
-            ui.note.lane += 1;
+            else
+            {
+                print("Can't string up");
+            }
         }
-        private void AdjustTimingBack()
+        private void StringDown()
         {
+            int maxLane = 5; // notes don't have this reference
+            bool hasNote = false; // is there already a note there?
 
+            if (!hasNote && ui.note.lane >= 0) // there is a lower string
+            {
+                ui.note.lane -= 1;
+                ui.UpdateText();
+                ui.UpdateTransform();
+
+                // ui.UpdateColor();
+            }
+            else
+            {
+                print("Can't string down");
+            }
         }
-        private void AdjustTimingForward()
-        {
 
+        private void TimingBack()
+        {
+            var earliest = controller.chart.timingMap.Earliest(ui.note.timeSpan.on);
+            var prev = earliest.Prev();
+            var duration = ui.note.timeSpan.duration;
+            ui.note.timeSpan.on = prev.time;
+            ui.note.timeSpan.off = prev.time + duration;
+            ui.UpdateTransform();
+        }
+        private void TimingForward()
+        {
+            var earliest = controller.chart.timingMap.Earliest(ui.note.timeSpan.on);
+            var next = earliest.Next();
+            var nextX = next.time * overlay.controller.ui.scroller.distancePerSecond;
+
+            var duration = ui.note.timeSpan.duration;
+            ui.note.timeSpan.on = next.time;
+            ui.note.timeSpan.off = next.time + duration;
+            ui.UpdateTransform();
         }
 
         // click state?
         public override void OnPointerDown(PointerEventData eventData)
         {
-
-        }
-        public override void OnPointerClick(PointerEventData eventData)
-        {
-            print("Clicked " + ui.note.FullFullName());
+            // start drag
+            print("Pointer down " + ui.note.FullFullName());
+            mouseDownPos = Input.mousePosition;
             Select();
         }
-
 
         // selected state?
         public void GetInput()
         {
             // click outside to cancel changes
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
             {
                 var selected = EventSystem.current.currentSelectedGameObject;
                 if (selected != this.gameObject)
@@ -136,7 +173,6 @@ namespace Neat.Music
             if (Input.GetMouseButtonDown(1))
             {
                 var selected = EventSystem.current.currentSelectedGameObject;
-
                 if (selected == this.gameObject)
                 {
                     Deselect();

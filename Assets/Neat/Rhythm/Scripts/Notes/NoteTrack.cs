@@ -44,9 +44,10 @@ namespace Neat.Music
             TrackNote g = n.Clone();
             g.timeSpan = NewTimeSpan();
             ui.SetData(g, overlay);
+            ui.UpdateTransform();
 
             // setting up
-            UpdateTransform(ui);
+            // UpdateTransform(ui);
 
             print("Placed " + g.FullName() + " @ " + g.timeSpan.label);
 
