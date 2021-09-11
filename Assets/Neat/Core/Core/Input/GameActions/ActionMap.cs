@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Neat.Input
+namespace Neat.InputManagement
 {
     public class ActionMap
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neat.Input
+namespace Neat.InputManagement
 {
     public class PlayerController : MonoBehaviour
     {

@@ -24,35 +24,8 @@ namespace Neat.Music
         public override void OnPointerClick(PointerEventData eventData)
         {
             // create track note from overlay
-            print("Overlay note clicked " + ui.note.FullName());
-            float duration = GetDuration();
-            Note note = SetTimings(duration);
-
-            ui.overlay.track.CreateTrackNote(note);
-        }
-
-        private Note SetTimings(float duration)
-        {
-            // clone and set timings
-            var note = ui.note.Clone();
-            note.on = ui.overlay.controller.time;
-            note.off = note.on + duration;
-            return note;
-        }
-
-        private float GetDuration()
-        {
-            // find length of note
-            var controller = ui.overlay.controller;
-            var timingMap = controller.chart.timingMap;
-            TimeSignature signature = timingMap.GetSignatureAtTime(controller.time);
-            float duration = 0f;
-            if (signature != null)
-                duration = signature.TimePerDivision(signature.denominator);
-            else
-                duration = Mathf.Min(1f, timingMap.
-                    Earliest(controller.time).time - controller.time);
-            return duration;
+            // print("Overlay note clicked " + ui.note.Name());
+            ui.overlay.track.CreateTrackNote(ui.note);
         }
 
 

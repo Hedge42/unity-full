@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Neat.Music
 {
+    [Serializable]
     public class KeySignature
     {
-        public Timing timing;
+        public float time;
+        public MusicScale scale = new MusicScale();
+
+        public KeySignature next;
+        public KeySignature prev;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neat.Input
+namespace Neat.InputManagement
 {
     public class NewPlayerManager : MonoBehaviour
     {

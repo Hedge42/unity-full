@@ -1,8 +1,8 @@
-﻿using Neat.Input;
+﻿using Neat.InputManagement;
 using System.Collections;
 using UnityEngine;
 
-namespace Neat.Input
+namespace Neat.InputManagement
 {
     public class PlayerManager : MonoBehaviour
     {

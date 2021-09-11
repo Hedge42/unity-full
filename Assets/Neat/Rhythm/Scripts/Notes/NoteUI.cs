@@ -14,6 +14,11 @@ namespace Neat.Music
     public class NoteUI : MonoBehaviour
     {
         // references
+
+        // new NoteTextSetter(main, sub)
+        // new GuitarNoteText(main, sub)
+        // new PianoNoteText(main, sub)
+
         public TextMeshProUGUI tmpMain;
         public TextMeshProUGUI tmpSub;
         public Image foreground;
@@ -23,10 +28,10 @@ namespace Neat.Music
 
 
         [HideInInspector]
-        public Note note;
+        public TrackNote note;
         [HideInInspector]
         public UIEventHandler eventHandler;
-        public KeyOverlay overlay { get; private set; }
+
         private RectTransform _rect;
         public RectTransform rect
         {
@@ -37,8 +42,9 @@ namespace Neat.Music
                 return _rect;
             }
         }
+        public KeyOverlay overlay { get; set; }
 
-        public void SetData(Note n, KeyOverlay o)
+        public void SetData(TrackNote n, KeyOverlay o)
         {
             note = n;
             overlay = o;
@@ -48,10 +54,18 @@ namespace Neat.Music
         public void UpdateText()
         {
             // fret for now
-            tmpMain.text = note.fret.ToString();
-            tmpSub.text = note.FullName();
+            if (note.GetType() == typeof(TrackNote))
+            {
+                var gNote = (TrackNote)note;
+                tmpMain.text = gNote.fret.ToString();
+                tmpSub.text = gNote.FullName();
+            }
+            else
+            {
+                tmpMain.text = note.Name();
+                tmpSub.text = "";
+            }
         }
-
         public void SetInput<T>() where T : UIEventHandler
         {
             if (eventHandler != null)
@@ -59,7 +73,6 @@ namespace Neat.Music
 
             eventHandler = btn.gameObject.AddComponent<T>();
         }
-
         public void ToggleHighlight(bool value)
         {
             mask.enabled = value;

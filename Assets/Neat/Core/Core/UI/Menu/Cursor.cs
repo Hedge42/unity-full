@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.Input;
+using Neat.InputManagement;
 using UnityEngine.UI;
 
-namespace Neat.Input
+namespace Neat.InputManagement
 {
     /// <summary>
     /// While there is only 1 cursor, the master device is used.

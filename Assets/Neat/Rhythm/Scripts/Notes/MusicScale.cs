@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Scale
+public class MusicScale
 {
     private readonly int[] cMajor = new int[] { 0, 2, 4, 5, 7, 9, 11 };
 
@@ -33,23 +33,24 @@ public class Scale
     }
 
     public bool preferFlats;
-    public int[] notes;
+    public int[] notes { get; private set; }
 
-    public Scale()
+    public MusicScale()
     {
-        key = 0;
-        mode = 0;
-        preferFlats = true;
-    }
-    public Scale(int key, int mode, bool preferFlats = true)
-    {
+        this.key = 0;
+        this.mode = 0;
+        this.preferFlats = false;
         this.notes = BuildScale(key, mode);
+    }
+    public MusicScale(int key, int mode, bool preferFlats = true)
+    {
         this.preferFlats = preferFlats;
+        this.notes = BuildScale(key, mode);
     }
 
     public bool HasNote(int note)
     {
-        return Scale.HasNote(this.notes, note);
+        return MusicScale.HasNote(this.notes, note);
     }
     public static bool HasNote(int[] scale, int note)
     {
@@ -222,8 +223,40 @@ public class Scale
         var scale = notes;
 
         for (var i = 0; i < scale.Length; i++)
-            text += Scale.NoteValueToName(scale[i], preferFlats, false) + " ";
+            text += MusicScale.NoteValueToName(scale[i], preferFlats, false) + " ";
 
         return text;
+    }
+
+    public static string Name(int value, bool preferFlats)
+    {
+        value %= 12;
+
+        if (value == 0)
+            return "C";
+        else if (value == 1)
+            return preferFlats ? "D" + "b" : "C" + "#";
+        else if (value == 2)
+            return "D";
+        else if (value == 3)
+            return preferFlats ? "E" + "b" : "D" + "#";
+        else if (value == 4)
+            return "E";
+        else if (value == 5)
+            return "F";
+        else if (value == 6)
+            return preferFlats ? "G" + "b" : "F" + "#";
+        else if (value == 7)
+            return "G";
+        else if (value == 8)
+            return preferFlats ? "A" + "b" : "G" + "#";
+        else if (value == 9)
+            return "A";
+        else if (value == 10)
+            return preferFlats ? "B" + "b" : "A" + "#";
+        else if (value == 11)
+            return "B";
+        else
+            return "(" + value + ")";
     }
 }

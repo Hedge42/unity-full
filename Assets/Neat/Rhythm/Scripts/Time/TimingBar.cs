@@ -188,7 +188,7 @@ namespace Neat.Music
         }
         public void SkipBack()
         {
-            print("Skip back: " + earliestBeat.time + " → " + earliestBeat.Prev().time);
+            // print("Skip back: " + earliestBeat.time + " → " + earliestBeat.Prev().time);
 
             controller.SetTime(earliestBeat.Prev().time);
         }

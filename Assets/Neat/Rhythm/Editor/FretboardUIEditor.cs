@@ -30,7 +30,7 @@ namespace Neat.Music
 			GUILayout.BeginHorizontal();
 			EditorGUILayout.PrefixLabel("Key");
 			fretboard.key = EditorGUILayout.Popup(fretboard.key,
-				Scale.AllNoteNames(fretboard.preferFlats));
+				MusicScale.AllNoteNames(fretboard.preferFlats));
 			GUILayout.EndHorizontal();
 
 			// mode
@@ -41,7 +41,7 @@ namespace Neat.Music
 			GUILayout.EndHorizontal();
 
 			// update scale
-			fretboard.scale = new Scale(fretboard.key, fretboard.mode, fretboard.preferFlats);
+			fretboard.scale = new MusicScale(fretboard.key, fretboard.mode, fretboard.preferFlats);
 
 			// show scale
 			GUILayout.BeginHorizontal();
@@ -84,7 +84,7 @@ namespace Neat.Music
 		private void EditTuning()
 		{
 			isTuningFoldout = EditorGUILayout.Foldout(isTuningFoldout, "Tuning");
-			string[] noteNames = Scale.AllNoteNames(fretboard.preferFlats);
+			string[] noteNames = MusicScale.AllNoteNames(fretboard.preferFlats);
 
 			if (isTuningFoldout)
 			{
@@ -107,9 +107,9 @@ namespace Neat.Music
 					}
 
 					// showing dropdown
-					int stringValue = fretboard.tuning.stringValues[i];
+					int stringValue = fretboard.tuning.values[i];
 					int selected = EditorGUILayout.Popup(stringValue, noteNames);
-					fretboard.tuning.stringValues[i] = selected;
+					fretboard.tuning.values[i] = selected;
 
 					// last 2 buttons
 					HandleStringAdd(i);
@@ -125,9 +125,9 @@ namespace Neat.Music
 		{
 			if (GUILayout.Button("-", GUILayout.Width(30)))
 			{
-				List<int> list = new List<int>(fretboard.tuning.stringValues);
+				List<int> list = new List<int>(fretboard.tuning.values);
 				list.RemoveAt(index);
-				fretboard.tuning.stringValues = list.ToArray();
+				fretboard.tuning.values = list.ToArray();
 				return true;
 			}
 			return false;
@@ -136,22 +136,22 @@ namespace Neat.Music
 		{
 			if (GUILayout.Button("+", GUILayout.Width(30)))
 			{
-				List<int> list = new List<int>(fretboard.tuning.stringValues);
-				list.Insert(index, fretboard.tuning.stringValues[index]);
-				fretboard.tuning.stringValues = list.ToArray();
+				List<int> list = new List<int>(fretboard.tuning.values);
+				list.Insert(index, fretboard.tuning.values[index]);
+				fretboard.tuning.values = list.ToArray();
 			}
 		}
 		private void HandleStringMoveUp(int index)
 		{
-			EditorGUI.BeginDisabledGroup(index <= 0 || fretboard.tuning.stringValues.Length <= 1);
+			EditorGUI.BeginDisabledGroup(index <= 0 || fretboard.tuning.values.Length <= 1);
 
 			if (GUILayout.Button("↑", GUILayout.Width(30)))
 			{
-				var clicked = fretboard.tuning.stringValues[index];
-				var prev = fretboard.tuning.stringValues[index - 1];
+				var clicked = fretboard.tuning.values[index];
+				var prev = fretboard.tuning.values[index - 1];
 
-				fretboard.tuning.stringValues[index] = prev;
-				fretboard.tuning.stringValues[index - 1] = clicked;
+				fretboard.tuning.values[index] = prev;
+				fretboard.tuning.values[index - 1] = clicked;
 			}
 
 			EditorGUI.EndDisabledGroup();
@@ -159,15 +159,15 @@ namespace Neat.Music
 
 		private void HandleStringMoveDown(int index)
 		{
-			EditorGUI.BeginDisabledGroup(index >= fretboard.tuning.numStrings - 1 || fretboard.tuning.stringValues.Length <= 1);
+			EditorGUI.BeginDisabledGroup(index >= fretboard.tuning.numStrings - 1 || fretboard.tuning.values.Length <= 1);
 
 			if (GUILayout.Button("↓", GUILayout.Width(30)))
 			{
-				var clicked = fretboard.tuning.stringValues[index];
-				var next = fretboard.tuning.stringValues[index + 1];
+				var clicked = fretboard.tuning.values[index];
+				var next = fretboard.tuning.values[index + 1];
 
-				fretboard.tuning.stringValues[index] = next;
-				fretboard.tuning.stringValues[index + 1] = clicked;
+				fretboard.tuning.values[index] = next;
+				fretboard.tuning.values[index + 1] = clicked;
 			}
 
 			EditorGUI.EndDisabledGroup();

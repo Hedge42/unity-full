@@ -28,7 +28,9 @@ namespace Neat.Music
         public string name = "new_chart";
 
         public TimingMap timingMap = new TimingMap();
+        public KeyMap keyMap = new KeyMap();
 
+        [HideInInspector]
         public List<Track> tracks = new List<Track>();
 
         public static void OpenDirectory()

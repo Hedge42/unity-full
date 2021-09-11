@@ -5,7 +5,7 @@ namespace Neat.Music
 {
 
     [CustomEditor(typeof(KeyOverlay))]
-    public class NoteOverlayEditor : Editor
+    public class KeyOverlayEditor : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -19,8 +19,7 @@ namespace Neat.Music
             }
             else if (GUILayout.Button("From Tuning"))
             {
-                _target.UpdateOverlay(new GuitarTuning().Notes());
-                _target.SetColors();
+                _target.UpdateOverlay(new GuitarTuning().TrackNotes());
             }
         }
     }

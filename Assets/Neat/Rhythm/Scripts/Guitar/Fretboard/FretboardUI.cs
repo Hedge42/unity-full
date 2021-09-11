@@ -44,13 +44,13 @@ namespace Neat.Music
 		// public Color foregroundColor;
 		// public Color backgroundColor;
 
-		private Scale _scale;
-		public Scale scale
+		private MusicScale _scale;
+		public MusicScale scale
 		{
 			get
 			{
 				if (_scale == null)
-					_scale = new Scale();
+					_scale = new MusicScale();
 				return _scale;
 			}
 			set

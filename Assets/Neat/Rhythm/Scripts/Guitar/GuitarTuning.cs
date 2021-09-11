@@ -9,13 +9,14 @@ namespace Neat.Music
     {
         public string name;
 
-        public int numStrings { get { return stringValues.Length; } }
+        public int numStrings { get { return values.Length; } }
+        public int[] values;
 
-        public int[] stringValues;
+        public int numFrets = 25; // include open string
 
         public GuitarTuning()
         {
-            this.stringValues = new int[] {
+            values = new int[] {
                 4 + 12 * 2,
                 9 + 12 * 2,
                 2 + 12 * 3,
@@ -23,7 +24,7 @@ namespace Neat.Music
                 11 + 12 * 3,
                 4 + 12 * 4
             };
-            this.name = "Standard";
+            name = "Standard";
         }
 
         private static GuitarTuning Standard()
@@ -31,11 +32,11 @@ namespace Neat.Music
             return new GuitarTuning();
         }
 
-        public List<Note> Notes()
+        public List<TrackNote> TrackNotes()
         {
-            List<Note> _notes = new List<Note>();
-            for (int i = 0; i < stringValues.Length; i++)
-                _notes.Add(new Note(stringValues[i], i, 0));
+            List<TrackNote> _notes = new List<TrackNote>();
+            for (int i = 0; i < values.Length; i++)
+                _notes.Add(new TrackNote(this, i, 0));
             return _notes;
         }
     }

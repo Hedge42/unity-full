@@ -163,7 +163,7 @@ namespace Neat.Music
 				{
 					var fo = (FretObject)frets[offset + j + FretboardUI.MAX_FRETS * i];
 
-					if (!Scale.HasNote(ui.scale.notes, fo.note))
+					if (!MusicScale.HasNote(ui.scale.notes, fo.note))
 						fo.displayMode = Fret.FretToggleMode.Hidden;
 
 					fo.UpdateDisplay();

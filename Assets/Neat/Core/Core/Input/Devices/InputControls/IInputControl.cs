@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neat.Input
+namespace Neat.InputManagement
 {
     public interface IInputControl
     {
