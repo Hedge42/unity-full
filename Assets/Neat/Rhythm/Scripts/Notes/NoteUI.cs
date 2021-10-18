@@ -28,7 +28,7 @@ namespace Neat.Music
 
 
         [HideInInspector]
-        public TrackNote note;
+        public Note note;
         [HideInInspector]
         public UIEventHandler eventHandler;
 
@@ -44,7 +44,7 @@ namespace Neat.Music
         }
         public KeyOverlay overlay { get; set; }
 
-        public void SetData(TrackNote n, KeyOverlay o)
+        public void SetData(Note n, KeyOverlay o)
         {
             note = n;
             overlay = o;
@@ -52,6 +52,12 @@ namespace Neat.Music
             UpdateText();
         }
 
+        public void UpdateUI()
+        {
+            UpdateTransform();
+            UpdateText();
+            UpdateColor();
+        }
         public void UpdateTransform()
         {
             // switch to left-alignment
@@ -63,7 +69,7 @@ namespace Neat.Music
             // note length
             var length = note.timeSpan.duration * dps;
             rect.sizeDelta = new Vector2(length, overlayNote.rect.sizeDelta.y);
-            print("Timespan: " + note.timeSpan.duration + " — Length: " + length);
+            // print("Timespan: " + note.timeSpan.duration + " — Length: " + length);
 
             // position calculations
             var x = note.timeSpan.on * overlay.controller.ui.scroller.distancePerSecond;
@@ -76,9 +82,9 @@ namespace Neat.Music
         public void UpdateText()
         {
             // fret for now
-            if (note.GetType() == typeof(TrackNote))
+            if (note.GetType() == typeof(Note))
             {
-                var gNote = (TrackNote)note;
+                var gNote = (Note)note;
                 tmpMain.text = gNote.fret.ToString();
                 tmpSub.text = gNote.FullName();
             }
@@ -88,6 +94,10 @@ namespace Neat.Music
                 tmpSub.text = "";
             }
         }
+        public void UpdateColor()
+        {
+            foreground.color = overlay.GetComponent<ColorPalette>().colors[note.lane];
+        }
 
         public void SetInput<T>() where T : UIEventHandler
         {
@@ -96,9 +106,20 @@ namespace Neat.Music
 
             eventHandler = btn.gameObject.AddComponent<T>();
         }
-        public void ToggleHighlight(bool value)
+        public void Select(bool enabled)
         {
-            mask.enabled = value;
+            if (enabled)
+            {
+                // select
+                foreground.color = overlay.pallete.selectedColor;
+
+                // mask.enabled = value;
+            }
+            else
+            {
+                // deselect
+                foreground.color = overlay.pallete.colors[note.lane];
+            }
         }
     }
 }

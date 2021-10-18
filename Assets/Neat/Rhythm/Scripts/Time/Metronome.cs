@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Neat.Audio;
 
 namespace Neat.Music
@@ -8,6 +9,8 @@ namespace Neat.Music
     [RequireComponent(typeof(SoundBank))]
     public class Metronome : MonoBehaviour
     {
+        public bool mute;
+
         private SoundBank _sounds;
         public SoundBank sounds
         {
@@ -21,6 +24,8 @@ namespace Neat.Music
 
         public void Play(bool emphasized)
         {
+            if (mute) return;
+
             if (emphasized)
                 sounds.Play(0);
             else

@@ -15,8 +15,8 @@ namespace Neat.Music
     {
         // this class shouldn't be handling logic, just routing events
         // use states for logic handling
-        private ChartController _controller;
-        public ChartController controller
+        private ChartPlayer _controller;
+        public ChartPlayer controller
         {
             get
             {
@@ -77,12 +77,12 @@ namespace Neat.Music
                 // change string down
                 StringDown();
             }
-            else if (mouse.x < ui.rect.position.x)
+            else if (mouse.x < ui.rect.position.x - ui.rect.sizeDelta.x / 2)
             {
                 // set note start to previous timing
                 TimingBack();
             }
-            else if (mouse.x > ui.rect.position.x + ui.rect.sizeDelta.x / 2)
+            else if (mouse.x > ui.rect.position.x + ui.rect.sizeDelta.x)
             {
                 // set note end to next timing
                 TimingForward();
@@ -92,14 +92,20 @@ namespace Neat.Music
         // drag state?
         private void StringUp()
         {
-            int maxLane = 5; // notes don't have this reference
             bool hasNote = false; // is there already a note there?
 
-            if (!hasNote && ui.note.lane < maxLane) // there is a higher string
+            if (!hasNote && ui.note.lane < overlay.numLanes - 1) // there is a higher string
             {
                 ui.note.lane += 1;
-                ui.UpdateText();
-                ui.UpdateTransform();
+
+                // default → update note
+                // shift → update fret
+                if (!Input.GetKey(KeyCode.LeftShift))
+                    ui.note.UpdateNote();
+                else
+                    ui.note.UpdateFret();
+
+                ui.UpdateUI();
             }
             else
             {
@@ -108,16 +114,20 @@ namespace Neat.Music
         }
         private void StringDown()
         {
-            int maxLane = 5; // notes don't have this reference
             bool hasNote = false; // is there already a note there?
 
             if (!hasNote && ui.note.lane >= 0) // there is a lower string
             {
                 ui.note.lane -= 1;
-                ui.UpdateText();
-                ui.UpdateTransform();
 
-                // ui.UpdateColor();
+                // default → update note
+                // shift → update fret
+                if (!Input.GetKey(KeyCode.LeftShift))
+                    ui.note.UpdateNote();
+                else
+                    ui.note.UpdateFret();
+
+                ui.UpdateUI();
             }
             else
             {
@@ -131,7 +141,11 @@ namespace Neat.Music
             var prev = earliest.Prev();
             var duration = ui.note.timeSpan.duration;
             ui.note.timeSpan.on = prev.time;
-            ui.note.timeSpan.off = prev.time + duration;
+
+            // stretch if holding shift
+            if (!Input.GetKey(KeyCode.LeftShift))
+                ui.note.timeSpan.off = prev.time + duration;
+
             ui.UpdateTransform();
         }
         private void TimingForward()
@@ -141,7 +155,10 @@ namespace Neat.Music
             var nextX = next.time * overlay.controller.ui.scroller.distancePerSecond;
 
             var duration = ui.note.timeSpan.duration;
-            ui.note.timeSpan.on = next.time;
+
+            // stretch if holding shift
+            if (!Input.GetKey(KeyCode.LeftShift))
+                ui.note.timeSpan.on = next.time;
             ui.note.timeSpan.off = next.time + duration;
             ui.UpdateTransform();
         }
@@ -230,7 +247,7 @@ namespace Neat.Music
             Deselect();
             selected = ui;
             controller.states.SetInput(this);
-            ui.ToggleHighlight(true);
+            ui.Select(true);
 
         }
         public static void Deselect()
@@ -240,7 +257,7 @@ namespace Neat.Music
             {
                 print("Deselecting " + selected.gameObject.name);
                 selected.overlay.controller.states.UpdateInput();
-                selected.ToggleHighlight(false);
+                selected.Select(false);
             }
         }
     }

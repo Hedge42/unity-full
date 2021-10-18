@@ -17,10 +17,6 @@ namespace Neat.Music
             {
                 _target.DestroyUI();
             }
-            else if (GUILayout.Button("From Tuning"))
-            {
-                _target.UpdateOverlay(new GuitarTuning().TrackNotes());
-            }
         }
     }
 }

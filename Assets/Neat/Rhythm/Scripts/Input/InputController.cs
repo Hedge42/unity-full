@@ -25,7 +25,7 @@ namespace Neat.Music
         private void idk()
         {
             // make chart input
-            new ChartControllerInput(GetComponent<ChartController>());
+            new ChartPlayerInput(GetComponent<ChartPlayer>());
 
             // new KeyOverlayInput(GetComponent<KeyOverlayInput>());
             // new NoteInputHandler(GetComponent<NoteInputHandler>());

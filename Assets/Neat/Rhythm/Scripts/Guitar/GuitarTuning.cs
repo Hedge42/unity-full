@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Neat.Music
 {
     // made a class to serialize tunings
+    [System.Serializable]
     public class GuitarTuning
     {
         public string name;
@@ -13,6 +14,12 @@ namespace Neat.Music
         public int[] values;
 
         public int numFrets = 25; // include open string
+
+        public int this[int index]
+        {
+            get { return values[index]; }
+            set { values[index] = value; }
+        }
 
         public GuitarTuning()
         {
@@ -32,12 +39,20 @@ namespace Neat.Music
             return new GuitarTuning();
         }
 
-        public List<TrackNote> TrackNotes()
+        public List<Note> Notes()
         {
-            List<TrackNote> _notes = new List<TrackNote>();
+            List<Note> _notes = new List<Note>();
             for (int i = 0; i < values.Length; i++)
-                _notes.Add(new TrackNote(this, i, 0));
+                _notes.Add(new Note(this, i, 0));
             return _notes;
+        }
+
+        public override string ToString()
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.Append(name);
+
+            return sb.ToString();
         }
     }
 }

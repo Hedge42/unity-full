@@ -5,14 +5,14 @@ using UnityEditor;
 
 namespace Neat.Music
 {
-    [CustomEditor(typeof(TimingBar))]
+    [CustomEditor(typeof(TimingSpawner))]
     public class BeatDrawerEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            var _target = (TimingBar)target;
+            var _target = (TimingSpawner)target;
         }
     }
 }

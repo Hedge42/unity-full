@@ -134,7 +134,7 @@ public class MusicScale
 
         return scale;
     }
-    public static string[] AllNoteNames(bool preferFlats)
+    public static string[] AllNoteNames(bool preferFlats = false)
     {
         var list = new List<string>();
 

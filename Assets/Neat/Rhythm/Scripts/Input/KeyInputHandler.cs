@@ -8,24 +8,24 @@ using UnityEngine.EventSystems;
 
 namespace Neat.Music
 {
+    // OverlayKeyInputHandler
     public class KeyInputHandler : UIEventHandler
     {
         private NoteUI _ui;
-        public NoteUI ui
+        public NoteUI ui;
+
+        private void Awake()
         {
-            get
-            {
-                if (!_ui)
-                    _ui = GetComponentInParent<NoteUI>();
-                return _ui;
-            }
+            ui = GetComponentInParent<NoteUI>();
         }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
-            // create track note from overlay
-            // print("Overlay note clicked " + ui.note.Name());
-            ui.overlay.track.CreateTrackNote(ui.note);
+            // create note from overlay
+            var spawner = ui.overlay.noteSpawner;
+
+            // create new timespan and add to notemap?
+            spawner.Spawn(ui.note, true, true);
         }
 
 

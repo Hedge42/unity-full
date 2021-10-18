@@ -8,88 +8,35 @@ using Neat.States;
 
 namespace Neat.Music
 {
+    // this class is so dumb
     public class ChartUI : MonoBehaviour
     {
+        // data
         public GameObject timeSignaturePrefab;
         public NoteUI notePrefab;
-        public MusicPlayer player;
-        public Chart chart
-        {
-            get { return serializer.chart; }
-            set { serializer.chart = value; }
-        }
+        private NoteHighway _scroller;
+        private TimingSpawner _timingBar;
 
-        // component properties
-        private ChartController _controller;
-        public ChartController controller
-        {
-            get
-            {
-                if (_controller == null)
-                    _controller = GetComponent<ChartController>();
-                return _controller;
-            }
-        }
-        private ChartSerializer _serializer;
-        public ChartSerializer serializer
-        {
-            get
-            {
-                if (_serializer == null)
-                    _serializer = GetComponent<ChartSerializer>();
-                return _serializer;
-            }
-        }
-        private Track _track;
-        public Track track
-        {
-            // simplify this
-            get
-            {
-                if (_track == null)
-                {
-                    if (chart.tracks.Count == 0)
-                        chart.tracks.Add(new Track());
-                    _track = chart.tracks[0];
-                }
-                return _track;
-            }
-            set
-            {
-                _track = value;
-            }
-        }
-        private TimeScroller _scroller;
-        public TimeScroller scroller
+        // properties
+        public NoteHighway scroller
         {
             get
             {
                 if (_scroller == null)
-                    _scroller = GetComponent<TimeScroller>();
+                    _scroller = GetComponent<NoteHighway>();
                 return _scroller;
             }
         }
-
-        private TimingBar _timingBar;
-        public TimingBar timingBar
+        public TimingSpawner timingBar
         {
             get
             {
                 if (_timingBar == null)
-                    _timingBar = GetComponent<TimingBar>();
+                    _timingBar = GetComponent<TimingSpawner>();
                 return _timingBar;
             }
         }
 
-        private ChartToolbar _toolbar;
-        public ChartToolbar toolbar
-        {
-            get
-            {
-                if (_toolbar == null)
-                    _toolbar = GetComponent<ChartToolbar>();
-                return _toolbar;
-            }
-        }
+
     }
 }

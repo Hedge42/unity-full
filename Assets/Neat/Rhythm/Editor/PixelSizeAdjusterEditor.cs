@@ -43,9 +43,7 @@ public class PixelSizeAdjusterEditor : Editor
 
         if (GUILayout.Button("Update All"))
         {
-            var found = GameObject.FindObjectsOfType<PixelSizeAdjuster>();
-            foreach (var p in found)
-                p.UpdateSize();
+            PixelSizeAdjuster.UpdateAll();
         }
     }
 

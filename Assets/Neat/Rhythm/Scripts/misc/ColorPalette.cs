@@ -6,8 +6,19 @@ namespace Neat.Music
 {
     public class ColorPalette : MonoBehaviour
     {
+        public Color selectedColor;
         public Color startColor;
         public List<Color> colors;
+
+
+        // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/using-indexers
+        public Color this[int index]
+        {
+            get
+            {
+                return colors[index];
+            }
+        }
 
         public List<Color> Spectrum(Color startColor, int count)
         {

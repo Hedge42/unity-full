@@ -10,7 +10,7 @@ namespace Neat.Music
     public class TimingMap
     {
         [SerializeField] private List<TimeSignature> _timeSignatures;
-        public List<TimeSignature> timeSignatures
+        public List<TimeSignature> signatures
         {
             get
             {
@@ -37,8 +37,8 @@ namespace Neat.Music
         {
             get
             {
-                if (timeSignatures.Count > 0)
-                    return timeSignatures[0].offset;
+                if (signatures.Count > 0)
+                    return signatures[0].offset;
                 else
                     return 0f;
             }
@@ -48,8 +48,8 @@ namespace Neat.Music
         {
             get
             {
-                if (timeSignatures.Count > 0)
-                    return new Timing(timeSignatures[0], 0);
+                if (signatures.Count > 0)
+                    return new Timing(signatures[0], 0);
                 else
                     return null;
             }
@@ -60,20 +60,20 @@ namespace Neat.Music
             Sort();
 
             // set prev, next
-            for (int i = 0; i < timeSignatures.Count; i++)
+            for (int i = 0; i < signatures.Count; i++)
             {
                 if (i > 0)
-                    timeSignatures[i].prev = timeSignatures[i - 1];
-                if (i < timeSignatures.Count - 1)
-                    timeSignatures[i].next = timeSignatures[i + 1];
+                    signatures[i].prev = signatures[i - 1];
+                if (i < signatures.Count - 1)
+                    signatures[i].next = signatures[i + 1];
             }
 
             // set timing map reference
-            foreach (TimeSignature t in timeSignatures)
+            foreach (TimeSignature t in signatures)
                 t.timingMap = this;
 
 
-            Debug.Log("Processed " + timeSignatures.Count + " time signatures");
+            // Debug.Log("Processed " + signatures.Count + " time signatures");
         }
 
         private List<TimeSignature> Sort()
@@ -84,16 +84,16 @@ namespace Neat.Music
             {
                 flag = false;
 
-                for (int i = 0; i < timeSignatures.Count - 1; i++)
+                for (int i = 0; i < signatures.Count - 1; i++)
                 {
-                    var a = timeSignatures[i];
-                    var b = timeSignatures[i + 1];
+                    var a = signatures[i];
+                    var b = signatures[i + 1];
                     // swap?
                     if (a.offset > b.offset)
                     {
                         var temp = a; // ??????
-                        timeSignatures[i] = b;
-                        timeSignatures[i + 1] = temp;
+                        signatures[i] = b;
+                        signatures[i + 1] = temp;
 
                         // raise flag if swap occured
                         flag = true;
@@ -101,25 +101,25 @@ namespace Neat.Music
                 }
             }
 
-            return timeSignatures;
+            return signatures;
         }
         public void Add(TimeSignature t)
         {
-            timeSignatures.Add(t);
+            signatures.Add(t);
             ProcessSignatures();
 
             onChange?.Invoke();
         }
         public void Overwrite(TimeSignature _prev, TimeSignature _new)
         {
-            int i = timeSignatures.IndexOf(_prev);
-            timeSignatures[i] = _new;
+            int i = signatures.IndexOf(_prev);
+            signatures[i] = _new;
 
             ProcessSignatures();
         }
         public void Remove(TimeSignature t)
         {
-            timeSignatures.Remove(t);
+            signatures.Remove(t);
             ProcessSignatures();
 
             onChange?.Invoke();
@@ -127,7 +127,7 @@ namespace Neat.Music
 
         public TimeSignature GetSignatureAtTime(float time)
         {
-            foreach (var ts in timeSignatures)
+            foreach (var ts in signatures)
             {
                 if (time >= ts.offset)
                     return ts;
@@ -137,12 +137,12 @@ namespace Neat.Music
         }
         public TimeSignature GetSignatureAtTime(float time, out int index)
         {
-            for (int i = 0; i < timeSignatures.Count; i++)
+            for (int i = 0; i < signatures.Count; i++)
             {
-                if (time >= timeSignatures[i].offset)
+                if (time >= signatures[i].offset)
                 {
                     index = i;
-                    return timeSignatures[i];
+                    return signatures[i];
                 }
             }
 
@@ -175,9 +175,9 @@ namespace Neat.Music
             }
 
             // time is before the first time signature
-            else if (timeSignatures.Count > 0)
+            else if (signatures.Count > 0)
             {
-                return timeSignatures[0].FirstBeat();
+                return signatures[0].FirstBeat();
             }
 
             else

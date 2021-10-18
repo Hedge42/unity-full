@@ -94,7 +94,7 @@ namespace Neat.Music
 
         public override string ToString()
         {
-            var _time = "(" + offset.ToString("f3") + ")";
+            var _time = "@" + offset.ToString("f3");
             var _bpm = beatsPerMinute.ToString("f3") + "bpm";
             var _sig = numerator + "/" + denominator;
             return _bpm + " " + _sig + " " + _time;
