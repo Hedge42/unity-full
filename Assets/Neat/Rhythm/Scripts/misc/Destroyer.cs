@@ -30,10 +30,10 @@ namespace Neat.Music
             else
                 GameObject.DestroyImmediate(c);
         }
-        public static void DestroyChildren<T>(Transform t)
+        public static void DestroyChildren<T>(Transform parent)
         {
             var children = new List<Transform>();
-            foreach (Transform child in t)
+            foreach (Transform child in parent)
                 if (child.GetComponent<T>() != null)
                     children.Add(child);
 

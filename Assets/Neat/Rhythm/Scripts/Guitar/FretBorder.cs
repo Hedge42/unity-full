@@ -25,8 +25,9 @@ namespace Neat.Music
 
         public override void UpdateDisplay()
         {
-            var isDots = fretboardUI.borderMode == Fret.BorderMode.Dots;
-            var isNumbers = fretboardUI.borderMode == Fret.BorderMode.Numbers;
+            var setting = fretboardUI.displaySetting;
+            var isDots = setting.borderMode == Fret.BorderMode.Dots;
+            var isNumbers = setting.borderMode == Fret.BorderMode.Numbers;
 
             var isHidden = displayMode == FretToggleMode.Hidden;
             var isNormal = displayMode == FretToggleMode.Normal;

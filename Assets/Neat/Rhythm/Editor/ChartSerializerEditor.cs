@@ -16,10 +16,11 @@ namespace Neat.Music
             base.OnInspectorGUI();
 
             HandleChartSelect();
-            HandleText();
+            // HandleText();
 
 
             // buttons
+            btnReload();
             if (GUILayout.Button("New Chart"))
             {
                 _target.Load(new Chart());
@@ -27,7 +28,7 @@ namespace Neat.Music
             else if (GUILayout.Button("Save"))
             {
                 _target.Save();
-                ReadPaths();
+                _target.RefreshIO();
             }
             else if (GUILayout.Button("Open chart directory"))
             {
@@ -48,6 +49,8 @@ namespace Neat.Music
             {
                 DeleteNoteMapClick();
             }
+
+
             //HandlePathInputLoad();
         }
         private void OnEnable()
@@ -76,27 +79,23 @@ namespace Neat.Music
         }
 
         // chart select
-        private int selectedChart = 0;
+        private int selected = 0;
         private string[] chartPaths;
         private string[] chartNames;
         private void HandleChartSelect()
         {
             // what about when a new one is created?
-            if (chartPaths == null)
-            {
-                ReadPaths();
-            }
+            if (_target.names == null)
+                _target.RefreshIO();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Select Chart");
+            EditorGUILayout.PrefixLabel("File Select");
 
             EditorGUI.BeginChangeCheck();
-            selectedChart = EditorGUILayout.Popup(selectedChart, chartNames);
+            selected = EditorGUILayout.Popup(selected, _target.names);
             if (EditorGUI.EndChangeCheck())
             {
-                // PlayerPrefs.SetString(GetType().ToString(), chartPaths[selectedChart]);
-
-                _target.Load(chartPaths[selectedChart]);
+                _target.Load(selected);
             }
             EditorGUILayout.EndHorizontal();
         }
@@ -132,23 +131,17 @@ namespace Neat.Music
             Debug.Log("Not set up");
             // new NoteMap(new GuitarTuning());
         }
-
-        private void ReadPaths()
+        private void btnReload()
         {
-            chartPaths = _target.GetPaths();
-            chartNames = _target.GetFileNames(chartPaths);
+            if (GUILayout.Button("Reload"))
+            {
+                _target.Load(_target.chart);
+            }
         }
+
         private void SwitchToLoaded()
         {
-            ReadPaths();
-            var fp = _target.chart.filePath;
-            for (int i = 0; i < chartPaths.Length; i++)
-            {
-                if (fp.Equals(chartPaths[i]))
-                {
-                    selectedChart = i;
-                }
-            }
+            _target.RefreshIO();
         }
 
         // load from outside of main chart directory

@@ -49,8 +49,8 @@ namespace Neat.Music
             Clear();
             var notes = controller.noteMap.GetNotes(controller.timer.fullTimespan);
 
-            Debug.Log( //GetType().ToString() +
-                "Respawning " + notes.Count +  " notes", this);
+            //Debug.Log( //GetType().ToString() +
+                //"Respawning " + notes.Count +  " notes", this);
 
             foreach (Note n in notes)
                 Spawn(n);

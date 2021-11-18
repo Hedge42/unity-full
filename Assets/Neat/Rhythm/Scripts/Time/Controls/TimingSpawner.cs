@@ -15,11 +15,21 @@ namespace Neat.Music
         public Metronome metronome;
         public bool showFullWindow;
 
+        [SerializeField] private Snapping _snap;
+        public Snapping snap
+        {
+            get
+            {
+                if (_snap == null)
+                    _snap = new Snapping(timingMap, Snapping.Setting.Beat, 1);
+                return _snap;
+            }
+        }
+
         // properties
         public ChartPlayer controller { get; private set; }
         public TimingMap timingMap => controller.chart.timingMap;
         public List<TimingUI> dividers { get; private set; }
-        public List<Timing> beats { get; private set; }
 
         private TimingUI earliestDiv
         {
@@ -71,30 +81,46 @@ namespace Neat.Music
             }
         }
 
-        // ()()()()()
         private void Awake()
         {
             controller = GetComponent<ChartPlayer>();
             dividers = new List<TimingUI>();
-            beats = new List<Timing>();
 
             DiscardAll();
         }
+
+        public void ApplySnapping()
+        {
+            _snap = new Snapping(timingMap, snap.per, snap.count);
+            Spawn(snap.GetTimings(controller.timer.fullTimespan));
+        }
+        public void ApplySnapping(Snapping s)
+        {
+            _snap = s;
+            Spawn(snap.GetTimings(controller.timer.fullTimespan));
+
+        }
+        public void ResetSnapping()
+        {
+            _snap = new Snapping(timingMap, Snapping.Setting.Beat, 1);
+        }
+
+        // updating time
         public void SetTime(float f)
         {
             if (canDraw)
             {
                 // calculates beats
-                DiscardAll();
-                var _beats = timingMap.TimingsBetween(f, controller.timer.maxTime);
-                foreach (Timing b in _beats)
-                    Add(b);
+                //Spawn(timingMap.TimingsBetween(f, controller.timer.maxTime));
 
-                UpdateTime(f);
+                ApplySnapping();
+                // Spawn(snap.GetTimings(controller.timer.fullTimespan));
+
+                UpdateTime(f); // ????
             }
             else
             {
-                Debug.Log("Could not draw bars");
+                Debug.LogError("Could not draw bars");
                 // print("null: " + timingMap == null);
                 // print("count: " + timingMap.signatures.Count);
                 //Debug.LogError("Could not draw");
@@ -106,7 +132,7 @@ namespace Neat.Music
             var next = latestBeat.Next();
             while (next.time <= controller.timer.maxTime)
             {
-                Add(next);
+                Spawn(next);
                 next = next.Next();
             }
 
@@ -125,15 +151,17 @@ namespace Neat.Music
             if (ticked != null && controller.player.isPlaying)
                 PlayMetronome(ticked);
         }
-        public void CreateAll()
+
+        // spawning and destroying
+        public void Spawn(List<Timing> timings)
         {
-            var beats = timingMap.TimingsBetween(controller.time, controller.timer.maxTime);
-            foreach (Timing b in beats)
-                Add(b);
+            DiscardAll();
+            foreach (var timing in timings)
+                Spawn(timing);
         }
-        public void Add(Timing next)
+        public void Spawn(Timing next)
         {
-            print("Adding timing...");
+            // print("Adding timing...");
             var bd = GameObject.Instantiate(prefab, container);
             bd.gameObject.SetActive(true);
             bd.controller = controller;
@@ -141,6 +169,7 @@ namespace Neat.Music
 
             dividers.Add(bd);
         }
+
         public void Discard(TimingUI bd)
         {
             dividers.Remove(bd);
@@ -154,7 +183,7 @@ namespace Neat.Music
             Destroyer.DestroyChildren<TimingUI>(container.transform);
         }
 
-        // different class pls
+        // skip controls
         public void SkipForward()
         {
             var beat = earliestBeat;
@@ -167,6 +196,7 @@ namespace Neat.Music
         {
             controller.SkipTo(earliestBeat.Prev().time);
         }
+
         private void PlayMetronome(Timing b)
         {
             metronome.Play(b.isMeasureStart);
@@ -182,6 +212,7 @@ namespace Neat.Music
 
         public void OnLoad(Chart c)
         {
+            ResetSnapping();
             SetTime(0f);
         }
     }

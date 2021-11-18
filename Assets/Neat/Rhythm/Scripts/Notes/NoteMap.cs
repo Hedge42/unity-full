@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Neat.Music
@@ -12,6 +13,8 @@ namespace Neat.Music
 
         public GuitarTuning tuning = new GuitarTuning(); // standard tuning
         public List<Note> notes = new List<Note>(); // better data structure?
+
+        public event Action onEdit;
 
         public NoteMap()
         {
@@ -40,9 +43,7 @@ namespace Neat.Music
             Sort();
             SetIDs();
 
-            // other stuff here
-            // onAdd?
-
+            onEdit?.Invoke();
             return true;
         }
         public Note Remove(Note removeMe)
@@ -52,6 +53,10 @@ namespace Neat.Music
                 if (n.Equals(removeMe))
                 {
                     notes.Remove(n);
+
+                    Sort();
+                    SetIDs();
+                    onEdit?.Invoke();
                     return n;
                 }
             }
@@ -100,7 +105,7 @@ namespace Neat.Music
         }
         private void SetIDs()
         {
-            for(int i = 0; i < notes.Count; i++)
+            for (int i = 0; i < notes.Count; i++)
                 notes[i].id = i;
         }
         public Note Next(Note n)
@@ -118,6 +123,18 @@ namespace Neat.Music
                 {
                     // return at next index
                     return notes[i + 1];
+                }
+            }
+
+            return null;
+        }
+        public Note Next(float from)
+        {
+            foreach (Note n in notes)
+            {
+                if (n.timeSpan.on >= from)
+                {
+                    return n;
                 }
             }
 

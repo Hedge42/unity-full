@@ -81,7 +81,8 @@ public class PixelSizeAdjuster : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdateSize();
+        StartCoroutine(Wait());
+        // UpdateSize();
     }
 
     private void OnDestroy()
@@ -110,6 +111,11 @@ public class PixelSizeAdjuster : MonoBehaviour
             size.y = (float)height / canvas.transform.localScale.y;
 
         rect.sizeDelta = size;
+    }
+    private IEnumerator Wait()
+    {
+        yield return null;
+        UpdateSize();
     }
 
     public static void UpdateAll()

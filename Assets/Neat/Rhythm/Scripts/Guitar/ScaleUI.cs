@@ -17,7 +17,7 @@ namespace Neat.Music
 		public void ToggleFret(Fret fret, Fretboard fretboard, PointerEventData eventData)
 		{
 			if (fret is FretObject)
-				fretboard.FretClickedHandler(fret.fretNum, fret.rowIndex);
+				fretboard.FretClickedHandler(fret.fretNum, fret.stringNum);
 
 			if (eventData.button == PointerEventData.InputButton.Right)
 			{

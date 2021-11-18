@@ -11,10 +11,13 @@ namespace Neat.Music
 {
     using Input = UnityEngine.Input;
     using KeyCode = UnityEngine.KeyCode;
+
     public class NoteInputHandler : UIEventHandler, InputState
     {
+        public static readonly List<int> ex = new List<int>();
+
         // this class shouldn't be handling logic, just routing events
-        // use states for logic handling
+        // use states or other classes for logic
         private ChartPlayer _controller;
         public ChartPlayer controller
         {
@@ -46,56 +49,131 @@ namespace Neat.Music
             }
         }
 
+        //private NoteScrollHover _hover;
+        //public NoteScrollHover hover => _hover == null ? _hover = new NoteScrollHover() : _hover;
+        private HighwayInputHandler _hInput;
+        private HighwayInputHandler hInput => _hInput == null ? _hInput = controller.GetComponent<HighwayInputHandler>() : _hInput;
+
+        //private HighwayInputHandler hInput
+        //{
+        //    get
+        //    {
+        //        if (_hInput == null)
+        //            _hInput = controller.GetComponent<HighwayInputHandler>();
+
+        //        if (_hInput == null)
+        //            print("oh no!");
+
+        //        return _hInput;
+        //    }
+        //}
+
+        private Vector2 mouseDownPos;
+
         // later: multi-select support
         public static NoteUI selected;
 
-        // use this for drag
-        private Vector2 mouseDownPos;
+        private Timing mouseDownTiming;
 
-        // passive input state
+
+        public void GetInput()
+        {
+            // click outside to cancel changes
+            if (Input.GetMouseButtonUp(0))
+            {
+                // execute note change event
+                Deselect();
+            }
+
+            // enter to confirm changes
+            else if (Input.GetKeyDown(KeyCode.Return))
+            {
+                Deselect();
+            }
+
+
+            // change guitar fret on mouse scroll
+            HandleMouseWheel();
+        }
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                SetMouseStartPosition();
+                Select(); // this is a command
+            }
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                Delete(); // this is a command
+            }
+        }
         public override void OnDrag(PointerEventData eventData)
         {
-            // use this logic for hovering
-            print("Mouse @ " + Input.mousePosition);
-            print("Rect @ " + ui.rect.position + " (" + ui.rect.sizeDelta + ")");
+            // dont need to use this drag...
 
-            // if the mouse leaves the note rect...
+            // print("Hovered Timing: " + HoveredTiming().ToString());
+            // print("Hovered Lane: " + HoveredNote().ToString());
+            // Vector2 dragDelta = (Vector2)Input.mousePosition - mouseDownPos;
 
-            // to the left or right - extend to timing
-            // up or down - change string
+            bool timing = TimingDrag();
+            bool note = NoteDrag();
 
-            var mouse = Input.mousePosition;
-
-            // center origin?
-            if (mouse.y > ui.rect.position.y + ui.rect.sizeDelta.y)
+            if (timing || note)
             {
-                // change string up
-                StringUp();
-            }
-            else if (mouse.y < ui.rect.position.y - ui.rect.sizeDelta.y)
-            {
-                // change string down
-                StringDown();
-            }
-            else if (mouse.x < ui.rect.position.x - ui.rect.sizeDelta.x / 2)
-            {
-                // set note start to previous timing
-                TimingBack();
-            }
-            else if (mouse.x > ui.rect.position.x + ui.rect.sizeDelta.x)
-            {
-                // set note end to next timing
-                TimingForward();
+                // MakeChange();
             }
         }
 
-        // drag state?
+        private bool IsGameObjectSelected()
+        {
+            var selected = EventSystem.current.currentSelectedGameObject;
+            return selected != this.gameObject;
+        }
+        private void Delete()
+        {
+            Destroyer.Destroy(ui.gameObject);
+            controller.noteMap.Remove(ui.note);
+            controller.player.SkipTo(controller.time);
+        }
+        private void SetMouseStartPosition()
+        {
+            mouseDownPos = Input.mousePosition;
+            mouseDownTiming = hInput.hover.HoveredTiming(mouseDownPos);
+        }
+
+        private void MakeChange()
+        {
+            SetMouseStartPosition();
+            ui.UpdateUI();
+            ui.Select(true);
+        }
+        private bool NoteDrag()
+        {
+            var _note = hInput.hover.PotentialNote();
+            if (_note.lane > ui.note.lane)
+            {
+                // drag up
+                StringUp();
+                return true;
+            }
+            else if (_note.lane < ui.note.lane)
+            {
+                // drag down
+                StringDown();
+                return true;
+            }
+            else
+                return false;
+        }
         private void StringUp()
         {
             bool hasNote = false; // is there already a note there?
+            int lane = Mathf.Clamp(ui.note.lane + 1, 0, overlay.numLanes - 1);
 
             if (!hasNote && ui.note.lane < overlay.numLanes - 1) // there is a higher string
             {
+                //print("Edit string up...");
+
                 ui.note.lane += 1;
 
                 // default → update note
@@ -105,7 +183,7 @@ namespace Neat.Music
                 else
                     ui.note.UpdateFret();
 
-                ui.UpdateUI();
+                MakeChange();
             }
             else
             {
@@ -118,6 +196,8 @@ namespace Neat.Music
 
             if (!hasNote && ui.note.lane >= 0) // there is a lower string
             {
+                //print("Edit string down...");
+
                 ui.note.lane -= 1;
 
                 // default → update note
@@ -127,7 +207,7 @@ namespace Neat.Music
                 else
                     ui.note.UpdateFret();
 
-                ui.UpdateUI();
+                MakeChange();
             }
             else
             {
@@ -135,86 +215,90 @@ namespace Neat.Music
             }
         }
 
+        private bool TimingDrag()
+        {
+            var _timing = hInput.hover.HoveredTiming(Input.mousePosition);
+            if (_timing.Equals(mouseDownTiming.Next()))
+            {
+                // drag right
+                TimingForward();
+                return true;
+            }
+            else if (_timing.Equals(mouseDownTiming.Prev()))
+            {
+                // drag left
+                TimingBack();
+                return true;
+            }
+            else
+                return false;
+        }
         private void TimingBack()
         {
-            var earliest = controller.chart.timingMap.Earliest(ui.note.timeSpan.on);
-            var prev = earliest.Prev();
-            var duration = ui.note.timeSpan.duration;
-            ui.note.timeSpan.on = prev.time;
+            var prev = mouseDownTiming.Prev();
 
-            // stretch if holding shift
-            if (!Input.GetKey(KeyCode.LeftShift))
-                ui.note.timeSpan.off = prev.time + duration;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                // drag note end
+                if (mouseDownTiming.time > ui.note.timeSpan.on)
+                    ui.note.timeSpan.off = mouseDownTiming.time;
+            }
+            else
+            {
+                var duration = ui.note.timeSpan.duration;
+                ui.note.timeSpan = new TimeSpan(prev.time, prev.time + duration);
+            }
 
-            ui.UpdateTransform();
+            MakeChange();
         }
         private void TimingForward()
         {
-            var earliest = controller.chart.timingMap.Earliest(ui.note.timeSpan.on);
-            var next = earliest.Next();
-            var nextX = next.time * overlay.controller.ui.scroller.distancePerSecond;
-
+            var next = mouseDownTiming.Next();
             var duration = ui.note.timeSpan.duration;
 
-            // stretch if holding shift
-            if (!Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                ui.note.timeSpan.off = next.Next().time;
+            }
+            else
+            {
                 ui.note.timeSpan.on = next.time;
-            ui.note.timeSpan.off = next.time + duration;
-            ui.UpdateTransform();
+                ui.note.timeSpan.off = next.time + duration;
+            }
+
+            MakeChange();
         }
 
-        // click state?
-        public override void OnPointerDown(PointerEventData eventData)
+        public void Select()
         {
-            // start drag
-            print("Pointer down " + ui.note.FullFullName());
-            mouseDownPos = Input.mousePosition;
-            Select();
-        }
+            print("Selecting " + ui.note.FullFullName());
 
-        // selected state?
-        public void GetInput()
+            Deselect();
+
+            selected = ui;
+            controller.states.SetInput(this);
+            ui.Select(true);
+
+        }
+        public static void Deselect()
         {
-            // click outside to cancel changes
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
+            // deselect current
+            if (selected != null)
             {
-                var selected = EventSystem.current.currentSelectedGameObject;
-                if (selected != this.gameObject)
-                {
-                    print("Cancelling edit...");
-                    Deselect();
-                }
+                print("Deselecting " + selected.gameObject.name);
+                selected.overlay.controller.states.UpdateInput();
+                selected.Select(false);
             }
-
-            // right click to delete (delete without being selected?)
-            if (Input.GetMouseButtonDown(1))
-            {
-                var selected = EventSystem.current.currentSelectedGameObject;
-                if (selected == this.gameObject)
-                {
-                    Deselect();
-
-                    // tell the track
-                    Destroy(ui.gameObject);
-                }
-            }
-
-            // enter to confirm changes
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                print("Applying...");
-                Deselect();
-            }
-
-
-            // change guitar fret on mouse scroll
-            HandleMouseWheel();
         }
+
+
+        // commands
+
+
+
         private void HandleMouseWheel()
         {
-            // scrollstate.scroll
-
-            // or left-right keys
+            // or left-right keys ???
             var wheel = Input.mouseScrollDelta.y;
             if (Mathf.Abs(wheel) > .1f)
             {
@@ -236,29 +320,18 @@ namespace Neat.Music
             ui.UpdateText();
         }
 
+        // debugging
         private void PrintMousePosition()
         {
             print("Mouse @ " + Input.mousePosition);
         }
-        public void Select()
+        private static void printBounds(float top, float bottom, float left, float right)
         {
-            print("Selecting " + ui.note.FullFullName());
-
-            Deselect();
-            selected = ui;
-            controller.states.SetInput(this);
-            ui.Select(true);
-
-        }
-        public static void Deselect()
-        {
-            // deselect current
-            if (selected != null)
-            {
-                print("Deselecting " + selected.gameObject.name);
-                selected.overlay.controller.states.UpdateInput();
-                selected.Select(false);
-            }
+            print("Bounds: \ntop: " + top
+                            + "\nbottom: " + bottom
+                            + "\nleft: " + left
+                            + "\nright: " + right
+                            );
         }
     }
 }

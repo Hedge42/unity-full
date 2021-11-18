@@ -9,6 +9,7 @@ namespace Neat.Music
 {
     public class ScaleSerializer : MonoBehaviour
     {
+
         // Editor: file:E:\Projects\Unity\NeetDemos\Assets\Neat\Rhythm\Editor\ScaleSerializerEditor.cs
 
         // logic in editor

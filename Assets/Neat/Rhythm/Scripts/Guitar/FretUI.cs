@@ -36,17 +36,6 @@ namespace Neat.Music
             set { fret.fretNum = value; }
         }
 
-        private FretAnimator _animator;
-        public FretAnimator animator
-        {
-            get
-            {
-                if (_animator == null)
-                    _animator = GetComponent<FretAnimator>();
-                return _animator;
-            }
-        }
-
         public void UpdateText()
         {
             fret.UpdateDisplay();
@@ -62,7 +51,7 @@ namespace Neat.Music
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            print("Fret " + fret.rowIndex + "[" + fret.fretNum + "] clicked");
+            print("Fret " + fret.stringNum + "[" + fret.fretNum + "] clicked");
             if (eventData.button == PointerEventData.InputButton.Right)
                 AltClick();
             else if (eventData.button == PointerEventData.InputButton.Left)
@@ -75,19 +64,18 @@ namespace Neat.Music
 
             // tell the fretboard this was clicked
             if (fret is FretObject)
-                fretboard.FretClickedHandler(fret.fretNum, fret.rowIndex);
+                fretboard.FretClickedHandler(fret.fretNum, fret.stringNum);
         }
 
         private void Click()
         {
+            print("Clicked " + fret.ToString());
             fret.ToggleMode();
             NotifyFretboard();
-            GetComponent<FretAnimator>().FadeIn();
         }
-
         private void AltClick()
         {
-            GetComponent<FretAnimator>().FadeOut();
+            print("AltClicked " + fret.ToString());
         }
     }
 }

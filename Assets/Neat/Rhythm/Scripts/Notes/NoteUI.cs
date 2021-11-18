@@ -44,6 +44,12 @@ namespace Neat.Music
         }
         public KeyOverlay overlay { get; set; }
 
+        public Color color
+        {
+            get => foreground.color;
+            set => foreground.color = value;
+        }
+
         public void SetData(Note n, KeyOverlay o)
         {
             note = n;
@@ -96,7 +102,11 @@ namespace Neat.Music
         }
         public void UpdateColor()
         {
-            foreground.color = overlay.GetComponent<ColorPalette>().colors[note.lane];
+            foreground.color = overlay.GetComponent<ColorPaletteUI>().colors[note.lane];
+        }
+        public void SetAlpha(float f)
+        {
+            color = color.SetAlpha(f);
         }
 
         public void SetInput<T>() where T : UIEventHandler
@@ -120,6 +130,17 @@ namespace Neat.Music
                 // deselect
                 foreground.color = overlay.pallete.colors[note.lane];
             }
+        }
+        public Vector3[] Bounds()
+        {
+            var arr = new Vector3[4];
+            rect.GetWorldCorners(arr);
+            return arr;
+        }
+
+        public static new UnityEngine.Object Instantiate(UnityEngine.Object prefab)
+        {
+            return null;
         }
     }
 }

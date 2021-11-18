@@ -12,6 +12,8 @@ namespace Neat.Music
     [ExecuteAlways]
     public class NoteHighway : MonoBehaviour, OutputState, Loadable
     {
+        // public NoteUI notePrefab;
+
         public RectTransform judgementLine;
         public TextMeshProUGUI judgementText;
         public RectTransform movingContainer;
@@ -19,6 +21,7 @@ namespace Neat.Music
 
         [SerializeField] private ChartPlayer _player;
         [Range(0, 2)] public float approachRate; // set me
+
 
         public ChartPlayer player
         {
@@ -29,6 +32,12 @@ namespace Neat.Music
                 return _player;
             }
         }
+
+        private KeyOverlay _overlay;
+        public KeyOverlay overlay => _overlay == null ? _overlay = GetComponent<KeyOverlay>() : _overlay;
+
+        public HighwayInputHandler input => GetComponent<HighwayInputHandler>();
+
         public float distancePerSecond
         {
             get
@@ -82,6 +91,8 @@ namespace Neat.Music
         }
         public void OnLoad(Chart c)
         {
+            // ??
+            // player = GetComponent<ChartPlayer>();
             player.player.onClipReady.RemoveListener(UpdateWidth);
             player.player.onClipReady.AddListener(UpdateWidth);
 

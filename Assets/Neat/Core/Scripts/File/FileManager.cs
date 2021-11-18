@@ -154,6 +154,7 @@ namespace Neat.FileManagement
         public static void SerializeBinary(object file, string path)
         {
             BinaryFormatter bf = new BinaryFormatter();
+            UnityEngine.Object o = new UnityEngine.Object();
             FileStream fs = new FileStream(path, FileMode.Create);
             bf.Serialize(fs, file);
             fs.Close();

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Neat.Music
 {
     [System.Serializable]
-    public class Chart
+    public class Chart : _IFile
     {
         // naming
         public string filePath;
@@ -18,7 +18,7 @@ namespace Neat.Music
             Initialize();
         }
 
-        private TimingMap _timingMap;
+        [SerializeField] private TimingMap _timingMap;
         public TimingMap timingMap
         {
             get
@@ -40,7 +40,7 @@ namespace Neat.Music
             }
         }
 
-        private List<NoteMap> _noteMaps;
+        [SerializeField] private List<NoteMap> _noteMaps;
         public List<NoteMap> noteMaps
         {
             get
@@ -111,6 +111,12 @@ namespace Neat.Music
 
             // Debug.Log(sb.ToString());
             return sb.ToString();
+        }
+
+        public string FilePath()
+        {
+            return filePath;
+            // throw new System.NotImplementedException();
         }
     }
 }

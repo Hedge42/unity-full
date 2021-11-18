@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Neat.Audio;
 using Neat.FileManagement;
@@ -11,6 +10,8 @@ namespace Neat.Music
     public class ChartSerializer : MonoBehaviour
     {
         // pathing
+
+        
 
         public static string directory => "C:/Users/tyler/Desktop/Charts/";
         public static string ext => ".chart";
@@ -27,13 +28,14 @@ namespace Neat.Music
                 return _controller;
             }
         }
-        public Chart chart;
 
-        public NoteMap map;
+        public Chart chart;
+        // public NoteMap map;
 
         private void Start()
         {
             Load(chart.filePath);
+            // Load(chart);
             // controller.LoadChart(chart);
         }
         private void Update()
@@ -66,7 +68,6 @@ namespace Neat.Music
                 Load(c);
             }
         }
-
         public void Load(Chart c)
         {
             chart = c;
@@ -74,27 +75,71 @@ namespace Neat.Music
             controller.LoadChart(chart);
         }
 
-        public string[] GetPaths()
+        public void Load(int idx)
         {
+            Load(paths[idx]);
+        }
+
+        public string[] names { get; private set; }
+
+
+        private string[] paths { get; set; } // valid paths
+        private string[] fileNames { get; set; } // literal fileNames (with extensions)
+        private int pathIndex { get; set; } // index of selected data
+
+        public string[] RefreshIO()
+        {
+            this.paths = GetPaths();
+            this.fileNames = ConvertToFileNames(paths);
+
+            if (pathIndex <= 0)
+            {
+                var values = new List<string>(fileNames);
+                values.Insert(0, "* " + chart.name);
+                this.names = values.ToArray();
+            }
+            else
+            {
+                this.names = fileNames;
+            }
+
+            return this.names;
+        }
+        private string[] GetPaths()
+        {
+            // re-retrive PATHS when... 
+            // * data is saved
+            // * extension or directory are changed
+
             List<string> paths = new List<string>();
+            int numFiles = 0;
             foreach (string path in Directory.EnumerateFiles(directory))
             {
                 // just checking the extension instead of loading the whole thing
                 if (Path.GetExtension(path).Equals(ext))
                 {
+                    // found current data
+                    if (Path.Equals(chart.filePath, path))
+                        pathIndex = numFiles;
+
                     paths.Add(path);
+                    numFiles++;
                 }
+
             }
 
-            return paths.ToArray();
+            return this.paths = paths.ToArray();
         }
-        public string[] GetFileNames(string[] paths)
+        private string[] ConvertToFileNames(string[] paths)
         {
+            // generate names by paths
+            // change name at index when chart name changed
             string[] filenames = new string[paths.Length];
             for (int i = 0; i < paths.Length; i++)
             {
-                filenames[i] = Path.GetFileName(paths[i]);
+                filenames[i] = i + ": " + Path.GetFileName(paths[i]);
             }
+
             return filenames;
         }
     }

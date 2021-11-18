@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Animations;
 
 namespace Neat.Music
 {
 	public class FretObject : Fret
 	{
-		public int stringOpenNote { get { return fretboardUI.tuning.values[rowIndex]; } }
+		public int stringOpenNote { get { return fretboardUI.tuning.values[stringNum]; } }
 		public int note { get { return stringOpenNote + fretNum; } }
 
 		public FretObject(FretUI prefab, Transform container, Fretboard tab, int stringIndex, int fret)
@@ -18,7 +19,7 @@ namespace Neat.Music
 
 			this.mono = mono;
 			this.rect = mono.GetComponent<RectTransform>();
-			this.rowIndex = stringIndex;
+			this.stringNum = stringIndex;
 			this.fretNum = fret;
 			this.fretboardUI = tab;
 
@@ -28,13 +29,14 @@ namespace Neat.Music
 
 		public override void UpdateDisplay()
 		{
+			var setting = fretboardUI.displaySetting;
 			var isHidden = displayMode == FretToggleMode.Hidden;
 			var isEmphasized = displayMode == FretToggleMode.Emphasized;
 
-			var isNote = fretboardUI.fretMode == Fret.PlayableMode.Note;
-			var isInterval = fretboardUI.fretMode == Fret.PlayableMode.Interval;
-			var isBoth = fretboardUI.fretMode == Fret.PlayableMode.NoteAndInterval;
-			var isDots = fretboardUI.fretMode == Fret.PlayableMode.Dot;
+			var isNote = setting.fretMode == Fret.PlayableMode.Note;
+			var isInterval = setting.fretMode == Fret.PlayableMode.Interval;
+			var isBoth = setting.fretMode == Fret.PlayableMode.NoteAndInterval;
+			var isDots = setting.fretMode == Fret.PlayableMode.Dot;
 
 			mono.borderDot1.gameObject.SetActive(!isHidden && isDots);
 			mono.tmp.gameObject.SetActive(!isHidden && !isDots);

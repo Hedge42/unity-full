@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Neat.Experimental;
 
 
 namespace Neat.Music
@@ -11,11 +12,19 @@ namespace Neat.Music
     public class ChartPlayer : MonoBehaviour, MediaPlayer
     {
         // this class exists for the media functions
+        private static ChartPlayer _instance;
+        public static ChartPlayer instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = GameObject.FindObjectOfType<ChartPlayer>();
+                return _instance;
+            }
+        }
 
         // references
         public MusicPlayer player;
-        private ChartSerializer _serializer;
-        private NoteReader _noteReader;
 
         private ChartTimer _timer;
         public ChartTimer timer
@@ -28,14 +37,14 @@ namespace Neat.Music
             }
         }
 
-
-        // ??
         public ChartStateManager states { get; private set; }
-        public ChartUI ui { get; private set; } // fuck this thing so much
+
+        public ChartUI _ui;
+        public ChartUI ui => _ui == null ? _ui = GetComponent<ChartUI>() : _ui;
+
+        public NoteHighway scroller => ui.scroller;
 
         private InputState input;
-        // ??
-
         // properties
         public Chart chart
         {
@@ -43,6 +52,7 @@ namespace Neat.Music
             set { serializer.chart = value; }
         }
         public float time => player.time;
+        private ChartSerializer _serializer;
         public ChartSerializer serializer
         {
             get
@@ -52,14 +62,16 @@ namespace Neat.Music
                 return _serializer;
             }
         }
-        public NoteMap noteMap => chart.noteMaps[0];
-        public NoteReader noteReader
+        public NoteMap noteMap => chart.noteMaps[0]; // ?????
+
+        private NoteSpan _noteSpan;
+        public NoteSpan noteSpan
         {
             get
             {
-                if (_noteReader == null)
-                    _noteReader = new NoteReader(this);
-                return _noteReader;
+                if (_noteSpan == null)
+                    _noteSpan = new NoteSpan(this);
+                return _noteSpan;
             }
         }
 
@@ -67,7 +79,6 @@ namespace Neat.Music
         private void Awake()
         {
             input = new ChartPlayerInput(this);
-            ui = GetComponent<ChartUI>();
             states = GetComponent<ChartStateManager>();
 
             SetEvents();
@@ -82,6 +93,11 @@ namespace Neat.Music
         // updating 
         public void SetTime(float t)
         {
+            // everything else is being called through events...
+
+            // noteSpan.Refresh(t);
+            // timeSpans.Refresh();
+
             ui.scroller.SetTime(t);
             ui.timingBar.SetTime(t);
 
@@ -89,6 +105,8 @@ namespace Neat.Music
         }
         public void UpdateTime(float t)
         {
+            // noteSpan.Refresh(t);
+
             ui.scroller.UpdateTime(t);
             ui.timingBar.UpdateTime(t);
 

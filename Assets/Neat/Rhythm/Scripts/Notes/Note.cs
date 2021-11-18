@@ -6,6 +6,29 @@ using System.Threading.Tasks;
 
 namespace Neat.Music
 {
+    // NOT IMPLEMENTED
+    [System.Serializable]
+    public class NoteBase
+    {
+        // literally just a pitch with a name
+        public int value { get; private set; }
+        public int name { get; private set; }
+
+        public NoteBase(int value)
+        {
+            this.value %= 12;
+        }
+        public static NoteBase operator +(NoteBase note, int arg)
+        {
+            return new NoteBase(note.value + arg);
+        }
+
+        private string GetName(bool flat = false)
+        {
+            return MusicScale.Name(value, flat);
+        }
+    }
+
     [System.Serializable]
     public class Note
     {
@@ -43,6 +66,18 @@ namespace Neat.Music
 
             return laneOverlap && timeOverlap;
         }
+        public bool Overlaps(Note[] other)
+        {
+            foreach (var n in other)
+            {
+                if (Overlaps(n))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public override bool Equals(object obj)
         {
             // type mismatch
@@ -103,11 +138,11 @@ namespace Neat.Music
             int fret = value - tuning[lane];
 
             while (fret < 0)
-                value += 12;
+                fret += 12;
             while (fret > 24)
-                value -= 12;
+                fret -= 12;
 
-            this.fret = value - tuning[lane];
+            this.fret = fret;
         }
 
         // naming and text

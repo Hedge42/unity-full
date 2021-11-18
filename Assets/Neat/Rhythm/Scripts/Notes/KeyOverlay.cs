@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,13 +31,13 @@ namespace Neat.Music
                 return _track;
             }
         }
-        private ColorPalette _pallete;
-        public ColorPalette pallete
+        private ColorPaletteUI _pallete;
+        public ColorPaletteUI pallete
         {
             get
             {
                 if (_pallete == null)
-                    _pallete = GetComponent<ColorPalette>();
+                    _pallete = GetComponent<ColorPaletteUI>();
                 return _pallete;
             }
             set
@@ -45,7 +46,7 @@ namespace Neat.Music
             }
         }
 
-        public List<NoteUI> existing { get; private set; }
+        public List<NoteUI> existing;
 
         public int numLanes => controller.noteMap.tuning.numStrings;
 
@@ -81,7 +82,7 @@ namespace Neat.Music
 
         private void SetColors()
         {
-            var colors = GetComponent<ColorPalette>().colors;
+            var colors = GetComponent<ColorPaletteUI>().colors;
             foreach (NoteUI n in existing)
                 n.UpdateColor();
 
@@ -99,6 +100,101 @@ namespace Neat.Music
         public void OnLoad(Chart c)
         {
             UpdateOverlay();
+
+            controller.player.onSkip.AddListener(SetTime);
+            controller.player.onTick.AddListener(UpdateTime);
+
+            controller.noteSpan.onNoteOn.AddListener(NoteOn);
+            controller.noteSpan.onNoteOff.AddListener(NoteOff);
+        }
+
+        public void NoteOn(Note note)
+        {
+            print("Note on - " + note.ToString());
+
+            var k = Key(note.lane);
+            k.note = note;
+            k.UpdateText();
+        }
+        public void NoteOff(Note note)
+        {
+            // ???
+        }
+
+        public void SetTime(float f)
+        {
+            ShowRecentNotes();
+        }
+        public void UpdateTime(float f)
+        {
+            var turnOn = controller.noteSpan.playing;
+
+            //foreach (var n in controller.noteSpan.playing)
+            //{
+
+            //}
+        }
+
+        public NoteUI Key(Note match)
+        {
+            return existing.Where(n => n.Equals(match)).FirstOrDefault();
+        }
+        public NoteUI Key(int k)
+        {
+            return existing.Where(n => n.note.lane == k).FirstOrDefault();
+        }
+        public NoteUI Key(Vector2 position)
+        {
+            NoteUI nearest = null;
+            var minDist = float.MaxValue;
+            foreach (NoteUI k in existing)
+            {
+                var bounds = k.Bounds();
+                var dist = bounds.Min(v => Vector2.Distance(position, v));
+                if (dist < minDist)
+                {
+                    nearest = k;
+                    minDist = dist;
+                }
+            }
+            return nearest;
+        }
+        public NoteUI YAligned()
+        {
+            return Key(Input.mousePosition);
+        }
+
+        public void ShowRecentNotes()
+        {
+            // foreach lane
+            // get the most recent note from the notemap
+
+            for (int i = 0; i < existing.Count; i++)
+            {
+                var ui = existing[i];
+
+                // find most recent note in this lane
+                var inLane = controller.noteMap.notes.Where(n => n.lane == i);
+                var prev = inLane.Where(n => n.timeSpan.on <= controller.time);
+                // https://stackoverflow.com/questions/1101841/how-to-perform-max-on-a-property-of-all-objects-in-a-collection-and-return-th
+                // var maxObject = list.OrderByDescending(item => item.Height).First();
+                var mostRecent = prev.OrderByDescending(n => n.timeSpan.on);
+                if (mostRecent.Count() != 0)
+                {
+                    // update fret to most recent note
+                    var note = mostRecent.First();
+                    ui.note.fret = note.fret;
+                }
+                else
+                {
+                    // set to default
+                    ui.note.fret = 0;
+                }
+
+                // update ui
+                ui.note.UpdateFret();
+                ui.UpdateText();
+            }
         }
     }
 }

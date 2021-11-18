@@ -7,13 +7,58 @@ namespace Neat.Music
     [CustomEditor(typeof(TuningSerializer))]
     public class TuningSerializerEditor : Editor
     {
-        private GuitarTuning tuning => ((TuningSerializer)target).tuning;
+        private TuningSerializer _target => (TuningSerializer)target;
+        private GuitarTuning tuning => _target.tuning;
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            EditTuning();
+            HandleDropdown();
+            SaveClick();
+            NewClick();
+            InfoClick();
+
+            // EditTuning();
+        }
+
+        private int selected;
+        private void HandleDropdown()
+        {
+            var names = _target.GetFileNames();
+            if (names == null || names.Length == 0)
+                return;
+
+            EditorGUI.BeginChangeCheck();
+            selected = EditorGUILayout.Popup(selected, names);
+            if (EditorGUI.EndChangeCheck())
+            {
+                _target.Load(names[selected]);
+            }
+        }
+        private void SaveClick()
+        {
+            if (GUILayout.Button("Save"))
+            {
+                _target.Save();
+            }
+        }
+        private void InfoClick()
+        {
+            if (GUILayout.Button("Info?"))
+            {
+                foreach (var s in _target.GetFileNames())
+                {
+                    Debug.Log(s);
+                }
+            }
+        }
+        private void NewClick()
+        {
+            if (GUILayout.Button("New"))
+            {
+                _target.Load(new GuitarTuning());
+            }
         }
 
         private void EditTuning()

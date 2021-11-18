@@ -9,14 +9,14 @@ namespace Neat.Music
     [System.Serializable]
     public class TimingMap
     {
-        [SerializeField] private List<TimeSignature> _timeSignatures;
+        [SerializeField] private List<TimeSignature> _signatures;
         public List<TimeSignature> signatures
         {
             get
             {
-                if (_timeSignatures == null)
-                    _timeSignatures = new List<TimeSignature>();
-                return _timeSignatures;
+                if (_signatures == null)
+                    _signatures = new List<TimeSignature>();
+                return _signatures;
             }
         }
 
@@ -125,16 +125,29 @@ namespace Neat.Music
             onChange?.Invoke();
         }
 
+        public void SetSnapping(Snapping s)
+        {
+            var temp = s.CreateSignatures(this);
+        }
+
         public TimeSignature GetSignatureAtTime(float time)
         {
-            foreach (var ts in signatures)
+            return GetSignatureAtTime(signatures, time);
+        }
+        public static TimeSignature GetSignatureAtTime(List<TimeSignature> list, float time)
+        {
+            if (list != null)
             {
-                if (time >= ts.offset)
-                    return ts;
+                foreach (var ts in list)
+                {
+                    if (time >= ts.offset)
+                        return ts;
+                }
             }
 
             return null;
         }
+
         public TimeSignature GetSignatureAtTime(float time, out int index)
         {
             for (int i = 0; i < signatures.Count; i++)
@@ -160,12 +173,48 @@ namespace Neat.Music
             }
             return beats;
         }
+
+        public List<Timing> TimingsIn(TimeSpan span)
+        {
+            return TimingsBetween(span.on, span.off);
+        }
+        public static List<Timing> TimingsIn(List<TimeSignature> signatures, TimeSpan span)
+        {
+            List<Timing> beats = new List<Timing>();
+            var b = Earliest(signatures, span.on);
+            while (b.time < span.off)
+            {
+                beats.Add(b);
+                b = b.Next();
+            }
+            return beats;
+        }
+
         public Timing Earliest(float time)
         {
+            return Earliest(signatures, time);
+        }
+        public Timing Next(float time)
+        {
+            return Next(signatures, time);
+        }
+        public static Timing Next(List<TimeSignature> signatures, float time)
+        {
+            // same as earliest, but excludes current timing
+
+            var next = Earliest(signatures, time);
+            if (Mathf.Approximately(next.time, time))
+                next = next.Next();
+            return next;
+        }
+        public static Timing Earliest(List<TimeSignature> signatures, float time)
+        {
+            // returns current or next timing
+            
             // has to have a time signature to run
             if (time < 0) time = 0; // is this relevant?
 
-            var ts = GetSignatureAtTime(time);
+            var ts = GetSignatureAtTime(signatures, time);
             if (ts != null)
             {
                 var localTime = time - ts.offset;

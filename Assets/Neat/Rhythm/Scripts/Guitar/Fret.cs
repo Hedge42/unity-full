@@ -32,7 +32,7 @@ namespace Neat.Music
 		public FretToggleMode displayMode;
 		public Fretboard fretboardUI;
 
-		public int rowIndex; // which guitar string
+		public int stringNum; // which guitar string
 		public int fretNum; // which fret
 
 		public abstract void UpdateDisplay();

@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
-using System.Threading.Tasks;
+using Neat.Extensions;
 
 namespace Neat.Music
 {
@@ -17,28 +17,15 @@ namespace Neat.Music
         public FretUI fretPrefab;
         public GridLayoutGroup gridLayout;
         public RectTransform gridRect;
+        public RectTransform panel;
+        public Vector2 size;
 
-        // components
         private Canvas _canvas;
-        public Canvas canvas
-        {
-            get
-            {
-                if (_canvas == null)
-                    _canvas = GetComponent<Canvas>();
-                return _canvas;
-            }
-        }
-        private ScaleSerializer _scale;
-        private FretboardLineDrawer lineDrawer;
-        [SerializeField] private ChartPlayer _player;
-
-
-        // display preferences
-        [HideInInspector] public int minFret;
-        [HideInInspector] public int maxFret;
-        [HideInInspector] public Fret.BorderMode borderMode;
-        [HideInInspector] public Fret.PlayableMode fretMode;
+        public Canvas canvas => this.CacheGetComponent(ref _canvas);
+        private FretboardDisplaySetting _displaySetting;
+        public FretboardDisplaySetting displaySetting => this.CacheAddComponent(ref _displaySetting);
+        private FretboardLineDrawer _lineDrawer;
+        private FretboardLineDrawer lineDrawer => this.CacheGetComponent(ref _lineDrawer);
 
         // data
         private Fret[] _frets;
@@ -56,46 +43,74 @@ namespace Neat.Music
             }
         }
 
-        public MusicScale scale => _scale.scale;
+
+        // calculated
+        public Fret this [int _row, int _col] => frets[_col + _row * MAX_FRETS];
+        public List<FretObject> playableFrets => frets.Where(f => f is FretObject).Cast<FretObject>().ToList();
+        public List<BorderObject> borders => frets.Where(f => f is BorderObject).Cast<BorderObject>().ToList();
+
+        // scales
+        private ScaleSerializer _scaleSerializer;
+        private ScaleSerializer scaleSerializer => this.CacheGetComponent(ref _scaleSerializer);
+        public MusicScale scale
+        {
+            get => scaleSerializer.scale;
+            set => scaleSerializer.scale = value;
+        }
+
+        // tuning
+        private TuningSerializer _tuningSerializer;
+        private TuningSerializer tuningSerializer => this.CacheGetComponent(ref _tuningSerializer);
+        public GuitarTuning tuning => tuningSerializer.tuning;
+
+        // grid
+        private FretboardSpacer _spacer;
+        public FretboardSpacer spacer => this.CacheAddComponent(ref _spacer);
+
         public event Action<int, int> onFretClicked;
 
-
-        private TuningSerializer _tuningSerializer;
-        public GuitarTuning tuning
-        {
-            get
-            {
-                if (_tuningSerializer == null)
-                    _tuningSerializer = GetComponent<TuningSerializer>();
-                return _tuningSerializer.tuning;
-            }
-        }
-
-        private void Awake()
-        {
-            _tuningSerializer = GetComponent<TuningSerializer>();
-            _scale = GetComponent<ScaleSerializer>();
-            lineDrawer = GetComponent<FretboardLineDrawer>();
-        }
-
+        // generation
         public void Generate()
         {
             // use notes in scale
             frets = InstantiateFrets().ToArray();
             UpdateGridLayout();
             UpdateLines();
-            // ApplyFretRange();
-            // UpdateGridLayout();
+        }
+        private List<Fret> InstantiateFrets()
+        {
+            this.frets = null;
+            Destroyer.DestroyChildren<FretUI>(gridLayout.transform);
+
+            List<Fret> fretList = new List<Fret>();
+
+            fretList.AddRange(MakeBorder());
+            fretList.AddRange(MakeAllStrings(tuning));
+            fretList.AddRange(MakeBorder());
+
+            return fretList;
+        }
+        private void UpdateGridLayout()
+        {
+            gridLayout.enabled = true;
+
+            gridRect = gridLayout.GetComponent<RectTransform>();
+
+            //gridLayout.cellSize = ...;
+
+            var x = panel.sizeDelta.x / gridLayout.constraintCount;
+            var y = panel.sizeDelta.y / (tuning.numStrings + 2);
+            gridLayout.cellSize = new Vector2(x, y);
+
+            // to update in editor, otherwise would be updated next frame
+            gridLayout.CalculateLayoutInputHorizontal();
+            gridLayout.CalculateLayoutInputVertical();
+            gridLayout.SetLayoutHorizontal();
+            gridLayout.SetLayoutVertical();
         }
         public void UpdateLines()
         {
             StartCoroutine(AfterFrame(lineDrawer.CreateLines));
-
-            //if (Application.isPlaying)
-            //    StartCoroutine(AfterFrame(lineDrawer.CreateLines));
-            //else
-            //    lineDrawer.CreateLines();
-
         }
         private IEnumerator AfterFrame(Action a)
         {
@@ -103,6 +118,33 @@ namespace Neat.Music
             yield return null;
             a.Invoke();
         }
+
+
+
+        // spacer
+        public void PreviewSpacing()
+        {
+            size = panel.sizeDelta;
+            var grid = FretboardSpacer.MakeGrid(tuning, size);
+            var xAxis = grid.Item1;
+            var yAxis = grid.Item2;
+
+            print($"X Positions: {xAxis}\n" +
+                $"X Sizes: {String.Join(",", xAxis.Distances())})\n" +
+                $"Y Positions: {yAxis}\n" +
+                $"Y Sizes: {String.Join(",", yAxis.Distances())}");
+        }
+        public void DynamicSpacing()
+        {
+            gridLayout.enabled = false;
+
+            size = panel.sizeDelta;
+
+            spacer.Fix();
+
+            UpdateLines();
+        }
+
 
         public FretUI GetFret(Note n)
         {
@@ -122,38 +164,42 @@ namespace Neat.Music
 
             return frets[index].mono;
         }
-        private List<Fret> InstantiateFrets()
+
+        private Fret[,] InstantiateFrets2D()
         {
+            throw new NotImplementedException();
             this.frets = null;
             Destroyer.DestroyChildren<FretUI>(gridLayout.transform);
 
-            List<Fret> fretList = new List<Fret>();
+            var f = new Fret[tuning.numStrings + 2, MAX_FRETS];
 
-            // border 1
+            // for (int i = 0; i < )
+        }
+
+        private List<BorderObject> MakeBorder()
+        {
+            var fretList = new List<BorderObject>();
             for (int i = 0; i < MAX_FRETS; i++)
             {
                 var f = new BorderObject(fretPrefab, gridLayout.transform, this, i);
                 fretList.Add(f);
             }
+            return fretList;
+        }
+        private List<FretObject> MakeAllStrings(GuitarTuning tuning)
+        {
+            var list = new List<FretObject>();
 
-            // strings
-            for (int i = 0; i < tuning.numStrings; i++)
+            for (int _string = 0; _string < tuning.numStrings; _string++)
             {
-                for (int j = 0; j < MAX_FRETS; j++)
+                for (int _fret = 0; _fret < MAX_FRETS; _fret++)
                 {
-                    var f = new FretObject(fretPrefab, gridLayout.transform, this, i, j);
-                    fretList.Add(f);
+                    var f = new FretObject(fretPrefab, gridLayout.transform, this, _string, _fret);
+                    list.Add(f);
                 }
             }
 
-            // border 2
-            for (int i = 0; i < MAX_FRETS; i++)
-            {
-                var f = new BorderObject(fretPrefab, gridLayout.transform, this, i);
-                fretList.Add(f);
-            }
-
-            return fretList;
+            return list;
         }
 
         public bool Contains(Note n)
@@ -169,26 +215,6 @@ namespace Neat.Music
         }
 
         // ???
-        private void UpdateGridLayout()
-        {
-            gridRect = gridLayout.GetComponent<RectTransform>();
-
-            // to update in editor, otherwise would be updated next frame
-            gridLayout.CalculateLayoutInputHorizontal();
-            gridLayout.CalculateLayoutInputVertical();
-            gridLayout.SetLayoutHorizontal();
-            gridLayout.SetLayoutVertical();
-        }
-        private void ApplyFretRange()
-        {
-            // Updates grid constraint and enables/disables cells
-
-            gridLayout.constraintCount = maxFret - minFret + 1;
-
-            // disable frets outside of fret range
-            foreach (Fret f in frets)
-                f.mono.gameObject.SetActive(f.fretNum >= minFret && f.fretNum <= maxFret);
-        }
         private void UpdateBorders()
         {
             int offset = tuning.numStrings * MAX_FRETS;
@@ -203,6 +229,7 @@ namespace Neat.Music
             foreach (Transform child in gridRect.transform)
                 print(child.position);
         }
+
 
         // ???
         public void ShowAll()

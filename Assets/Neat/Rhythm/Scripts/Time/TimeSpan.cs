@@ -23,6 +23,17 @@ namespace Neat.Music
             this.on = on;
             this.off = off;
         }
+        public TimeSpan(TimeSpan from)
+        {
+            this.on = from.on;
+            this.off = from.off;
+        }
+        public TimeSpan(Timing from)
+        {
+            this.on = from.time;
+            this.off = from.Next().time;
+            // this.off = from.signature.timingMap.Next(from.time).time;
+        }
 
         public bool Overlaps(TimeSpan other)
         {

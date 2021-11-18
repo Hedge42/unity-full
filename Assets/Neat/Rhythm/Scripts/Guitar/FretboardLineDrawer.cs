@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Neat.Music
 {
@@ -95,6 +96,8 @@ namespace Neat.Music
 			// ???
 			if (horizontalLines == null)
 				return;
+
+			var leftmostPlayable = ui.playableFrets.Where(o => o.fretNum == 0);
 
 			for (int i = 0; i < horizontalLines.Length; i++)
 			{
