@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
@@ -31,8 +30,10 @@ public class Player : MonoBehaviour
         }
     }
     private int _id;
-    [ShowInInspector] public int id { get { return _id; } }
-    [ShowInInspector] public static int numInScene { get { return instances.Count; } }
+    //[ShowInInspector] 
+    public int id { get { return _id; } }
+    //[ShowInInspector] 
+    public static int numInScene { get { return instances.Count; } }
 
 
     private Vector3 startPosition;

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 public class UISwitcher : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class UISwitcher : MonoBehaviour
 
     public int activeOption = 0;
 
-    [ReadOnly]
+    // [ReadOnly]
     public string targetUI;
 
     private void OnValidate()

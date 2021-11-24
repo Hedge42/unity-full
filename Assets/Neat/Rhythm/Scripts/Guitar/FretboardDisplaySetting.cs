@@ -15,9 +15,8 @@ namespace Neat.Music
     {
         private Fretboard _fretboard;
         private Fretboard fretboard => this.CacheGetComponent(ref _fretboard);
-
-        [Disabled]
-        public int minFret;
+        [BeginDisabledGroup]
+        public int minFret; [EndDisabledGroup]
         public int maxFret;
         public Fret.BorderMode borderMode;
         public Fret.PlayableMode fretMode;

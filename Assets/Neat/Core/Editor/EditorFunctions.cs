@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+//using UnityEngine.Events;
+//using UnityEngine.EventSystems;
+using UnityEditor.EventSystems;
+using UnityEditor.Events;
 using System;
 using Neat.Extensions;
 
@@ -49,6 +53,12 @@ namespace Neat.Functions
         public static void RepaintScene()
         {
             EditorWindow.GetWindow(System.Type.GetType("UnityEditor.GameView,UnityEditor")).Repaint();
+        }
+        public static EditorWindow GameView()
+        {
+            // UnityEditor.GameView v;
+            var view = EditorWindow.GetWindow(System.Type.GetType("UnityEditor.GameView,UnityEditor"));
+            return view;
         }
         public static void GUIListItem<T>(string label, ref List<T> list,
             Action<int> itemClick = null, string clickText = "Select")

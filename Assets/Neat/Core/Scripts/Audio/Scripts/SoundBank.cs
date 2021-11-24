@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using UnityEngine.Audio;
 
 namespace Neat.Audio
@@ -33,7 +32,7 @@ namespace Neat.Audio
 
         }
 
-        [Button("Preview"), ShowIf("@!this.isLooping")]
+        // [Button("Preview"), ShowIf("@!this.isLooping")]
         public void Play()
         {
             // get to outer class?
@@ -47,7 +46,7 @@ namespace Neat.Audio
                 isLooping = true;
         }
 
-        [Button("Stop"), ShowIf("@this.isLooping")]
+        // [Button("Stop"), ShowIf("@this.isLooping")]
         public void Stop()
         {
             source.Stop();
@@ -57,12 +56,12 @@ namespace Neat.Audio
 
     public class SoundBank : MonoBehaviour
     {
-        [Required]
+        // [Required]
         public AudioSource source;
 
         public Sound[] sounds;
 
-        [OnInspectorGUI]
+        // [OnInspectorGUI]
         public void SetSoundSources()
         {
             if (sounds != null)
