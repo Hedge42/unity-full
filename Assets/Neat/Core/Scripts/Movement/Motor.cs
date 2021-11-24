@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.UI;
 using UnityEngine.UI;
 using UnityEngine.Events;
 

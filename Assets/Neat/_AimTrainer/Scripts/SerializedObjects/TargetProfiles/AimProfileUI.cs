@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using Neat.UI;
 
+//namespace Neat.AimTrainer
+//{
 public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
 {
     public Toggle showCenterLines;
@@ -226,3 +227,4 @@ public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
         profile.spawnRotateMax = float.Parse(spawnRotateMax.text);
     }
 }
+//}

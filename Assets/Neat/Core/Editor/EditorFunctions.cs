@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEditor;
 //using UnityEngine.Events;
 //using UnityEngine.EventSystems;
-using UnityEditor.EventSystems;
 using UnityEditor.Events;
 using System;
 using Neat.Extensions;

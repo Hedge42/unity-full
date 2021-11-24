@@ -14,7 +14,6 @@ public class ClickDebugger : MonoBehaviour
         if (debug && Input.GetMouseButtonDown(0))
         {
 
-
             print(EventSystem.current?.currentSelectedGameObject?.name);
         }
     }

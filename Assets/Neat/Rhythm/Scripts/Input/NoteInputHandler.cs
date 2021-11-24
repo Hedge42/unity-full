@@ -126,6 +126,7 @@ namespace Neat.Music
 
         private bool IsGameObjectSelected()
         {
+
             var selected = EventSystem.current.currentSelectedGameObject;
             return selected != this.gameObject;
         }
