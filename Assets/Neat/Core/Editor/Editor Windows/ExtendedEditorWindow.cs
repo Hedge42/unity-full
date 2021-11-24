@@ -2,8 +2,9 @@
 using UnityEngine;
 using Neat.Attributes;
 using UnityEditor.Callbacks;
+using Neat.Tutorials;
 
-namespace Neat.Tutorials
+namespace Neat.Tools
 {
     public class ExtendedEditorWindow : EditorWindow
     {
@@ -13,6 +14,21 @@ namespace Neat.Tutorials
         protected SerializedProperty selectedProperty;
         protected Editor inspector;
         protected bool gotInspector;
+
+        public virtual void OnGUI()
+        {
+            EditorGUI.BeginChangeCheck();
+            DrawAllProperties();
+            //DrawInspector();
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
+
+
+            EditorUtility.SetDirty(serializedObject.targetObject);
+        }
 
         protected void DrawAllProperties()
         {
@@ -78,7 +94,6 @@ namespace Neat.Tutorials
                 }
             }
         }
-        
         protected void DrawSidebar(SerializedProperty prop)
         {
             // get selected property
@@ -113,8 +128,6 @@ namespace Neat.Tutorials
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
         }
-
-        
         protected void DrawInspector()
         {
             if (!gotInspector)
@@ -123,24 +136,9 @@ namespace Neat.Tutorials
                 inspector = Editor.CreateEditor(serializedObject.targetObject);
             }
 
-
             inspector.OnInspectorGUI();
         }
 
-        public virtual void OnGUI()
-        {
-            EditorGUI.BeginChangeCheck();
-            DrawAllProperties();
-            //DrawInspector();
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                serializedObject.ApplyModifiedProperties();
-            }
-
-
-            EditorUtility.SetDirty(serializedObject.targetObject);
-        }
 
         public static void Open<T>(T obj) where T : Object
         {
@@ -153,34 +151,6 @@ namespace Neat.Tutorials
             var _type = obj.GetType();
             ExtendedEditorWindow window = GetWindow<ExtendedEditorWindow>($"{_type} EditorWindow");
             window.serializedObject = new SerializedObject(obj);
-        }
-    }
-
-    [CustomEditor(typeof(GameDataObject))]
-    public class GameDataObjectCustomEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            if (GUILayout.Button("Open Editor"))
-            {
-                ExtendedEditorWindow.Open(target as GameDataObject);
-            }
-            base.OnInspectorGUI();
-        }
-    }
-    public class AssetHandler
-    {
-        [OnOpenAsset()]
-        public static bool OpenEditor(int instanceId, int line)
-        {
-            GameDataObject obj = EditorUtility.InstanceIDToObject(instanceId) as GameDataObject;
-
-            if (obj != null)
-            {
-                ExtendedEditorWindow.Open(obj);
-                return true;
-            }
-            return false;
         }
     }
 }

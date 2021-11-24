@@ -225,8 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1747624866}
   - component: {fileID: 1747624867}
-  - component: {fileID: 1747624868}
-  - component: {fileID: 1747624869}
   - component: {fileID: 1747624870}
   m_Layer: 0
   m_Name: AttributesDemoGameObject
@@ -262,47 +260,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   float_range: {x: 1.894353, y: 6.703096}
-  f: 50.39
-  myInt: 139
-  int_range: {x: 0, y: 12}
+  f: 28.9
+  myInt: 131
+  int_range: {x: 3, y: 5}
   disabled_range: {x: 0, y: 0}
   isMute: 1
   name1: 
   name2: ccvr
   dummyt: 
   dummy2: 
---- !u!114 &1747624868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747624865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dd075336b59c94ba1311e4530604cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thing: 0
-  minMax: {x: 2.4209688, y: 4.2845287}
-  gameData:
-  - data: 3
-  - data: f
-  - data: 3
---- !u!114 &1747624869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747624865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b1f40daa2be674693e202aec476d0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  sounds: []
 --- !u!114 &1747624870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,18 +278,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1747624865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e46368f42c439e4d9853a1ad5802f45, type: 3}
+  m_Script: {fileID: 11500000, guid: e58cd5125cb14ab4fbd4052d0eb58b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skin: {fileID: 11400000, guid: 2680ef0f899025f4ab9e15decc4ff667, type: 2}
-  windowRect:
-    serializedVersion: 2
-    x: 119
-    y: 70
-    width: 600
-    height: 1000
-  obj: {fileID: 1747624867}
-  drawer: {fileID: 0}
+  windows:
+  - rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 600
+      height: 900
+  skin: {fileID: 0}
 --- !u!1 &1842207282
 GameObject:
   m_ObjectHideFlags: 0

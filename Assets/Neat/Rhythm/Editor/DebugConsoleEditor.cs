@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using Neat.Extensions;
+using Neat.Tools;
 
 namespace Neat.Console
 {

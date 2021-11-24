@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using Neat.Extensions;
+using Neat.Tools;
 
 namespace Neat.Attributes
 {

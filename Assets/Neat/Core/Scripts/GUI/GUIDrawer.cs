@@ -48,6 +48,16 @@ public class GUIDrawer : MonoBehaviour
 
     void OnGUI()
     {
+        InitGUI();
+        if (obj != null)
+        {
+            // Register the window. Notice the 3rd parameter
+            windowRect = GUI.Window(0, windowRect, DrawWindow, "Cool Window");
+        }
+    }
+
+    private void InitGUI()
+    {
         if (skin != null)
             GUI.skin = skin;
 
@@ -60,30 +70,13 @@ public class GUIDrawer : MonoBehaviour
         {
             UnityEditor.EditorUtility.SetDirty(this);
         }
-        //else if (Event.current.isKey)
-        //{
-        //    // never called
-        //    Debug.Log($"Key event: {Event.current.keyCode}");
-        //}
-        //else if (Event.current.isMouse)
-        //{
-        //    // called only when clicking outside gui window in gameview
-        //    Debug.Log($"Mouse event: {Event.current}");
-        //}
-        //else
-        //{
-        //    // mouse events show up here with the output:
-        //    // Unhandled event: Used
-        //    Debug.Log($"Unhandled event: {Event.current}");
-        //}
-#endif
-
-        if (obj != null)
+        else
         {
-            // Register the window. Notice the 3rd parameter
-            windowRect = GUI.Window(0, windowRect, DrawWindow, "Cool Window");
+            // Debug.Log($"onGUI: {Event.current}");
         }
+#endif
     }
+
     private void Reflect(bool reflected = false)
     {
         if (!reflected)

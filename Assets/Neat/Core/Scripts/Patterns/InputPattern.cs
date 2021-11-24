@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Events;
 
-namespace Neat.Patterns
+namespace Neat.Experimental
 {
     public interface IInput
     {

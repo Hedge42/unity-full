@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Neat.Patterns
+namespace Neat.Experimental
 {
     public class SomeEventHandler : MonoBehaviour, IPointerClickHandler,
         IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler,
