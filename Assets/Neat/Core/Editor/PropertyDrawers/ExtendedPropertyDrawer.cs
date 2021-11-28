@@ -2,8 +2,9 @@
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using Microsoft.CSharp;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     public class ExtendedPropertyDrawer : PropertyDrawer
     {
@@ -15,7 +16,7 @@ namespace Neat.Attributes
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            CacheConditional(property);
+            CacheSerializedPropertyConditional(property);
 
             if (conditionalProp != null && conditionalProp.boolValue)
             {
@@ -27,32 +28,29 @@ namespace Neat.Attributes
             }
         }
 
-        protected void CacheConditional(SerializedProperty property)
+        protected void CacheSerializedPropertyConditional(SerializedProperty property)
         {
+            //var type = property.serializedObject.GetType();
+            //var attrs = type.GetCustomAttributes();
+            //var e = new Editor();
+
             if (!gotConditional)
             {
-                conditionalProp = GetConditionalProperty(property);
+                conditionalProp = GetSerializedPropertyConditional(property);
                 gotConditional = true;
             }
         }
 
-        private SerializedProperty GetConditionalProperty(SerializedProperty sender)
+        private SerializedProperty GetSerializedPropertyConditional(SerializedProperty sender)
         {
             SerializedProperty _prop = null;
             var attr = fieldInfo.GetCustomAttribute<HideIfAttribute>();
             if (attr != null)
+            {
+                // this will only get unity-serialized fields, not properties
                 _prop = sender.serializedObject.FindProperty(attr.fieldName);
+            }
             return _prop;
-        }
-    }
-
-    [CustomPropertyDrawer(typeof(Array))]
-    public class idkDrawer : PropertyDrawer
-    {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            GUI.Button(position, "lol");
-            base.OnGUI(position, property, label);
         }
     }
 }

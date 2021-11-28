@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Neat.UI
+namespace Neat.Tools.UI
 {
     // should attach to DontDestroyOnLoad GameManager
     public class PauseListener : MonoBehaviour

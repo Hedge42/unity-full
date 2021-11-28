@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 	public class ScaleUI : MonoBehaviour
 	{

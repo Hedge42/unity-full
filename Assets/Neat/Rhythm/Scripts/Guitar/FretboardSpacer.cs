@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class FretboardSpacer : MonoBehaviour
     {

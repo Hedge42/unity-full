@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Neat.Audio;
-using Neat.UI;
-using Neat.Extensions;
+using Neat.Tools.UI;
+using Neat.Tools;
 // using Sirenix.OdinInspector;
 using UnityEngine.UI;
-using Neat.FileManagement;
+using Neat.GameManager;
 using UnityEngine.Events;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class TargetSpawner : MonoBehaviour
     {

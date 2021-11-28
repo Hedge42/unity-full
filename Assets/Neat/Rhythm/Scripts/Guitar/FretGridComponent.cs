@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Neat.Extensions;
+using Neat.Tools;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class FretGridComponent : MonoBehaviour
     {

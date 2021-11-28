@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Neat.Extensions;
+using Neat.Tools;
 using Neat.Tools;
 
-namespace Neat.Console
+namespace Neat.Tools
 {
     public class DebugConsoleEditorWindow : ExtendedEditorWindow
     {

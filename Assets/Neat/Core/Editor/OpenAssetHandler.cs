@@ -4,7 +4,7 @@ using UnityEngine;
 using Neat.Tools;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using Neat.Tutorials;
+using Neat.Experimental.Tutorials;
 
 namespace Neat.Tools
 {

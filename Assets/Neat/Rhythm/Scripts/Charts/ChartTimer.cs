@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // not implemented, but should contain this logic
     public class ChartTimer

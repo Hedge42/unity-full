@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(ScaleSerializer))]
     public class ScaleSerializerEditor : Editor

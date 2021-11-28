@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Neat.Extensions;
+using Neat.Tools;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
-using Neat.UI;
+using Neat.Tools.UI;
 
 public static class UIHelpers
 {
@@ -18,9 +18,9 @@ public static class UIHelpers
 
         if (text != "")
         {
-            parent.GetComponent<Neat.UI.NeatEventHandler>().onPointerClick += delegate
+            parent.GetComponent<Neat.Tools.UI.NeatEventHandler>().onPointerClick += delegate
             {
-                Neat.UI.ContextMenu.instance.Show(text);
+                Neat.Tools.UI.ContextMenu.instance.Show(text);
             };
         }
     }

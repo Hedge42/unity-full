@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Neat.Collections
+namespace Neat.Experimental.Collections
 {
     public interface IList<T> : IEnumerable<T>
     {

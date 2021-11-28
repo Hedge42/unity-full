@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.FileManagement;
+using Neat.GameManager;
 
-namespace Neat.Fighter
+namespace Neat.Demos.Fighter
 {
     [RequireComponent(typeof(GizmoDrawer))]
     public class CharacterEditorComponent : MonoBehaviour

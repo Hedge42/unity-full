@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(NoteSpawner))]
     public class NoteSpawnerEditor : Editor

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using static Neat.Functions.EditorFunctions;
+using static Neat.Tools.Functions.EditorFunctions;
 
 [CustomEditor(typeof(ColorOverTime))]
 public class ColorEditor : Editor

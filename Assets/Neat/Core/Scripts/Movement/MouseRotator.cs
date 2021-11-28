@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.FileManagement;
-using Neat.UI;
+using Neat.GameManager;
+using Neat.Tools.UI;
 using UnityEngine.Events;
 
 public class MouseRotator : MonoBehaviour

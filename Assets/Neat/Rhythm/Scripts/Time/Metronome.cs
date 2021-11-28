@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Neat.Audio;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [RequireComponent(typeof(SoundBank))]
     public class Metronome : MonoBehaviour

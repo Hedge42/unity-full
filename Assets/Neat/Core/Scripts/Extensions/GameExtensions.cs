@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Neat.Extensions
+namespace Neat.Tools
 {
     public static class GameExtensions
     {

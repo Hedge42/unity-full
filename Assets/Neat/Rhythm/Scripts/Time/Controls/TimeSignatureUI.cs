@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // represent a TimeSignature as a GameObject
     public class TimeSignatureUI : MonoBehaviour

@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
-namespace Neat.FileManagement
+namespace Neat.GameManager
 {
     public class FileManager : MonoBehaviour
     {

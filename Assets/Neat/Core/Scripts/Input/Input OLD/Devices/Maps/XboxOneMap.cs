@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.InputManagement.DeviceMaps
+namespace Neat.GameManager.DeviceMaps
 {
     public class XboxOneMap : IDeviceMap
     {

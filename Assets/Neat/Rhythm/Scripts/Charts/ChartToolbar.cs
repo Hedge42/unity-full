@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Neat.Audio;
-using Neat.FileManagement;
+using Neat.GameManager;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class ChartToolbar : MonoBehaviour
     {

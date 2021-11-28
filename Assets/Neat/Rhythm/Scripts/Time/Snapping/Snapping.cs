@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.Console;
+using Neat.Tools;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [System.Serializable]
     public class Snapping

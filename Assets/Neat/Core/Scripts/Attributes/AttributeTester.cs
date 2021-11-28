@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System.Reflection;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     [CreateAssetMenu(menuName="Neat/AttributeTester")]
     public class AttributeTester : ScriptableObject

@@ -1,4 +1,4 @@
-﻿namespace Neat.Music
+﻿namespace Neat.Audio.Music
 {
     public interface _IFile
     {

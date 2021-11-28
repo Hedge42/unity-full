@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neat.InputManagement.Exp
+namespace Neat.GameManager.Exp
 {
     public class ControllerVisualizer : MonoBehaviour
     {

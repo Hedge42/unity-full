@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     [Serializable]
     public class ButtonAttributeSelector // : UnityEditor.SerializedProperty

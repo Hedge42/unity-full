@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [Serializable]
     public class KeySignature

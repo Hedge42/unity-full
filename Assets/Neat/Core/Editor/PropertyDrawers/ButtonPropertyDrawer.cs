@@ -7,7 +7,7 @@ using UnityEditor;
 using System.Reflection;
 using UnityEngine.UIElements;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     [CustomPropertyDrawer(typeof(ButtonAttribute))]
     public class ButtonPropertyDrawer : ExtendedPropertyDrawer

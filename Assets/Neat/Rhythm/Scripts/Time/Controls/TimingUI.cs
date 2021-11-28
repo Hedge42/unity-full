@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Neat.Music;
+using Neat.Audio.Music;
 using UnityEngine.UI;
 using Neat.States;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // Timing represented as a GameObject
     // relative to the time signature

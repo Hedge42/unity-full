@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     [CustomPropertyDrawer(typeof(BeginDisabledGroupAttribute))]
     public class BeginDisabledGroupDrawer : DecoratorDrawer

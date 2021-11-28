@@ -5,7 +5,7 @@ using UnityEditor;
 using Note = Melanchall.DryWetMidi.Interaction.Note;
 using Melanchall.DryWetMidi.Common;
 
-namespace Neat.Midi
+namespace Neat.Audio.Midi
 {
 	[CustomEditor(typeof(MidiWriter))]
 	public class MidiWriterEditor : Editor

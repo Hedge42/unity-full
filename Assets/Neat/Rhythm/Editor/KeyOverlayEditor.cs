@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 
     [CustomEditor(typeof(KeyOverlay))]

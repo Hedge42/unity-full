@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.Extensions;
+using Neat.Tools;
 
 #if UNITY_EDITOR
 using UnityEditor;

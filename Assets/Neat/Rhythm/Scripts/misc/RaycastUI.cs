@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using EventSystems = UnityEngine.EventSystems;
 
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 
     class RaycastUI : MonoBehaviour

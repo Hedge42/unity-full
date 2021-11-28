@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using Neat.Audio;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteInEditMode] // for onEnable ???
     [CustomEditor(typeof(ChartSerializer))]

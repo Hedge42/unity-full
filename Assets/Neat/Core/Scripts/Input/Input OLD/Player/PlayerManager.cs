@@ -1,8 +1,8 @@
-﻿using Neat.InputManagement;
+﻿using Neat.GameManager;
 using System.Collections;
 using UnityEngine;
 
-namespace Neat.InputManagement
+namespace Neat.GameManager
 {
     public class PlayerManager : MonoBehaviour
     {

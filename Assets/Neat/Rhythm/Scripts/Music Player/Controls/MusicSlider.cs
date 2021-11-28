@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // instead: audio slider
     [RequireComponent(typeof(Slider))]

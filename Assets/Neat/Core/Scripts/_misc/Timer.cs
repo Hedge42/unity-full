@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class Timer
     {

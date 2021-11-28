@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Neat.FileManagement;
+using Neat.GameManager;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [System.Serializable]
     public class Chart : _IFile

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.Fighter
+namespace Neat.Demos.Fighter
 {
     [CreateAssetMenu]
     public class CharacterDatabase : ScriptableObject

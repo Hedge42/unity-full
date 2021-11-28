@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public enum GameStateType
     {

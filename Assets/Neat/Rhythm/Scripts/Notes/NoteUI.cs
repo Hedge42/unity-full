@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using Neat.States;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class NoteUI : MonoBehaviour
     {

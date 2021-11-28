@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using Neat.Extensions;
+using Neat.Tools;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteAlways]
     public class Fretboard : MonoBehaviour

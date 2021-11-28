@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Neat.Music;
+using Neat.Audio.Music;
 
 [ExecuteAlways]
 public class PlayPauseButton : MonoBehaviour, IMusicPlayerControl

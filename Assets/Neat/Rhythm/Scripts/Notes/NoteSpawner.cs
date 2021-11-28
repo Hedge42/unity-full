@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteAlways]
     public class NoteSpawner : MonoBehaviour, Loadable

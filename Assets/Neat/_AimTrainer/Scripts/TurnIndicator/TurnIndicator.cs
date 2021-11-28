@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     [ExecuteAlways]
     [RequireComponent(typeof(Canvas))]

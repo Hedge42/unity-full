@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CreateAssetMenu(menuName = "Neat/Color Palette")]
     public class ColorPaletteObject : ScriptableObject

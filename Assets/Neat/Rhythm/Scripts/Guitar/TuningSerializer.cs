@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Neat.FileManagement;
+using Neat.GameManager;
 using System.IO;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class TuningSerializer : MonoBehaviour
     {

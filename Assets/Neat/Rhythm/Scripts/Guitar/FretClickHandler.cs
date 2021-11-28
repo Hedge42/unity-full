@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class FretClickHandler : MonoBehaviour
     {

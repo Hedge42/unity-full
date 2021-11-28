@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Neat.FileBrowser
+namespace Neat.GameManager.FileBrowser
 {
     public class FileBrowserTest : MonoBehaviour
     {

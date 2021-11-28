@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 using Neat.States;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // please rename me
     [ExecuteAlways]

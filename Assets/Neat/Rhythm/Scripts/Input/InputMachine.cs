@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class InputMachine : MonoBehaviour
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     [CustomPropertyDrawer(typeof(MinMaxAttribute))]
     public class MinMaxPropertyDrawer : PropertyDrawer

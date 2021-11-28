@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Neat.UI;
+using Neat.Tools.UI;
 using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour

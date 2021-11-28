@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Neat.States;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // this class is so dumb
     public class ChartUI : MonoBehaviour

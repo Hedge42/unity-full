@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neat.Synthesis
+namespace Neat.Audio.Synthesis
 {
     public interface IFilter
     {

@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.UI;
+using Neat.Tools.UI;
 using UnityEngine.Events;
 using TMPro;
-using Neat.Extensions;
+using Neat.Tools;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class TargetMenu : MonoBehaviour
     {

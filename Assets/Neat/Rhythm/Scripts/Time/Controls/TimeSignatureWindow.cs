@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // time signature editor window
     public class TimeSignatureWindow : MonoBehaviour

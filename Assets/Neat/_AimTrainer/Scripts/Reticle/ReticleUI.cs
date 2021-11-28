@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Neat.UI;
+using Neat.Tools.UI;
 using UnityEngine.Events;
 using System;
 
@@ -228,12 +228,12 @@ public class ReticleUI : MonoBehaviour, ISettingUI<ReticleProfile>
 
         saveButton.onClick.AddListener(delegate
         {
-            Neat.UI.ContextMenu.instance.Process(save);
+            Neat.Tools.UI.ContextMenu.instance.Process(save);
         });
 
         returnButton.onClick.AddListener(delegate
         {
-            Neat.UI.ContextMenu.instance.Process(back);
+            Neat.Tools.UI.ContextMenu.instance.Process(back);
         });
     }
 }

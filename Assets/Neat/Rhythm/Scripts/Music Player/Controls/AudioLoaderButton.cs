@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Neat.Audio;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteAlways]
     public class AudioLoaderButton : MonoBehaviour, IMusicPlayerControl

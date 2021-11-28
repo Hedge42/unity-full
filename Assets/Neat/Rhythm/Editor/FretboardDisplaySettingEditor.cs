@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(FretboardDisplaySetting))]
     public class FretboardDisplaySettingEditor : Editor

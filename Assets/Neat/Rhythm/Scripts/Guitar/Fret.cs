@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 	public abstract class Fret
 	{

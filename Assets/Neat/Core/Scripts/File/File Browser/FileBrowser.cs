@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.FileManagement;
+using Neat.GameManager;
 using UnityEngine.UI;
 using TMPro;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace Neat.FileBrowser
+namespace Neat.GameManager.FileBrowser
 {
     [RequireComponent(typeof(FileBrowserToolbar))]
     public class FileBrowser : MonoBehaviour

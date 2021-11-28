@@ -1,5 +1,5 @@
 {
-    "name": "Neat.AimTrainer.Editor",
+    "name": "Neat.Demos.AimTrainer.Editor",
     "references": [
         "GUID:0388db4f6990bb44b8f6c8976660089c"
     ],

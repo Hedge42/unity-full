@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     // attributes only need declarations with optional constructors
     // so putting them in the same file makes sense
@@ -58,7 +58,20 @@ namespace Neat.Attributes
     public class BeginDisabledGroupAttribute : PropertyAttribute { }
     public class EndDisabledGroupAttribute : PropertyAttribute { }
 
-    [AttributeUsage(AttributeTargets.Field)]
+    // [AttributeUsage(AttributeTargets.)]
+    public class DisabledAttribute : Attribute { }
+
+    // [AttributeUsage(AttributeTargets.Field)]
+    public class DisabledIfAttribute : Attribute
+    {
+        public string boolName { get; private set; }
+        public DisabledIfAttribute(string boolName)
+        {
+            this.boolName = boolName;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method)]
     public class ButtonAttribute : PropertyAttribute
     {
         // public Action action;
@@ -69,10 +82,12 @@ namespace Neat.Attributes
             // could use reflection here to find the method...
             this.methodName = methodName;
         }
+        public ButtonAttribute()
+        {
+        }
     }
 
-    [AttributeUsage(AttributeTargets.Field)]
-    public class HideIfAttribute : PropertyAttribute
+    public class HideIfAttribute : Attribute
     {
         public string fieldName;
         public HideIfAttribute(string boolFieldName)
@@ -80,6 +95,9 @@ namespace Neat.Attributes
             this.fieldName = boolFieldName;
         }
     }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class SerializePropertyAttribute : Attribute { }
 
     public class InlineAttribute : PropertyAttribute
     {
@@ -92,4 +110,7 @@ namespace Neat.Attributes
 
     [AttributeUsage(AttributeTargets.Class)]
     public class ExtendAttribute : PropertyAttribute { }
+
+    [AttributeUsage(AttributeTargets.Field)]
+    public class ListAttribute : PropertyAttribute { }
 }

@@ -2,24 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Neat.Tools;
 
 namespace Neat.Tools
 {
     [System.Serializable]
     public class GUIWindow
     {
+        public Object obj;
+
+        [HideIf("hideRect")]
         public Rect rect;
         private System.Type type;
         private string title;
         private FieldInfo[] fields;
-        public object obj;
         private int id;
+
+        private bool hideRect => ReferenceEquals(obj, null);
 
 
         private static int windowCount;
         private readonly float prefixWidth = 150;
 
-        public GUIWindow(object obj)
+        public GUIWindow(Object obj)
+        {
+            SetObject(obj);
+        }
+        public void SetObject(Object obj)
         {
             this.obj = obj;
             this.title = $"{type} Inspector";
@@ -34,6 +43,8 @@ namespace Neat.Tools
         }
         private void DrawWindow(int windowID)
         {
+            
+
             if (type == null)
                 type = obj.GetType();
             if (fields == null)

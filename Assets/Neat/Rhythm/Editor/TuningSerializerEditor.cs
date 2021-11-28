@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(TuningSerializer))]
     public class TuningSerializerEditor : Editor

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.Fighter
+namespace Neat.Demos.Fighter
 {
     public class InputHandler : MonoBehaviour
     {

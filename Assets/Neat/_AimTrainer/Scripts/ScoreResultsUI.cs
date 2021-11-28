@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class ScoreResultsUI : MonoBehaviour
     {

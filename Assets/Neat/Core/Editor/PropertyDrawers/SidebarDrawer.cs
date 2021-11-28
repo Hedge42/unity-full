@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using Neat.Extensions;
+using Neat.Tools;
 using Neat.Tools;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     // WARNING: BROKE
     [CustomPropertyDrawer(typeof(SidebarAttribute))]

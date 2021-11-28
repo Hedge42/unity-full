@@ -1,8 +1,8 @@
-﻿using Neat.Collections;
+﻿using Neat.Experimental.Collections;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Neat.Collections
+namespace Neat.Experimental.Collections
 {
     /// <summary>
     /// A doubly linked list

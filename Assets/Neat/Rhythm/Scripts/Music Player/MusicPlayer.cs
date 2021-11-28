@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteAlways]
     // is this more of a music timer?

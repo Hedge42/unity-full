@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Neat.Extensions;
+using Neat.Tools;
 
 public class LineGraph : MonoBehaviour
 {

@@ -1,10 +1,10 @@
-﻿using Neat.UI;
+﻿using Neat.Tools.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 // UI controller class
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class PlayMenuUI : MonoBehaviour
     {

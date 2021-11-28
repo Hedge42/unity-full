@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     // https://www.youtube.com/watch?v=vLKeqS1PeTU
 

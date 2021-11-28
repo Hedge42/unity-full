@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(FretUI))]
     public class FretUIEditor : Editor

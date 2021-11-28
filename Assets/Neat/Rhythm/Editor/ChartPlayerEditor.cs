@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Neat.FileManagement;
+using Neat.GameManager;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(ChartPlayer))]
     public class ChartPlayerEditor : Editor

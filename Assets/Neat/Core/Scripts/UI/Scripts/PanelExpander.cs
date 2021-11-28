@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Neat.Extensions;
+using Neat.Tools;
 
 public class PanelExpander : MonoBehaviour
 {

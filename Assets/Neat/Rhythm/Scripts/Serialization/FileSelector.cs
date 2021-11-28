@@ -4,7 +4,7 @@ using System.IO;
 using Neat.Experimental;
 using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [Serializable]
     public class FileSelector<T> 

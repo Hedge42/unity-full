@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 // a monobehavior layer for fret/border objects
 // serves as a template + container for fret and border objects
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class FretUI : MonoBehaviour, IPointerClickHandler
     {

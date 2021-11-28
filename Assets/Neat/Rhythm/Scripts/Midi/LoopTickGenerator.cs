@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Neat.Midi
+namespace Neat.Audio.Midi
 {
     public class LoopTickGenerator
     {

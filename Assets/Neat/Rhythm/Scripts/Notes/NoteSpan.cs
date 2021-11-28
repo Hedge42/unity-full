@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // this class is to prevent having to recalculate what notes
     // are in the controller's timespan

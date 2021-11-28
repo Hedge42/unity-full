@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using Neat.Tools;
 
-namespace Neat.Tutorials
+namespace Neat.Experimental.Tutorials
 {
     [CustomEditor(typeof(GameDataObject))]
     public class GameDataObjectCustomEditor : Editor

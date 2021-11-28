@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Neat.Music;
+using Neat.Audio.Music;
 
-namespace Neat.Functions
+namespace Neat.Tools.Functions
 {
     public static class AsyncRunner
     {

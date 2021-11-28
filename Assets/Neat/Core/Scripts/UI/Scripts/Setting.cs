@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.FileManagement
+namespace Neat.GameManager
 {
 
     [System.Serializable]

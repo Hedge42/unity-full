@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 
-namespace Neat.Meat
+namespace Neat.Experimental
 {
     public class EventBased
     {

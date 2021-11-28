@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class MusicPlayer_ : MonoBehaviour
     {

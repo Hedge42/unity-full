@@ -12,7 +12,7 @@ namespace Neat.Audio
         public static void FindAndLoad(string directory, AudioSource source, Action onClipReady)
         {
             Action<string> onSelect = delegate (string file) { Load(source, file, onClipReady); };
-            Neat.FileBrowser.FileBrowser.instance.Show(directory, onSelect, ".mp3", ".wav");
+            Neat.GameManager.FileBrowser.FileBrowser.instance.Show(directory, onSelect, ".mp3", ".wav");
         }
         public static void Load(AudioSource source, string filepath, Action onClipReady)
         {

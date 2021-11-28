@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class ScoreboardHUD : MonoBehaviour
     {

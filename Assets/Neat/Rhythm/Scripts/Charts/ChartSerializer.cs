@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Neat.Audio;
-using Neat.FileManagement;
+using Neat.GameManager;
 using System.IO;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteAlways]
     public class ChartSerializer : MonoBehaviour
@@ -49,7 +49,7 @@ namespace Neat.Music
 
         public static void OpenDirectory()
         {
-            FileManagement.FileManager.OpenExplorer(directory);
+            FileManager.OpenExplorer(directory);
         }
         public void Save()
         {

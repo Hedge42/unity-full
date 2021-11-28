@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Neat.InputManagement.DeviceMaps
+namespace Neat.GameManager.DeviceMaps
 {
     public interface IDeviceMap
     {

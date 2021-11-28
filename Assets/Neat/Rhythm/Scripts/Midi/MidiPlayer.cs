@@ -3,7 +3,7 @@ using UnityEngine;
 using Melanchall.DryWetMidi.Devices;
 using System.Collections;
 
-namespace Neat.Midi
+namespace Neat.Audio.Midi
 {
     public class MidiPlayer : MonoBehaviour
     {

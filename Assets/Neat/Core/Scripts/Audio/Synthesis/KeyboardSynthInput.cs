@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neat.Synthesis
+namespace Neat.Audio.Synthesis
 {
     public class KeyboardSynthInput : MonoBehaviour
     {

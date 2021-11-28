@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Neat.Console
+namespace Neat.Tools
 {
     [Serializable]
     public class DebugCommandBase // : SerializedObject

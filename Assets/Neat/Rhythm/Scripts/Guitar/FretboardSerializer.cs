@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.FileManagement;
+using Neat.GameManager;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class FretboardSerializer : MonoBehaviour
     {

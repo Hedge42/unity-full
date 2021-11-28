@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.Reflection;
-using Neat.Attributes;
+using Neat.Tools;
 using System.Linq;
 using UnityEngine.UIElements;
 
-namespace Neat.Extensions
+namespace Neat.Tools
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(ExtendedMonoBehaviour))]

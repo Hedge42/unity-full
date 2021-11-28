@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Neat.Experimental;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class TestSerializer : Serializer<FileTesting>
     {

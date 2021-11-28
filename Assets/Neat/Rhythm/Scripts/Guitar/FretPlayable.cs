@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Animations;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 	public class FretObject : Fret
 	{

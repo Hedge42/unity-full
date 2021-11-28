@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neat.UI
+namespace Neat.Tools.UI
 {
     [ExecuteInEditMode()]
     public class ProgressBar : MonoBehaviour

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class KeyOverlay : MonoBehaviour, Loadable
     {

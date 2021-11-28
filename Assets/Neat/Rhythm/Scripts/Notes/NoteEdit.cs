@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class NoteEdit
     {

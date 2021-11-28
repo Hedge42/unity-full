@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-//namespace Neat.AimTrainer
+//namespace Neat.Demos.AimTrainer
 //{
 public class AimProfileUI : MonoBehaviour, ISettingUI<AimProfile>
 {

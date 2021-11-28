@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Neat.InputManagement
+namespace Neat.GameManager
 {
     public class DeviceListener : MonoBehaviour
     {

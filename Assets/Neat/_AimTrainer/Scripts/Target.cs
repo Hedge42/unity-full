@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Neat.Extensions;
+using Neat.Tools;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
     public class Target
     {

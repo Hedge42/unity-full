@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 // exp
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [Serializable]
     public class TimeSpan

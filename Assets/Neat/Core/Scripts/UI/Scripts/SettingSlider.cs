@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Neat.UI
+namespace Neat.Tools.UI
 {
     public class SettingSlider : MonoBehaviour
     {

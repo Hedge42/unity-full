@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neat.Synthesis
+namespace Neat.Audio.Synthesis
 {
     public class AttackFilter : IFilter
     {

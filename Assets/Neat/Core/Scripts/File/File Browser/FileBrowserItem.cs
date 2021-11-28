@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 
-namespace Neat.FileBrowser
+namespace Neat.GameManager.FileBrowser
 {
 
 

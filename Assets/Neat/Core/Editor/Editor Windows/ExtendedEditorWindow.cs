@@ -1,8 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Neat.Attributes;
+using Neat.Tools;
 using UnityEditor.Callbacks;
-using Neat.Tutorials;
+using Neat.Experimental.Tutorials;
 
 namespace Neat.Tools
 {

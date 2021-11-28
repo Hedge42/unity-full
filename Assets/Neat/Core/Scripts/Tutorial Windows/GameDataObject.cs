@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Neat.Attributes;
+using Neat.Tools;
 using UnityEditor.Callbacks;
 
-namespace Neat.Tutorials
+namespace Neat.Experimental.Tutorials
 {
     public class GameDataObject : MonoBehaviour
     {

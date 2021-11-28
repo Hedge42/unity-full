@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     public class CachedAttribute : System.Attribute
     {

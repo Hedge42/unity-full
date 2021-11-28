@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     using Input = UnityEngine.Input;
     using KeyCode = UnityEngine.KeyCode;

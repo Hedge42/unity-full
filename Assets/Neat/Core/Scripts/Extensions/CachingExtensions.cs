@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Neat.Extensions
+namespace Neat.Tools
 {
     public static class CachingExtensions
     {

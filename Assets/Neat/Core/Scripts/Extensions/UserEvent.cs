@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Neat.Extensions
+namespace Neat.Tools
 {
     public static class UserEventExtensions
     {

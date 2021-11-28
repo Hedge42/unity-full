@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neat.Synthesis
+namespace Neat.Audio.Synthesis
 {
     public class SynthNote
     {

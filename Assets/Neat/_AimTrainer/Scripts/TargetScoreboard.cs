@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Neat.Extensions;
+using Neat.Tools;
 using UnityEngine.Events;
-using Neat.UI;
+using Neat.Tools.UI;
 using Neat.Audio;
 
-namespace Neat.AimTrainer
+namespace Neat.Demos.AimTrainer
 {
 
     public class TargetScoreboard : MonoBehaviour

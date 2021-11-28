@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [RequireComponent(typeof(Button))]
     public class MetronomeToggleButton : MonoBehaviour

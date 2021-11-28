@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Neat.Functions;
+using Neat.Tools.Functions;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class HighwayHoverHandler
     {

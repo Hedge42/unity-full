@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Neat.Music;
+using Neat.Audio.Music;
 
-namespace Neat.Console
+namespace Neat.Tools
 {
     public static class DebugCommandList
     {
@@ -28,7 +28,7 @@ namespace Neat.Console
             }),
             new DebugCommand<string, string>("snap", "sets snapping at <n> ticks per <m>easure or <b>eat", "snap <count> <type>", (count, type) =>
             {
-                Neat.Music.Snapping.Set(count, type);
+                Neat.Audio.Music.Snapping.Set(count, type);
             }),
 
             FretboardConsoleCommands.SetScaleCommand(),

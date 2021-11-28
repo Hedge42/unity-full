@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using Neat.Experimental;
 
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [ExecuteAlways]
     // controller ??

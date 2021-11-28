@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Neat.FileManagement;
+using Neat.GameManager;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class USerializer<T> : ScriptableObject
     {

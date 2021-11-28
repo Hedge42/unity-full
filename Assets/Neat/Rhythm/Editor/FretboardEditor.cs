@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using Neat.Functions;
+using Neat.Tools.Functions;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 	[CustomEditor(typeof(Fretboard))]
 	public class FretboardEditor : Editor

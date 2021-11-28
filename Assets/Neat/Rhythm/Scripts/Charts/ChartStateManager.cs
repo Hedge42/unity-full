@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Neat.States;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class ChartStateManager : MonoBehaviour
     {

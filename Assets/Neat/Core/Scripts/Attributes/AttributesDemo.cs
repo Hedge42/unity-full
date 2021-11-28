@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neat.Extensions;
-using System;
-using Neat.Tutorials;
+using Neat.Tools;
+using Neat.Experimental.Tutorials;
+using Neat.Tools;
+using Neat.Tools;
+using Object = UnityEngine.Object;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
+    [Extend]
     public class AttributesDemo : MonoBehaviour
     {
         // to show off and test attributes
@@ -22,31 +26,59 @@ namespace Neat.Attributes
         [MinMax(0, 10)]
         public Vector2Int int_range;
 
-        [BeginDisabledGroup, MinMax(-1, 69)]
-        public Vector2Int disabled_range = new Vector2Int(4, 20); 
-        [EndDisabledGroup]
+        //[BeginDisabledGroup, MinMax(-1, 69)]
+        [MinMax(-1, 69), Disabled]
+        public Vector2Int disabled_range = new Vector2Int(4, 20);
+        //[EndDisabledGroup]
 
         public bool isMute;
 
         public string name1;
-        public string name2;
 
-        [SerializeField, HideIf("isMute"), Button("SayHello")] private string dummyt;
+        [DisabledIf("isMute")]
+        public string muteDisabled;
+
+        [List]
+        public Object[] objs;
+
+
+        public TestClass classObj;
+
+        [List]
+        public TestClass[] classArr;
+
+        public static int staticInt;
+
+        [SerializeProperty]
+        public string getProperty => "nice";
+
+        [SerializeProperty]
+        public string autoProperty { get; set; }
+
+        //[SerializeField, HideIf("isMute"), Button("SayHello")] private string dummyt;
         public void SayHello()
         {
             print("This works!");
         }
 
-        [Button("Disable")] public string dummy2;
+        [Button, DisabledIf("isMute")]
         public void Disable()
         {
-            
+
+        }
+        [Button, HideIf("isMute")]
+        public void Enable()
+        {
+
         }
 
-        private void OnGUI()
+        [Serializable]
+        public class TestClass : Object
         {
-            // GUI.sli
-
+            [Range(0, 10)]
+            public int a;
+            [Disabled]
+            public int b;
         }
     }
 

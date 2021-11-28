@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Neat.States;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     // media player input?
     using Input = UnityEngine.Input;

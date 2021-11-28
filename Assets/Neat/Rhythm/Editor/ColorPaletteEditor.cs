@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 // move to core
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     [CustomEditor(typeof(ColorPaletteUI))]
     public class ColorPaletteEditor : Editor

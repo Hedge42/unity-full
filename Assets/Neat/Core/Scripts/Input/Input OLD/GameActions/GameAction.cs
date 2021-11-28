@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neat.InputManagement
+namespace Neat.GameManager
 {
     public enum GameAction
     {

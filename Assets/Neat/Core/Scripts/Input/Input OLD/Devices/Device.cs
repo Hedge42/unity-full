@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using Neat.InputManagement.DeviceMaps;
+using Neat.GameManager.DeviceMaps;
 using System;
 
-namespace Neat.InputManagement
+namespace Neat.GameManager
 {
     public class Device : IDevice
     {

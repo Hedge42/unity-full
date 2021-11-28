@@ -6,9 +6,9 @@ using UnityEditor;
 //using UnityEngine.EventSystems;
 using UnityEditor.Events;
 using System;
-using Neat.Extensions;
+using Neat.Tools;
 
-namespace Neat.Functions
+namespace Neat.Tools.Functions
 {
     public static class EditorFunctions
     {

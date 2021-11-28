@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
-using Neat.Music;
+using Neat.Audio.Music;
 
-namespace Neat.Console
+namespace Neat.Tools
 {
     public static class FretboardConsoleCommands
     {

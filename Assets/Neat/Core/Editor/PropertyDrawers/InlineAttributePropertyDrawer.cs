@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neat.Attributes
+namespace Neat.Tools
 {
     [CustomPropertyDrawer(typeof(InlineAttribute))]
     public class InlineAttributePropertyDrawer : ExtendedPropertyDrawer

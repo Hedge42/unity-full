@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Neat.Fighter
+namespace Neat.Demos.Fighter
 {
     // ground or air
     // stand or crouch

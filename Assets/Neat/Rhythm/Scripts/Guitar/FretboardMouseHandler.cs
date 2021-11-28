@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
     public class FretboardMouseHandler : MonoBehaviour
     {

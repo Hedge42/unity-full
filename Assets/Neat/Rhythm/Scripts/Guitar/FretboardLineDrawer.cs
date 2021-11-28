@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace Neat.Music
+namespace Neat.Audio.Music
 {
 	[ExecuteAlways]
 	public class FretboardLineDrawer : MonoBehaviour
