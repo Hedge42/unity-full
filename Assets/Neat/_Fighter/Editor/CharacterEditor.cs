@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Neat.Tools.Functions;
+using Neat.Tools.Extensions;
 using System;
 
 namespace Neat.Demos.Fighter

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Neat.Audio.Music;
 
-namespace Neat.Tools.Functions
+namespace Neat.Tools.Extensions
 {
     public static class AsyncRunner
     {

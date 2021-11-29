@@ -44,14 +44,16 @@ namespace Neat.Tools
                 var canRead = (member as PropertyInfo).CanRead;
                 value = (member as PropertyInfo).GetValue(obj);
             }
-            else if (member is MethodInfo && member.IsEzMethod())
-            {
-                throw new System.NotImplementedException();
-                //value = (member as MethodInfo).
-            }
-            // Debug.Log($"{member.Name} = {value}");
 
             return value;
+            //else if (member is MethodInfo && member.IsEzMethod())
+            //{
+            //    throw new System.NotImplementedException();
+            //    //value = (member as MethodInfo).
+            //}
+            //// Debug.Log($"{member.Name} = {value}");
+
+            //return default;
         }
         public static void SetValue(this MemberInfo member, object obj, object value)
         {
@@ -98,7 +100,7 @@ namespace Neat.Tools
                 if (count == 0)
                     return true;
                 else
-                    Debug.LogError($"Needed parameterless method, but found {count} parameters");
+                    Debug.LogError($"Needed parameterless method, but found {count} parameters in {member.Name}");
             }
 
             return false;

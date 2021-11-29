@@ -5,8 +5,9 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 using System;
+using Neat.Tools.Extensions;
 using Object = UnityEngine.Object;
-using Neat.Tools.Functions;
+
 
 namespace Neat.Tools
 {
@@ -37,8 +38,8 @@ namespace Neat.Tools
 
 
             //Debug.Log($"Editor Enable, {target.GetType()}");
-            dick = new Dictionary<MemberInfo, SerializedWrapper>();
-            CreateSerializedProperties();
+            // dick = new Dictionary<MemberInfo, SerializedWrapper>();
+            // CreateSerializedProperties();
         }
         public override void OnInspectorGUI()
         {
@@ -47,16 +48,16 @@ namespace Neat.Tools
                 //DrawSerializedProperties(serializedObject);
                 //foldout = EditorGUIL.Foldout(new Rect(0, 0, 20, 16), foldout, "");
 
-                toolbar = DrawToolbar();
-                if (toolbar == 0)
-                {
-                    //base.OnInspectorGUI();
-                    DrawSerializedProperties(serializedObject);
-                }
-                else if (toolbar == 1)
-                {
-                    DrawMembers();
-                }
+                toolbar = InspectorToolbar();
+                //if (toolbar == 0)
+                //{
+                //    //base.OnInspectorGUI();
+                //    DrawSerializedProperties(serializedObject);
+                //}
+                //else if (toolbar == 1)
+                //{
+                //    DrawMembers();
+                //}
 
                 serializedObject.ApplyModifiedProperties();
 
@@ -67,38 +68,55 @@ namespace Neat.Tools
             }
         }
 
-        protected void DrawSerializedProperties(SerializedObject serializedObject)
+        protected void CopycatInspector(SerializedObject serializedObject)
         {
+            MakeWindowButtons();
+
             // https://gist.github.com/rutcreate/d550aa1ae4052e0a0b37
             SerializedProperty prop = serializedObject.GetIterator();
-            ManualHeader(prop);
+            CopycatHeader(prop);
 
             while (prop.NextVisible(false))
                 //DrawProperties(prop, false);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty(prop.name), true);
         }
 
-        private void ManualHeader(SerializedProperty prop)
+        private void CopycatHeader(SerializedProperty prop)
         {
             // header
-            Rect position = EditorGUILayout.GetControlRect();
-            Rect foldoutRect = new Rect(position);
-            foldoutRect.width = 0;
-            //r.y -= r.height;
             prop.NextVisible(true); // move to script component
-            EditorGUI.BeginDisabledGroup(true);
-            foldout = EditorGUI.Foldout(foldoutRect, foldout, "");
-            EditorGUI.PropertyField(position, serializedObject.FindProperty(prop.name), true);
-            EditorGUI.EndDisabledGroup();
+
+            GUI.enabled = false;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(prop.name), true);
+            EditorScriptHeader();
+            GUI.enabled = true;
+        }
+        private void EditorScriptHeader()
+        {
+            var script = MonoScript.FromScriptableObject(this);
+            bool wasEnabled = GUI.enabled;
+            GUI.enabled = false;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Editor Script");
+            EditorGUILayout.ObjectField(script, typeof(MonoScript), true);
+            EditorGUILayout.EndHorizontal();
+            GUI.enabled = wasEnabled;
         }
 
+
         // *****
-        protected void DrawMembers()
+        bool _memberFoldout;
+        protected void GUIInspector()
         {
-            GUILayout.Label($"Drawing {members.Length} members...");
-            foreach (var member in members)
+            _memberFoldout = EditorGUILayout.Foldout(_memberFoldout, $"View {members.Length} members");
+            // EditorGUILayout.InspectorTitlebar
+            var level = EditorGUI.indentLevel;
+
+            if (_memberFoldout)
             {
-                DrawExtendedProperty(member);
+                EditorGUI.indentLevel += 1;
+                Extensions.Functions.ViewTargetMembers(target, members);
+                EditorGUI.indentLevel -= 1;
             }
         }
         void DrawExtendedProperty(MemberInfo member)
@@ -130,29 +148,35 @@ namespace Neat.Tools
         }
 
         int toolbar;
-        int DrawToolbar()
+        int InspectorToolbar()
         {
             string[] options =
             {
-                "Manual Inspector",
-                "Reflective Inspector"
+                "Base Inspector",
+                "Copycat Inspector",
+                "GUI Inspector"
             };
 
-            return GUILayout.Toolbar(toolbar, options);
+            toolbar = GUILayout.Toolbar(toolbar, options);
 
             if (toolbar == 0)
             {
-                //base.OnInspectorGUI();
-                DrawSerializedProperties(serializedObject);
+                base.OnInspectorGUI();
             }
             else if (toolbar == 1)
             {
-                DrawMembers();
+                CopycatInspector(serializedObject);
             }
+            else if (toolbar == 2)
+            {
+                GUIInspector();
+            }
+            return toolbar;
         }
 
         private void DrawList(MemberInfo member)
         {
+            throw new System.NotImplementedException();
             // create a serializedObject for the array
 
             //var _type = member.GetValueType();
@@ -160,7 +184,7 @@ namespace Neat.Tools
             var value = member.GetValue(target);
             var property = CreateSerializedProperty(member, value);
 
-            property.Draw();
+            //   property;
 
 
             // DrawSerializedProperty(value);
@@ -249,6 +273,7 @@ namespace Neat.Tools
         }
         private void MakeWindowButtons()
         {
+            GUILayout.BeginHorizontal();
             if (GUILayout.Button("Open in Editor Window"))
             {
                 ExtendedEditorWindow.Open(target as AttributesDemo);
@@ -257,8 +282,9 @@ namespace Neat.Tools
             {
                 GUIWindowDrawer.instance.Open(target as AttributesDemo);
             }
+            GUILayout.EndHorizontal();
 
-            EditorGUILayout.Separator();
+            //EditorGUILayout.Separator();
         }
 
 

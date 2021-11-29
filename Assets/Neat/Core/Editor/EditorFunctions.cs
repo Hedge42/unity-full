@@ -8,7 +8,7 @@ using Neat.Tools;
 using System.Reflection;
 using Object = UnityEngine.Object;
 
-namespace Neat.Tools.Functions
+namespace Neat.Tools.Extensions
 {
     // Editor Functions
     public static partial class Functions
@@ -40,13 +40,26 @@ namespace Neat.Tools.Functions
                 iterator.Draw();
             }
         }
-        public static void DrawTargetMembers(Object target, MemberInfo[] members)
+        public static void ViewTargetMembers(Object target, MemberInfo[] members)
         {
-            foreach (var member in members)
+
+
+            foreach (MemberInfo member in members)
             {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PrefixLabel(member.Name);
-                EditorGUILayout.LabelField($"{member.GetValue(target)}");
+                EditorGUILayout.PrefixLabel($"{member.Name}");
+                //EditorGUILayout.PrefixLabel($"{member.GetValueType()} {member.Name}");
+                EditorGUILayout.LabelField($"{member.GetValue(target)}", GUILayout.Width(60));
+
+                try
+                {
+                    EditorGUILayout.LabelField(member.GetValueType().ToString());
+                }
+                catch
+                {
+                    EditorGUILayout.LabelField("?");
+                }
+
                 EditorGUILayout.EndHorizontal();
             }
         }
