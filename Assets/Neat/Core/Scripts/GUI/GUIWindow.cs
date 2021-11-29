@@ -15,14 +15,14 @@ namespace Neat.Tools
         public Rect rect;
         private System.Type type;
         private string title;
-        private FieldInfo[] fields;
+        private MemberInfo[] members;
         private int id;
 
         private bool hideRect => ReferenceEquals(obj, null);
 
 
         private static int windowCount;
-        private readonly float prefixWidth = 150;
+        private float prefixWidth => 150;
 
         public GUIWindow(Object obj)
         {
@@ -34,7 +34,9 @@ namespace Neat.Tools
             this.title = $"{type} Inspector";
             this.id = windowCount++;
             this.type = obj.GetType();
-            this.fields = type.GetFields();
+            this.members = obj.FindMembers();
+
+            //Functions.mem
             this.rect = GUIWindowDrawer.defaultRect;
         }
         public void Draw()
@@ -43,16 +45,12 @@ namespace Neat.Tools
         }
         private void DrawWindow(int windowID)
         {
-            
-
-            if (type == null)
-                type = obj.GetType();
-            if (fields == null)
-                fields = type.GetFields();
+            if (members == null)
+                members = obj.FindMembers();
 
             // draw fields based on type
-            foreach (var field in fields)
-                DrawField(field);
+            foreach (var member in members)
+                DrawMember(member);
 
             DrawButtons();
 
@@ -61,56 +59,49 @@ namespace Neat.Tools
             GUI.DragWindow(dragArea);
         }
 
-        private void DrawField(FieldInfo x)
+        private void DrawMember(MemberInfo member)
         {
             // WORK IN PROGRESS
-
             GUILayout.BeginHorizontal();
-            System.Type _type = x.FieldType;
-            object value = x.GetValue(obj);
-            GUILayout.Label(x.Name, GUILayout.Width(prefixWidth));
+            var _type = member.GetValueType();
+            object value = member.GetValue(obj);
+            GUILayout.Label(member.Name, GUILayout.Width(prefixWidth));
 
             if (value is string)
             {
-                x.SetValue(obj, GUILayout.TextField(value.ToString()));
-                //if (GUI.GetNameOfFocusedControl() != "str_input0")
-                //GUI.SetNextControlName($"str_input{count++}");
-                //GUI.FocusControl("str_input0");
+                member.SetValue(obj, GUILayout.TextField(value.ToString()));
             }
             else if (value is bool)
             {
-                x.SetValue(obj, GUILayout.Toggle((bool)value, ""));
+                member.SetValue(obj, GUILayout.Toggle((bool)value, ""));
             }
             else if (value is float)
             {
-                var range = x.GetCustomAttribute<RangeAttribute>();
+                var range = member.GetCustomAttribute<RangeAttribute>();
                 if (range != null)
                 {
                     float slider = GUILayout.HorizontalSlider((float)value, range.min, range.max);
                     float.TryParse(GUILayout.TextField($"{(slider).ToString("f2")}", GUILayout.MaxWidth(80)), out float result);
 
-                    x.SetValue(obj, result);
-                    // GUILayout.Label($"{((float)value).ToString("f2")}", GUILayout.Width(50));
-                    // var input = GUILayout.TextField($"{((float)value).ToString("f2")}", GUILayout.Width(50));
-
+                    member.SetValue(obj, result);
                 }
                 else
                 {
                     var input = GUILayout.TextField(value.ToString());
                     if (float.TryParse(input, out float result))
                     {
-                        x.SetValue(obj, result);
+                        member.SetValue(obj, result);
                     }
                 }
             }
             else if (value is int)
             {
-                var range = x.GetCustomAttribute<RangeAttribute>();
+                var range = member.GetCustomAttribute<RangeAttribute>();
                 if (range != null)
                 {
                     float f = (int)value;
                     float input = GUILayout.HorizontalSlider(f, range.min, range.max);
-                    x.SetValue(obj, Mathf.RoundToInt(input));
+                    member.SetValue(obj, Mathf.RoundToInt(input));
                     GUILayout.Label($"{f}", GUILayout.Width(50));
                 }
                 else
@@ -118,7 +109,7 @@ namespace Neat.Tools
                     var input = GUILayout.TextField(value.ToString());
                     if (int.TryParse(input, out int result))
                     {
-                        x.SetValue(obj, result);
+                        member.SetValue(obj, result);
                     }
                 }
             }
@@ -134,7 +125,7 @@ namespace Neat.Tools
                 GUILayout.EndHorizontal();
 
                 var newVector = new Vector2(xf, yf);
-                x.SetValue(obj, newVector);
+                member.SetValue(obj, newVector);
             }
             else if (value is Vector2Int)
             {
@@ -145,16 +136,14 @@ namespace Neat.Tools
                 var _y = GUILayout.TextField(v.y.ToString());
                 int.TryParse(_x, out int xi);
                 int.TryParse(_y, out int yi);
-
-
                 GUILayout.EndHorizontal();
 
                 var newVector = new Vector2Int(xi, yi);
-                x.SetValue(obj, newVector);
+                member.SetValue(obj, newVector);
             }
             else
             {
-                GUILayout.Label($"{value}");
+                GUILayout.Label($"{member.Name} = {value}");
             }
 
             GUILayout.EndHorizontal();

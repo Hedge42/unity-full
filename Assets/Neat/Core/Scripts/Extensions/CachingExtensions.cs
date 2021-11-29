@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Neat.Tools
 {
-    public static class CachingExtensions
+    public static partial class Functions
     {
         public static T2 CacheGetComponent<T1, T2>(this T1 _this, ref T2 _data) where T1 : MonoBehaviour
         {

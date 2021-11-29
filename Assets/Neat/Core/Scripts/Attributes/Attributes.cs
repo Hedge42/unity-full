@@ -10,7 +10,7 @@ namespace Neat.Tools
 {
     // attributes only need declarations with optional constructors
     // so putting them in the same file makes sense
-    public static class AttributeExtensions
+    public static partial class Functions
     {
         public static List<MemberInfo> FindAttributeMembers<T>(BindingFlags flags) where T : Attribute
         {
@@ -113,4 +113,8 @@ namespace Neat.Tools
 
     [AttributeUsage(AttributeTargets.Field)]
     public class ListAttribute : PropertyAttribute { }
+
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
+    public class ToolbarAttribute : Attribute { }
 }
+

@@ -28,6 +28,12 @@ namespace Neat.Tools
 
         private bool initialized;
 
+        private void OnEnable()
+        {
+            print("here!");
+            SetWindowObjects();
+        }
+
         private void OnGUI()
         {
             SetWindowObjects();

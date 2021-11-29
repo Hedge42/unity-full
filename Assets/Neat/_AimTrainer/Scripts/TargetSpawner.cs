@@ -384,7 +384,7 @@ namespace Neat.Demos.AimTrainer
             if (currentTarget == null || currentTarget.GetData<Target>().isTracking)
                 return;
 
-            GameExtensions.Cast(sender, receiver, out Gun g, out GameObject target);
+            Functions.Cast(sender, receiver, out Gun g, out GameObject target);
 
             if (waitingForFirstHit)
             {
@@ -403,7 +403,7 @@ namespace Neat.Demos.AimTrainer
         {
             if (currentTarget != null && currentTarget.GetData<Target>().isTracking)
             {
-                GameExtensions.Cast(sender, receiver, out Gun g, out GameObject target);
+                Functions.Cast(sender, receiver, out Gun g, out GameObject target);
                 TrackAttempt(target);
             }
         }

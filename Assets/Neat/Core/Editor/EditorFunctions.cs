@@ -2,16 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-//using UnityEngine.Events;
-//using UnityEngine.EventSystems;
 using UnityEditor.Events;
 using System;
 using Neat.Tools;
+using System.Reflection;
+using Object = UnityEngine.Object;
 
 namespace Neat.Tools.Functions
 {
-    public static class EditorFunctions
+    // Editor Functions
+    public static partial class Functions
     {
+        public static bool DrawFromSerializedObject(MemberInfo member, SerializedObject obj)
+        {
+            // try to find serialized property on given object
+            // return successful
+
+            var so = obj.FindProperty(member.Name);
+            if (so != null)
+            {
+                foreach (SerializedProperty prop in so)
+                    EditorGUILayout.PropertyField(prop);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static void Draw(this SerializedObject obj)
+        {
+            var iterator = obj.GetIterator();
+            iterator.NextVisible(true);
+            while (iterator.NextVisible(false))
+            {
+                iterator.Draw();
+            }
+        }
+        public static void DrawTargetMembers(Object target, MemberInfo[] members)
+        {
+            foreach (var member in members)
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel(member.Name);
+                EditorGUILayout.LabelField($"{member.GetValue(target)}");
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+        public static void MemberInfoWindowButton(Object target, MemberInfo[] members)
+        {
+            // print members and member values in gui windows
+            throw new System.NotImplementedException();
+            //if (GUILayout.Button("Show members in Window"))
+            //{
+            //    ExtendedEditorWindow window = EditorWindow.GetWindow<ExtendedEditorWindow>($"{_type} EditorWindow");
+
+            //}
+        }
+        public static void Draw(this SerializedProperty prop)
+        {
+            EditorGUILayout.PropertyField(prop);
+        }
+
         public static void GUIColorLerp(string label, ref Color a, ref Color b)
         {
             GUILayout.BeginHorizontal();
@@ -210,8 +263,8 @@ namespace Neat.Tools.Functions
             GUILayout.EndHorizontal();
         }
 
-        public static void GUIListItemWrap<T>(ref List<T> list, Action gui, int i, 
-            Action<int> onRemove = null, Action<int> onAdd = null, 
+        public static void GUIListItemWrap<T>(ref List<T> list, Action gui, int i,
+            Action<int> onRemove = null, Action<int> onAdd = null,
             Action<int> onMoveUp = null, Action<int> onMoveDown = null) where T : class
         {
             GUILayout.BeginHorizontal();
@@ -332,39 +385,6 @@ namespace Neat.Tools.Functions
                 x = max;
             return x;
         }
-
-        public static GUIStyle FontStyle(this GUIStyle style, FontStyle s)
-        {
-            GUIStyle g = new GUIStyle(style);
-            g.fontStyle = s;
-            return g;
-        }
-        public static GUIStyle Bold(this GUIStyle style)
-        {
-            return style.FontStyle(UnityEngine.FontStyle.Bold);
-        }
-        public static GUIStyle FontSize(this GUIStyle style, int fontSize)
-        {
-            GUIStyle g = new GUIStyle(style);
-            g.fontSize = fontSize;
-            return g;
-        }
-        public static GUIStyle TextColor(this GUIStyle style, Color c)
-        {
-            GUIStyle g = new GUIStyle(style);
-            g.normal.textColor = c;
-            return g;
-        }
-        public static GUIStyle Rich(this GUIStyle style)
-        {
-            GUIStyle s = new GUIStyle(style);
-            s.richText = true;
-            return s;
-        }
-
-        public static GUIContent Tooltip(this string s, string tooltip)
-        {
-            return new GUIContent(s, tooltip);
-        }
     }
+
 }

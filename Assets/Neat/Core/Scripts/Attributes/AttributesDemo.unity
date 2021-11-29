@@ -260,17 +260,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9627f8cba0483d849841c32674ddb548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  float_range: {x: 2.276579, y: 7.085322}
-  f: 28.9
-  myInt: 131
-  int_range: {x: 2, y: 4}
-  disabled_range: {x: 0, y: 0}
+  float_range: {x: 4.272727, y: 6.272727}
+  f: 40.2
+  myInt: 179
+  int_range: {x: 3, y: 8}
+  disabled_range: {x: 22, y: 38}
   isMute: 1
-  name1: sdf
-  muteDisabled: dddddd
-  objs:
-  - {fileID: 11500000, guid: 7b8215c253f015841bdc565d7da488ea, type: 3}
-  - {fileID: 0}
+  name1: ff
+  muteDisabled: 222
 --- !u!114 &1747624868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,16 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58cd5125cb14ab4fbd4052d0eb58b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windows:
-  - obj: {fileID: 1747624867}
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 600
-      height: 900
-  objects:
-  - {fileID: 1747624867}
+  windows: []
+  objects: []
   skin: {fileID: 0}
 --- !u!1 &1842207282
 GameObject:

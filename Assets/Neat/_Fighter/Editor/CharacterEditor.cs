@@ -189,7 +189,7 @@ namespace Neat.Demos.Fighter
             Func<int, string> getName = null) where T : new()
         {
             data.foldout = EditorGUILayout.Foldout(data.foldout,
-                label + " (" + list.Count + ")", EditorStyles.foldout.Bold());
+                label + " (" + list.Count + ")");//, EditorStyles.foldout.Bold());
 
 
 
@@ -245,7 +245,7 @@ namespace Neat.Demos.Fighter
                         ItemMovedDown(x, data);
                     };
 
-                    EditorFunctions.GUIListItemWrap(t, list, gui, i,
+                    Functions.GUIListItemWrap(t, list, gui, i,
                         onRemove: onRemove, onAdd: onAdd,
                         onMoveUp: onMoveUp, onMoveDown: onMoveDown);
                 }
@@ -314,7 +314,7 @@ namespace Neat.Demos.Fighter
                 c.walkSpeed = EditorGUILayout.FloatField("Walkspeed", c.walkSpeed);
                 c.health = EditorGUILayout.IntField("Health", c.health);
 
-                EditorFunctions.EndLine();
+                Functions.EndLine();
 
                 MakeList(typeof(Move), c.moves, moveData, "Moves", ResetMoveListData, GetMoveName);
                 EditMove(c);
@@ -330,7 +330,7 @@ namespace Neat.Demos.Fighter
                 HandleMoveTemplate();
 
                 m.name = EditorGUILayout.TextField("Name", m.name);
-                m.frames = EditorFunctions.IntFieldBounded("Frames", m.frames, 0, 300);
+                m.frames = Functions.IntFieldBounded("Frames", m.frames, 0, 300);
                 m.state = EditorGUILayout.TextField("Input State", m.state);
                 m.directions = EditorGUILayout.TextField("Directions", m.directions);
                 m.buttons = EditorGUILayout.TextField("Buttons", m.buttons);
@@ -340,7 +340,7 @@ namespace Neat.Demos.Fighter
 
                 m.ValidateFrameBounds();
 
-                EditorFunctions.EndLine();
+                Functions.EndLine();
 
                 MakeList(typeof(Hitbox), m.hitboxes, hitboxData, "Hitboxes", ResetHitboxListData);
                 EditHitboxs(m);
@@ -356,11 +356,11 @@ namespace Neat.Demos.Fighter
         {
             if (GetCurrent(out Hitbox h, hitboxData, m.hitboxes))
             {
-                EditorFunctions.GUIMinMaxIntSlider("Frames", ref h.startFrame,
+                Functions.GUIMinMaxIntSlider("Frames", ref h.startFrame,
                     ref h.endFrame, 0, m.frames);
 
-                h.damage = EditorFunctions.IntFieldBounded("Damage", h.damage, -50, 1000);
-                h.level = EditorFunctions.EnumPopup("Attack level", h.level);
+                h.damage = Functions.IntFieldBounded("Damage", h.damage, -50, 1000);
+                h.level = Functions.EnumPopup("Attack level", h.level);
                 h.startPos = EditorGUILayout.Vector2Field("Start pos", h.startPos);
                 h.startSize = EditorGUILayout.Vector2Field("Start size", h.startSize);
 
@@ -368,7 +368,7 @@ namespace Neat.Demos.Fighter
 
                 if (h.disconnect)
                 {
-                    h.disconnectFrame = EditorFunctions.IntFieldBounded(
+                    h.disconnectFrame = Functions.IntFieldBounded(
                         "Disconnect frame", h.disconnectFrame, h.startFrame, h.endFrame);
                 }
 
@@ -380,14 +380,14 @@ namespace Neat.Demos.Fighter
                     "Hitbox size adjustments");
                 EditHitboxSizeAdjustments(h);
 
-                EditorFunctions.EndLine();
+                Functions.EndLine();
             }
         }
         private void EditStates(Move m)
         {
             if (GetCurrent(out StateChange s, stateData, m.stateChanges))
             {
-                s.frame = EditorFunctions.IntFieldBounded("Frame", s.frame, 0, m.frames - 1);
+                s.frame = Functions.IntFieldBounded("Frame", s.frame, 0, m.frames - 1);
 
                 s.ground = EditorGUILayout.Toggle("Ground", s.ground);
                 s.stand = EditorGUILayout.Toggle("Stand", s.stand);
@@ -395,30 +395,30 @@ namespace Neat.Demos.Fighter
                 s.guard = EditorGUILayout.Toggle("Guard", s.guard);
                 s.knockdown = EditorGUILayout.Toggle("Knockdown", s.knockdown);
 
-                EditorFunctions.EndLine();
+                Functions.EndLine();
             }
         }
         private void EditPositions(Move m)
         {
             if (GetCurrent(out VectorInterpolation v, positionData, m.positionChanges))
             {
-                EditorFunctions.GUIMinMaxIntSlider("Frames", ref v.startFrame,
+                Functions.GUIMinMaxIntSlider("Frames", ref v.startFrame,
                     ref v.endFrame, 0, m.frames);
 
-                v.power = EditorFunctions.FloatFieldBounded("Power", v.power, 0, 10);
+                v.power = Functions.FloatFieldBounded("Power", v.power, 0, 10);
                 v.change = EditorGUILayout.Vector2Field("Delta", v.change);
 
-                EditorFunctions.EndLine();
+                Functions.EndLine();
             }
         }
         private void EditHitboxPositions(Hitbox h)
         {
             if (GetCurrent(out VectorInterpolation v, hitboxPositionData, h.ipPosition))
             {
-                EditorFunctions.GUIMinMaxIntSlider("Frames", ref v.startFrame,
+                Functions.GUIMinMaxIntSlider("Frames", ref v.startFrame,
                     ref v.endFrame, h.startFrame, h.endFrame);
 
-                v.power = EditorFunctions.FloatFieldBounded("Power", v.power, 0, 10);
+                v.power = Functions.FloatFieldBounded("Power", v.power, 0, 10);
                 v.change = EditorGUILayout.Vector2Field("Delta", v.change);
             }
         }
@@ -426,10 +426,10 @@ namespace Neat.Demos.Fighter
         {
             if (GetCurrent(out VectorInterpolation v, hitboxSizeData, h.ipSize))
             {
-                EditorFunctions.GUIMinMaxIntSlider("Frames", ref v.startFrame,
+                Functions.GUIMinMaxIntSlider("Frames", ref v.startFrame,
                     ref v.endFrame, h.startFrame, h.endFrame);
 
-                v.power = EditorFunctions.FloatFieldBounded("Power", v.power, 0, 10);
+                v.power = Functions.FloatFieldBounded("Power", v.power, 0, 10);
                 v.change = EditorGUILayout.Vector2Field("Delta", v.change);
             }
         }
@@ -475,7 +475,7 @@ namespace Neat.Demos.Fighter
                         }
 
                     }
-                    EditorFunctions.EndLine();
+                    Functions.EndLine();
                 }
             }
         }
@@ -520,7 +520,7 @@ namespace Neat.Demos.Fighter
                         }
                     }
 
-                    EditorFunctions.EndLine();
+                    Functions.EndLine();
                 }
             }
         }

@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace Neat.Tools
 {
-    public static class ReflectionFunctions
+    public static partial class Functions
     {
         // idea for memberinfo extension methods
         // https://stackoverflow.com/questions/15921608/getting-the-type-of-a-memberinfo-with-reflection
@@ -40,13 +40,38 @@ namespace Neat.Tools
 
             else if (member is PropertyInfo)
             {
-                var prop = (member as PropertyInfo);
+                // should already be canRead to get here
+                var canRead = (member as PropertyInfo).CanRead;
                 value = (member as PropertyInfo).GetValue(obj);
             }
-
-            Debug.Log($"{member.Name} type: {value.GetType()}. Object? {value is Object}. Object[]? {value is Object[]}");
+            else if (member is MethodInfo && member.IsEzMethod())
+            {
+                throw new System.NotImplementedException();
+                //value = (member as MethodInfo).
+            }
+            // Debug.Log($"{member.Name} = {value}");
 
             return value;
+        }
+        public static void SetValue(this MemberInfo member, object obj, object value)
+        {
+            if (member is FieldInfo)
+            {
+                var info = (member as FieldInfo);
+                info.SetValue(obj, value);
+            }
+            else if (member is PropertyInfo)
+            {
+                var info = (member as PropertyInfo);
+                if (info.CanWrite)
+                    info.SetValue(obj, value);
+            }
+            else
+            {
+                Debug.LogError($"Failed to set member");
+            }
+
+            // Debug.Log($"set {member.Name} -> {value}");
         }
         public static bool SetUnderlyingValue(this MemberInfo member, object target, object value)
         {
@@ -79,5 +104,53 @@ namespace Neat.Tools
             return false;
 
         }
+        public static MemberInfo[] FindMembers(this Object obj)
+        {
+            var _type = obj.GetType();
+            var _members = _type.GetMembers();
+            _members = _members.Where(m => m.IsRecognized(_type)).ToArray();
+            return _members;
+        }
+
+        // GUIFunctions
+
+        // ****
+        public static bool IsRecognized(this MemberInfo member, Type _type)
+        {
+            return member.IsInternal(_type) && (member.IsUnitySerialized() || member.IsSerializedProperty());
+        }
+        public static bool IsUnitySerialized(this MemberInfo member)
+        {
+            // fields which are public or private-serialized 
+            if (member is FieldInfo)
+            {
+                var fi = member as FieldInfo;
+                return fi.IsPublic || fi.GetCustomAttribute<SerializeField>() != null;
+            }
+            return false;
+        }
+        public static bool IsSerializedProperty(this MemberInfo member)
+        {
+            if (member is PropertyInfo)
+            {
+                var prop = member as PropertyInfo;
+                var attr = member.GetCustomAttribute<SerializePropertyAttribute>();
+
+                return prop.CanRead && attr != null;
+            }
+            return false;
+        }
+        public static bool IsInternal(this MemberInfo member, Type _type)
+        {
+            return member.DeclaringType == _type;
+        }
+
+
+        public static bool IsEnumerableType(this Type type)
+        {
+            return (type.GetInterface(nameof(System.Collections.IEnumerable)) != null);
+        }
+
+        
     }
 }

@@ -6,16 +6,18 @@ using UnityEngine;
 using System.Linq;
 using System;
 using Object = UnityEngine.Object;
+using Neat.Tools.Functions;
 
 namespace Neat.Tools
 {
     [CustomEditor(typeof(MonoBehaviour), true), CanEditMultipleObjects]
-    public class ExtendedEditor : Editor
+    public partial class ExtendedEditor : Editor
     {
         private MemberInfo[] members;
         private FieldInfo[] fields;
         private PropertyInfo[] properties;
         private MethodInfo[] methods;
+        private Dictionary<MemberInfo, SerializedWrapper> dick;
 
         bool extended;
 
@@ -35,20 +37,24 @@ namespace Neat.Tools
 
 
             //Debug.Log($"Editor Enable, {target.GetType()}");
+            dick = new Dictionary<MemberInfo, SerializedWrapper>();
+            CreateSerializedProperties();
         }
         public override void OnInspectorGUI()
         {
             if (extended)
             {
-                DrawSerializedProperties();
+                //DrawSerializedProperties(serializedObject);
                 //foldout = EditorGUIL.Foldout(new Rect(0, 0, 20, 16), foldout, "");
 
-                foldout = EditorGUILayout.Foldout(foldout, "Extensions");
-                if (foldout)
+                toolbar = DrawToolbar();
+                if (toolbar == 0)
                 {
-                    MakeWindowButtons();
-                    EditorGUILayout.Separator();
-
+                    //base.OnInspectorGUI();
+                    DrawSerializedProperties(serializedObject);
+                }
+                else if (toolbar == 1)
+                {
                     DrawMembers();
                 }
 
@@ -61,83 +67,109 @@ namespace Neat.Tools
             }
         }
 
-        protected void DrawSerializedProperties()
+        protected void DrawSerializedProperties(SerializedObject serializedObject)
         {
             // https://gist.github.com/rutcreate/d550aa1ae4052e0a0b37
             SerializedProperty prop = serializedObject.GetIterator();
-
-            // header
-            prop.NextVisible(true); // move to script component
-            EditorGUI.BeginDisabledGroup(true);
-            //DrawProperties(prop, false);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(prop.name), true);
-            EditorGUI.EndDisabledGroup();
+            ManualHeader(prop);
 
             while (prop.NextVisible(false))
                 //DrawProperties(prop, false);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty(prop.name), true);
         }
 
+        private void ManualHeader(SerializedProperty prop)
+        {
+            // header
+            Rect position = EditorGUILayout.GetControlRect();
+            Rect foldoutRect = new Rect(position);
+            foldoutRect.width = 0;
+            //r.y -= r.height;
+            prop.NextVisible(true); // move to script component
+            EditorGUI.BeginDisabledGroup(true);
+            foldout = EditorGUI.Foldout(foldoutRect, foldout, "");
+            EditorGUI.PropertyField(position, serializedObject.FindProperty(prop.name), true);
+            EditorGUI.EndDisabledGroup();
+        }
+
+        // *****
         protected void DrawMembers()
         {
             GUILayout.Label($"Drawing {members.Length} members...");
             foreach (var member in members)
             {
-                var attributes = member.GetCustomAttributes();
-
-                if (IsHidden(attributes))
-                    continue;
-
-                EditorGUI.BeginDisabledGroup(IsDisabled(attributes));
-
-                foreach (var attr in attributes)
-                {
-                    if (attr is ButtonAttribute)
-                    {
-                        //var method = member as MethodInfo;
-                        if (GUILayout.Button($"{member.Name}"))
-                        {
-                            Debug.Log($"valid? {member.IsEzMethod()}");
-                        }
-                    }
-                    else if (attr is ListAttribute)
-                    {
-                        DrawList(member);
-                    }
-                }
-
-                EditorGUI.EndDisabledGroup();
+                DrawExtendedProperty(member);
             }
         }
+        void DrawExtendedProperty(MemberInfo member)
+        {
+            var attributes = member.GetCustomAttributes();
+
+            if (IsHidden(attributes))
+                return;
+
+            EditorGUI.BeginDisabledGroup(IsDisabled(attributes));
+
+            foreach (var attr in attributes)
+            {
+                if (attr is ButtonAttribute)
+                {
+                    //var method = member as MethodInfo;
+                    if (GUILayout.Button($"{member.Name}"))
+                    {
+                        Debug.Log($"valid? {member.IsEzMethod()}");
+                    }
+                }
+                else if (attr is ListAttribute)
+                {
+                    DrawList(member);
+                }
+            }
+
+            EditorGUI.EndDisabledGroup();
+        }
+
+        int toolbar;
+        int DrawToolbar()
+        {
+            string[] options =
+            {
+                "Manual Inspector",
+                "Reflective Inspector"
+            };
+
+            return GUILayout.Toolbar(toolbar, options);
+
+            if (toolbar == 0)
+            {
+                //base.OnInspectorGUI();
+                DrawSerializedProperties(serializedObject);
+            }
+            else if (toolbar == 1)
+            {
+                DrawMembers();
+            }
+        }
+
         private void DrawList(MemberInfo member)
         {
-            var _type = member.GetValueType();
-            var isCollection = IsEnumerableType(_type);
+            // create a serializedObject for the array
+
+            //var _type = member.GetValueType();
+            //var isCollection = _type.IsEnumerableType();
             var value = member.GetValue(target);
-            Wrap(value);
+            var property = CreateSerializedProperty(member, value);
+
+            property.Draw();
+
+
+            // DrawSerializedProperty(value);
 
             // Debug.Log($"list type: {value.GetType()}");
             // Debug.Log($"is object? {value is Object}");
             // TryWithWrapper(value);
         }
-        public static bool DrawFromSerializedObject(MemberInfo member, SerializedObject obj)
-        {
-            // try to find serialized property on given object
-            // return successful
 
-            var so = obj.FindProperty(member.Name);
-            if (so != null)
-            {
-                foreach (SerializedProperty prop in so)
-                    EditorGUILayout.PropertyField(prop);
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         private bool GetConditional(string memberName)
         {
             var member = members.FirstOrDefault(m => m.Name.Equals(memberName));
@@ -225,28 +257,43 @@ namespace Neat.Tools
             {
                 GUIWindowDrawer.instance.Open(target as AttributesDemo);
             }
+
+            EditorGUILayout.Separator();
         }
 
-        // make these extensions
-        
 
-        public static bool IsEnumerableType(Type type)
+        private void CreateSerializedProperties()
         {
-            return (type.GetInterface(nameof(System.Collections.IEnumerable)) != null);
+            foreach (MemberInfo member in members)
+            {
+                var attr = member.GetCustomAttribute<SerializePropertyAttribute>();
+
+                if (attr != null)
+                {
+                    var value = member.GetValue(target);
+                    var prop = CreateSerializedProperty(member, member.GetValue(target));
+                }
+            }
         }
-        
-
-        private void Wrap(object value)
+        private SerializedProperty CreateSerializedProperty(MemberInfo info, object value)
         {
-            var scriptableObject = CreateInstance<SerializedWrapper>();
+            // instantiates a serializable, scriptableObject
+            // which stores a reference to a member
+
+            var scriptableObject = CreateInstance<SerializedWrapper>(); // create ScriptableObject data
+            scriptableObject.member = info; // give ScriptableObject a reference to the Member
+            // dick[info] = scriptableObject; // give the Member a reference to the ScriptableObject
+
             var serializedObject = new SerializedObject(scriptableObject);
-            SerializedProperty prop;
+            serializedObject.Draw();
+
+            SerializedProperty prop = null;
             if (value is Object)
             {
                 scriptableObject.obj = (value as Object);
                 prop = serializedObject.FindProperty("obj");
 
-                throw new System.NotImplementedException();
+                EditorGUILayout.PropertyField(prop, GUIContent.none, true);
             }
             else if (value is Object[])
             {
@@ -257,19 +304,32 @@ namespace Neat.Tools
                 {
                     EditorGUILayout.PropertyField(prop, GUIContent.none, true);
                     //foreach (SerializedProperty p in prop)
-                        //EditorGUILayout.PropertyField(p);
+                    //EditorGUILayout.PropertyField(p);
                 }
                 else
                 {
                     Debug.LogError($"not found");
                 }
             }
+
+            return prop;
         }
     }
 
     public class SerializedWrapper : ScriptableObject
     {
         // should use reflection to get and set members
+        public MemberInfo member;
+
+        [SerializeField]
+        public object value;
+
+        public static SerializedWrapper Instantiate(MemberInfo member, object value)
+        {
+            var scriptableObject = CreateInstance<SerializedWrapper>();
+            scriptableObject.value = value;
+            return scriptableObject;
+        }
 
         [SerializeReference]
         public Object obj;

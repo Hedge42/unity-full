@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Neat.Tools;
 
-#if UNITY_EDITOR
-using UnityEditor;
-// [CustomEditor(typeof(GUIDrawer))]
-public class GUIDrawerEditor : Editor
-{
-    bool reflected;
+//#if UNITY_EDITOR
+//using UnityEditor;
+//// [CustomEditor(typeof(GUIDrawer))]
+//public class GUIDrawerEditor : Editor
+//{
+//    bool reflected;
 
 
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+//    public override void OnInspectorGUI()
+//    {
+//        base.OnInspectorGUI();
 
-        Debug.Log($"Inspector event: {Event.current}");
-    }
-}
+//        Debug.Log($"Inspector event: {Event.current}");
+//    }
+//}
 
-#endif
+//#endif
 
 [ExecuteInEditMode]
 [Extend]

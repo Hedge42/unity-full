@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Neat.Tools;
 using Neat.Experimental.Tutorials;
-using Neat.Tools;
-using Neat.Tools;
 using Object = UnityEngine.Object;
 
 namespace Neat.Tools
@@ -38,14 +36,14 @@ namespace Neat.Tools
         [DisabledIf("isMute")]
         public string muteDisabled;
 
-        [List]
-        public Object[] objs;
+        //[List]
+        //public Object[] objs;
 
 
-        public TestClass classObj;
+        //public TestClass classObj;
 
-        [List]
-        public TestClass[] classArr;
+        //[List]
+        //public TestClass[] classArr;
 
         public static int staticInt;
 

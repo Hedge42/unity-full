@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using static Neat.Tools.Functions.EditorFunctions;
+using static Neat.Tools.Functions.Functions;
 
 [CustomEditor(typeof(Motor))]
 public class MotorEditor : Editor

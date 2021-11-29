@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Neat.Tools
 {
-    public static class GameExtensions
+    public static partial class Functions
     {
         public static T GetOrAddComponent<T>(this GameObject o)
         {
