@@ -28,11 +28,8 @@ namespace Neat.Tools
             }),
             new DebugCommand<string, string>("snap", "sets snapping at <n> ticks per <m>easure or <b>eat", "snap <count> <type>", (count, type) =>
             {
-                Neat.Audio.Music.Snapping.Set(count, type);
+                // Neat.Audio.Music.Snapping.Set(count, type);
             }),
-
-            FretboardConsoleCommands.SetScaleCommand(),
-            FretboardConsoleCommands.SetFlatsCommand(),
         };
         public static void Help()
         {

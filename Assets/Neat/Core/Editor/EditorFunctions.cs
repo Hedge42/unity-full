@@ -8,10 +8,10 @@ using Neat.Tools;
 using System.Reflection;
 using Object = UnityEngine.Object;
 
-namespace Neat.Tools.Extensions
+namespace Neat.Tools
 {
     // Editor Functions
-    public static partial class Functions
+    public static partial class EditorFunctions
     {
         public static bool DrawFromSerializedObject(MemberInfo member, SerializedObject obj)
         {
@@ -40,10 +40,9 @@ namespace Neat.Tools.Extensions
                 iterator.Draw();
             }
         }
+
         public static void ViewTargetMembers(Object target, MemberInfo[] members)
         {
-
-
             foreach (MemberInfo member in members)
             {
                 EditorGUILayout.BeginHorizontal();
@@ -63,19 +62,80 @@ namespace Neat.Tools.Extensions
                 EditorGUILayout.EndHorizontal();
             }
         }
-        public static void MemberInfoWindowButton(Object target, MemberInfo[] members)
-        {
-            // print members and member values in gui windows
-            throw new System.NotImplementedException();
-            //if (GUILayout.Button("Show members in Window"))
-            //{
-            //    ExtendedEditorWindow window = EditorWindow.GetWindow<ExtendedEditorWindow>($"{_type} EditorWindow");
 
-            //}
-        }
+
         public static void Draw(this SerializedProperty prop)
         {
             EditorGUILayout.PropertyField(prop);
+        }
+
+        public static void IDK()
+        {
+
+            // Editor e = Editor.CreateEditor(this);
+            // UnityEditor.CustomEditor.IsDefined()
+        }
+        public static Editor GetCustomEditor(this Object obj)
+        {
+            bool hasCustomEditor = ActiveEditorTracker.HasCustomEditor(obj);
+            Editor e = null;
+
+            if (!hasCustomEditor)
+            {
+                e = Editor.CreateEditor(obj);
+
+            }
+            else
+            {
+
+                var editors = ActiveEditorTracker.sharedTracker.activeEditors;
+
+                foreach (var editor in editors)
+                {
+                    editor.target.GetType();
+                }
+            }
+
+            return e;
+        }
+
+        public static MonoScript GetEditorScript(this MonoBehaviour component)
+        {
+            return MonoScript.FromMonoBehaviour(component);
+        }
+
+        // [InitializeOnLoadMethod]
+        public static void PrintEditors()
+        {
+            var editors = ActiveEditorTracker.sharedTracker.activeEditors;
+            Debug.Log($"Found {editors.Length} editors...");
+            foreach (var editor in editors)
+            {
+                Debug.Log($"Editor: {editor.target.GetType()} > {editor.GetType()}");
+            }
+        }
+        public static void EditorScriptField(Editor e)
+        {
+            var script = MonoScript.FromScriptableObject(e);
+            bool wasEnabled = GUI.enabled;
+            GUI.enabled = false;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Editor Script");
+            EditorGUILayout.ObjectField(script, typeof(MonoScript), true);
+            EditorGUILayout.EndHorizontal();
+            GUI.enabled = wasEnabled;
+        }
+        public static void GUIScriptField(GUIInspector inspector)
+        {
+            var type = inspector.GetType();
+            var script = MonoScript.FromScriptableObject(inspector);
+            bool wasEnabled = GUI.enabled;
+            GUI.enabled = false;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("GUI Script");
+            EditorGUILayout.ObjectField(script, typeof(MonoScript), true);
+            EditorGUILayout.EndHorizontal();
+            GUI.enabled = wasEnabled;
         }
 
         public static void GUIColorLerp(string label, ref Color a, ref Color b)

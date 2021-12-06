@@ -70,6 +70,7 @@ public class Gun : MonoBehaviour
     }
     private void Init()
     {
+        throw new System.NotImplementedException();
         model.transform.GetChild(0).gameObject.SetActive(showModel);
     }
     private void Awake()

@@ -1,105 +1,82 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Reflection;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Neat.Tools
 {
-    // editor enable: find members
-    // 
-
-    public class DebugConsole : MonoBehaviour
+    [CustomGUIInspector(typeof(DebugConsole))]
+    public class DebugConsoleGUIInspector : GUIInspector
     {
-        public static DebugConsole instance;
+        private DebugConsole console;
+        public DebugConsoleGUIInspector(Object target) : base(target)
+        {
+            console = (DebugConsole)target;
+        }
+        protected override MemberInfo[] FindMembers()
+        {
+            var members = Functions.FindAttributeMembers<DebugCommandAttribute>(flags)
+                .Where(m => m is MethodInfo && (m as MethodInfo).IsStatic)
+                .ToArray();
 
-        public bool showConsole;
+            ViewCommands(members);
+
+            return members;
+        }
+
+        private void ViewCommands(MemberInfo[] members)
+        {
+            Debug.Log($"Found {members.Length} tagged commands: ");
+            foreach (var member in members)
+            {
+                if (member is MethodInfo)
+                {
+                    var method = member as MethodInfo;
+                    var _params = method.GetParameters().Select(p => p.ToString());
+                    var args = $"({String.Join(',', _params)})";
+
+                    Debug.Log($"cmd: {method.Name} {args}");
+                }
+            }
+        }
 
         public KeyCode show = KeyCode.Slash;
         public KeyCode submit = KeyCode.Return;
         public KeyCode cancel = KeyCode.Escape;
         public KeyCode forceVisible = KeyCode.RightShift | KeyCode.LeftShift;
 
-        private string cmdText = "";
         private string logText = "type \"help\" for list of commands";
         private Vector2 scrollPosition = default;
         private Rect scrollView = new Rect(0, 20, Screen.width, 150);
         private Rect scrollRect = new Rect(0, 0, Screen.width - 18, 500);
         private GUIStyle boxStyle;
 
-        private void Awake()
+        int selected;
+
+        public override void OnGUI()
         {
-            if (instance == null)
-                instance = this;
-            else if (instance != this)
-                Destroy(gameObject);
-            DontDestroyOnLoad(this);
+            var controlName = "neato.console.input";
+            GUI.SetNextControlName(controlName);
+            console.input = GUILayout.TextField(console.input);
 
-            showConsole = false;
-            cmdText = "";
+            console.HandleAutoComplete();
 
-        }
-        private void OnGUI()
-        {
-            if (boxStyle == null)
-            {
-                boxStyle = new GUIStyle(GUI.skin.box);
-                var newColor = new Color(0, 0, 0, .8f);
-                boxStyle.normal.background = MakeTex(1, 1, newColor);
-            }
-            // print($"FOCUSED: {GUI.GetNameOfFocusedControl()}");
+            if (GUI.changed)
+                Debug.Log("Changed!");
 
-            if (showConsole)
-            {
-                if (Pressed(cancel))
-                {
-                    Hide();
-                }
-                else if (Pressed(submit))
-                {
-                    Process(cmdText);
-
-                    if (Pressing(forceVisible))
-                        Hide();
-                }
-                else
-                {
-                    Focus();
-                }
-            }
-            else
-            {
-                if (Pressed(submit))
-                {
-                    Focus();
-                    cmdText = "";
-                }
-            }
-        }
-
-        public static void Log(string text)
-        {
-            if (instance == null)
-                instance = GameObject.FindObjectOfType<DebugConsole>();
-
-            instance.logText = $"{text}\n{instance.logText}";
-        }
-        public static void Clear()
-        {
-            if (instance == null)
-                instance = GameObject.FindObjectOfType<DebugConsole>();
-
-            instance.logText = "";
+            foreach (string id in console.autocomplete)
+                GUILayout.Label(id);
         }
 
         private void Focus()
         {
             // https://docs.unity3d.com/ScriptReference/GUI.FocusControl.html
-            showConsole = true;
+            console.showConsole = true;
             GUI.SetNextControlName("input");
-            cmdText = GUI.TextField(new Rect(0, 0, Screen.width, 20), cmdText);
+            console.input = GUI.TextField(new Rect(0, 0, Screen.width, 20), console.input);
             GUI.FocusControl("input");
 
             DrawLog();
@@ -107,7 +84,7 @@ namespace Neat.Tools
         private void DrawLog()
         {
             // var color = GUI.backgroundColor;
-
+            console.input = GUI.TextField(new Rect(0, 0, Screen.width, 20), console.input);
             scrollPosition = GUI.BeginScrollView(scrollView, scrollPosition, scrollRect, false, true);
             GUI.Box(scrollRect, "", boxStyle);
             GUI.Label(scrollRect, logText);
@@ -131,8 +108,8 @@ namespace Neat.Tools
 
         private void Hide()
         {
-            showConsole = false;
-            cmdText = "";
+            console.showConsole = false;
+            console.input = "";
             GUI.FocusControl(" ");
         }
         private bool Pressed(KeyCode k)
@@ -172,7 +149,7 @@ namespace Neat.Tools
                 DebugConsole.Log($"Unrecognized command \"{input}\"");
             }
 
-            cmdText = "";
+            console.input = "";
         }
     }
 }

@@ -32,13 +32,110 @@ public class GUIDrawer : MonoBehaviour
     public Rect windowRect = new Rect(0, 0, 600, 1000);
     public Object obj; // object to create an inspector for
 
-    private float prefixWidth = 100;
     private FieldInfo[] fields;
     private bool reflected;
 
     public GUIDrawer drawer;
 
     private MethodInfo[] methods;
+
+    public static float prefixWidth = 100;
+
+    public static void DrawMemberLayout(MemberInfo member, object target)
+    {
+        // WORK IN PROGRESS
+        GUILayout.BeginHorizontal();
+        var _type = member.GetValueType();
+        object value = member.GetValue(target);
+        GUILayout.Label(member.Name, GUILayout.Width(prefixWidth));
+
+        if (value is string)
+        {
+            member.SetValue(target, GUILayout.TextField(value.ToString()));
+        }
+        else if (value is bool)
+        {
+            member.SetValue(target, GUILayout.Toggle((bool)value, ""));
+        }
+        else if (value is float)
+        {
+            var range = member.GetCustomAttribute<RangeAttribute>();
+            if (range != null)
+            {
+                float slider = GUILayout.HorizontalSlider((float)value, range.min, range.max);
+                float.TryParse(GUILayout.TextField($"{(slider).ToString("f2")}", GUILayout.MaxWidth(80)), out float result);
+
+                member.SetValue(target, result);
+            }
+            else
+            {
+                var input = GUILayout.TextField(value.ToString());
+                if (float.TryParse(input, out float result))
+                {
+                    member.SetValue(target, result);
+                }
+            }
+        }
+        else if (value is int)
+        {
+            var range = member.GetCustomAttribute<RangeAttribute>();
+            if (range != null)
+            {
+                float f = (int)value;
+                float input = GUILayout.HorizontalSlider(f, range.min, range.max);
+                member.SetValue(target, Mathf.RoundToInt(input));
+                GUILayout.Label($"{f}", GUILayout.Width(50));
+            }
+            else
+            {
+                var input = GUILayout.TextField(value.ToString());
+                if (int.TryParse(input, out int result))
+                {
+                    member.SetValue(target, result);
+                }
+            }
+        }
+        else if (value is Vector2)
+        {
+            Vector2 v = (Vector2)value;
+
+            GUILayout.BeginHorizontal();
+            var _x = GUILayout.TextField(v.x.ToString());
+            var _y = GUILayout.TextField(v.y.ToString());
+            float.TryParse(_x, out float xf);
+            float.TryParse(_y, out float yf);
+            GUILayout.EndHorizontal();
+
+            var newVector = new Vector2(xf, yf);
+            member.SetValue(target, newVector);
+        }
+        else if (value is Vector2Int)
+        {
+            Vector2Int v = (Vector2Int)value;
+
+            GUILayout.BeginHorizontal();
+            var _x = GUILayout.TextField(v.x.ToString());
+            var _y = GUILayout.TextField(v.y.ToString());
+            int.TryParse(_x, out int xi);
+            int.TryParse(_y, out int yi);
+            GUILayout.EndHorizontal();
+
+            var newVector = new Vector2Int(xi, yi);
+            member.SetValue(target, newVector);
+        }
+        else
+        {
+            GUILayout.Label($"{member.Name} = {value}");
+        }
+
+        GUILayout.EndHorizontal();
+    }
+
+    public static void DrawMember(MemberInfo member, object target, Rect position, bool drawPrefix)
+    {
+
+    }
+
 
     private void OnEnable()
     {

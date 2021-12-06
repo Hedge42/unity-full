@@ -20,7 +20,6 @@ public class Recoiler : MonoBehaviour
     public Curve awayCurve;
     public Curve returnCurve;
 
-    private Random r;
     private Coroutine currentRecoil;
     private int numRecoils;
 

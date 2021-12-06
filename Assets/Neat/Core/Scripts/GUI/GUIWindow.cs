@@ -1,162 +1,177 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Neat.Tools;
+using Object = UnityEngine.Object;
 
 namespace Neat.Tools
 {
-    [System.Serializable]
-    public class GUIWindow
+    // GUIDrawer
+    [ExecuteInEditMode]
+    public class GUIWindow : MonoBehaviour
     {
-        public Object obj;
+        public Object target;
 
-        [HideIf("hideRect")]
         public Rect rect;
         private System.Type type;
         private string title;
-        private MemberInfo[] members;
+        public MemberInfo[] members;
+
         private int id;
 
-        private bool hideRect => ReferenceEquals(obj, null);
-
-
+        private bool drawWindow => ReferenceEquals(target, null);
         private static int windowCount;
-        private float prefixWidth => 150;
 
-        public GUIWindow(Object obj)
-        {
-            SetObject(obj);
-        }
-        public void SetObject(Object obj)
-        {
-            this.obj = obj;
-            this.title = $"{type} Inspector";
-            this.id = windowCount++;
-            this.type = obj.GetType();
-            this.members = obj.FindMembers();
+        private Object prevTarget;
 
-            //Functions.mem
-            this.rect = GUIWindowDrawer.defaultRect;
-        }
-        public void Draw()
+        private bool isDirty => !ReferenceEquals(target, prevTarget);// || members == null;
+
+        public static GUIWindow Open(Object target)
         {
-            rect = GUI.Window(id, rect, DrawWindow, title);
+            //if (target is MonoBehaviour)
+            try
+            {
+                var window = (target as MonoBehaviour).gameObject.GetOrAddComponent<GUIWindow>();
+                window.SetObject(target);
+                return window;
+            }
+            catch
+            {
+                Debug.Log("Couldn't open window from target!");
+                return null;
+            }
+
+            // throw new System.NotImplementedException();
+        }
+        private void OnEnable()
+        {
+            SetObject(target);
+        }
+        private void OnGUI()
+        {
+            if (target != null)
+            {
+                if (isDirty)
+                    SetObject(target);
+
+                rect = GUI.Window(target.GetHashCode(), rect, DrawWindow, title);
+            }
+
+            prevTarget = target;
+        }
+        public void SetObject(Object _target)
+        {
+            this.target = _target;
+
+            if (target != null)
+            {
+                this.title = $"{_target.GetType()} Inspector";
+                this.members = Functions.FindValidMembers(_target.GetType()).ToArray();
+                Debug.Log(members.Length);
+                // this.members = Functions.FindMembers<GUIAttribute>(target.GetType()).ToArray();
+            }
         }
         private void DrawWindow(int windowID)
         {
-            if (members == null)
-                members = obj.FindMembers();
+            // content
 
-            // draw fields based on type
+            Rect position = new Rect(rect);
+            position.height = 20;
+
+            GUILayout.Label($"{members.Length}");
+
             foreach (var member in members)
-                DrawMember(member);
+                DrawMemberLayout(member);
 
-            DrawButtons();
+            // drag, buttons, etc
+            WindowFunctions();
+        }
+
+        private void WindowFunctions()
+        {
+            DrawCornerButtons();
 
             // top-bar drag handle
             Rect dragArea = new Rect(0, 0, rect.width, 15);
             GUI.DragWindow(dragArea);
         }
 
-        private void DrawMember(MemberInfo member)
+        
+
+        // instead...
+        private void Draw(MemberInfo member, Attribute[] attributes)
         {
-            // WORK IN PROGRESS
+            foreach (var attribute in attributes)
+                Draw(member, attribute);
+        }
+        private void Draw(MemberInfo member, Attribute attribute)
+        {
+            if (attribute is ButtonAttribute)
+            {
+                var button = attribute as ButtonAttribute;
+                if (member is MethodInfo)
+                {
+                    var method = member as MethodInfo;
+                    Drawers.ButtonLayout(method.Name, method, target, button);
+                }
+            }
+        }
+        private void DrawMemberLayout(MemberInfo member)
+        {
             GUILayout.BeginHorizontal();
-            var _type = member.GetValueType();
-            object value = member.GetValue(obj);
-            GUILayout.Label(member.Name, GUILayout.Width(prefixWidth));
+            object value = member.GetValue(target);
+            GUILayout.Label(member.Name, GUILayout.Width(CustomGUISettings.labelWidth));
+
 
             if (value is string)
             {
-                member.SetValue(obj, GUILayout.TextField(value.ToString()));
+                member.SetValue(target, GUILayout.TextField(value.ToString()));
             }
             else if (value is bool)
             {
-                member.SetValue(obj, GUILayout.Toggle((bool)value, ""));
+                member.SetValue(target, GUILayout.Toggle((bool)value, ""));
             }
             else if (value is float)
             {
-                var range = member.GetCustomAttribute<RangeAttribute>();
-                if (range != null)
-                {
-                    float slider = GUILayout.HorizontalSlider((float)value, range.min, range.max);
-                    float.TryParse(GUILayout.TextField($"{(slider).ToString("f2")}", GUILayout.MaxWidth(80)), out float result);
-
-                    member.SetValue(obj, result);
-                }
-                else
-                {
-                    var input = GUILayout.TextField(value.ToString());
-                    if (float.TryParse(input, out float result))
-                    {
-                        member.SetValue(obj, result);
-                    }
-                }
+                FloatDrawer.DrawFloatLayout(member, target, value);
             }
             else if (value is int)
             {
-                var range = member.GetCustomAttribute<RangeAttribute>();
-                if (range != null)
-                {
-                    float f = (int)value;
-                    float input = GUILayout.HorizontalSlider(f, range.min, range.max);
-                    member.SetValue(obj, Mathf.RoundToInt(input));
-                    GUILayout.Label($"{f}", GUILayout.Width(50));
-                }
-                else
-                {
-                    var input = GUILayout.TextField(value.ToString());
-                    if (int.TryParse(input, out int result))
-                    {
-                        member.SetValue(obj, result);
-                    }
-                }
+                IntDrawer.DrawIntLayout(member, target, value);
             }
             else if (value is Vector2)
             {
-                Vector2 v = (Vector2)value;
-
-                GUILayout.BeginHorizontal();
-                var _x = GUILayout.TextField(v.x.ToString());
-                var _y = GUILayout.TextField(v.y.ToString());
-                float.TryParse(_x, out float xf);
-                float.TryParse(_y, out float yf);
-                GUILayout.EndHorizontal();
-
-                var newVector = new Vector2(xf, yf);
-                member.SetValue(obj, newVector);
+                Vector2Drawer.DrawVector2Layout(member, target, value);
             }
             else if (value is Vector2Int)
             {
-                Vector2Int v = (Vector2Int)value;
-
-                GUILayout.BeginHorizontal();
-                var _x = GUILayout.TextField(v.x.ToString());
-                var _y = GUILayout.TextField(v.y.ToString());
-                int.TryParse(_x, out int xi);
-                int.TryParse(_y, out int yi);
-                GUILayout.EndHorizontal();
-
-                var newVector = new Vector2Int(xi, yi);
-                member.SetValue(obj, newVector);
+                Vector2IntDrawer.DrawVector2IntLayout(member, target, value);
             }
             else
             {
-                GUILayout.Label($"{member.Name} = {value}");
+                GUILayout.Label($"{value} ({member.GetValueType()})");
             }
 
             GUILayout.EndHorizontal();
         }
+        private Rect DrawMember(Rect position, MemberInfo member)
+        {
+            return default;
+        }
 
-        private void DrawButtons()
+        private void DrawCornerButtons()
         {
             var offset = 3;
-            var size = 15;
+            var size = 18;
+
+
             Rect topRight = new Rect(rect.width - (size + offset), offset, size, size);
             if (GUI.Button(topRight, "x"))
             {
-                Debug.Log("nice");
+                // Debug.Log("u thought lol");
+                target = null;
             }
         }
     }

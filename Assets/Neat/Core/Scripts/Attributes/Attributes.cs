@@ -10,37 +10,13 @@ namespace Neat.Tools
 {
     // attributes only need declarations with optional constructors
     // so putting them in the same file makes sense
-    public static partial class Functions
-    {
-        public static List<MemberInfo> FindAttributeMembers<T>(BindingFlags flags) where T : Attribute
-        {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            List<MemberInfo> exposedMembers = new List<MemberInfo>();
 
-            foreach (Assembly assembly in assemblies)
-            {
-                Type[] types = assembly.GetTypes();
-                foreach (Type type in types)
-                {
-                    MemberInfo[] members = type.GetMembers(flags);
-                    foreach (MemberInfo member in members)
-                    {
-                        // TESTME
-                        if (member.CustomAttributes.ToArray().Length > 0)
-                        {
-                            T attribute = member.GetCustomAttribute<T>();
-                            if (attribute != null)
-                            {
-                                exposedMembers.Add(member);
-                                // do stuff
-                                // fields.Add((FieldInfo)member);
-                                // fieldNames.Add($"{member.ReflectedType}/{attribute.instance}");
-                            }
-                        }
-                    }
-                }
-            }
-            return exposedMembers;
+
+    public static class Attributes
+    {
+        public static AttributeTargets Member(this AttributeTargets at) //where T : typeof(AttributeTargets)
+        {
+            return AttributeTargets.Field;
         }
     }
 
@@ -116,5 +92,93 @@ namespace Neat.Tools
 
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public class ToolbarAttribute : Attribute { }
+
+    [AttributeUsage(AttributeTargets.Field)]
+    public class CachedFieldAttribute : Attribute { }
+
+    // [ExtendedInspector]
+    /// <summary>
+    /// Uses custom inspector
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class ExtendedInspectorAttribute : Attribute { }
+
+    // [MultiInspector]
+    /// <summary>
+    /// * Draws a toolbar to select between each inspector type. 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class MultiInspectorAttribute : Attribute { }
+
+    // [ShowEditorScript]
+    /// <summary>
+    /// Draws a clickable reference to the editor script being used for this class, 
+    /// Draws a script header for the current editor script
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class ShowEditorScriptAttribute : Attribute { }
+
+    // [GUIInspector]
+    /// <summary>
+    /// Changes the inspector to view 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class GUIInspectorAttribute : Attribute { }
+
+    // [GUI]
+    /// <summary>
+    /// Try to draw runtime GUI version of tagged member
+    /// If class, automatically tag all members
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Event | AttributeTargets.Method | AttributeTargets.Enum)] // ????
+    public class GUIAttribute : Attribute { }
+
+    // [EditorWindow]
+    /// <summary>
+    /// Adds a button to open the current inspector in a new editor window
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class EditorWindowAttribute : Attribute { }
+
+    // [GUIWindow]
+    /// <summary>
+    /// Adds a button to open the current inspector in an OnGUI window
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class OnGUIWindowAttribute : Attribute { }
+
+    // [ConsoleCommand]
+    /// <summary>
+    /// Tags a method to add to Console Commands
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
+    public class ConsoleCommandAttribute : Attribute { }
+
+    // [CustomGUIDrawer(typeof(object))]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public class CustomGUIDrawer : Attribute
+    {
+        public CustomGUIDrawer(Type type) { }
+    }
+
+    // [GUI, NoPrefix]
+    /// <summary>
+    /// Remove the property's prefix in the Editor on OnGUI
+    /// </summary>
+    public class NoPrefixAttribute : Attribute { }
+
+
+    // [Changed]
+    /// <summary>
+    /// Trigger an event when the value changes
+    /// </summary>
+    public class ChangedAttribute : Attribute { }
+
+    // [DebugCommand]
+    /// <summary>
+    /// Adds this method to the list of debug commands
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
+    public class DebugCommandAttribute : Attribute { }
 }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -199,6 +199,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &525898252
@@ -211,6 +212,7 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -225,8 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747624866}
   - component: {fileID: 1747624867}
-  - component: {fileID: 1747624870}
-  - component: {fileID: 1747624868}
+  - component: {fileID: 1747624869}
   m_Layer: 0
   m_Name: AttributesDemoGameObject
   m_TagString: Untagged
@@ -244,6 +245,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -260,29 +262,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9627f8cba0483d849841c32674ddb548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  float_range: {x: 1.181809, y: 3.181818}
-  f: 35.1
-  myInt: 241
-  int_range: {x: 2, y: 7}
+  publicBool: 0
+  float_range: {x: 33464, y: 0}
+  f: 22.55539
+  myInt: 252
+  int_range: {x: 1, y: 6}
   disabled_range: {x: 23, y: 39}
   isMute: 1
-  name1: ff
+  name1: dfgrrf
   muteDisabled: 222
---- !u!114 &1747624868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747624865}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0064876caa5f840ad3f9965df630b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockType: 0
-  uniformScale: 0
---- !u!114 &1747624870
+--- !u!114 &1747624869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,20 +280,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1747624865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e58cd5125cb14ab4fbd4052d0eb58b92, type: 3}
+  m_Script: {fileID: 11500000, guid: 092f178f504d6514a8fa5d39b16caf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windows:
-  - obj: {fileID: 1747624867}
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 600
-      height: 900
-  objects:
-  - {fileID: 1747624867}
-  skin: {fileID: 0}
+  showConsole: 0
+  input: 
+  autocomplete:
+  - help | prints command list
+  - log <value> | prints the value in this console
+  - clear | clears this debug console
+  - snap <count> <type> | sets snapping at <n> ticks per <m>easure or <b>eat
+  show: 47
+  submit: 13
+  cancel: 27
+  forceVisible: 319
 --- !u!1 &1842207282
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +373,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

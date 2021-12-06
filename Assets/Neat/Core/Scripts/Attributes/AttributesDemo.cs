@@ -5,12 +5,23 @@ using UnityEngine;
 using Neat.Tools;
 using Neat.Experimental.Tutorials;
 using Object = UnityEngine.Object;
+using GUILayout = Neat.Tools.GUILayoutExtensions;
 
 namespace Neat.Tools
 {
-    [Extend]
+    [GUI, Extend]
     public class AttributesDemo : MonoBehaviour
     {
+        public bool publicBool;
+        private bool privateBool;
+        public static bool publicStaticBool;
+        private static bool privateStaticBool;
+
+        public Event publicEvent;
+        private Event privateEvent;
+        public static Event publicStaticEvent;
+        private static Event privateStaticEvent;
+
         // to show off and test attributes
         [MinMax(0f, 10f)]
         public Vector2 float_range;
@@ -36,21 +47,13 @@ namespace Neat.Tools
         [DisabledIf("isMute")]
         public string muteDisabled;
 
-        //[List]
-        //public Object[] objs;
-
-
-        //public TestClass classObj;
-
-        //[List]
-        //public TestClass[] classArr;
-
+        [Range(420, 42069)]
         public static int staticInt;
 
-        [SerializeProperty]
+        //[SerializeProperty]
         public string getProperty => "nice";
 
-        [SerializeProperty]
+        //[SerializeProperty]
         public string autoProperty { get; set; }
 
         //[SerializeField, HideIf("isMute"), Button("SayHello")] private string dummyt;
@@ -64,10 +67,10 @@ namespace Neat.Tools
         {
 
         }
+
         [Button, HideIf("isMute")]
         public void Enable()
         {
-
         }
 
         [Serializable]

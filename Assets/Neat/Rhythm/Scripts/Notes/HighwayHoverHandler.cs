@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Neat.Tools.Extensions;
+using Neat.Tools;
 
 namespace Neat.Audio.Music
 {

@@ -20,6 +20,8 @@ namespace Neat.Tools
         }
         public static readonly Rect defaultRect = new Rect(0, 0, 600, 900);
 
+        public Object toDraw;
+
         // could be struct
         public List<GUIWindow> windows;
         public List<Object> objects;
@@ -36,31 +38,39 @@ namespace Neat.Tools
 
         private void OnGUI()
         {
+            //if (toDraw != null)
+            //{
+            //    foreach (var member in members)
+            //    {
+            //        GUIFunctions.DrawMemberLayout(member);
+            //    }
+            //}
+
             SetWindowObjects();
             HandleSkin();
             HandleEditorMouseClick();
 
-            foreach (var window in windows)
-                window.Draw();
+            //foreach (var window in windows)
+                //window.Draw();
         }
-        public GUIWindow Open<T>(T obj) where T : Object
-        {
-            // return existing, if same object reference
-            foreach (var window in windows)
-            {
-                if (ReferenceEquals(window.obj, obj))
-                //if (window.obj == obj)
-                {
-                    return window;
-                }
-            }
+        //public GUIWindow Open<T>(T obj) where T : Object
+        //{
+        //    // return existing, if same object reference
+        //    foreach (var window in windows)
+        //    {
+        //        if (ReferenceEquals(window.target, obj))
+        //        //if (window.obj == obj)
+        //        {
+        //            return window;
+        //        }
+        //    }
 
-            // create new window with reference object
-            var newWindow = new GUIWindow(obj);
-            windows.Add(newWindow);
-            objects.Add(obj);
-            return newWindow;
-        }
+        //    // create new window with reference object
+        //    var newWindow = new GUIWindow(obj);
+        //    windows.Add(newWindow);
+        //    objects.Add(obj);
+        //    return newWindow;
+        //}
 
         private void SetWindowObjects()
         {
@@ -68,7 +78,7 @@ namespace Neat.Tools
             {
                 foreach (var window in windows)
                 {
-                    window.SetObject(window.obj);
+                    window.SetObject(window.target);
                 }
 
                 initialized = true;

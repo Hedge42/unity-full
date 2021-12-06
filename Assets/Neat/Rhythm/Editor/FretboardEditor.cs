@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using Neat.Tools.Extensions;
+using Neat.Tools;
 
 namespace Neat.Audio.Music
 {
