@@ -130,18 +130,16 @@ namespace Neat.Tools
             {
                 // should already be canRead to get here
                 var canRead = (member as PropertyInfo).CanRead;
-                value = (member as PropertyInfo).GetValue(obj);
+                if (canRead)
+                    value = (member as PropertyInfo).GetValue(obj);
+            }
+
+            else if (member is MethodInfo)
+            {
+                throw new NotImplementedException();
             }
 
             return value;
-            //else if (member is MethodInfo && member.IsEzMethod())
-            //{
-            //    throw new System.NotImplementedException();
-            //    //value = (member as MethodInfo).
-            //}
-            //// Debug.Log($"{member.Name} = {value}");
-
-            //return default;
         }
         public static void SetValue(this MemberInfo member, object obj, object value)
         {
@@ -159,6 +157,17 @@ namespace Neat.Tools
 
                 if (info.CanWrite)
                     info.SetValue(obj, value);
+            }
+            else if (member is MethodInfo)
+            {
+                var method = member as MethodInfo;
+                IEnumerable<object> _params = null;
+                if (value is IEnumerable<object>)
+                    _params = value as IEnumerable<object>;
+                method.Invoke(obj, _params.ToArray());
+
+                // needs testing
+                throw new System.NotImplementedException();
             }
             else
             {

@@ -6,105 +6,100 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
+using UnityEngine.InputSystem;
+
 namespace Neat.Tools
 {
     // editor enable: find members
     // 
 
-    [Extend, ShowEditorScript, CustomGUIInspector(typeof(DebugConsoleGUIInspector))]
+    [ExecuteInEditMode]
+    [MultiInspector, GUIInspector, CustomGUIInspector(typeof(DebugConsoleGUIInspector))]
     public class DebugConsole : MonoBehaviour
     {
-        public static DebugConsole instance;
+        private static DebugConsole _instance;
+        public static DebugConsole instance
+        {
+            get
+            {
+                // == operator checks if gameObject was previously destroyed
+                if (_instance == null)
+                    _instance = Find();
+                return _instance;
+            }
+        }
+
+        public InputActionAsset inputs;
 
         public bool showConsole;
         public string input = "";
 
-        public string[] autocomplete;
-        public void HandleAutoComplete()
-        {
-            List<string> list = new List<string>();
-            foreach (var command in DebugCommandList.commands)
-            {
-                if (command.id.Contains(input))
-                    list.Add(command.ToString());
-            }
-            autocomplete = list.ToArray();
-        }
 
-        public KeyCode show = KeyCode.Slash;
-        public KeyCode submit = KeyCode.Return;
-        public KeyCode cancel = KeyCode.Escape;
-        public KeyCode forceVisible = KeyCode.RightShift | KeyCode.LeftShift;
 
         private string logText = "type \"help\" for list of commands";
+
         private Vector2 scrollPosition = default;
         private Rect scrollView = new Rect(0, 20, Screen.width, 150);
         private Rect scrollRect = new Rect(0, 0, Screen.width - 18, 500);
         private GUIStyle boxStyle;
 
+
+        private ConsoleAutocompleter _autocomplete;
+        public ConsoleAutocompleter autocomplete
+        {
+            get
+            {
+                if (ReferenceEquals(_autocomplete, null))
+                    _autocomplete = ConsoleAutocompleter.Instantiate(this);
+                return _autocomplete;
+            }
+        }
+
         private void Awake()
         {
-            if (instance == null)
-                instance = this;
-            else if (instance != this)
-                Destroy(gameObject);
-            DontDestroyOnLoad(this);
-
             showConsole = false;
             input = "";
-
-            
         }
         private void OnGUI()
         {
-            if (boxStyle == null)
-            {
-                boxStyle = new GUIStyle(GUI.skin.box);
-                var newColor = new Color(0, 0, 0, .8f);
-                boxStyle.normal.background = MakeTex(1, 1, newColor);
-            }
-            // print($"FOCUSED: {GUI.GetNameOfFocusedControl()}");
+            //if (boxStyle == null)
+            //{
+            //    boxStyle = new GUIStyle(GUI.skin.box);
+            //    var newColor = new Color(0, 0, 0, .8f);
+            //    boxStyle.normal.background = MakeTex(1, 1, newColor);
+            //}
+            //// print($"FOCUSED: {GUI.GetNameOfFocusedControl()}");
 
-            if (showConsole)
-            {
-                if (Pressed(cancel))
-                {
-                    Hide();
-                }
-                else if (Pressed(submit))
-                {
-                    Process(input);
+            //if (showConsole)
+            //{
+            //    if (Pressed(cancel))
+            //    {
+            //        Hide();
+            //    }
+            //    else if (Pressed(submit))
+            //    {
+            //        Process(input);
 
-                    if (Pressing(forceVisible))
-                        Hide();
-                }
-                else
-                {
-                    Focus();
-                }
-            }
-            else
-            {
-                if (Pressed(submit))
-                {
-                    Focus();
-                    input = "";
-                }
-            }
+            //        if (Pressing(forceVisible))
+            //            Hide();
+            //    }
+            //    else
+            //    {
+            //        Focus();
+            //    }
+            //}
+            //else
+            //{
+            //    if (Pressed(submit))
+            //    {
+            //        Focus();
+            //        input = "";
+            //    }
+            //}
         }
 
-        public static void Log(string text)
-        {
-            if (instance == null)
-                instance = GameObject.FindObjectOfType<DebugConsole>();
-
-            instance.logText = $"{text}\n{instance.logText}";
-        }
         public static void Clear()
         {
-            if (instance == null)
-                instance = GameObject.FindObjectOfType<DebugConsole>();
-
             instance.logText = "";
         }
 
@@ -193,6 +188,32 @@ namespace Neat.Tools
         private static DebugCommandBase ImACommand(float f, string x)
         {
             return null;
+        }
+
+        [DebugCommand(description = "Prints a line to the console")]
+        public static void Log(string text)
+        {
+            instance._Log(text);
+        }
+
+        public void _Log(string text)
+        {
+            logText = $"{text}\n{instance.logText}";
+        }
+
+        public static DebugConsole Find()
+        {
+            DebugConsole found = GameObject.FindObjectOfType<DebugConsole>();
+
+            // create an empty gameObject, add component
+            if (found == null)
+            {
+                Debug.Log($"Instantiating DebugConsole object...");
+                var go = Instantiate(new GameObject("Debug Console (generated)"));
+                found = go.AddComponent<DebugConsole>();
+            }
+
+            return found;
         }
     }
 }

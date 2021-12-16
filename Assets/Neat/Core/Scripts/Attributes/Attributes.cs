@@ -125,6 +125,16 @@ namespace Neat.Tools
     [AttributeUsage(AttributeTargets.Class)]
     public class GUIInspectorAttribute : Attribute { }
 
+    [AttributeUsage(AttributeTargets.Class)]
+    public class CustomGUIInspectorAttribute : Attribute
+    {
+        public Type type;
+        public CustomGUIInspectorAttribute(Type type)
+        {
+            this.type = type;
+        }
+    }
+
     // [GUI]
     /// <summary>
     /// Try to draw runtime GUI version of tagged member
@@ -179,6 +189,12 @@ namespace Neat.Tools
     /// Adds this method to the list of debug commands
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class DebugCommandAttribute : Attribute { }
+    public class DebugCommandAttribute : Attribute
+    {
+        public string description;
+        public string id; // optional?
+    }
+
+    
 }
 

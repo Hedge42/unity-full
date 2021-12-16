@@ -43,10 +43,10 @@ public class GameSettingUI : MonoBehaviour
             print("Set me up");
 
         controlUI.Apply(ref controlSetting);
-        controlSetting.SaveBinary();
+        controlSetting.SaveJSON();
 
         audioUI.Apply(ref audioSetting);
-        audioSetting.SaveBinary();
+        audioSetting.SaveJSON();
     }
     public void LoadFields()
     {

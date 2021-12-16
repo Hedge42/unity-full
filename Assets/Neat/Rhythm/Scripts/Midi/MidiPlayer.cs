@@ -1,6 +1,6 @@
 ﻿using Melanchall.DryWetMidi.Core;
 using UnityEngine;
-using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Multimedia;
 using System.Collections;
 
 namespace Neat.Audio.Midi
@@ -47,7 +47,7 @@ namespace Neat.Audio.Midi
         private Playback GetPlayback(MidiFile midiFile)
         {
             //output = OutputDevice.GetByName("Microsoft GS Wavetable Synth");
-            output = OutputDevice.GetById(0);
+            output = OutputDevice.GetByIndex(0);
 
             playback = midiFile.GetPlayback(output, new PlaybackSettings()
             {

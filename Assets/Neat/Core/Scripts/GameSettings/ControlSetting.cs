@@ -7,7 +7,6 @@ using Neat.GameManager;
 public class ControlSetting
 {
     public static readonly string fileNameJSON = "controlSettings.json";
-    public static readonly string fileNameBinary = "controlSettings.sav";
 
     public const int DPI_MIN = 100;
     public const int DPI_MAX = 16000;
@@ -16,8 +15,7 @@ public class ControlSetting
 
     public static ControlSetting Load()
     {
-        //var obj = FileManager.instance.LoadGameObjectJSON<ControlSetting>(fileNameJSON);
-        var obj = FileManager.instance.LoadGameObjectBinary<ControlSetting>(fileNameBinary);
+        var obj = FileManager.instance.LoadGameObjectJSON<ControlSetting>(fileNameJSON);
         if (obj == null)
             obj = new ControlSetting();
         return obj;
@@ -26,11 +24,7 @@ public class ControlSetting
     {
         FileManager.instance.SaveGameObjectJSON(this, fileNameJSON);
     }
-    public void SaveBinary()
-    {
-        FileManager.instance.SavePersistentGameObjectBinary(this, fileNameBinary);
-    }
 
     public int dpi = 800;
-    public float distance = 14.61039f;
+    public float distance = 23;
 }

@@ -13,7 +13,8 @@ public class AudioSetting
 
     public static AudioSetting Load()
     {
-        var obj = FileManager.instance.LoadGameObjectBinary<AudioSetting>(fileNameBinary);
+        //var obj = FileManager.instance.LoadGameObjectBinary<AudioSetting>(fileNameBinary);
+        var obj = FileManager.instance.LoadGameObjectJSON<AudioSetting>(fileNameJSON);
         if (obj == null)
             obj = new AudioSetting();
         return obj;

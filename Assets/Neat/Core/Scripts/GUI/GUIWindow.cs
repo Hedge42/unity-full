@@ -28,40 +28,29 @@ namespace Neat.Tools
 
         private bool isDirty => !ReferenceEquals(target, prevTarget);// || members == null;
 
-        public static GUIWindow Open(Object target)
+        public static GUIWindow Open(Object target, GameObject gameObject)
         {
-            //if (target is MonoBehaviour)
-            try
-            {
-                var window = (target as MonoBehaviour).gameObject.GetOrAddComponent<GUIWindow>();
-                window.SetObject(target);
-                return window;
-            }
-            catch
-            {
-                Debug.Log("Couldn't open window from target!");
-                return null;
-            }
-
-            // throw new System.NotImplementedException();
+            var window = gameObject.GetOrAddComponent<GUIWindow>();
+            window.SetTarget(target);
+            return window;
         }
         private void OnEnable()
         {
-            SetObject(target);
+            SetTarget(target);
         }
         private void OnGUI()
         {
             if (target != null)
             {
                 if (isDirty)
-                    SetObject(target);
+                    SetTarget(target);
 
                 rect = GUI.Window(target.GetHashCode(), rect, DrawWindow, title);
             }
 
             prevTarget = target;
         }
-        public void SetObject(Object _target)
+        public void SetTarget(Object _target)
         {
             this.target = _target;
 
@@ -74,7 +63,7 @@ namespace Neat.Tools
             }
         }
         private void DrawWindow(int windowID)
-        {
+        { 
             // content
 
             Rect position = new Rect(rect);
@@ -100,7 +89,7 @@ namespace Neat.Tools
 
         
 
-        // instead...
+        // these really shouldn't be here
         private void Draw(MemberInfo member, Attribute[] attributes)
         {
             foreach (var attribute in attributes)

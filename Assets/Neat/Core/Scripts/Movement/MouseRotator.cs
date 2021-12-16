@@ -4,57 +4,39 @@ using UnityEngine;
 using Neat.GameManager;
 using Neat.Tools.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using Neat.InputHelpers;
 
 public class MouseRotator : MonoBehaviour
 {
-    // Valorant sens: .44
-    // 14.61039 inches/360
-
-    /*
-     * The gameObject attached to this script will have its rotation tied to mouse movement.
-     * TODO: Look sensitivity should be set using PlayerPrefs (along with pretty much all settings)
-     */
-
-    // To show condensed options in editor
-    [System.Serializable]
-    public class SensitivitySetting
-    {
-        [Range(.01f, 10f)]
-        public float lookSensitivity = 1;
-
-        // this bool determines if the next 3 are used
-        [Header("Distance settings")]
-        public bool convertSensitivity;
-        public float mouseDPI;
-        public float inchesPer360;
-        public bool convertFromCM;
-    }
-
     public bool active;
-    public bool debugMouseMove;
+    public bool debugMouse;
 
-    public Transform xRotTarget;
-    public Transform yRotTarget;
+    public Transform xTarget;
+    public Transform yTarget;
 
-    public SensitivitySetting sens;
+    public SensitivitySetting sensitivitySetting;
 
-    private Quaternion xRotStart;
-    private Quaternion yRotStart;
 
-    private void Awake()
+    private Quaternion xStart;
+    private Quaternion yStart;
+
+    public Keybinds _keybinds;
+    public Keybinds keybinds => _keybinds ??= GetComponent<KeybindsComponent>().keybinds;
+    public InputAction Look => keybinds.FPS.Look;
+
+    public Vector3 current { get; private set; }
+
+
+    private void OnEnable()
     {
-        if (xRotTarget == null)
-            xRotTarget = transform;
-        if (yRotTarget == null)
-            yRotTarget = transform;
-
-        xRotStart = xRotTarget.localRotation;
-        yRotStart = yRotTarget.localRotation;
-    }
-
-    private void Start()
-    {
-        ReadSens();
+        keybinds.Enable();
+        _keybinds = new Keybinds();
+        _keybinds.Enable();
+        xStart = xTarget.localRotation;
+        yStart = yTarget.localRotation;
+        sensitivitySetting.inchesPer360 = ControlSetting.Load().distance;
+        //keybinds.FPS.Look.performed += HandleMouse;
     }
 
     public void Toggle(bool value)
@@ -72,78 +54,77 @@ public class MouseRotator : MonoBehaviour
     }
     public void ResetRotation()
     {
-        xRotTarget.localRotation = xRotStart;
-        yRotTarget.localRotation = yRotStart;
+        xTarget.localRotation = xStart;
+        yTarget.localRotation = yStart;
     }
+
     private IEnumerator UpdateRotation()
     {
         // Get current rotation
-        Vector3 current = transform.rotation.eulerAngles;
-
-        float xRot = current.y;
-        float yRot = -current.x;
-
-        // no going upsidedown
-        if (current.x >= 269)
-            yRot = (360f - current.x);
-        if (current.y > 180)
-            xRot = -(360 - current.y);
+        current = transform.rotation.eulerAngles;
+        Vector2 currentRot = new Vector2(current.y, -current.x);
 
         while (active)
         {
-            float xRotRaw = Input.GetAxis("Mouse X");
-            float yRotRaw = Input.GetAxis("Mouse Y");
+            var look = Look.ReadValue<Vector2>();
+            if (debugMouse)
+                print($"look: {look}");
 
-            if (debugMouseMove)
-                print("Delta mouse (Unity): (" + xRotRaw.ToString("f2")
-                    + ", " + yRotRaw.ToString("f2") + ")");
+            if (sensitivitySetting.convertSensitivity)
+                AdjustSensitivity(look);
 
-            if (sens.convertSensitivity)
-            {
-                // from Rotator360.cs (not mine)
-                float deltaDistX = Mathf.Abs(xRotRaw * 20f) / sens.mouseDPI;
+            var scaledLook = look * sensitivitySetting.lookSensitivity;
 
-                // handle metric conversion
-                float unitsPer360 = sens.convertFromCM ? sens.inchesPer360 / 2.52f : sens.inchesPer360;
-
-                float moveRatio = deltaDistX / unitsPer360;
-                float desiredDegrees = moveRatio * 360;
-                float multiplier = desiredDegrees / xRotRaw;
-
-                if (!float.IsNaN(multiplier))
-                    sens.lookSensitivity = Mathf.Abs(multiplier);
-
-                if (debugMouseMove)
-                {
-                    print("Delta mouse (in/cm): " + deltaDistX);
-                    print("Converted sensitivity: " + sens.lookSensitivity);
-                }
-            }
-
-            xRot += xRotRaw * sens.lookSensitivity;
-            yRot += yRotRaw * sens.lookSensitivity;
-
-            // Prevent the up-down rotation from flipping upside-down
-            if (yRot > 90) yRot = 90;
-            else if (yRot < -90) yRot = -90;
-
-            // Prevent the left-right rotation from breaking floating-point limits
-            if (xRot > 360) xRot -= 360;
-            else if (xRot < -360) xRot += 360;
-
-            // doing the rotations
-            if (xRotTarget != null)
-                xRotTarget.localRotation = Quaternion.Euler(new Vector3(-yRot, xRotTarget.localRotation.eulerAngles.y));
-            if (yRotTarget != null)
-                yRotTarget.localRotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, xRot));
+            currentRot = DontFlip(currentRot + scaledLook);
+            ApplyRotation(currentRot);
             yield return null;
         }
     }
 
-
-    public void ReadSens()
+    private static Vector2 DontFlip(Vector2 currentRot)
     {
-        // sens.inchesPer360 = SettingsManager.instance.setting.cmPer360;
-        sens.inchesPer360 = ControlSetting.Load().distance;
+        // Prevent the up-down rotation from flipping upside-down
+        if (currentRot.y > 90) currentRot.y = 90;
+        else if (currentRot.y < -90) currentRot.y = -90;
+
+        // Prevent the left-right rotation from breaking floating-point limits
+        if (currentRot.x > 360) currentRot.x -= 360;
+        else if (currentRot.x < -360) currentRot.x += 360;
+        return currentRot;
+    }
+
+    private void ApplyRotation(Vector2 rot)
+    {
+        if (xTarget != null)
+            xTarget.localRotation = Quaternion.Euler(new Vector3(-rot.y, xTarget.localRotation.eulerAngles.y));
+        if (yTarget != null)
+            yTarget.localRotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, rot.x));
+    }
+
+    private void AdjustSensitivity(Vector2 mouseDelta)
+    {
+        // please leave me alone
+
+        // normalize mouse move with DPI
+        float deltaDistX = Mathf.Abs(mouseDelta.x / sensitivitySetting.mouseDPI);
+
+        // inches per 360...
+        float unitsPer360 = sensitivitySetting.convertFromCM ? sensitivitySetting.inchesPer360 / 2.52f : sensitivitySetting.inchesPer360;
+
+        // num360s = inches / inches per 360
+        float moveRatio = deltaDistX / unitsPer360;
+
+        // degrees intended
+        float desiredDegrees = moveRatio * 360;
+
+        // degrees per mouse unit
+        float multiplier = desiredDegrees / mouseDelta.x;
+
+        if (!float.IsNaN(multiplier))
+        {
+            var value = Mathf.Abs(multiplier);
+            sensitivitySetting.lookSensitivity = value;
+            print($"Calculated sensitivity: {value}");
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Neat.Tools.UI
 {
@@ -56,7 +57,9 @@ namespace Neat.Tools.UI
 
         private void Update()
         {
-            if (isListeningForKey && UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            //if (isListeningForKey && UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
                 MenuToggle();
                 Toggle();

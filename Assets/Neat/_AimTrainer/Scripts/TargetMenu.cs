@@ -106,7 +106,6 @@ namespace Neat.Demos.AimTrainer
         {
             motor = player.GetComponent<Motor>();
             motor.ReadMovementProfile(profile.movementProfile);
-            motor.SetDefaultKeys();
             motor.runSpeed = 500f;
             motor.shiftToWalk = true;
         }

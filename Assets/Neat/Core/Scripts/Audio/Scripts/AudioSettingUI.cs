@@ -27,7 +27,7 @@ public class AudioSettingUI : MonoBehaviour, ISettingUI<AudioSetting>
         profile.masterVolume = masterVolumeSlider.value;
 
         AudioManager.instance.LoadSetting(profile);
-        profile.SaveBinary();
+        profile.SaveJSON();
     }
 
     public void CreateWarnings(GameObject warningPrefab, Transform container)

@@ -6,7 +6,7 @@ using Neat.GameManager;
 [System.Serializable]
 public class ReticleProfile
 {
-    public const string filename = "reticle.sav";
+    public const string filename = "reticle.json";
 
     public const int OFFSET_MAX = 30;
     public const int WIDTH_MAX = 8;
@@ -16,7 +16,7 @@ public class ReticleProfile
 
     public static ReticleProfile Load()
     {
-        ReticleProfile loaded = FileManager.instance.LoadGameObjectBinary<ReticleProfile>(filename);
+        ReticleProfile loaded = FileManager.instance.LoadGameObjectJSON<ReticleProfile>(filename);
         if (loaded == default(ReticleProfile)) // default == null, failed load
             loaded = new ReticleProfile();
 
@@ -24,7 +24,7 @@ public class ReticleProfile
     }
     public void Save()
     {
-        FileManager.instance.SavePersistentGameObjectBinary(this, filename);
+        FileManager.instance.SaveGameObjectJSON(this, filename);
     }
 
     [Range(0, OFFSET_MAX)]

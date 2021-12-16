@@ -230,26 +230,26 @@ namespace Neat.GameManager
         public T DeserializeJson<T>(string path)
         {
 
-            T file = default(T); // ??
+            T result = default(T); // ??
             try
             {
                 string json = System.IO.File.ReadAllText(path);
-                file = (T)JsonUtility.FromJson<T>(json);
+                result = JsonUtility.FromJson<T>(json);
             }
             catch (Exception e)
             {
                 Debug.LogWarning(e.Message);
             }
 
-            return file;
+            return result;
         }
-        public bool DeserializeJson<T>(string path, out T t)
+        public bool DeserializeJson<T>(string path, out T result)
         {
-            t = default(T);
+            result = default(T);
             try
             {
                 string json = System.IO.File.ReadAllText(path);
-                t = (T)JsonUtility.FromJson<T>(json);
+                result = JsonUtility.FromJson<T>(json);
             }
             catch (Exception e)
             {

@@ -7,6 +7,8 @@ public class SceneSwitcher2 : MonoBehaviour
 {
     public static SceneSwitcher2 instance;
 
+    public UnityEngine.Object[] scenes;
+
     private void Awake()
     {
         if (instance == null)

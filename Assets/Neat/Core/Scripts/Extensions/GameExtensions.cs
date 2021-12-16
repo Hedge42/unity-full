@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,6 +27,11 @@ namespace Neat.Tools
         public static bool HasComponent<T>(this Component o)
         {
             return o.GetComponent<T>() != null;
+        }
+
+        public static TimeSpan TimeBetween(DateTime a, DateTime b)
+        {
+            return new TimeSpan(a.Ticks - b.Ticks);
         }
 
         public static void SetColor(this GameObject g, Color c)

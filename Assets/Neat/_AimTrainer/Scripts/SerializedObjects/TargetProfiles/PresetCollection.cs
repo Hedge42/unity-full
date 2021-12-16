@@ -10,7 +10,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 [System.Serializable]
 public class PresetCollection
 {
-    public static readonly string fileNameBinary = "trainerPresets.sav";
+    // public static readonly string fileNameBinary = "trainerPresets.sav";
+    public static readonly string fileNameJSON = "trainerPresets.json";
+
     public List<PresetProfile> items;
 
     public static PresetCollection loaded = null;
@@ -72,7 +74,7 @@ public class PresetCollection
     {
         // need to ensure the collection is valid when it loads
 
-        PresetCollection loaded = FileManager.instance.LoadGameObjectBinary<PresetCollection>(fileNameBinary);
+        PresetCollection loaded = FileManager.instance.LoadGameObjectJSON<PresetCollection>(fileNameJSON);
         if (loaded == default(PresetCollection)) // null?
             loaded = new PresetCollection();
 
@@ -85,7 +87,7 @@ public class PresetCollection
     }
     public void Save()
     {
-        FileManager.instance.SavePersistentGameObjectBinary(this, fileNameBinary);
+        FileManager.instance.SaveGameObjectJSON(this, fileNameJSON);
     }
 
     // adding and removing

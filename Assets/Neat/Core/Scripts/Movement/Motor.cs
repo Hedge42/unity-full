@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using Neat.InputHelpers;
 
 public class Motor : MonoBehaviour
 {
@@ -55,17 +57,11 @@ public class Motor : MonoBehaviour
         private set { deltaDistance = value; }
     }
 
-    // condense to class
-    [HideInInspector] public KeyCode xpos;
-    [HideInInspector] public KeyCode xneg;
-    [HideInInspector] public KeyCode ypos;
-    [HideInInspector] public KeyCode yneg;
-    [HideInInspector] public KeyCode zpos;
-    [HideInInspector] public KeyCode zneg;
-
     [HideInInspector] public bool isPressing; // obsolete
 
     public event UnityAction<Transform> onTransformUpdate;
+
+    
 
     private Animator anim;
     public Rigidbody rb;
@@ -122,8 +118,11 @@ public class Motor : MonoBehaviour
     }
 
     public float TransformSpeed => TransformVelocity.magnitude;
-    public Vector3 TransformVelocity = Vector3.zero;
 
+    [HideInInspector] public Vector3 TransformVelocity = Vector3.zero;
+
+    private Keybinds _keybinds;
+    public Keybinds keybinds => _keybinds ??= GetComponent<KeybindsComponent>().keybinds;
 
     private void Awake()
     {
@@ -224,7 +223,9 @@ public class Motor : MonoBehaviour
 
         Vector3 v = rb.velocity + vAccel - vDeccel;
 
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
+        //bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
+        bool shiftPressed = keybinds.FPS.WalkRun.IsPressed();
+
         bool isWalking = (shiftPressed && shiftToWalk) || (!shiftPressed && !shiftToWalk);
 
         float targetSpeed = isWalking ? walkSpeed : runSpeed;
@@ -233,7 +234,8 @@ public class Motor : MonoBehaviour
             v = v.normalized * targetSpeed;
         rb.velocity = new Vector3(v.x, rb.velocity.y, v.z);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keybinds.FPS.Jump.WasPerformedThisFrame())
+            //if (Input.GetKeyDown(KeyCode.Space))
             rb.velocity += Vector3.up * jumpSpeed;
 
         Vector3 lateral = new Vector3(v.x, 0, v.z);
@@ -257,7 +259,8 @@ public class Motor : MonoBehaviour
         Vector3 v = rb.velocity + rotatedInput * runSpeed * acceleration * Time.deltaTime
             - rb.velocity * deceleration * Time.deltaTime;
 
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
+        //bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
+        bool shiftPressed = keybinds.FPS.WalkRun.IsPressed();
         bool isWalking = (shiftPressed && shiftToWalk) || (!shiftPressed && !shiftToWalk);
 
         float targetSpeed = isWalking ? walkSpeed : runSpeed;
@@ -367,33 +370,10 @@ public class Motor : MonoBehaviour
         if (!IsInputActive)
             return Vector3.zero;
 
-        Vector3 input = Vector3.zero;
-        if (Input.GetKey(xpos)) input.x += 1;
-        if (Input.GetKey(xneg)) input.x -= 1;
-        if (Input.GetKey(ypos)) input.y += 1;
-        if (Input.GetKey(yneg)) input.y -= 1;
-        if (Input.GetKey(zpos)) input.z += 1;
-        if (Input.GetKey(zneg)) input.z -= 1;
-
-        if (input.magnitude > 1)
-            input = input.normalized;
-
+        Vector3 input = keybinds.FPS.Move3D.ReadValue<Vector3>();
         isPressing = input.magnitude > 0;
-
         this.input = input;
-
         return input;
-    }
-
-    public void SetDefaultKeys()
-    {
-        xneg = KeyCode.A;
-        xpos = KeyCode.D;
-        zneg = KeyCode.S;
-        zpos = KeyCode.W;
-
-        ypos = KeyCode.Space;
-        yneg = KeyCode.LeftControl;
     }
 
     // experimental

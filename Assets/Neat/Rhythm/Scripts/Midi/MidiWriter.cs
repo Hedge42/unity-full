@@ -6,7 +6,7 @@ using Melanchall.DryWetMidi.Tools;
 using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
-using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Multimedia;
 using System.Threading;
 using System.Collections;
 using Note = Melanchall.DryWetMidi.Interaction.Note;

@@ -62,6 +62,7 @@ namespace Neat.Tools
             }
         }
     }
+    
     public class DebugCommand : DebugCommandBase
     {
         private Action command;
@@ -75,6 +76,7 @@ namespace Neat.Tools
             command.Invoke();
         }
     }
+
     public class DebugCommand<T> : DebugCommandBase
     {
         private Action<T> command;
@@ -100,35 +102,6 @@ namespace Neat.Tools
         {
             DebugConsole.Log($"Executing command: {id}");
             command.Invoke(p1, p2);
-        }
-    }
-
-    
-
-    // starting to think this was a bad idea?
-    [CreateAssetMenu(menuName = "Neat/CheatList")]
-    public class DebugCommandObject : ScriptableObject
-    {
-        public List<DebugCommandBase> commands;
-
-        public DebugCommandBase this[int index] => commands[index];
-
-        public static DebugCommandObject Instantiate(List<DebugCommandBase> commands)
-        {
-            var x = ScriptableObject.CreateInstance<DebugCommandObject>();
-            x.commands = new List<DebugCommandBase>(commands);
-            return x;
-        }
-
-        public override string ToString()
-        {
-            string s = "";
-            foreach (var cmd in commands)
-            {
-                s += $"{cmd}\n";
-            }
-
-            return s;
         }
     }
 }

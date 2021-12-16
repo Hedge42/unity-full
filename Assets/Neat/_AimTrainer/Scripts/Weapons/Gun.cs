@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Neat.Audio;
 using Neat.Tools;
+using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class Gun : MonoBehaviour
     }
     private void Init()
     {
-        throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
         model.transform.GetChild(0).gameObject.SetActive(showModel);
     }
     private void Awake()
@@ -115,28 +116,28 @@ public class Gun : MonoBehaviour
             onShotMissed -= a;
     }
 
-    public void StartPrimaryFire(KeyCode[] keys)
+    public void StartPrimaryFire(InputAction.CallbackContext context)
     {
         // only start if the gun is not currently firing
         if (currentShot == null)
-            currentShot = StartCoroutine(PrimaryFire(keys));
+            currentShot = StartCoroutine(PrimaryFire(context));
     }
-    public void StartAlternateFire(KeyCode[] keys)
+    public void StartAlternateFire(InputAction.CallbackContext context)
     {
-        StartCoroutine(AlternateFire(keys));
+        StartCoroutine(AlternateFire(context));
     }
-    public void StartReload(KeyCode[] keys)
+    public void StartReload(InputAction.CallbackContext context)
     {
-        StartCoroutine(Reload(keys));
+        StartCoroutine(Reload(context));
     }
-    public void StartActiveRaycast(KeyCode[] keys)
+    public void StartActiveRaycast(InputAction.CallbackContext context)
     {
-        StartCoroutine(ActiveRaycast(keys));
+        StartCoroutine(ActiveRaycast(context));
     }
 
-    private IEnumerator ActiveRaycast(KeyCode[] keys)
+    private IEnumerator ActiveRaycast(InputAction.CallbackContext context)
     {
-        while (keys.GetKey())
+        while (context.action.IsPressed())
         {
             var rh = Raycast();
             UserEvent.InvokeStaticEvent(ACTIVE_RAYCAST_KEY, this, rh.collider?.gameObject);
@@ -160,7 +161,7 @@ public class Gun : MonoBehaviour
         return rh;
     }
 
-    private IEnumerator PrimaryFire(KeyCode[] keys)
+    private IEnumerator PrimaryFire(InputAction.CallbackContext context)
     {
         do
         {
@@ -198,16 +199,16 @@ public class Gun : MonoBehaviour
             if (!automatic)
                 break;
         }
-        while (keys.GetKeyDown() && currentClip > 0);
+        while (context.action.IsPressed());
 
         currentShot = null;
     }
-    private IEnumerator AlternateFire(KeyCode[] keys)
-    {
 
+    private IEnumerator AlternateFire(InputAction.CallbackContext context)
+    {
         yield return null;
     }
-    private IEnumerator Reload(KeyCode[] keys)
+    private IEnumerator Reload(InputAction.CallbackContext context)
     {
         bool canReload = currentClip < maxClip;
 

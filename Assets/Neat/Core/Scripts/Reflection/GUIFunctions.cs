@@ -137,6 +137,46 @@ namespace Neat.Tools
 
             GUILayout.EndHorizontal();
         }
+        public static void DrawMemberLayout_(MemberInfo member, Object target)
+        {
+            GUILayout.BeginHorizontal();
+            object value = member.GetValue(target);
+            GUILayout.Label(member.Name, GUILayout.Width(CustomGUISettings.labelWidth));
+
+
+            if (value is string)
+            {
+                member.SetValue(target, GUILayout.TextField(value.ToString()));
+            }
+            else if (value is bool)
+            {
+                member.SetValue(target, GUILayout.Toggle((bool)value, ""));
+            }
+            else if (value is float)
+            {
+                FloatDrawer.DrawFloatLayout(member, target, value);
+            }
+            else if (value is int)
+            {
+                IntDrawer.DrawIntLayout(member, target, value);
+            }
+            else if (value is Vector2)
+            {
+                Vector2Drawer.DrawVector2Layout(member, target, value);
+            }
+            else if (value is Vector2Int)
+            {
+                Vector2IntDrawer.DrawVector2IntLayout(member, target, value);
+            }
+            else
+            {
+                GUILayout.Label($"{value} ({member.GetValueType()})");
+            }
+
+            GUILayout.EndHorizontal();
+        }
+
+
         public static void DrawMemberLayout2(MemberInfo member, Object target)
         {
             var canRead = member.CanRead();
@@ -155,8 +195,9 @@ namespace Neat.Tools
             //DrawMemberValue(member, target, value);
             value = GetMemberValue(member, target, value, content);
             GUILayout.EndHorizontal();
-            GUI.enabled = lastEnabled;
 
+
+            GUI.enabled = lastEnabled;
             if (canWrite)
                 member.SetValue(target, value);
         }
@@ -168,7 +209,6 @@ namespace Neat.Tools
             if (member is MethodInfo)
             {
                 var method = member as MethodInfo;
-                
             }
             else if (member is PropertyInfo)
             {

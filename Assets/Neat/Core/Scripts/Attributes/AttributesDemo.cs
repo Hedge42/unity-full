@@ -9,7 +9,7 @@ using GUILayout = Neat.Tools.GUILayoutExtensions;
 
 namespace Neat.Tools
 {
-    [GUI, Extend]
+    [MultiInspector, ExtendedInspector, GUIInspector]
     public class AttributesDemo : MonoBehaviour
     {
         public bool publicBool;

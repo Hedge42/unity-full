@@ -13,6 +13,56 @@ namespace Neat.Tools
     // Editor Functions
     public static partial class EditorFunctions
     {
+        // https://answers.unity.com/questions/1425758/how-can-i-find-all-instances-of-a-scriptable-objec.html
+        public static T[] GetAllInstances<T>() where T : ScriptableObject
+        {
+            string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);  //FindAssets uses tags check documentation for more info
+            T[] a = new T[guids.Length];
+            for (int i = 0; i < guids.Length; i++)         //probably could get optimized 
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
+            }
+
+            return a;
+        }
+        public static T[] GetAllInstances<T>(this T obj) where T : ScriptableObject
+        {
+
+            string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);  //FindAssets uses tags check documentation for more info
+            T[] a = new T[guids.Length];
+            for (int i = 0; i < guids.Length; i++)         //probably could get optimized 
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
+            }
+
+            return a;
+        }
+        public static object[] GetAllInstances(Type type)
+        {
+            // var valid = type.IsAssignableFrom(typeof(ScriptableObject));
+            var valid = typeof(ScriptableObject).IsAssignableFrom(type);
+            Debug.Log(type);
+            if (valid)
+            {
+                string[] guids = AssetDatabase.FindAssets("t:" + type.Name);  //FindAssets uses tags check documentation for more info
+                object[] values = new object[guids.Length];
+                for (int i = 0; i < guids.Length; i++)         //probably could get optimized 
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                    values[i] = AssetDatabase.LoadAssetAtPath(path, type);
+                }
+
+                return values;
+            }
+            else
+            {
+                // empty
+                return new object[0];
+            }
+        }
+
         public static bool DrawFromSerializedObject(MemberInfo member, SerializedObject obj)
         {
             // try to find serialized property on given object

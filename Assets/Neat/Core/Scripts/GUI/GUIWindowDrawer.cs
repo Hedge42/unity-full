@@ -78,7 +78,7 @@ namespace Neat.Tools
             {
                 foreach (var window in windows)
                 {
-                    window.SetObject(window.target);
+                    window.SetTarget(window.target);
                 }
 
                 initialized = true;

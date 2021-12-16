@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,31 @@ namespace Neat.Tools
                 // if (_data == null)
                 _data = ScriptableObject.CreateInstance<TOut>();
             return _data;
+        }
+
+        private static Hashtable set;
+        public static Hashtable table
+        {
+            get
+            {
+                if (set == null)
+                    set = new Hashtable();
+                return set;
+            }
+        }
+        public static TOut CacheObject<TSender, TOut>(TSender _this) where TOut : ScriptableObject
+        {
+            throw new NotImplementedException();
+            TOut result = table[_this] as TOut; // what happens
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                table.Add(_this, result = ScriptableObject.CreateInstance<TOut>());
+            }
+            return result;
         }
         public static U Cache<T, U>(this T _t, ref U _u, Func<U> construct)
         {

@@ -1,13 +1,12 @@
 {
     "name": "Neat.Audio.Music.Editor",
+    "rootNamespace": "",
     "references": [
         "GUID:17fb134d2650fee4493e1ff1f0aab980",
         "GUID:33dc2dd0c778c22448be2f030bae4212"
     ],
     "includePlatforms": [
-        "Editor",
-        "WindowsStandalone32",
-        "WindowsStandalone64"
+        "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
