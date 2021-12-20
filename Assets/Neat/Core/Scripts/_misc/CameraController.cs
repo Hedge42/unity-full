@@ -8,34 +8,28 @@ public class CameraController : MonoBehaviour
 {
     public static Camera active;
 
-    public Camera firstPersonCamera;
-    public Camera thirdPersonCamera;
+    public Camera current;
 
-    public bool useFirstPerson;
-    public KeyCode switchCamKey;
-
-    public UnityAction<Camera> onFirstPersonEnabled;
-    public UnityAction<Camera> onThirdPersonEnabled;
+    public UnityAction<Camera> onEnabled;
 
     private Vector3 localStartPos;
-
     private Vector3 camInversePoint;
 
     private void OnValidate()
     {
-        UpdateCamera();
+        EnableCamera(current);
     }
 
     private void Awake()
     {
-        UpdateCamera();
+        EnableCamera(current);
 
         localStartPos = transform.localPosition;
 
         camInversePoint = transform
             .InverseTransformPoint(active.transform.position);
 
-        SubscribeToMotor();
+        UpdateTransform();
     }
 
     private void Update()
@@ -50,7 +44,7 @@ public class CameraController : MonoBehaviour
         // active.transform.position = GetComponent<Motor>().rb.position + transform.rotation * transform.TransformPoint(camInversePoint);
     }
 
-    private void SubscribeToMotor()
+    private void UpdateTransform()
     {
         try
         {
@@ -65,23 +59,11 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void UpdateCamera()
+
+    private void EnableCamera(Camera cam)
     {
-        if (useFirstPerson)
-        {
-            firstPersonCamera.enabled = true;
-            thirdPersonCamera.enabled = false;
-            active = firstPersonCamera;
-
-            onFirstPersonEnabled?.Invoke(firstPersonCamera);
-        }
-        else
-        {
-            thirdPersonCamera.enabled = true;
-            firstPersonCamera.enabled = false;
-            active = thirdPersonCamera;
-
-            onThirdPersonEnabled?.Invoke(thirdPersonCamera);
-        }
+        onEnabled?.Invoke(cam);
+        current = cam;
+        active = current;
     }
 }

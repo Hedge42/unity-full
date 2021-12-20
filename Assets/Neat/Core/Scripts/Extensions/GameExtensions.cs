@@ -40,9 +40,17 @@ namespace Neat.Tools
             {
                 if (g.HasComponent<Renderer>())
                 {
+                    // instead: input tags on component...
                     MaterialPropertyBlock block = new MaterialPropertyBlock();
-                    block.SetColor("_Color", c);
+                    //block.SetColor("_Color", c);
+                    //block.SetColor("_Albedo", c);
+                    //block.SetColor("Color", c);
+                    //block.SetColor("Albedo", c);
+                    //block.SetColor("Base Color", c);
+                    block.SetColor("_BaseColor", c);
                     g.GetComponent<Renderer>()?.SetPropertyBlock(block);
+                    //var s = $"{g.name} color={c}";
+                    //Debug.Log(s);
                 }
             }
             catch

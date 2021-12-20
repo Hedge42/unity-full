@@ -13,6 +13,9 @@ scopes = {
 	"last_search.7F95D817" = "assembly"
 	"OpenInspectorPreview.7F95D817" = "0"
 	"currentGroup.7F95D817" = "asset"
+	"last_search.785D90A9" = "convert"
+	"OpenInspectorPreview.785D90A9" = "0"
+	"currentGroup.785D90A9" = "all"
 }
 providers = {
 	adb = {
@@ -87,6 +90,13 @@ providers = {
 	}
 }
 recentSearches = [
+	"co"
+	"ed"
+	"q"
+	"g"
+	"c"
+	"con"
+	"u"
 	"."
 	"sc"
 ]

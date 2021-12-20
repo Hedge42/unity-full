@@ -1,0 +1,17 @@
+{
+    "name": "Neat.Imported.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:92ced4c6d3f22ef4891fff8a2ae2abc2",
+        "GUID:4307f53044263cf4b835bd812fc161a4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

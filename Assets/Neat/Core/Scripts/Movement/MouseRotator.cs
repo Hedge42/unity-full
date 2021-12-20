@@ -124,7 +124,7 @@ public class MouseRotator : MonoBehaviour
         {
             var value = Mathf.Abs(multiplier);
             sensitivitySetting.lookSensitivity = value;
-            print($"Calculated sensitivity: {value}");
+            // print($"Calculated sensitivity: {value}");
         }
     }
 }
