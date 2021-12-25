@@ -1,0 +1,496 @@
+Using pre-set license
+Built from '2021.2/staging' branch; Version is '2021.2.7f1 (6bd9e232123f) revision 7068130'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit Core' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+E:\Program Files\Unity\Installs\2021.2.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker17
+-projectPath
+E:/Projects/Unity/NeatoDemos - Copy
+-logFile
+Logs/AssetImportWorker17.log
+-srvPort
+50363
+Successfully changed project path to: E:/Projects/Unity/NeatoDemos - Copy
+E:/Projects/Unity/NeatoDemos - Copy
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 132.49 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.2.7f1 (6bd9e232123f)
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Projects/Unity/NeatoDemos - Copy/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Vendor:   NVIDIA
+    VRAM:     2988 MB
+    Driver:   30.0.14.9729
+Initialize mono
+Mono path[0] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56516
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001864 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 128.97 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.585 seconds
+Domain Reload Profiling:
+	ReloadAssembly (585ms)
+		BeginReloadAssembly (55ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (468ms)
+			LoadAssemblies (54ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (90ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (309ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (129ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (125ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004957 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 127.00 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+DisplayProgressbar: Restoring NuGet Packages
+Error saving file Library/StateCache/LayerSettings/9e/9ecc5c3c162a7aba29bafa64c8b94b7c.json. Error: System.IO.IOException: Sharing violation on path E:\Projects\Unity\NeatoDemos - Copy\Library\StateCache\LayerSettings\9e\9ecc5c3c162a7aba29bafa64c8b94b7c.json
+  at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) [0x0019e] in <31c0f51ac5a24a22ba784db24f4ba023>:0 
+  at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options) [0x00000] in <31c0f51ac5a24a22ba784db24f4ba023>:0 
+  at (wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions)
+  at System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding, System.Int32 bufferSize) [0x00055] in <31c0f51ac5a24a22ba784db24f4ba023>:0 
+  at System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding) [0x00000] in <31c0f51ac5a24a22ba784db24f4ba023>:0 
+  at (wrapper remoting-invoke-with-check) System.IO.StreamWriter..ctor(string,bool,System.Text.Encoding)
+  at System.IO.File.WriteAllText (System.String path, System.String contents, System.Text.Encoding encoding) [0x00034] in <31c0f51ac5a24a22ba784db24f4ba023>:0 
+  at UnityEditor.StateCache`1[T].SetState (UnityEngine.Hash128 key, T obj) [0x0004b] in <0cde216a590a4d6fbc3d7db7ac203c5d>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.StateCache`1<UnityEditor.Tools/LayerSettings>:SetState (UnityEngine.Hash128,UnityEditor.Tools/LayerSettings)
+UnityEditor.Tools:set_lockedLayers (int)
+UnityEditor.Tools:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Tools> ()
+UnityEditor.Tools:get_get ()
+UnityEditor.Tools:get_visibleLayers ()
+UnityEditor.Animations.Rigging.BoneRendererUtils:.cctor () (at Library/PackageCache/com.unity.animation.rigging@1.1.1/Editor/Utils/BoneRendererUtils.cs:121)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+(Filename: Library/PackageCache/com.unity.animation.rigging@1.1.1/Editor/Utils/BoneRendererUtils.cs Line: 121)
+
+Reflected over 10 assemblies in (116.311 ms)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Neat.Tools.ReflectionUtility:Reflect () (at Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs:64)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+(Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.633 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2634ms)
+		BeginReloadAssembly (97ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (20ms)
+		EndReloadAssembly (2454ms)
+			LoadAssemblies (73ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (283ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (98ms)
+			SetupLoadedEditorAssemblies (1960ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (127ms)
+				BeforeProcessingInitializeOnLoad (101ms)
+				ProcessInitializeOnLoadAttributes (1132ms)
+				ProcessInitializeOnLoadMethodAttributes (589ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 2.04 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5755 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 248 unused Assets / (1.5 MB). Loaded Objects now: 6211.
+Memory consumption went from 265.1 MB to 263.6 MB.
+Total: 5.834500 ms (FindLiveObjects: 0.626400 ms CreateObjectMapping: 0.160600 ms MarkObjects: 4.353700 ms  DeleteObjects: 0.692400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 31340.097711 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Locomotion Pack/idle.fbx
+  artifactKey: Guid(2444a170bcda5a34891d14b47bbb640e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Locomotion Pack/idle.fbx using Guid(2444a170bcda5a34891d14b47bbb640e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9d1adb84df6bfa403e9821cef50c88d1') in 0.176612 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 236.146105 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward.fbx
+  artifactKey: Guid(32268b7a014fd2b4da2758233ed06245) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward.fbx using Guid(32268b7a014fd2b4da2758233ed06245) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '15f9d88a6708477079bd376958d7bfd6') in 0.015804 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward right.fbx
+  artifactKey: Guid(a3ccfadcd337338448b43627f71107a6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward right.fbx using Guid(a3ccfadcd337338448b43627f71107a6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ec53ae4e67a8b8593bea650e6b37f744') in 0.015881 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/idle.fbx
+  artifactKey: Guid(9d9a096f3f95de34387bfff3a10f3d3d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/idle.fbx using Guid(9d9a096f3f95de34387bfff3a10f3d3d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8f01655a96a7068366c5ea7142a9d6b4') in 0.014605 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run backward left.fbx
+  artifactKey: Guid(650fa1e63a0db514fa903b4def7bcac9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run backward left.fbx using Guid(650fa1e63a0db514fa903b4def7bcac9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '38bdcde83370fbf566be4b664d588968') in 0.014583 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint forward.fbx
+  artifactKey: Guid(d34dfadea1a36fa4eaab8c19944ab6fc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint forward.fbx using Guid(d34dfadea1a36fa4eaab8c19944ab6fc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8186ecddffc1b35352bf2089f801fbf7') in 0.014934 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run backward.fbx
+  artifactKey: Guid(555e82c6b71742240b8068c2a5c9c666) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run backward.fbx using Guid(555e82c6b71742240b8068c2a5c9c666) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '668c2581c81e50a98351a0ca9a9b8c4c') in 0.015100 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/jump loop.fbx
+  artifactKey: Guid(07b2e6da979a68f42a5d40159d0ba7d6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/jump loop.fbx using Guid(07b2e6da979a68f42a5d40159d0ba7d6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1df3085eae27b2900d462ddb29952fe8') in 0.014490 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run right.fbx
+  artifactKey: Guid(2be0faed467717f4ab54e8a95db80095) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run right.fbx using Guid(2be0faed467717f4ab54e8a95db80095) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '7733315005e4358c6d019f3e40e7fc78') in 0.012468 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk right.fbx
+  artifactKey: Guid(56d4601e35358fc43999f4a34df7be1e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk right.fbx using Guid(56d4601e35358fc43999f4a34df7be1e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd7a0d5ae39aa3d336b95188ac0e98736') in 0.017627 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk left.fbx
+  artifactKey: Guid(294d7ea838e840c4f897d8d26946213c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk left.fbx using Guid(294d7ea838e840c4f897d8d26946213c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ce279d627698a04e41c0574864f816ee') in 0.013588 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 right.fbx
+  artifactKey: Guid(3f495ebda1715554f850855ebe6f2c1c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 right.fbx using Guid(3f495ebda1715554f850855ebe6f2c1c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '81eaf04ec6677a3c1bab9521d0477023') in 0.016959 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward.fbx
+  artifactKey: Guid(a76cc6783c9e1db469b587f5c5f20a5c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward.fbx using Guid(a76cc6783c9e1db469b587f5c5f20a5c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f51f1c1bde6b36d155409d1af3f117ef') in 0.014928 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run forward right.fbx
+  artifactKey: Guid(b9643a5bbf50a66438056bea9010352c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run forward right.fbx using Guid(b9643a5bbf50a66438056bea9010352c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '290acd23338d08864e0d7f5c37a0df24') in 0.015725 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching backward left.fbx
+  artifactKey: Guid(755d07b9786cdf24e921e25d32bf2320) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching backward left.fbx using Guid(755d07b9786cdf24e921e25d32bf2320) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dac5056108eeda2eb1fce21a889c5df9') in 0.014795 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/idle aiming.fbx
+  artifactKey: Guid(ba484c12cff23624fa92a658fdfdf4aa) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/idle aiming.fbx using Guid(ba484c12cff23624fa92a658fdfdf4aa) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'aac35b489619e80128ca407ec33b98ed') in 0.014310 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from back headshot.fbx
+  artifactKey: Guid(720dc035c683c1347b445afc36906027) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from back headshot.fbx using Guid(720dc035c683c1347b445afc36906027) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ae6c16930b8e122be1db2a99c73c725b') in 0.014128 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward left.fbx
+  artifactKey: Guid(fa6a062ef091ba048bfb4dbce131904e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward left.fbx using Guid(fa6a062ef091ba048bfb4dbce131904e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2e5417701bf784d56ce9831671327b0b') in 0.014475 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 left.fbx
+  artifactKey: Guid(dcbc57767dad6b34a86af7f763d36ab4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 left.fbx using Guid(dcbc57767dad6b34a86af7f763d36ab4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c455accfcf2040889fef3de0aeab41c9') in 0.014428 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint backward right.fbx
+  artifactKey: Guid(3f082d59505716240890428d9b50d5c2) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint backward right.fbx using Guid(3f082d59505716240890428d9b50d5c2) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f2b3cc19b38163b55460f6a8991d07dd') in 0.014463 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward right.fbx
+  artifactKey: Guid(f64102cac92ca37458a738b0a65355de) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward right.fbx using Guid(f64102cac92ca37458a738b0a65355de) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3362802684ece0335c584057bb55ff23') in 0.013274 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack
+  artifactKey: Guid(6b811e3cd2651f34fb86e5582074a28e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack using Guid(6b811e3cd2651f34fb86e5582074a28e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a07d726c4a478c682f58995feb8d9df6') in 0.011826 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint forward right.fbx
+  artifactKey: Guid(89991303505b86a4e9679158ac4c8b6a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint forward right.fbx using Guid(89991303505b86a4e9679158ac4c8b6a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2348b41627fb6725a49a757f8888eca5') in 0.014403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from the back.fbx
+  artifactKey: Guid(afd98aade6fc30149a8e92b2f48a5f4a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from the back.fbx using Guid(afd98aade6fc30149a8e92b2f48a5f4a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3d574acc21ffe4c35d130bbb0b7bf53b') in 0.016602 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from the front.fbx
+  artifactKey: Guid(4e1e969f09c25b449870efb2cd0e7df8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from the front.fbx using Guid(4e1e969f09c25b449870efb2cd0e7df8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '621b2924b58c065104cf9d49e3e30070') in 0.015234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward left.fbx
+  artifactKey: Guid(21b49aa36ecf84c43b4fb5bf387c7928) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward left.fbx using Guid(21b49aa36ecf84c43b4fb5bf387c7928) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '65b268d3cbbaee9688729ec19975ae38') in 0.015682 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 51.110758 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward.fbx
+  artifactKey: Guid(32268b7a014fd2b4da2758233ed06245) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward.fbx using Guid(32268b7a014fd2b4da2758233ed06245) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '84ad5d4eb51989285760791f0ad1ca93') in 0.013004 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching forward.fbx
+  artifactKey: Guid(bac39657b89ba2a49ab6c304bf7bd1d5) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching forward.fbx using Guid(bac39657b89ba2a49ab6c304bf7bd1d5) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a725ee7a6d1c2c26d433a8b1e2bd41af') in 0.012914 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/jump down.fbx
+  artifactKey: Guid(6eabff1e5c54aca4b852abd8d678c929) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/jump down.fbx using Guid(6eabff1e5c54aca4b852abd8d678c929) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8e6810a4ff444f570b30ad8551f242d6') in 0.011983 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching backward.fbx
+  artifactKey: Guid(7765aababf9803a4397b35fbf184a808) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching backward.fbx using Guid(7765aababf9803a4397b35fbf184a808) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6d98769f595419e81d19f9978e7b09e5') in 0.017914 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/jump up.fbx
+  artifactKey: Guid(1ce77f63a79bf7e4e8e75fbe97b6ea39) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/jump up.fbx using Guid(1ce77f63a79bf7e4e8e75fbe97b6ea39) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8dc524e3bc290012a4793e8271341192') in 0.017282 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run backward.fbx
+  artifactKey: Guid(555e82c6b71742240b8068c2a5c9c666) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run backward.fbx using Guid(555e82c6b71742240b8068c2a5c9c666) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5fefec219782f95dffc7f881882757aa') in 0.013336 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/idle crouching.fbx
+  artifactKey: Guid(dc389b3588f92d2478f9d49da7b5566e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/idle crouching.fbx using Guid(dc389b3588f92d2478f9d49da7b5566e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'af2db2f4d7fbc6fec3cafd38a4fe5def') in 0.014175 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run right.fbx
+  artifactKey: Guid(2be0faed467717f4ab54e8a95db80095) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run right.fbx using Guid(2be0faed467717f4ab54e8a95db80095) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0786f8324ac8ca8c89968fa9244cf74e') in 0.012068 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint backward left.fbx
+  artifactKey: Guid(dc3ae08be0a297e49acaab733005e7dc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/sprint backward left.fbx using Guid(dc3ae08be0a297e49acaab733005e7dc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '547263bcaf2b258932715da3ae1dc59a') in 0.015443 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 right.fbx
+  artifactKey: Guid(3f495ebda1715554f850855ebe6f2c1c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 right.fbx using Guid(3f495ebda1715554f850855ebe6f2c1c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6f86b92f81b3c246cce1d7da7115e03a') in 0.015032 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching backward left.fbx
+  artifactKey: Guid(755d07b9786cdf24e921e25d32bf2320) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk crouching backward left.fbx using Guid(755d07b9786cdf24e921e25d32bf2320) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c5cdbc9f4f3c1c5af131eacbb73bac29') in 0.014960 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from back headshot.fbx
+  artifactKey: Guid(720dc035c683c1347b445afc36906027) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/death from back headshot.fbx using Guid(720dc035c683c1347b445afc36906027) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ccbb782bce89e6b20b4c030cc4dec28b') in 0.014886 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 left.fbx
+  artifactKey: Guid(dcbc57767dad6b34a86af7f763d36ab4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/turn 90 left.fbx using Guid(dcbc57767dad6b34a86af7f763d36ab4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '38f48ed97d35b06be06198ae71c1bf21') in 0.014902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward right.fbx
+  artifactKey: Guid(f64102cac92ca37458a738b0a65355de) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk forward right.fbx using Guid(f64102cac92ca37458a738b0a65355de) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '74481d4caa1e2f9138a99552bcbbff67') in 0.012864 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run forward.fbx
+  artifactKey: Guid(6a814dbb0e4135c47b2b25eec61b7f3e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/run forward.fbx using Guid(6a814dbb0e4135c47b2b25eec61b7f3e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2d6b6fa31d0cb1f4cffcc2141775d449') in 0.016086 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward left.fbx
+  artifactKey: Guid(21b49aa36ecf84c43b4fb5bf387c7928) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Rifle 8-Way Locomotion Pack/walk backward left.fbx using Guid(21b49aa36ecf84c43b4fb5bf387c7928) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b675d02f32a4c0e4c5e6e9986a6b12be') in 0.013894 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

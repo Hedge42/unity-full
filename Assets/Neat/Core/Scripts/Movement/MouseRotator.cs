@@ -12,8 +12,8 @@ public class MouseRotator : MonoBehaviour
     public bool active;
     public bool debugMouse;
 
-    public Transform xTarget;
-    public Transform yTarget;
+    public Transform headTransform;
+    public Transform bodyTransform;
 
     public SensitivitySetting sensitivitySetting;
 
@@ -27,16 +27,22 @@ public class MouseRotator : MonoBehaviour
 
     public Vector3 current { get; private set; }
 
+    public bool onStart;
+
 
     private void OnEnable()
     {
-        keybinds.Enable();
-        _keybinds = new Keybinds();
-        _keybinds.Enable();
-        xStart = xTarget.localRotation;
-        yStart = yTarget.localRotation;
+        //keybinds.Enable();
+        //_keybinds = new Keybinds();
+        //_keybinds.Enable();
+        xStart = headTransform.localRotation;
+        yStart = bodyTransform.localRotation;
         sensitivitySetting.inchesPer360 = ControlSetting.Load().distance;
         //keybinds.FPS.Look.performed += HandleMouse;
+    }
+    private void Start()
+    {
+        Toggle(onStart);
     }
 
     public void Toggle(bool value)
@@ -54,8 +60,8 @@ public class MouseRotator : MonoBehaviour
     }
     public void ResetRotation()
     {
-        xTarget.localRotation = xStart;
-        yTarget.localRotation = yStart;
+        headTransform.localRotation = xStart;
+        bodyTransform.localRotation = yStart;
     }
 
     private IEnumerator UpdateRotation()
@@ -95,10 +101,10 @@ public class MouseRotator : MonoBehaviour
 
     private void ApplyRotation(Vector2 rot)
     {
-        if (xTarget != null)
-            xTarget.localRotation = Quaternion.Euler(new Vector3(-rot.y, xTarget.localRotation.eulerAngles.y));
-        if (yTarget != null)
-            yTarget.localRotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, rot.x));
+        if (headTransform != null)
+            headTransform.localRotation = Quaternion.Euler(new Vector3(-rot.y, headTransform.localRotation.eulerAngles.y));
+        if (bodyTransform != null)
+            bodyTransform.localRotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, rot.x));
     }
 
     private void AdjustSensitivity(Vector2 mouseDelta)

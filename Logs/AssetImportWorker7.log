@@ -1,0 +1,440 @@
+Using pre-set license
+Built from '2021.2/staging' branch; Version is '2021.2.7f1 (6bd9e232123f) revision 7068130'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit Core' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+E:\Program Files\Unity\Installs\2021.2.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker7
+-projectPath
+E:/Projects/Unity/NeatoDemos - Copy
+-logFile
+Logs/AssetImportWorker7.log
+-srvPort
+50363
+Successfully changed project path to: E:/Projects/Unity/NeatoDemos - Copy
+E:/Projects/Unity/NeatoDemos - Copy
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 136.37 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.2.7f1 (6bd9e232123f)
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Projects/Unity/NeatoDemos - Copy/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Vendor:   NVIDIA
+    VRAM:     2988 MB
+    Driver:   30.0.14.9729
+Initialize mono
+Mono path[0] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56356
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001809 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 129.81 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.608 seconds
+Domain Reload Profiling:
+	ReloadAssembly (609ms)
+		BeginReloadAssembly (57ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (490ms)
+			LoadAssemblies (56ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (96ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (324ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (130ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (133ms)
+				ProcessInitializeOnLoadMethodAttributes (46ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005046 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 176.32 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+DisplayProgressbar: Restoring NuGet Packages
+Reflected over 10 assemblies in (133.6162 ms)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Neat.Tools.ReflectionUtility:Reflect () (at Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs:64)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+(Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.983 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2984ms)
+		BeginReloadAssembly (110ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (1ms)
+			CreateAndSetChildDomain (23ms)
+		EndReloadAssembly (2788ms)
+			LoadAssemblies (73ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (291ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (122ms)
+			SetupLoadedEditorAssemblies (2242ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (10ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (176ms)
+				BeforeProcessingInitializeOnLoad (124ms)
+				ProcessInitializeOnLoadAttributes (1278ms)
+				ProcessInitializeOnLoadMethodAttributes (652ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 3.82 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5755 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 248 unused Assets / (1.5 MB). Loaded Objects now: 6211.
+Memory consumption went from 265.1 MB to 263.6 MB.
+Total: 5.946700 ms (FindLiveObjects: 0.648600 ms CreateObjectMapping: 0.183000 ms MarkObjects: 4.158100 ms  DeleteObjects: 0.954800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 27501.154961 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sheath sword 2.fbx
+  artifactKey: Guid(d1e27cf9b2857af4b8fa859452d6ac88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sheath sword 2.fbx using Guid(d1e27cf9b2857af4b8fa859452d6ac88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32140af539d9a01f8f1db92e054eea2d') in 0.066729 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield 180 turn.fbx
+  artifactKey: Guid(5cfa08ab84d856a48a6a270b5f6fb173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield 180 turn.fbx using Guid(5cfa08ab84d856a48a6a270b5f6fb173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3311d8a0e65e80ed14e040886996acb7') in 0.023621 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle (2).fbx
+  artifactKey: Guid(101472df3c3b98b4fbb03b20e58dcfbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle (2).fbx using Guid(101472df3c3b98b4fbb03b20e58dcfbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd569d52a94d7da1f24625f65fab49f9a') in 0.017971 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield 180 turn (2).fbx
+  artifactKey: Guid(691d2848e80f76145b8a4522236a64a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield 180 turn (2).fbx using Guid(691d2848e80f76145b8a4522236a64a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cba9483226264e64c0086a912ce0e22') in 0.023643 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block idle.fbx
+  artifactKey: Guid(ff3fa5f9e6ed72c42bac8a62820f4356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block idle.fbx using Guid(ff3fa5f9e6ed72c42bac8a62820f4356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65939b8368a359699db860e5223f1593') in 0.017400 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield impact (3).fbx
+  artifactKey: Guid(e375158ac2931714ea560bc7069cbbd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield impact (3).fbx using Guid(e375158ac2931714ea560bc7069cbbd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1bf36af018204952526e568fb4780bc') in 0.021360 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield crouch idle.fbx
+  artifactKey: Guid(a24964510af2556429f09ad1090bccb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield crouch idle.fbx using Guid(a24964510af2556429f09ad1090bccb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a16e488e022c4c7a212d19fbf1e280c') in 0.016480 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield jump (2).fbx
+  artifactKey: Guid(cdcdc6322b967744c8b49821ac67f9d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield jump (2).fbx using Guid(cdcdc6322b967744c8b49821ac67f9d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba08fa309e7d3efccea12d3cbc7731a3') in 0.016660 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield impact (2).fbx
+  artifactKey: Guid(b8a020764f0325e4999c2d1dbd1f90e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield impact (2).fbx using Guid(b8a020764f0325e4999c2d1dbd1f90e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ab4b5f4e3d0debf7126b09cb5e4ba4e') in 0.018665 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block (2).fbx
+  artifactKey: Guid(d7f0ae2d211d2ca46aaf2b3775fa8e75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block (2).fbx using Guid(d7f0ae2d211d2ca46aaf2b3775fa8e75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3439d3070b7904a1bdaf903ddbf613ff') in 0.017780 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle (3).fbx
+  artifactKey: Guid(5c6986442bbabb344b9e0f1b6f0b16f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle (3).fbx using Guid(5c6986442bbabb344b9e0f1b6f0b16f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91563362e8239c02908f0c0adb4bcb1e') in 0.019369 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block.fbx
+  artifactKey: Guid(ece9889382aab3a4bae2e12f7320f2cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block.fbx using Guid(ece9889382aab3a4bae2e12f7320f2cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ccede1a2af92b3b6ec5f1db2766fd6f') in 0.016693 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack (3).fbx
+  artifactKey: Guid(42fdbe4253a024044a8086a50568227c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack (3).fbx using Guid(42fdbe4253a024044a8086a50568227c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcd493125cadca7239485e3331d81550') in 0.018727 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield death.fbx
+  artifactKey: Guid(0a9617d66829f4046a68b9520fd47869) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield death.fbx using Guid(0a9617d66829f4046a68b9520fd47869) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83815dd4a21ccd2923ff141fce21083b') in 0.021290 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield kick.fbx
+  artifactKey: Guid(30ad8885bf36b474997a9efc11daf64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield kick.fbx using Guid(30ad8885bf36b474997a9efc11daf64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44f0153b912ab34f2a2f89925f59c30c') in 0.017278 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield casting.fbx
+  artifactKey: Guid(1863e188a34cc774d891bdd7bda0e982) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield casting.fbx using Guid(1863e188a34cc774d891bdd7bda0e982) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4e37b44b5d8dc524644ca7cbeb226bd') in 0.017381 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.195958 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield run (2).fbx
+  artifactKey: Guid(32d5364c2c4e74a40a3b726feb8b4a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield run (2).fbx using Guid(32d5364c2c4e74a40a3b726feb8b4a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f091299727417648268176c47069652f') in 0.019584 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield slash (3).fbx
+  artifactKey: Guid(c4bf66d81dab6e3498bc918695aafe27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield slash (3).fbx using Guid(c4bf66d81dab6e3498bc918695aafe27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dff3d57f4951cbbf2d6b2702397551d2') in 0.017664 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield slash (4).fbx
+  artifactKey: Guid(d787a687915856f4ebfb9c7dbe8f2c1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield slash (4).fbx using Guid(d787a687915856f4ebfb9c7dbe8f2c1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1c0dbef84d4def64ba3012aae416d45') in 0.018761 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield turn (2).fbx
+  artifactKey: Guid(04b9eae933d28f2419478db17f2f1db4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield turn (2).fbx using Guid(04b9eae933d28f2419478db17f2f1db4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07499421e9883931db493a8b5d61a007') in 0.021172 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe.fbx
+  artifactKey: Guid(1189533c7cd352b418b3008170206521) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe.fbx using Guid(1189533c7cd352b418b3008170206521) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df63d35ba0f7556164d4937650d11908') in 0.017415 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe (3).fbx
+  artifactKey: Guid(35b9497f99fb4c647b79744f1d8f998e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe (3).fbx using Guid(35b9497f99fb4c647b79744f1d8f998e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9953e877b4a61d6242102e69ee15f128') in 0.023657 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield slash.fbx
+  artifactKey: Guid(d4860bb580dcb4a408e48922b6ef17f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield slash.fbx using Guid(d4860bb580dcb4a408e48922b6ef17f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06882dc0946ddd5b993752a43ce563a3') in 0.019299 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe (4).fbx
+  artifactKey: Guid(aa3d01d5f78eece48bbdf4e8f505df21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe (4).fbx using Guid(aa3d01d5f78eece48bbdf4e8f505df21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4a6cdd7c78626b205c96a1f351f5d4e') in 0.019630 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 62.682082 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/boy-shirt_Rig.fbx
+  artifactKey: Guid(1f2a1b450369fb04ea779694cb7a4ff4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/boy-shirt_Rig.fbx using Guid(1f2a1b450369fb04ea779694cb7a4ff4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Attempting to get Camera relative temporary RenderTexture (width || height <= 0) via a CommandBuffer  in a Sriptable Render Pipeline.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer_Internal (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.Universal.Internal.CopyColorPass:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/Passes/CopyColorPass.cs:111)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteRenderPass (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.ScriptableRenderPass,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:966)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteBlock (int,UnityEngine.Rendering.Universal.ScriptableRenderer/RenderBlocks&,UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:925)
+UnityEngine.Rendering.Universal.ScriptableRenderer:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:729)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:414)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.GameObjectInspector:DoRenderPreview ()
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[ line 0]
+
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.GameObjectInspector:DoRenderPreview ()
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.GameObjectInspector:DoRenderPreview ()
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+ -> (artifact id: 'c1aaac90c41bb336fb7b92454a510f1e') in 0.306777 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-beach_Rig.fbx
+  artifactKey: Guid(629aa2d3df98ec3418df66d8e6d9986d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-beach_Rig.fbx using Guid(629aa2d3df98ec3418df66d8e6d9986d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7debceb36bf61f6c75cd6efc2694f9aa') in 0.048411 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-cowboy_Rig.fbx
+  artifactKey: Guid(1113d1cb90001a643a9202ecc7936f77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-cowboy_Rig.fbx using Guid(1113d1cb90001a643a9202ecc7936f77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8094624526f7b291de025d8b8f03940') in 0.050979 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-casual_Rig.fbx
+  artifactKey: Guid(8d699ddfa1ec7c94cbdbaa8430197dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-casual_Rig.fbx using Guid(8d699ddfa1ec7c94cbdbaa8430197dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05d1e18fe7c2dedb4c513afe92ea9c00') in 0.050086 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-cult_Rig.fbx
+  artifactKey: Guid(0ce2a6ed8ed260041ac494879b5982ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-cult_Rig.fbx using Guid(0ce2a6ed8ed260041ac494879b5982ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85c908cdc465eabe4ea9cf07b6b344d0') in 0.051441 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-construction-worker_Rig.fbx
+  artifactKey: Guid(ea34951fcb7cfc74dbeb1428e0532ade) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-construction-worker_Rig.fbx using Guid(ea34951fcb7cfc74dbeb1428e0532ade) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c99e33fdcf7d410c0fe2048f53d096da') in 0.054626 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000064 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-casual_Rig.fbx
+  artifactKey: Guid(335edc00892e0d145b434558fb3ff151) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-casual_Rig.fbx using Guid(335edc00892e0d145b434558fb3ff151) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8090c17597af61011f4a11d65743c11') in 0.047389 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-egypt-worker_Rig.fbx
+  artifactKey: Guid(30cd989829aca704ba20f6d6aada074a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-egypt-worker_Rig.fbx using Guid(30cd989829aca704ba20f6d6aada074a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f8530c5782d514ebcb2d139b52e3178') in 0.046915 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-astronaut_Rig.fbx
+  artifactKey: Guid(76fb04e3599741345b075939395a028e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-astronaut_Rig.fbx using Guid(76fb04e3599741345b075939395a028e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73eba6806cc1493b5b9a4a6f8072e77c') in 0.045756 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-egypt-soldier_Rig.fbx
+  artifactKey: Guid(0807df89a60e55e43a5aea788b30802c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/man-egypt-soldier_Rig.fbx using Guid(0807df89a60e55e43a5aea788b30802c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b67e5d167b7a963f4581dd8a35be8dd0') in 0.049270 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/girl-beach_Rig.fbx
+  artifactKey: Guid(314c1476203e75646bb2b3461ba3fc5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/girl-beach_Rig.fbx using Guid(314c1476203e75646bb2b3461ba3fc5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f604c6cf0d978cbd3220a88379453fd') in 0.041596 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

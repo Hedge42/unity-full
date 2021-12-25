@@ -1,0 +1,430 @@
+Using pre-set license
+Built from '2021.2/staging' branch; Version is '2021.2.7f1 (6bd9e232123f) revision 7068130'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit Core' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+E:\Program Files\Unity\Installs\2021.2.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+E:/Projects/Unity/NeatoDemos - Copy
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+55062
+Successfully changed project path to: E:/Projects/Unity/NeatoDemos - Copy
+E:/Projects/Unity/NeatoDemos - Copy
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 129.14 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.2.7f1 (6bd9e232123f)
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Projects/Unity/NeatoDemos - Copy/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Vendor:   NVIDIA
+    VRAM:     2988 MB
+    Driver:   30.0.14.9729
+Initialize mono
+Mono path[0] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56036
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001929 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 130.12 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.627 seconds
+Domain Reload Profiling:
+	ReloadAssembly (627ms)
+		BeginReloadAssembly (58ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (500ms)
+			LoadAssemblies (57ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (100ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (326ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (130ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (133ms)
+				ProcessInitializeOnLoadMethodAttributes (48ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004687 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 131.98 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+DisplayProgressbar: Restoring NuGet Packages
+Reflected over 10 assemblies in (123.7421 ms)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Neat.Tools.ReflectionUtility:Reflect () (at Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs:64)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+(Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.719 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2719ms)
+		BeginReloadAssembly (105ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (23ms)
+		EndReloadAssembly (2530ms)
+			LoadAssemblies (78ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (280ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (100ms)
+			SetupLoadedEditorAssemblies (2025ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (9ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (132ms)
+				BeforeProcessingInitializeOnLoad (103ms)
+				ProcessInitializeOnLoadAttributes (1171ms)
+				ProcessInitializeOnLoadMethodAttributes (606ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 4.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5745 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 247 unused Assets / (1.5 MB). Loaded Objects now: 6201.
+Memory consumption went from 263.0 MB to 261.5 MB.
+Total: 8.588900 ms (FindLiveObjects: 1.161800 ms CreateObjectMapping: 0.251600 ms MarkObjects: 6.051200 ms  DeleteObjects: 1.121700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1552.287575 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/paladin_j_nordstrom@Walk Forward.fbx
+  artifactKey: Guid(9280c22431c9f0045a76f3b0722392b9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/paladin_j_nordstrom@Walk Forward.fbx using Guid(9280c22431c9f0045a76f3b0722392b9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '519988ae1434e8718b89b6199b36f446') in 0.236054 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Neat/Core/Resources/Animations/FPS Animator Controller.controller
+  artifactKey: Guid(94cfd04aa3b0b0d4e82eba1673364d61) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Resources/Animations/FPS Animator Controller.controller using Guid(94cfd04aa3b0b0d4e82eba1673364d61) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f3339c9545f37c5bcc19b44bcd72f0f9') in 0.017306 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/brute@Idle.fbx
+  artifactKey: Guid(5a2d0adc0ad0d604099298aef4df02d8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/brute@Idle.fbx using Guid(5a2d0adc0ad0d604099298aef4df02d8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '7723928f821866184eaadfb589c88d97') in 0.022002 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Characters/ybot/ybot.fbx
+  artifactKey: Guid(b610526715997ae40998cfc5083770c9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Characters/ybot/ybot.fbx using Guid(b610526715997ae40998cfc5083770c9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e2b6035fc74c1695df140b60b47ad189') in 0.017885 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Neat/Core/Scripts/Animation Scripts/AnimationStateMachine.cs
+  artifactKey: Guid(add9cd94aac626e4680b44e0a686b82c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Animation Scripts/AnimationStateMachine.cs using Guid(add9cd94aac626e4680b44e0a686b82c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b49378830fc5d3b3851d496f3018d7ec') in 0.011531 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Neat/Core/Resources/Scenes/CharacterController setup.unity
+  artifactKey: Guid(12adbf10d7764cd45975eb466389df61) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Resources/Scenes/CharacterController setup.unity using Guid(12adbf10d7764cd45975eb466389df61) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9ec102ddbad0614d12f05603d0f8bfd5') in 0.010343 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Neat/Core/Scripts/Movement/FPSController_Move.cs
+  artifactKey: Guid(3c2b22a426824e948ade5abf77987384) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Movement/FPSController_Move.cs using Guid(3c2b22a426824e948ade5abf77987384) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '36d945f763b16b16fb297e37db6a9b68') in 0.013139 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Impoted/Packs/StarterAssets/FirstPersonController/Scenes/Playground.unity
+  artifactKey: Guid(707acc8dffb72b144bb1ffbe1c965f3d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/StarterAssets/FirstPersonController/Scenes/Playground.unity using Guid(707acc8dffb72b144bb1ffbe1c965f3d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '562fc46d7ec0337d1c9fec09bcf7e7ca') in 0.009996 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 73.730622 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/1 SKIN-DARKEST-LPUP.mat
+  artifactKey: Guid(7e05ef7409d694c74a16dec33c316bd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/1 SKIN-DARKEST-LPUP.mat using Guid(7e05ef7409d694c74a16dec33c316bd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Attempting to get Camera relative temporary RenderTexture (width || height <= 0) via a CommandBuffer  in a Sriptable Render Pipeline.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer_Internal (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.Universal.Internal.CopyColorPass:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/Passes/CopyColorPass.cs:111)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteRenderPass (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.ScriptableRenderPass,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:966)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteBlock (int,UnityEngine.Rendering.Universal.ScriptableRenderer/RenderBlocks&,UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:925)
+UnityEngine.Rendering.Universal.ScriptableRenderer:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:729)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:414)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.MaterialEditor:DoRenderPreview (UnityEditor.PreviewRenderUtility,bool)
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[ line 0]
+
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.MaterialEditor:DoRenderPreview (UnityEditor.PreviewRenderUtility,bool)
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.MaterialEditor:DoRenderPreview (UnityEditor.PreviewRenderUtility,bool)
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+ -> (artifact id: '6a148e6977a846c95585885a60ae004c') in 1.182485 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Fantasy_M/altar.fbx
+  artifactKey: Guid(2a04825254d43428bb733573e21a1ddb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Fantasy_M/altar.fbx using Guid(2a04825254d43428bb733573e21a1ddb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '790ed686d555f7f87c1cf080cf8d84de') in 1.267064 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/26 RED-DARK-LPUP.mat
+  artifactKey: Guid(48b31daa83ddb854fadd9402702394e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/26 RED-DARK-LPUP.mat using Guid(48b31daa83ddb854fadd9402702394e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cb5422b6e89cebacf7e98710a000b31') in 0.025094 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/14 BROWN LIGHTEST-LPUP.mat
+  artifactKey: Guid(a7862d5615928c34e868320de65c2777) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/14 BROWN LIGHTEST-LPUP.mat using Guid(a7862d5615928c34e868320de65c2777) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '687c1e7d44a36ae8a8b8bb274c5b5693') in 0.024090 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/9 BROWN-DARKEST-LPUP.mat
+  artifactKey: Guid(3b20fc9e84b968641b7312bdcdd1ffd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/9 BROWN-DARKEST-LPUP.mat using Guid(3b20fc9e84b968641b7312bdcdd1ffd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11ed4e51529a3c5bb576800a8d053cdf') in 0.024676 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Buildings_M/airport-terminal.fbx
+  artifactKey: Guid(d94181a6c7e144f4f96e9a8091ea69cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Buildings_M/airport-terminal.fbx using Guid(d94181a6c7e144f4f96e9a8091ea69cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50fbe613ab0a7a2417efa40965e0df8b') in 0.032343 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Vehicles_T/armored-truck.fbx
+  artifactKey: Guid(5c3c4f8dd0d9074449f84d08b2eeb520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Vehicles_T/armored-truck.fbx using Guid(5c3c4f8dd0d9074449f84d08b2eeb520) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d30bf6dcfff0894731a8303e38ec310') in 0.086111 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/12 BROWN-LPUP.mat
+  artifactKey: Guid(d07dc9a550022a74792d211f343e0b16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/12 BROWN-LPUP.mat using Guid(d07dc9a550022a74792d211f343e0b16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ae01ffd39b16fd5511d00d464dfb4e1') in 0.026952 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-coat_Rig.fbx
+  artifactKey: Guid(89a9bf75fe7bfbf40b632f3aa5a30138) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-coat_Rig.fbx using Guid(89a9bf75fe7bfbf40b632f3aa5a30138) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58050f40a4ed12376d800f54e58d0e26') in 0.091370 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/alien-ufo.fbx
+  artifactKey: Guid(1079981abff3f014084f36222800cb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/People_M/alien-ufo.fbx using Guid(1079981abff3f014084f36222800cb21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a9a168898730be172de12df95b0a703') in 0.028294 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Zulu_M/balloon-spotter.fbx
+  artifactKey: Guid(07d4425e325fef7478c115e2887fcc1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Zulu_M/balloon-spotter.fbx using Guid(07d4425e325fef7478c115e2887fcc1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '838a90e5f3874981f7ef09a24afa92cf') in 0.028874 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Tools_T/axe.fbx
+  artifactKey: Guid(8b8b5788f1ed44575b649196db0da725) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Tools_T/axe.fbx using Guid(8b8b5788f1ed44575b649196db0da725) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a8515793b5426973cf71a09e30bf63d') in 0.028711 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Vehicles_T/balloon-stripes.fbx
+  artifactKey: Guid(a5a246eb6b4fbc1469382f45e0e62aa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Vehicles_T/balloon-stripes.fbx using Guid(a5a246eb6b4fbc1469382f45e0e62aa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '510afa3650da22ab8a2fe4d8a4cc2662') in 0.029172 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Japan_T/bamboo-leaves.fbx
+  artifactKey: Guid(44123c94593884f79a696b1825469c80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Japan_T/bamboo-leaves.fbx using Guid(44123c94593884f79a696b1825469c80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0679448474d275b47352678ae80c9387') in 0.030403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Vehicles_M/balloon.fbx
+  artifactKey: Guid(de386c18c36adef4a96b41375c36c3ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Vehicles_M/balloon.fbx using Guid(de386c18c36adef4a96b41375c36c3ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41e97c8ecae5745e7d2879578d056c74') in 0.030053 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Food_T/banana-peel.fbx
+  artifactKey: Guid(8256229bd9b924045aef4356e7e1d905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Food_T/banana-peel.fbx using Guid(8256229bd9b924045aef4356e7e1d905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ecad50a87c5dd2834fcd131586fa38a') in 0.029069 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Tools_M/axe.fbx
+  artifactKey: Guid(4e84a7bbd8f5df148b4cc66bf5cd31e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Tools_M/axe.fbx using Guid(4e84a7bbd8f5df148b4cc66bf5cd31e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a6247e1a71a70f43b97332bee99ca74') in 0.028086 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Food_T/apple.fbx
+  artifactKey: Guid(b4b75e3a4e4524bb39d55ee543c087a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Food_T/apple.fbx using Guid(b4b75e3a4e4524bb39d55ee543c087a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32c621e6680fb146eacb9c1013189a2c') in 0.028726 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Space_T/asteroid.fbx
+  artifactKey: Guid(11f845a2498ca42339cb32b16dc6733c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/Space_T/asteroid.fbx using Guid(11f845a2498ca42339cb32b16dc6733c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e42b8e82f852788db1705494e04b22ac') in 0.030597 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/Transparent/24 TRANSPARENT-GREY-LPUP.mat
+  artifactKey: Guid(9d9bb6bbb2ed44e89aaf71377e273447) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/Transparent/24 TRANSPARENT-GREY-LPUP.mat using Guid(9d9bb6bbb2ed44e89aaf71377e273447) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '876d2226fa53a42dcda67e91b3c2d4d0') in 0.997136 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Survival_M/Materials/17 GREY-DARKEST.mat
+  artifactKey: Guid(b87385677e534104eb0cf5b0a94bd550) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/M/- Meshes_M/Survival_M/Materials/17 GREY-DARKEST.mat using Guid(b87385677e534104eb0cf5b0a94bd550) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '426189f8834eb780c85ce15ee2a2e352') in 0.022793 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Models/archtronic.FBX
+  artifactKey: Guid(c65eeed0e623d84468374b51a0d355da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Models/archtronic.FBX using Guid(c65eeed0e623d84468374b51a0d355da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6eb451c9b9256a87d26aeca4088a6f29') in 1.263213 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/2 SKIN-DARK-LPUP.mat
+  artifactKey: Guid(7a2d84c5fa819415cad63857c2a30b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Materials/Colors/2 SKIN-DARK-LPUP.mat using Guid(7a2d84c5fa819415cad63857c2a30b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9767939c6c51449a36036cb2ec5ab378') in 0.022126 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/alien-ufo_Rig.fbx
+  artifactKey: Guid(b7c75e5204a0a564d921e477214f77dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/T/- Meshes_T/People_T/Rigs_T/alien-ufo_Rig.fbx using Guid(b7c75e5204a0a564d921e477214f77dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88312bc1a84984b813a9480610c9e66f') in 0.044806 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

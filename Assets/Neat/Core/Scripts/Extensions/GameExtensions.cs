@@ -28,6 +28,12 @@ namespace Neat.Tools
         {
             return o.GetComponent<T>() != null;
         }
+        public static void Reset(this Transform transform)
+        {
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+        }
 
         public static TimeSpan TimeBetween(DateTime a, DateTime b)
         {

@@ -249,7 +249,7 @@ public partial class @Keybinds : IInputActionCollection2, IDisposable
                     ""id"": ""311bd6c8-a9af-4a70-99d3-28c60e20b1d4"",
                     ""path"": ""3DVector"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector3"",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move3D"",
                     ""isComposite"": true,

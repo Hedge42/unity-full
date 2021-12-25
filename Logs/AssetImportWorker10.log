@@ -1,0 +1,634 @@
+Using pre-set license
+Built from '2021.2/staging' branch; Version is '2021.2.7f1 (6bd9e232123f) revision 7068130'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit Core' Language: 'en' Physical Memory: 32689 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+E:\Program Files\Unity\Installs\2021.2.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker10
+-projectPath
+E:/Projects/Unity/NeatoDemos - Copy
+-logFile
+Logs/AssetImportWorker10.log
+-srvPort
+50363
+Successfully changed project path to: E:/Projects/Unity/NeatoDemos - Copy
+E:/Projects/Unity/NeatoDemos - Copy
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 172.78 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.2.7f1 (6bd9e232123f)
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Projects/Unity/NeatoDemos - Copy/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Vendor:   NVIDIA
+    VRAM:     2988 MB
+    Driver:   30.0.14.9729
+Initialize mono
+Mono path[0] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56372
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001929 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 135.83 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.629 seconds
+Domain Reload Profiling:
+	ReloadAssembly (630ms)
+		BeginReloadAssembly (72ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (484ms)
+			LoadAssemblies (71ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (95ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (318ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (136ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (126ms)
+				ProcessInitializeOnLoadMethodAttributes (41ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005369 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 151.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+DisplayProgressbar: Restoring NuGet Packages
+Reflected over 10 assemblies in (124.2162 ms)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Neat.Tools.ReflectionUtility:Reflect () (at Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs:64)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+(Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  2.774 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2775ms)
+		BeginReloadAssembly (98ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (23ms)
+		EndReloadAssembly (2591ms)
+			LoadAssemblies (69ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (277ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (102ms)
+			SetupLoadedEditorAssemblies (2094ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (9ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (152ms)
+				BeforeProcessingInitializeOnLoad (106ms)
+				ProcessInitializeOnLoadAttributes (1221ms)
+				ProcessInitializeOnLoadMethodAttributes (604ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.97 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5755 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 248 unused Assets / (1.5 MB). Loaded Objects now: 6211.
+Memory consumption went from 265.1 MB to 263.6 MB.
+Total: 5.839400 ms (FindLiveObjects: 0.613600 ms CreateObjectMapping: 0.154500 ms MarkObjects: 4.253900 ms  DeleteObjects: 0.815400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 28856.127281 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Characters/ninja guy/Ch24_1001.fbx
+  artifactKey: Guid(9aee0065c8bd27344bbea6bc43ec0f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Characters/ninja guy/Ch24_1001.fbx using Guid(9aee0065c8bd27344bbea6bc43ec0f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Attempting to get Camera relative temporary RenderTexture (width || height <= 0) via a CommandBuffer  in a Sriptable Render Pipeline.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer_Internal (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.Universal.Internal.CopyColorPass:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/Passes/CopyColorPass.cs:111)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteRenderPass (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.ScriptableRenderPass,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:966)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteBlock (int,UnityEngine.Rendering.Universal.ScriptableRenderer/RenderBlocks&,UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:925)
+UnityEngine.Rendering.Universal.ScriptableRenderer:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:729)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:414)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.GameObjectInspector:DoRenderPreview ()
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[ line 0]
+
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.GameObjectInspector:DoRenderPreview ()
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.GameObjectInspector:DoRenderPreview ()
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+ -> (artifact id: 'c1a8d91501d20fe32ae6a4e79fb672a6') in 0.361785 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.050873 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/walk forward.fbx
+  artifactKey: Guid(72153f0c6485d4b4fad085e99bcdcfbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/walk forward.fbx using Guid(72153f0c6485d4b4fad085e99bcdcfbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18748d7d4a6e734b6e03e2d37627490e') in 0.011459 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1144.719897 seconds.
+  path: Assets/Neat/Core/Scripts/Animating
+  artifactKey: Guid(87a4880313254d342ac1a6ca8f839e47) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Animating using Guid(87a4880313254d342ac1a6ca8f839e47) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'eb1a8601aa4971bc216020724a8aa00d') in 0.143806 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/run backward.fbx
+  artifactKey: Guid(5cfc5bda9732ba94a86e5afa4c9d60f5) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/run backward.fbx using Guid(5cfc5bda9732ba94a86e5afa4c9d60f5) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '23b2c4405d28fde5e8c2c8c078f346a5') in 0.019378 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe left.fbx
+  artifactKey: Guid(182f90608246f8b4f8d564e27176406d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe left.fbx using Guid(182f90608246f8b4f8d564e27176406d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '71d6cc605c885c399e5965851f388c8d') in 0.012885 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack spinning.fbx
+  artifactKey: Guid(902256124292fa041ae32d1647eb2815) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack spinning.fbx using Guid(902256124292fa041ae32d1647eb2815) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c70a229c1b4291016c1648b012b0e2d6') in 0.013123 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield impact (3).fbx
+  artifactKey: Guid(e375158ac2931714ea560bc7069cbbd3) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield impact (3).fbx using Guid(e375158ac2931714ea560bc7069cbbd3) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f2880f2c79d4075562a1b67168845fc6') in 0.013404 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Turn Left 90.fbx
+  artifactKey: Guid(0232911c67fa570499a817c01f557731) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Turn Left 90.fbx using Guid(0232911c67fa570499a817c01f557731) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5ebe566ec6ec70cffd4be52f1f93a628') in 0.012403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Jump Running.fbx
+  artifactKey: Guid(847cf0c984b52e14fad40440ec937e82) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Jump Running.fbx using Guid(847cf0c984b52e14fad40440ec937e82) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'deab307dc7cbca1b766288d848c8ac9b') in 0.013404 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Neat/Settings/URP High.asset
+  artifactKey: Guid(2e335b412e358af4bb715c38e0a848cc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Settings/URP High.asset using Guid(2e335b412e358af4bb715c38e0a848cc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f1afcabba8088e459b7224a11bebe82a') in 0.016656 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/idle.fbx
+  artifactKey: Guid(11bc9bfa02a2f2a4ab9b1cf3c2e65076) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/idle.fbx using Guid(11bc9bfa02a2f2a4ab9b1cf3c2e65076) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'eb8472a5800ad2241d2f7c74b26c5cc9') in 0.012251 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Walk Left.fbx
+  artifactKey: Guid(7a25f91b69a1680428157013a087056f) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Walk Left.fbx using Guid(7a25f91b69a1680428157013a087056f) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '45b260edcf399e9c8120a2e5152b9d8a') in 0.012096 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Neat/Core/Scripts/IK/IKTargetGroup.cs
+  artifactKey: Guid(c7e0f782eaad0de4380f412266625a96) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/IK/IKTargetGroup.cs using Guid(c7e0f782eaad0de4380f412266625a96) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '041afcb1a82ddb91cdc809a1dcb4c955') in 0.013024 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack
+  artifactKey: Guid(b662c312fe6854c48b4835f20a69e308) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack using Guid(b662c312fe6854c48b4835f20a69e308) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '87429af95c00bca1240ec97306511c80') in 0.011224 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/run forward left.fbx
+  artifactKey: Guid(4eb43f6cd8762c04c9d7bdfdeefa73d4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/run forward left.fbx using Guid(4eb43f6cd8762c04c9d7bdfdeefa73d4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8dd0e90989f0667c8a8c6769694740eb') in 0.013296 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Neat/Core/Scripts/IK/IKTarget.cs
+  artifactKey: Guid(9bb3c658b0177864b8752640cde395c0) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/IK/IKTarget.cs using Guid(9bb3c658b0177864b8752640cde395c0) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'eb9dc39a1aac6359a9a5305f1d519360') in 0.010367 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Neat/Core/Scripts/Weapons/WeaponPickup.cs
+  artifactKey: Guid(f50f5e0837d062f4fa5e96a8bbb9ed64) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Weapons/WeaponPickup.cs using Guid(f50f5e0837d062f4fa5e96a8bbb9ed64) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1f964a075470a80dc112809c3e6535d3') in 0.009506 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Walk Right.fbx
+  artifactKey: Guid(fb49bdd892d6cb5488447c8f75f9c349) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Walk Right.fbx using Guid(fb49bdd892d6cb5488447c8f75f9c349) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '57c6b751e3307508bd9baac5b8f94fcf') in 0.011396 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Run Forward.fbx
+  artifactKey: Guid(e22f5aac28701b04fa7bb23204265d51) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Run Forward.fbx using Guid(e22f5aac28701b04fa7bb23204265d51) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '57d75524bbff68bb283e3b8fc11bfb9e') in 0.011783 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Neat/Core/Resources/Animations/sword and shield walk forward.anim
+  artifactKey: Guid(e8e284e5ecd0d834f9af4a80aead95ce) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Resources/Animations/sword and shield walk forward.anim using Guid(e8e284e5ecd0d834f9af4a80aead95ce) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f39c114cfa8e9c2c7398ff13452b0a10') in 0.024216 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Turn Right 90.fbx
+  artifactKey: Guid(3e1599c0853f83e45b1eb75a12ab85b6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Turn Right 90.fbx using Guid(3e1599c0853f83e45b1eb75a12ab85b6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '719f9ed387d741b9b28f731d64d25e8a') in 0.011970 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Jump.fbx
+  artifactKey: Guid(7c21a6dbaa2a03742b7b2785264231e5) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Jump.fbx using Guid(7c21a6dbaa2a03742b7b2785264231e5) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e720add33f452bfae0d01c17a0c84dda') in 0.014783 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield turn left.fbx
+  artifactKey: Guid(04b9eae933d28f2419478db17f2f1db4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield turn left.fbx using Guid(04b9eae933d28f2419478db17f2f1db4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5a317ae10a00eaaecd5fb9ce2b42817e') in 0.014724 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield walk back.fbx
+  artifactKey: Guid(12e1026b4d02c5e4bbe222ecf767e34e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield walk back.fbx using Guid(12e1026b4d02c5e4bbe222ecf767e34e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0bd45707dc54d76089b4a15bd9db49a8') in 0.015404 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe.fbx
+  artifactKey: Guid(1189533c7cd352b418b3008170206521) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe.fbx using Guid(1189533c7cd352b418b3008170206521) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '20f25e2a54cd97eb26e3b83ecdbbe92c') in 0.011859 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Sprint Forward.fbx
+  artifactKey: Guid(d123447d2cd70dd4e8c36228631dd07d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Sprint Forward.fbx using Guid(d123447d2cd70dd4e8c36228631dd07d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0145a7187fa161d6a8506a8672fa2ea5') in 0.012398 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block start.fbx
+  artifactKey: Guid(ece9889382aab3a4bae2e12f7320f2cc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block start.fbx using Guid(ece9889382aab3a4bae2e12f7320f2cc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '76739527a619fee195da53cf7105de9d') in 0.013720 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Neat/Core/Scripts/Weapons/WeaponObject.cs
+  artifactKey: Guid(95ce6ade012e4d7489d7f760cdc7fa2a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Weapons/WeaponObject.cs using Guid(95ce6ade012e4d7489d7f760cdc7fa2a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dbe6998f78c0709639e7af89d8984d9a') in 0.010542 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Neat/Core/Scripts/Weapons/Weapon.cs
+  artifactKey: Guid(7cadbe46a1156f540961d6ce145cc6c7) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Weapons/Weapon.cs using Guid(7cadbe46a1156f540961d6ce145cc6c7) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '29ee7fbaa7f612316fd06020b807e261') in 0.009645 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/run backward left.fbx
+  artifactKey: Guid(9bb878d3aeb623d488693a041463690c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/run backward left.fbx using Guid(9bb878d3aeb623d488693a041463690c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'de3542b975774c08afacb37b2f79b275') in 0.011780 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/turn 90 left.fbx
+  artifactKey: Guid(8cbcfa48785e1c04e9051d4e8c9d0213) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/turn 90 left.fbx using Guid(8cbcfa48785e1c04e9051d4e8c9d0213) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '7d053176d26fc210af52b244fce34314') in 0.013014 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield death (2).fbx
+  artifactKey: Guid(58013dab9e75d664d917896fb7dde17e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield death (2).fbx using Guid(58013dab9e75d664d917896fb7dde17e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b448bade05f48e773f417bef20f8972f') in 0.013544 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield kick.fbx
+  artifactKey: Guid(30ad8885bf36b474997a9efc11daf64b) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield kick.fbx using Guid(30ad8885bf36b474997a9efc11daf64b) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a4b854b57af2e6e625c311db6a9f5096') in 0.014091 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack blocked.fbx
+  artifactKey: Guid(e398b11bfcca9ab429c3341194e79654) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack blocked.fbx using Guid(e398b11bfcca9ab429c3341194e79654) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f5d0019a859dd26c58d3756e99d8c8ec') in 0.012590 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield 180 turn (2).fbx
+  artifactKey: Guid(691d2848e80f76145b8a4522236a64a3) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield 180 turn (2).fbx using Guid(691d2848e80f76145b8a4522236a64a3) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '32de225c9a37cbf00d89d300444c0319') in 0.013517 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Neat/Core/Scripts/IK
+  artifactKey: Guid(a8f929b73a302af41bc1d8f4ef463629) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/IK using Guid(a8f929b73a302af41bc1d8f4ef463629) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c90eb338b5fed681538188c8826d2f79') in 0.011092 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Neat/Core/Scripts/Weapons/WeaponComponent.cs
+  artifactKey: Guid(2471a3369f3702148a6e8d133bfaea57) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Weapons/WeaponComponent.cs using Guid(2471a3369f3702148a6e8d133bfaea57) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c3d7bd70b228b7df6125b5f0f8746af0') in 0.010902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Neat/Core/Scripts/Weapons/WeaponHolder.cs
+  artifactKey: Guid(4ed8f303d7e650f4f8468382b0efdf3a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Scripts/Weapons/WeaponHolder.cs using Guid(4ed8f303d7e650f4f8468382b0efdf3a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '600ff195b5b5d407c047da6eb38976a7') in 0.009873 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack
+  artifactKey: Guid(a59918f44471e7242991cc78dbe688a4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack using Guid(a59918f44471e7242991cc78dbe688a4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9eb497b84e692bcec4c65a2a3d2392aa') in 0.010418 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Run Right.fbx
+  artifactKey: Guid(392b07ac702a4e1469b2a3ba5232cf46) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Run Right.fbx using Guid(392b07ac702a4e1469b2a3ba5232cf46) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dad6145c75ad6e5879603658819f6be3') in 0.012571 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Neat/Core/Resources/Materials/URP Transparent.mat
+  artifactKey: Guid(524b3addf3d74bf41b78531e46b4c1c1) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Resources/Materials/URP Transparent.mat using Guid(524b3addf3d74bf41b78531e46b4c1c1) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '170294ec01a9c33b4dcf2fe98075d3ea') in 0.015090 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle.fbx
+  artifactKey: Guid(d6ee08db79fb9cd4ea3d3e0c83c1042a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle.fbx using Guid(d6ee08db79fb9cd4ea3d3e0c83c1042a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '036656f4970906ad3fee74a62e3aed86') in 0.013449 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block idle.fbx
+  artifactKey: Guid(ff3fa5f9e6ed72c42bac8a62820f4356) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield block idle.fbx using Guid(ff3fa5f9e6ed72c42bac8a62820f4356) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '03e18d0b6e452b419de296ce0dab2156') in 0.014156 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack (3).fbx
+  artifactKey: Guid(42fdbe4253a024044a8086a50568227c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield attack (3).fbx using Guid(42fdbe4253a024044a8086a50568227c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '42c2afd54a680fc468bbd9a9c7ded67a') in 0.014254 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Jump Running Landing.fbx
+  artifactKey: Guid(28bc6cafb5a64e64b80868af729f8076) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Jump Running Landing.fbx using Guid(28bc6cafb5a64e64b80868af729f8076) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2a5a18aceb459d853025a0d3a2303bc3') in 0.013306 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield crouching (3).fbx
+  artifactKey: Guid(7d0b584f0387b174880ebed50690bdc6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield crouching (3).fbx using Guid(7d0b584f0387b174880ebed50690bdc6) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ed88087e2f63000b44b4e50bd298f755') in 0.012541 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Neat/Core/Resources/Shaders/Resources/Materials/gridmat.mat
+  artifactKey: Guid(38cd845f34fca254f9068d05cee296e9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Resources/Shaders/Resources/Materials/gridmat.mat using Guid(38cd845f34fca254f9068d05cee296e9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c8cb09c42fd75b2f095696e14a23be91') in 0.010165 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield casting (2).fbx
+  artifactKey: Guid(559197082d5f75245b28cd615d68ddfc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield casting (2).fbx using Guid(559197082d5f75245b28cd615d68ddfc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a597b102253f0ff9e55277373d927362') in 0.013301 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Land To Standing Idle.fbx
+  artifactKey: Guid(7d64c89b1ba58d14ca70916099e5b3ed) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Land To Standing Idle.fbx using Guid(7d64c89b1ba58d14ca70916099e5b3ed) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '039154fb57d5ee69c61a7f5297a4ce31') in 0.013379 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/turn 90 right.fbx
+  artifactKey: Guid(5aec94ed1b1caa9458694c954f4df504) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Lite Rifle Pack/turn 90 right.fbx using Guid(5aec94ed1b1caa9458694c954f4df504) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'bb0a2f7b782db3d831ac9df338b9b2a2') in 0.012187 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Neat/Core/Resources/Shaders/Resources/Shaders/URP grid.shadergraph
+  artifactKey: Guid(974f5c69da344f5428ba7992d783493d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Neat/Core/Resources/Shaders/Resources/Shaders/URP grid.shadergraph using Guid(974f5c69da344f5428ba7992d783493d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f11f8e0758ef7a2fcdfd34dac6d8cced') in 0.013896 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe run left.fbx
+  artifactKey: Guid(35b9497f99fb4c647b79744f1d8f998e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield strafe run left.fbx using Guid(35b9497f99fb4c647b79744f1d8f998e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'bca510a0afb411b4fb100e168dbd334f') in 0.013010 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Run Left.fbx
+  artifactKey: Guid(46d04f36cdb94b64eba8ea03d3db553c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Magic Locomotion Pack/Standing Run Left.fbx using Guid(46d04f36cdb94b64eba8ea03d3db553c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f804547020788372a115faef076c5e7b') in 0.012543 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle (2).fbx
+  artifactKey: Guid(101472df3c3b98b4fbb03b20e58dcfbb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield idle (2).fbx using Guid(101472df3c3b98b4fbb03b20e58dcfbb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6dbbef06bd1c9e84b2774adabbf6295c') in 0.016293 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield sheath sword 2.fbx
+  artifactKey: Guid(d1e27cf9b2857af4b8fa859452d6ac88) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Impoted/Packs/Mixamo/Animations/Sword and Shield Pack/sword and shield sheath sword 2.fbx using Guid(d1e27cf9b2857af4b8fa859452d6ac88) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3e68c980818bcf8646021eea9c67a29d') in 0.016951 seconds 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 5.34 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 38 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 67 unused Assets / (1.5 MB). Loaded Objects now: 6301.
+Memory consumption went from 157.6 MB to 156.0 MB.
+Total: 6.814800 ms (FindLiveObjects: 0.664300 ms CreateObjectMapping: 0.184100 ms MarkObjects: 4.682500 ms  DeleteObjects: 1.283000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

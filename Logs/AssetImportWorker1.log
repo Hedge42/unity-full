@@ -1,10 +1,10 @@
 Using pre-set license
-Built from '2021.2/staging' branch; Version is '2021.2.4f1 (99ba6aa4c552) revision 10074730'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 19043.1348; Version 2009; 64bit' Language: 'en' Physical Memory: 32689 MB
+Built from '2021.2/staging' branch; Version is '2021.2.7f1 (6bd9e232123f) revision 7068130'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit Core' Language: 'en' Physical Memory: 32689 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2021.2.4f1\Editor\Unity.exe
+E:\Program Files\Unity\Installs\2021.2.7f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
@@ -15,7 +15,7 @@ E:/Projects/Unity/NeatoDemos - Copy
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-56312
+50363
 Successfully changed project path to: E:/Projects/Unity/NeatoDemos - Copy
 E:/Projects/Unity/NeatoDemos - Copy
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,10 +47,10 @@ E:/Projects/Unity/NeatoDemos - Copy
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 87.33 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 124.61 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2021.2.4f1 (99ba6aa4c552)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.2.4f1/Editor/Data/Resources/UnitySubsystems
+Initialize engine version: 2021.2.7f1 (6bd9e232123f)
+[Subsystems] Discovering subsystems at path E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path E:/Projects/Unity/NeatoDemos - Copy/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
@@ -58,82 +58,56 @@ Direct3D:
     Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
     Vendor:   NVIDIA
     VRAM:     2988 MB
-    Driver:   30.0.14.9709
+    Driver:   30.0.14.9729
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.2.4f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.2.4f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56796
+Mono path[0] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56228
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.007359 seconds.
+Register platform support module: E:/Program Files/Unity/Installs/2021.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001952 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 85.53 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 123.88 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.578 seconds
+- Completed reload, in  0.577 seconds
 Domain Reload Profiling:
-	ReloadAssembly (578ms)
-		BeginReloadAssembly (67ms)
+	ReloadAssembly (577ms)
+		BeginReloadAssembly (56ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (435ms)
-			LoadAssemblies (63ms)
+		EndReloadAssembly (456ms)
+			LoadAssemblies (55ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (90ms)
+			SetupTypeCache (87ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (274ms)
+			RebuildScriptCaches (23ms)
+			SetupLoadedEditorAssemblies (302ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
+				InitializePlatformSupportModulesInManaged (13ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (86ms)
+				RefreshPlugins (124ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (130ms)
-				ProcessInitializeOnLoadMethodAttributes (43ms)
+				ProcessInitializeOnLoadAttributes (123ms)
+				ProcessInitializeOnLoadMethodAttributes (41ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.006287 seconds.
+Registered in 0.004923 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 85.41 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 129.87 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 DisplayProgressbar: Restoring NuGet Packages
-Error loading file Library/StateCache/LayerSettings/9e/9ecc5c3c162a7aba29bafa64c8b94b7c.json. Error: System.IO.IOException: Sharing violation on path E:\Projects\Unity\NeatoDemos - Copy\Library\StateCache\LayerSettings\9e\9ecc5c3c162a7aba29bafa64c8b94b7c.json
-  at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) [0x0019e] in <00c558282d074245ab3496e2d108079b>:0 
-  at System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options) [0x00000] in <00c558282d074245ab3496e2d108079b>:0 
-  at (wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions)
-  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, System.Boolean detectEncodingFromByteOrderMarks, System.Int32 bufferSize) [0x00055] in <00c558282d074245ab3496e2d108079b>:0 
-  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, System.Boolean detectEncodingFromByteOrderMarks) [0x00000] in <00c558282d074245ab3496e2d108079b>:0 
-  at (wrapper remoting-invoke-with-check) System.IO.StreamReader..ctor(string,System.Text.Encoding,bool)
-  at System.IO.File.InternalReadAllText (System.String path, System.Text.Encoding encoding) [0x00000] in <00c558282d074245ab3496e2d108079b>:0 
-  at System.IO.File.ReadAllText (System.String path, System.Text.Encoding encoding) [0x00034] in <00c558282d074245ab3496e2d108079b>:0 
-  at UnityEditor.StateCache`1[T].GetState (UnityEngine.Hash128 key, T defaultValue) [0x00041] in <948074e677924ec29383d02747cdda34>:0 
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:LogError (object)
-UnityEditor.StateCache`1<UnityEditor.Tools/LayerSettings>:GetState (UnityEngine.Hash128,UnityEditor.Tools/LayerSettings)
-UnityEditor.Tools:OnEnable ()
-UnityEngine.ScriptableObject:CreateInstance (System.Type)
-UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Tools> ()
-UnityEditor.Tools:get_get ()
-UnityEditor.Tools:get_visibleLayers ()
-UnityEditor.Animations.Rigging.BoneRendererUtils:.cctor () (at Library/PackageCache/com.unity.animation.rigging@1.1.1/Editor/Utils/BoneRendererUtils.cs:121)
-System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-(Filename: Library/PackageCache/com.unity.animation.rigging@1.1.1/Editor/Utils/BoneRendererUtils.cs Line: 121)
-
-Reflected over 10 assemblies in (112.6059 ms)
+Reflected over 10 assemblies in (117.5443 ms)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
@@ -146,43 +120,43 @@ UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
 (Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  2.765 seconds
+- Completed reload, in  2.634 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2766ms)
-		BeginReloadAssembly (160ms)
+	ReloadAssembly (2635ms)
+		BeginReloadAssembly (93ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (19ms)
-		EndReloadAssembly (2511ms)
-			LoadAssemblies (84ms)
+		EndReloadAssembly (2460ms)
+			LoadAssemblies (74ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (276ms)
+			SetupTypeCache (275ms)
 			ReleaseScriptCaches (1ms)
 			RebuildScriptCaches (97ms)
-			SetupLoadedEditorAssemblies (1960ms)
+			SetupLoadedEditorAssemblies (1966ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (10ms)
+				InitializePlatformSupportModulesInManaged (9ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (85ms)
-				BeforeProcessingInitializeOnLoad (109ms)
-				ProcessInitializeOnLoadAttributes (1170ms)
-				ProcessInitializeOnLoadMethodAttributes (577ms)
-				AfterProcessingInitializeOnLoad (9ms)
+				RefreshPlugins (130ms)
+				BeforeProcessingInitializeOnLoad (97ms)
+				ProcessInitializeOnLoadAttributes (1154ms)
+				ProcessInitializeOnLoadMethodAttributes (574ms)
+				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 1.31 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.99 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5729 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 248 unused Assets / (1.6 MB). Loaded Objects now: 6170.
-Memory consumption went from 245.8 MB to 244.2 MB.
-Total: 5.491000 ms (FindLiveObjects: 0.666600 ms CreateObjectMapping: 0.152100 ms MarkObjects: 3.914800 ms  DeleteObjects: 0.756400 ms)
+Unloading 5753 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 248 unused Assets / (1.5 MB). Loaded Objects now: 6209.
+Memory consumption went from 263.3 MB to 261.8 MB.
+Total: 5.439000 ms (FindLiveObjects: 0.590500 ms CreateObjectMapping: 0.148500 ms MarkObjects: 3.999600 ms  DeleteObjects: 0.699300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -197,141 +171,336 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 10816.859682 seconds.
-  path: Assets/Packages/Melanchall.DryWetMidi.6.0.0/lib/net45/Melanchall.DryWetMidi.dll
-  artifactKey: Guid(548530a013b68f249a40f4f3dc84ec2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Packages/Melanchall.DryWetMidi.6.0.0/lib/net45/Melanchall.DryWetMidi.dll using Guid(548530a013b68f249a40f4f3dc84ec2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fd8752a5cf04f0748157c3a91057c4f') in 0.030320 seconds 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006742 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.36 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Reflected over 10 assemblies in (131.8736 ms)
+  Time since last request: 17609.809565 seconds.
+  path: Assets/Neat/Core/Resources/Shaders/Resources/Materials/xp_graph_mat.mat
+  artifactKey: Guid(5310afa095d3ff04e9c88c7c17a2d9e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Core/Resources/Shaders/Resources/Materials/xp_graph_mat.mat using Guid(5310afa095d3ff04e9c88c7c17a2d9e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Attempting to get Camera relative temporary RenderTexture (width || height <= 0) via a CommandBuffer  in a Sriptable Render Pipeline.
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:Log (object)
-Neat.Tools.ReflectionUtility:Reflect () (at Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs:64)
-System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
-System.Reflection.MethodBase:Invoke (object,object[])
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer_Internal (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.ScriptableRenderContext:ExecuteCommandBuffer (UnityEngine.Rendering.CommandBuffer)
+UnityEngine.Rendering.Universal.Internal.CopyColorPass:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/Passes/CopyColorPass.cs:111)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteRenderPass (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.ScriptableRenderPass,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:966)
+UnityEngine.Rendering.Universal.ScriptableRenderer:ExecuteBlock (int,UnityEngine.Rendering.Universal.ScriptableRenderer/RenderBlocks&,UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:925)
+UnityEngine.Rendering.Universal.ScriptableRenderer:Execute (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.RenderingData&) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/ScriptableRenderer.cs:729)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:414)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.MaterialEditor:DoRenderPreview (UnityEditor.PreviewRenderUtility,bool)
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
 
-(Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
+[ line 0]
 
-Mono: successfully reloaded assembly
-- Completed reload, in  2.586 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2587ms)
-		BeginReloadAssembly (179ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (7ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (67ms)
-		EndReloadAssembly (2311ms)
-			LoadAssemblies (84ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (318ms)
-			ReleaseScriptCaches (3ms)
-			RebuildScriptCaches (140ms)
-			SetupLoadedEditorAssemblies (1525ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (12ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (114ms)
-				ProcessInitializeOnLoadAttributes (797ms)
-				ProcessInitializeOnLoadMethodAttributes (590ms)
-				AfterProcessingInitializeOnLoad (9ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (12ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.39 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5555 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 241 unused Assets / (1.6 MB). Loaded Objects now: 6176.
-Memory consumption went from 237.9 MB to 236.3 MB.
-Total: 6.989700 ms (FindLiveObjects: 0.613500 ms CreateObjectMapping: 0.148300 ms MarkObjects: 5.460800 ms  DeleteObjects: 0.765400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.005578 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.61 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Reflected over 10 assemblies in (138.7304 ms)
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
-UnityEngine.Logger:Log (UnityEngine.LogType,object)
-UnityEngine.Debug:Log (object)
-Neat.Tools.ReflectionUtility:Reflect () (at Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs:64)
-System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
-System.Reflection.MethodBase:Invoke (object,object[])
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.MaterialEditor:DoRenderPreview (UnityEditor.PreviewRenderUtility,bool)
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
 
-(Filename: Assets/Neat/Core/Scripts/Reflection/ReflectionUtility.cs Line: 64)
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
 
-Mono: successfully reloaded assembly
-- Completed reload, in  2.377 seconds
-Domain Reload Profiling:
-	ReloadAssembly (2378ms)
-		BeginReloadAssembly (167ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (68ms)
-		EndReloadAssembly (2093ms)
-			LoadAssemblies (88ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (304ms)
-			ReleaseScriptCaches (4ms)
-			RebuildScriptCaches (104ms)
-			SetupLoadedEditorAssemblies (1490ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (12ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (113ms)
-				ProcessInitializeOnLoadAttributes (773ms)
-				ProcessInitializeOnLoadMethodAttributes (580ms)
-				AfterProcessingInitializeOnLoad (10ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (11ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 2.24 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5554 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 241 unused Assets / (1.5 MB). Loaded Objects now: 6181.
-Memory consumption went from 237.9 MB to 236.3 MB.
-Total: 6.124100 ms (FindLiveObjects: 0.619900 ms CreateObjectMapping: 0.149900 ms MarkObjects: 4.549100 ms  DeleteObjects: 0.802900 ms)
+Trying to get RenderBuffer with invalid antiAliasing (must be at least 1)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit_Internal ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.CameraData,bool) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:430)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:323)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at Library/PackageCache/com.unity.render-pipelines.universal@12.1.2/Runtime/UniversalRenderPipeline.cs:278)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,System.Collections.Generic.List`1<UnityEngine.Camera/RenderRequest>,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.PreviewRenderUtility:Render (bool,bool)
+UnityEditor.MaterialEditor:DoRenderPreview (UnityEditor.PreviewRenderUtility,bool)
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
 
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+[C:\buildslave\unity\build\Runtime\Graphics\RenderBufferManager.cpp line 180]
+
+ -> (artifact id: '6e3b1f89a353a1c900ad38c3d7bee6a5') in 1.853044 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 102.092811 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/archtronic.png
+  artifactKey: Guid(ece474ccfa71a0645bcf9b439275c465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/archtronic.png using Guid(ece474ccfa71a0645bcf9b439275c465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cb21f07f90ee88498f79b6604cc331a') in 0.036566 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/File/cloud-upload.png
+  artifactKey: Guid(eb8c81bca0f144e45a78145f9f2e01ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/File/cloud-upload.png using Guid(eb8c81bca0f144e45a78145f9f2e01ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ae2979b5cf37ae1f6b0fa8d32b4b251') in 0.118174 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Carpet/Carpet_Normal.png
+  artifactKey: Guid(d4bda63fdb3591c418fd1614c87bab6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Carpet/Carpet_Normal.png using Guid(d4bda63fdb3591c418fd1614c87bab6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c05c16d8890cbbdbe4f721ab496a26d7') in 0.032857 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/sound_on.png
+  artifactKey: Guid(52145abf93c882a46b0b3b49ed841071) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/sound_on.png using Guid(52145abf93c882a46b0b3b49ed841071) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7f0a10885123c710a186dd9510a74ad') in 0.039387 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Props/MicroPropTex_Roughness.png
+  artifactKey: Guid(70b9f92cfb2158e4f80d1777596df240) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Props/MicroPropTex_Roughness.png using Guid(70b9f92cfb2158e4f80d1777596df240) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d80c1d6754fdc1949603f81ce8efd2c') in 0.022140 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Controls/gamepad.png
+  artifactKey: Guid(28b9809fa94fdd9468ac3b5b5a493083) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Controls/gamepad.png using Guid(28b9809fa94fdd9468ac3b5b5a493083) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edd437fc2569e0a55431e8cba351e227') in 0.037993 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Terrains/07 - wildwest.asset
+  artifactKey: Guid(ede8e9b58408549e5bca44392e631d39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Terrains/07 - wildwest.asset using Guid(ede8e9b58408549e5bca44392e631d39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffd789b0f6c709200c3c3f3714bb5dd8') in 0.136582 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/fire_sleet.png
+  artifactKey: Guid(70bf854972ada354e82fefb66cf8371d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/fire_sleet.png using Guid(70bf854972ada354e82fefb66cf8371d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63734c1f26a3a6bc3c5e369e4047a361') in 0.024641 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Packages/Melanchall.DryWetMidi.6.0.0/icon.png
+  artifactKey: Guid(2c4872265a966654f9acf16408322462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Melanchall.DryWetMidi.6.0.0/icon.png using Guid(2c4872265a966654f9acf16408322462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dabd1e8843ce36e00c396bb1308d6c4') in 0.022655 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_options.png
+  artifactKey: Guid(bb2f560f2495fcc439a3d96aab738b78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_options.png using Guid(bb2f560f2495fcc439a3d96aab738b78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3793f7f4a6a4aea004c39b506bdb328') in 0.038449 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Doors/Hinge Door Texture.png
+  artifactKey: Guid(73f6593216f88df44b7d3e1a27c29482) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Doors/Hinge Door Texture.png using Guid(73f6593216f88df44b7d3e1a27c29482) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a14b4986d0d001a4ba374d7d9905c19e') in 0.025285 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Impoted/Packs/StarterAssets/Environment/Art/Textures/Grid_01_BaseMap.png
+  artifactKey: Guid(d1118dda59970a2449ee890fa247c4c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/StarterAssets/Environment/Art/Textures/Grid_01_BaseMap.png using Guid(d1118dda59970a2449ee890fa247c4c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6291127113f9c76fe93e084ee8dfb65d') in 0.024918 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/File/save.png
+  artifactKey: Guid(39e6af1d3deffc54a9b68e3da1af9e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/File/save.png using Guid(39e6af1d3deffc54a9b68e3da1af9e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b47bc158ca72539f9b8eb5ef6f068234') in 0.038974 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_pause.png
+  artifactKey: Guid(202b0a1f299c8c34fa204a49d31c2189) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_pause.png using Guid(202b0a1f299c8c34fa204a49d31c2189) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bce8dfc9350ac994c77eca86557b72b') in 0.039337 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/01 - All Models/ReflectionProbe-0.exr
+  artifactKey: Guid(688881982d85a92478897ef7b0e185c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/01 - All Models/ReflectionProbe-0.exr using Guid(688881982d85a92478897ef7b0e185c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '483a52e9fbce35e1a382b5a67f537949') in 0.037283 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Textures/atlas-albedo-LPUP.png
+  artifactKey: Guid(8717fdb6173564f2999931e12864970e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Textures/atlas-albedo-LPUP.png using Guid(8717fdb6173564f2999931e12864970e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c370e9196d03874567090e30303a4729') in 0.016056 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/File/open-folder.png
+  artifactKey: Guid(62468d020b74a8b4e922d6b342901622) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/File/open-folder.png using Guid(62468d020b74a8b4e922d6b342901622) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b94ed1a320623015213f29cb1a854803') in 0.030332 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_restart.png
+  artifactKey: Guid(62dced1458558c34098b645420870749) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_restart.png using Guid(62dced1458558c34098b645420870749) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9eae53c6439b3abcf1ca01fbca2d5f19') in 0.029450 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Neat/Projects/AimTrainer/Images/fadegrid_64.png
+  artifactKey: Guid(45ff8a97b93b28e4481d3706a6bd9a6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/AimTrainer/Images/fadegrid_64.png using Guid(45ff8a97b93b28e4481d3706a6bd9a6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e596e7ba5c1957a6c4960133909e33dc') in 0.025804 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/grimbrand_spec.png
+  artifactKey: Guid(9f8d8c00694d50f41a2c06fb04206503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/grimbrand_spec.png using Guid(9f8d8c00694d50f41a2c06fb04206503) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6f6d062abe1bec244f81ceb6d370ff9') in 0.053603 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/archtronic_spec.png
+  artifactKey: Guid(596578de680d7f041abf2e9531678468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/archtronic_spec.png using Guid(596578de680d7f041abf2e9531678468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '037f9bbd4ddde3ee25ee1ce79056f4c4') in 0.027865 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Controls/keyboard.png
+  artifactKey: Guid(c6f9a90421e78044f8ead7d7c11c27c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Controls/keyboard.png using Guid(c6f9a90421e78044f8ead7d7c11c27c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79c3b4f787f00772b13f1efd8edc929a') in 0.037511 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Neat/Projects/AimTrainer/Images/basic_circle_63.png
+  artifactKey: Guid(a9fc9699bfd337343bab9b3ad680da17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/AimTrainer/Images/basic_circle_63.png using Guid(a9fc9699bfd337343bab9b3ad680da17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6fe7a56d53ce3f4bda3b1e830d8e144') in 0.027317 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Neat/Core/Scripts/UI/Images/BlurredCircleButtonTemplate.png
+  artifactKey: Guid(83c3a54498be09849ab5f5baff39271b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Core/Scripts/UI/Images/BlurredCircleButtonTemplate.png using Guid(83c3a54498be09849ab5f5baff39271b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7bfe0a9e53d276cc0ed57d7c365ba00') in 0.023547 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Textures/belt-texture.png
+  artifactKey: Guid(398815639a53cbf43bf43a44575361ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Textures/belt-texture.png using Guid(398815639a53cbf43bf43a44575361ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cf75e61568e9b6064329fef8eb68bb4') in 0.021936 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/fire_sleet_spec.png
+  artifactKey: Guid(ec4677926a7388944be5f2b650465569) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/fire_sleet_spec.png using Guid(ec4677926a7388944be5f2b650465569) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c515edac82ae2e06af41b6b20bbad76') in 0.027784 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Tile/Tile.png
+  artifactKey: Guid(d632a02a7991d1040a179b6d0bde1c70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Tile/Tile.png using Guid(d632a02a7991d1040a179b6d0bde1c70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b237c7a7a6c2122d9b7f70ae771c8e8') in 0.024634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Controls/magnifying-glass.png
+  artifactKey: Guid(144a47587c119e9419322ecec369a881) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Controls/magnifying-glass.png using Guid(144a47587c119e9419322ecec369a881) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bb4ac347764b4f68fb3679e42d5fd52') in 0.048714 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_minus.png
+  artifactKey: Guid(0335a00245a641a4b845282f6102caee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_minus.png using Guid(0335a00245a641a4b845282f6102caee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59958874da887433c7814d9a723a2c92') in 0.052586 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Doors/Sliding Door Texture.png
+  artifactKey: Guid(ebfdc82a380696f4fa8dad7fed2a8168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Doors/Sliding Door Texture.png using Guid(ebfdc82a380696f4fa8dad7fed2a8168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6258f04a1aea77ca652c852df182b6ba') in 0.031301 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Props/MicroPropTex_Emission.png
+  artifactKey: Guid(860b5540b51fafa4d9eb5eaceeec3f59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/FirstPersion AIO Pack/DemoScene/Working Textures/Props/MicroPropTex_Emission.png using Guid(860b5540b51fafa4d9eb5eaceeec3f59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7dc8a60b76fa5efcb03dc5a414852e7e') in 0.027296 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Media/speaker-off.png
+  artifactKey: Guid(75e9fb57f4dbb3c4b870089f6729eed0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Media/speaker-off.png using Guid(75e9fb57f4dbb3c4b870089f6729eed0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c76781bfa9d62262391d2c99acbbca71') in 0.037423 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/grimbrand_Normal.png
+  artifactKey: Guid(c053dfe438aa5704b95179b089c21947) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/grimbrand_Normal.png using Guid(c053dfe438aa5704b95179b089c21947) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bcb61c74137e22143fcde43a5365156') in 0.024967 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_star.png
+  artifactKey: Guid(668306b6d5861fb4eae0bcadfc8a588d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_star.png using Guid(668306b6d5861fb4eae0bcadfc8a588d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ef6e63ec3b93e92b61a101cce01f6f9') in 0.037346 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Neat/Projects/AimTrainer/Images/basicgrid_64.png
+  artifactKey: Guid(741eb87db60e0ab4ebdab2604310f7e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/AimTrainer/Images/basicgrid_64.png using Guid(741eb87db60e0ab4ebdab2604310f7e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '400540fe317601f3415fab4604395f4b') in 0.025349 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Media/power-button.png
+  artifactKey: Guid(4b656d2859eba334ea2400475ce41e4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/Media/power-button.png using Guid(4b656d2859eba334ea2400475ce41e4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b7659842546c52985eaec9c42c68938') in 0.038545 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/info.png
+  artifactKey: Guid(b493d309de6a861479d28cd7b9fed704) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/gameicons.net icon pack/info.png using Guid(b493d309de6a861479d28cd7b9fed704) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '087bd8a8787380972fd023265dfe286d') in 0.037367 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/grimbrand.png
+  artifactKey: Guid(a5de270101b7ae44cb821a1b975524ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/grimbrand.png using Guid(a5de270101b7ae44cb821a1b975524ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48e7ef07442ab5e7a9476fc2775f69eb') in 0.024023 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_plus.png
+  artifactKey: Guid(ae65ae9882a1b6a4fb8f0a7ee20530eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/icon_plus.png using Guid(ae65ae9882a1b6a4fb8f0a7ee20530eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7e92b718488b039371857115098d363') in 0.037488 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Impoted/Packs/Low Poly Ultimate Pack/- Textures/grass-texture-long-LPUP.png
+  artifactKey: Guid(f5ef23c6d74e24f178d1b69eb0a174fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/Low Poly Ultimate Pack/- Textures/grass-texture-long-LPUP.png using Guid(f5ef23c6d74e24f178d1b69eb0a174fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33370a652d1521b68b2f4e6c5467d73e') in 0.025723 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/sound_off.png
+  artifactKey: Guid(a0e4dc2004605b3438f169418be211c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Projects/Rhythm/Resources/Black & White icon pack/sound_off.png using Guid(a0e4dc2004605b3438f169418be211c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85affe5d2afdcec5dcb052f050a6e78a') in 0.037428 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/archtronic_Normal.png
+  artifactKey: Guid(cb9d0a68e7612e045a27dc7266e6c642) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/SciFi_Gun_Collection/Textures/archtronic_Normal.png using Guid(cb9d0a68e7612e045a27dc7266e6c642) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a6a7a62f72454d11861b81b2cc01fb4') in 0.027889 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Neat/Core/Scripts/UI/Images/MediumUITemplate.png
+  artifactKey: Guid(79c7ef7f2dc52c34baa2fce270f5547c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Neat/Core/Scripts/UI/Images/MediumUITemplate.png using Guid(79c7ef7f2dc52c34baa2fce270f5547c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb8a2b45a6e478edddb60960383acc16') in 0.023536 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 33.285542 seconds.
+  path: Assets/Impoted/Packs/StarterAssets/Mobile/UI/UI_Icon_Jump.png
+  artifactKey: Guid(751aa1b6637101946b2fdbb7aa27d6ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/StarterAssets/Mobile/UI/UI_Icon_Jump.png using Guid(751aa1b6637101946b2fdbb7aa27d6ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5c78b60f46b547845f03501a61b1c14') in 0.099558 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Impoted/Packs/StarterAssets/Mobile/UI/UI_Icon_Sprint.png
+  artifactKey: Guid(b0fa70abd2a79904cb00b175dfd8ec7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Impoted/Packs/StarterAssets/Mobile/UI/UI_Icon_Sprint.png using Guid(b0fa70abd2a79904cb00b175dfd8ec7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5af86130d22ee8751727e988d627351c') in 0.093542 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
