@@ -1,16 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Neat.GameManager
-{
-    interface IDevice
-    {
-        bool GetButton(GamepadControl g);
-        bool GetButtonDown(GamepadControl g);
-        bool GetButtonUp(GamepadControl g);
-        float GetAxis(GamepadControl g);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1cd6c586764c573a3bc605fc7b86632ea0aa5841e7f01f5ebb9a04f93dc9d0c8
+size 355

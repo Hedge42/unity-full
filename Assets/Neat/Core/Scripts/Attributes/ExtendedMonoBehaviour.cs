@@ -1,25 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Neat.Tools
-{
-    public class ExtendedMonoBehaviour : MonoBehaviour
-    {
-        public T CacheComponent<T>(ref T _data)
-        {
-            if (_data == null)
-                _data = GetComponent<T>();
-            return _data;
-        }
-        public T Cache<T>(Func<T> constructor, ref T _data)
-        {
-            if (_data == null)
-                _data = constructor();
-            return _data;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:30bcbbd11b2e9d87e25a658fb9e02cf76af4a46327c5114e0eaff87c67115ed2
+size 575

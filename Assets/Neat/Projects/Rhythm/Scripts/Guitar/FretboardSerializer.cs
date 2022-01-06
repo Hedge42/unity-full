@@ -1,30 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using Neat.GameManager;
-
-namespace Neat.Audio.Music
-{
-    public class FretboardSerializer : MonoBehaviour
-    {
-        public readonly string path = "C:/Users/tyler/Desktop/Fretboards";
-
-        public Fretboard fretboard { get; private set; }
-
-        public new string name;
-
-        private void Awake()
-        {
-            fretboard = GetComponent<Fretboard>();
-        }
-
-        public void Save()
-        {
-            // FileManager.SerializeBinary(this, );
-        }
-        public static void Load()
-        {
-
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:94ec342a44be9cdb8a19ccf7eba725fbcff2879b8f76a1e90fc4c03036e0051a
+size 610

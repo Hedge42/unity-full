@@ -1,16 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-// using Sirenix.OdinInspector;
-using UnityEngine.UI;
-
-public class ShaderDebugger : MonoBehaviour
-{
-    // [Button]
-    public void PrintValue()
-    {
-        print(GetComponent<Image>().material.GetFloat("alpha"));
-    }
-}
-
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:c4d1606d109c8df572db71582ccaef8cbf6117a863ce6e6816197b02af7d4a23
+size 309

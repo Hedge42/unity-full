@@ -1,20 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.GameManager
-{
-    public class CursorCollider : MonoBehaviour
-    {
-        private Cursor cursor;
-
-        private void Awake()
-        {
-            cursor = GetComponentInParent<Cursor>();
-        }
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            print("Collided with " + collision.gameObject.name);
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1ecf4fd4fb751634536790c36ca3c100fd6016eacccb2dba88cb88430eeaf91a
+size 452

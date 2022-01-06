@@ -1,27 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[ExecuteInEditMode]
-public class IKTargetGroup : MonoBehaviour
-{
-    public IKTarget[] targets;
-
-    // needed for interaction...
-    [ContextMenuItem("Equip", "Equip")]
-    public IKController controller;
-
-    public void FindTargets()
-    {
-        targets = GetComponentsInChildren<IKTarget>();
-    }
-}
-
-public static partial class Extensions
-{
-    public static T Find<T>(this Transform transform)
-    {
-        foreach (var child in transform) { }
-        throw new System.NotImplementedException();
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d4fe5f9ac6503d4863d94a18a1ad697c1a0b67d2bd61f0d0b8744fc1e70ec9f2
+size 597

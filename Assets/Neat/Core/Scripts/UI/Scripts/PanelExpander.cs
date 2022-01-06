@@ -1,21 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using Neat.Tools;
-
-public class PanelExpander : MonoBehaviour
-{
-    public void UpdateSize(VerticalLayoutGroup v)
-    {
-        float height = 0;
-        foreach (var child in v.transform.GetChildren())
-        {
-            height += child.GetComponent<RectTransform>().sizeDelta.y;
-            height += v.spacing;
-        }
-        // var topOffset = transform.parent.GetComponent<RectTransform>().offsetMax.y;
-        var rt = GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(rt.sizeDelta.x, height + v.padding.top + v.padding.bottom + 20);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2b9d15649fbb62158b4c44c5b01708b4cb8d837f11e2d6c151b042da0da87ee7
+size 674

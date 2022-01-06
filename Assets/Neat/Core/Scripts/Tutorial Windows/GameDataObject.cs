@@ -1,25 +1,3 @@
-﻿using UnityEditor;
-using UnityEngine;
-using Neat.Tools;
-
-namespace Neat.Experimental.Tutorials
-{
-    public class GameDataObject : MonoBehaviour
-    {
-        [BeginDisabledGroup, Range(0, 10)]
-        public int thing;
-        [EndDisabledGroup]
-
-        [MinMax(0, 10)]
-        public Vector2 minMax;
-
-        // [Sidebar]
-        public GameData[] gameData;
-    }
-
-    [System.Serializable]
-    public class GameData
-    {
-        public string data;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:dadd8d52c845f12d79043383b6d94c33513781af92b0c5af3486d6ed6e4f8aa1
+size 465

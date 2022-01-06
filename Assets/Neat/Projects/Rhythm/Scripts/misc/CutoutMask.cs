@@ -1,24 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-
-//namespace Neat
-//{
-public class CutoutMask : Image
-{
-    public override Material materialForRendering
-    {
-        get
-        {
-            Material mat = new Material(base.materialForRendering);
-            mat.SetInt("_StencilComp", (int)CompareFunction.NotEqual);
-            return mat;
-        }
-    }
-}
-//}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5ef29f91978992ecb104d727b17cf7317c376ad7a4ecc3a66c533001a6bb384a
+size 508

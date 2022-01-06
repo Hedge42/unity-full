@@ -1,24 +1,3 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ColliderHandler : MonoBehaviour
-{
-    public event Action<Collider> onTriggerStay;
-    public event Action<Collider> onTriggerEnter;
-    public event Action<Collider> onTriggerExit;
-
-    private void OnTriggerStay(Collider other)
-    {
-        onTriggerStay?.Invoke(other);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        onTriggerEnter?.Invoke(other);
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        onTriggerExit?.Invoke(other);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d17bece864d1a4279b04569ff2bcc34c98728f29680054048f7d3c5d35293ee5
+size 588

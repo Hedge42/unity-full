@@ -1,15 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-
-public class CurveExampleTextUpdater : MonoBehaviour
-{
-    public TextMeshProUGUI text;
-    public TranslateOverTime translation;
-
-    private void OnValidate()
-    {
-        text.text = gameObject.name = transform.parent.name = translation.translations[0].curve.name;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:0e243383d44e316c16d949b14a3837be7ba931e4fbb4787f99f3effdd978455e
+size 373

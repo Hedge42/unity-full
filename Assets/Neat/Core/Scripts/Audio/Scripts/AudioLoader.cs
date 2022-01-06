@@ -1,28 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Neat.Audio;
-using System.IO;
-using System;
-
-namespace Neat.Audio
-{
-    public class AudioLoader
-    {
-        public static void FindAndLoad(string directory, AudioSource source, Action onClipReady)
-        {
-            Action<string> onSelect = delegate (string file) { Load(source, file, onClipReady); };
-            Neat.GameManager.FileBrowser.FileBrowser.instance.Show(directory, onSelect, ".mp3", ".wav");
-        }
-        public static void Load(AudioSource source, string filepath, Action onClipReady)
-        {
-            Action<AudioClip> clipLoaded =
-                delegate (AudioClip clip) { SetClip(source, clip, onClipReady); };
-            AudioManager.LoadClip(filepath, clipLoaded);
-        }
-        public static void SetClip(AudioSource source, AudioClip clip, Action onClipReady)
-        {
-            AudioManager.SetClip(source, clip, onClipReady);
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4c766b391f35005a8d2f8598ea1f48cc15dc3ad363b0bf459a3f15e8793f4179
+size 979

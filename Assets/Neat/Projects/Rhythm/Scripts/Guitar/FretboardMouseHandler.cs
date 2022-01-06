@@ -1,32 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System;
-
-namespace Neat.Audio.Music
-{
-    public class FretboardMouseHandler : MonoBehaviour
-    {
-        public Fretboard ui { get; private set; }
-
-        private void Awake()
-        {
-            ui = GetComponent<Fretboard>();
-        }
-
-        private void Update()
-        {
-            var mouse = Input.mousePosition;
-
-            var inverse = ui.panel.InverseTransformPoint(mouse);
-            if (ui.panel.rect.Contains(inverse))
-            {
-                print("Hovering!");
-
-                // which fret...
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4d10b199ea3c439e8a034e717ffb5cb55396c93b7bbd577a4179094260319dde
+size 701

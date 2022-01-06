@@ -1,34 +1,3 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace Neat.Audio.Music
-{
-    public class NoteEdit
-    {
-        private static Stack<NoteEdit> _commands;
-        private static Stack<NoteEdit> commands
-        {
-            get
-            {
-                if (_commands == null)
-                    _commands = new Stack<NoteEdit>();
-                return _commands;
-            }
-        }
-        public virtual void Execute()
-        {
-            commands.Push(this);
-        }
-        public virtual void Undo()
-        {
-
-        }
-
-        public static void UndoEdit()
-        {
-            var cmd = commands.Pop();
-            cmd.Undo();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:12f17466cb6128e4220075d949965a4179354573664479ab761f66275b6b8a2b
+size 710

@@ -1,16 +1,3 @@
-﻿[System.Serializable]
-public class TimingProfile
-{
-    // range of posssible values
-    public const float TIMEOUT_MIN = .1f;
-    public const float TIMEOUT_MAX = 2f;
-    public const float DELAY_MIN = 0f;
-    public const float DELAY_MAX = 10f;
-
-    // data and defaults
-    public float timeout = .5f;
-    public float delayMin = .5f;
-    public float delayMax = 1f;
-    public bool canClickTimeout = true;
-    public bool canDelay = true;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9910726b51adff0fe1fd2bc4886ae2a087e8e02854bd06980cc0f4c34ce22066
+size 447

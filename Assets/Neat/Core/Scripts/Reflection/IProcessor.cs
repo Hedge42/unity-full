@@ -1,30 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
-
-namespace Neat.Tools
-{
-    public interface IProcessor<T>
-    {
-        void Process(T info);
-    }
-    public class _MemberProcessor : IProcessor<MemberInfo>
-    {
-        public void Process(MemberInfo info)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface IMemberProcessor
-    {
-        void Process(MemberInfo value);
-    }
-    public interface ITypeProcessor
-    {
-        void Process(Type type);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4c8a6bd4a1c9aeb7cc2c21d1674b640d81b3000bab899d60e79ba1da169ec0c5
+size 604

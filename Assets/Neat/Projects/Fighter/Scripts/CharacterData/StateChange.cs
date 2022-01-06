@@ -1,25 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Demos.Fighter
-{
-    [System.Serializable]
-    public class StateChange
-    {
-        public int frame;
-
-        public bool ground;
-        public bool stand;
-        public bool attack;
-        public bool stun;
-        public bool knockdown;
-        public bool guard;
-
-        public StateChange()
-        {
-            frame = 0;
-            attack = true;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f09eb46bcec4e9c27c36d32aa1d04366fc61c984a4d97afa9faf2af048ecff73
+size 477

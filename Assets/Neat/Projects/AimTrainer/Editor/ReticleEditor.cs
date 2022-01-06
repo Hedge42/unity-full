@@ -1,23 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
-[CustomEditor(typeof(Reticle))]
-public class ReticleEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        Reticle _target = (Reticle)target;
-
-        if (GUILayout.Button("Save profile"))
-            _target.profile.Save();
-        if (GUILayout.Button("Load profile"))
-            _target.profile = ReticleProfile.Load();
-
-        if (GUI.changed)
-            _target.UpdateReticle();
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1ccaa814d9d6b2401541a99e6f0db9054cee18b06ecff02cd0a69682365d7a10
+size 548

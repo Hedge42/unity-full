@@ -1,19 +1,3 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Tools
-{
-    [Serializable]
-    public class ButtonAttributeSelector // : UnityEditor.SerializedProperty
-    {
-        // this becomes the serializedObject
-        public Action method;
-
-        public void Invoke()
-        {
-            method?.Invoke();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6befb9e8d872e5b2f29adeba5d629e7dd0e8416dc5f88625e4514b907e8cb3b
+size 384

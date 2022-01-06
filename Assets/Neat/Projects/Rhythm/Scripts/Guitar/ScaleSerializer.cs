@@ -1,18 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Neat.Audio.Music
-{
-    public class ScaleSerializer : MonoBehaviour
-    {
-
-        // Editor: file:E:\Projects\Unity\NeetDemos\Assets\Neat\Rhythm\Editor\ScaleSerializerEditor.cs
-
-        // logic in editor
-        public MusicScale scale;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:3989de4616f0552923ca0c5058ff8b16f9fa7a460e68aede90fe17425e86aa51
+size 396

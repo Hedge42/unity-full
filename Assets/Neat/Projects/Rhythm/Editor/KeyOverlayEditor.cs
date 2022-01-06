@@ -1,22 +1,3 @@
-﻿using UnityEngine;
-using UnityEditor;
-
-namespace Neat.Audio.Music
-{
-
-    [CustomEditor(typeof(KeyOverlay))]
-    public class KeyOverlayEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            var _target = (KeyOverlay)target;
-
-            if (GUILayout.Button("Destroy"))
-            {
-                _target.DestroyUI();
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:20335fcc969c8416ecbc54c28b04235d9ae40fd761f36beedc705a8dae4dcb91
+size 427

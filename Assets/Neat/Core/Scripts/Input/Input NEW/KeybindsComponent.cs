@@ -1,24 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
-
-namespace Neat.InputHelpers
-{
-    
-    public class KeybindsComponent : MonoBehaviour
-    {
-        private Keybinds _keybinds;
-        public Keybinds keybinds => _keybinds ??= new Keybinds();
-
-        private void OnEnable()
-        {
-            keybinds.Enable();
-        }
-        private void OnDisable()
-        {
-            keybinds.Disable();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:eca1e62110beb6adc8b89182b360c46bf44f18337bf2191ab70d8c036e74d5fe
+size 483

@@ -1,23 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Demos.Fighter
-{
-    public class MoveListStandard
-    {
-        public Command[] commands;
-
-        public MoveListStandard()
-        {
-            commands = new Command[]
-            {
-                new Command("DP", "6*,5?,2,3,6?p"),
-                new Command("Grab", "pk"),
-                new Command("Low parry", "g*k"),
-                new Command("High parry", "g*p"),
-                new Command("bfbfK", "147*,258?,369,258?,147,258?,369*k")
-            };
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8cff917d88508013113ae0380e92ba40f6ca380de97af30248bb10da31e68051
+size 585

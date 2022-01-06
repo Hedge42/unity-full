@@ -1,35 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Audio.Vizualization
-{
-    public class WaveColorizer : MonoBehaviour
-    {
-        public bool isEnabled;
-        public VisualizerListener peer;
-
-        [Range(0, 7)]
-        public int band;
-
-        public Color lerpTo;
-        private Color startColor;
-
-        private Material material;
-
-        private void Awake()
-        {
-            material = GetComponent<Renderer>().material;
-            startColor = material.color;
-        }
-
-        private void Update()
-        {
-            if (isEnabled)
-                material.color = Color.Lerp(startColor, lerpTo, peer.freqBand[band] / 2);
-
-            else
-                material.color = startColor;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8170ab6c8fdbc692c0557a56b0ab64f79bd31b1fc23ff08ade61acf9fb25c8dc
+size 780

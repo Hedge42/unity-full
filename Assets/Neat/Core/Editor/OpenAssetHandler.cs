@@ -1,26 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Neat.Tools;
-using UnityEditor;
-using UnityEditor.Callbacks;
-using Neat.Experimental.Tutorials;
-
-namespace Neat.Tools
-{
-    public class AssetHandler
-    {
-        [OnOpenAsset()]
-        public static bool OpenEditor(int instanceId, int line)
-        {
-            GameDataObject obj = EditorUtility.InstanceIDToObject(instanceId) as GameDataObject;
-
-            if (obj != null)
-            {
-                ExtendedEditorWindow.Open(obj);
-                return true;
-            }
-            return false;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:3d4d4cac063239972addaabe94c3ce0a849acd2f3909b3abf3ae3a0e6255bfca
+size 616

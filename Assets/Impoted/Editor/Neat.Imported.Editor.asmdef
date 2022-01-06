@@ -1,17 +1,3 @@
-{
-    "name": "Neat.Imported.Editor",
-    "rootNamespace": "",
-    "references": [
-        "GUID:92ced4c6d3f22ef4891fff8a2ae2abc2",
-        "GUID:4307f53044263cf4b835bd812fc161a4"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:922cf95bee54a50df435fd211ef4f3bf741e3a93d81f7d80b0403e816d9aed0e
+size 455

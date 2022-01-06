@@ -1,36 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
-public class ColorSelector : MonoBehaviour
-{
-    public TMP_InputField r;
-    public TMP_InputField g;
-    public TMP_InputField b;
-    public Image colorPreview;
-
-    private void Awake()
-    {
-        r.onEndEdit.AddListener(delegate { UpdateColor(); });
-        g.onEndEdit.AddListener(delegate { UpdateColor(); });
-        b.onEndEdit.AddListener(delegate { UpdateColor(); });
-    }
-
-    private void UpdateColor()
-    {
-        if (int.TryParse(r.text, out int ri))
-        {
-
-        }
-        if (int.TryParse(g.text, out int gi))
-        {
-
-        }
-        if (int.TryParse(b.text, out int bi))
-        {
-
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2c2baeed0a817f7ac97df345ea67844463b3dae4eab5d3806268d766300fb0ff
+size 752

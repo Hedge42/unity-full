@@ -1,28 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Audio.Music
-{
-    public class FretboardGrid
-    {
-
-        float spacing;
-        float width;
-        float length;
-
-
-        Vector2 GetPosition(int x, int y)
-        {
-            return new Vector2(GetX(x), GetY(y));
-        }
-        float GetX(int column)
-        {
-            return spacing * Mathf.Pow(2f, column / 12f);
-        }
-        float GetY(int row)
-        {
-            return spacing * row;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9a6141a0e09b1f05a13fc423afcbd38603e3915ab22f14f57f85c2c99d1acef0
+size 517

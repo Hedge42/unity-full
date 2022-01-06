@@ -1,32 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
-namespace Neat.Audio.Music
-{
-	public class ScaleUI : MonoBehaviour
-	{
-		Fretboard fretboardUI;
-
-		public void AddClickHandlers()
-		{
-
-		}
-
-		public void ToggleFret(Fret fret, Fretboard fretboard, PointerEventData eventData)
-		{
-			if (fret is FretObject)
-				fretboard.FretClickedHandler(fret.fretNum, fret.stringNum);
-
-			if (eventData.button == PointerEventData.InputButton.Right)
-			{
-				fret.Hide();
-			}
-			else if (eventData.button == PointerEventData.InputButton.Left)
-			{
-				fret.ToggleMode();
-			}
-		}
-	}
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:108f92f1849f323545304c7eb4d19e9ed2f311208059611abcc4bb07670f6a2b
+size 634

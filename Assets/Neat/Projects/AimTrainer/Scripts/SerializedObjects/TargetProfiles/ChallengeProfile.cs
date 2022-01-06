@@ -1,19 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[System.Serializable]
-public class ChallengeProfile
-{
-    // possible values
-    public const int TIME_LIMIT_MIN = 5;
-    public const int TIME_LIMIT_MAX = 600; // 10 minutes
-    public const int TARGET_LIMIT_MIN = 1;
-    public const int TARGET_LIMIT_MAX = 100;
-
-    // data
-    public int timeLimit = 30;
-    public int targetLimit = 20;
-    public bool isTimeLimit = true;
-    public bool isTargetLimit = false;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9c46291d2240d86a08777f73799e025dfa4ac5830938b03b6f4dd6a41add89f2
+size 500

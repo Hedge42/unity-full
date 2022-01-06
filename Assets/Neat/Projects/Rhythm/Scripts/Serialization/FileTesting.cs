@@ -1,24 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Neat.Experimental;
-
-namespace Neat.Audio.Music
-{
-    public class TestSerializer : Serializer<FileTesting>
-    {
-        public FileSelector_ _selector;
-    }
-
-    [System.Serializable]
-    public class FileTesting
-    {
-        [Range(0, 10)]
-        public float a;
-        public float b;
-        public float c;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ea98cd2ccfdefbeea6bd1ec74a5dae0921877b64f3f9de51c0ca51ac5c9620c4
+size 468

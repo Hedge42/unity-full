@@ -1,28 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Object = UnityEngine.Object;
-
-
-namespace Neat.Tools
-{
-    public class GUIInspectorWindow : MonoBehaviour
-    {
-        public GUIInspector inspector;
-        public Object target;
-        public Rect rect;
-
-        private void OnGUI()
-        {
-            GUIInspector.from(target);
-            GUI.Window(GetInstanceID(), rect, DrawWindow, target.name);
-        }
-        public void DrawWindow(int id)
-        {
-
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5a0f516d9fda2375c56a0fe54eaeedc19ffd066f66038de4904dc8f4498d7a52
+size 580

@@ -1,34 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.Events;
-
-/// <summary>
-/// Inherit from this class with T as the Trainer Profile class
-/// </summary>
-/// <typeparam name="Trainer Profile"></typeparam>
-public interface ISettingUI<T>
-{
-    /// <summary>
-    /// Load profile to fields
-    /// </summary>
-    void LoadFields(T profile);
-
-    /// <summary>
-    /// Creates warning object for each relevant settings object
-    /// </summary>
-    void CreateWarnings(GameObject warningPrefab, Transform container);
-
-    /// <summary>
-    /// Set validation events for each relevant input
-    /// </summary>
-    void SetUIValidation(UnityAction endAction = null);
-
-    void Apply(ref T profile);
-
-    void AddAllTooltips(Transform container, GameObject prefab);
-    void AddTooltip(Transform obj, Transform container, string text, GameObject prefab);
-    void SetContextTexts();
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:de2b6f9c4b66ad9fb1e1e2376099252919763d0807921cbcb5ff46aefc188857
+size 960

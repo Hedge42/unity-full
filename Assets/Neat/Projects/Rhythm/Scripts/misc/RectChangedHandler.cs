@@ -1,18 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using System;
-
-[ExecuteAlways]
-public class RectChangedHandler : UIBehaviour
-{
-    public event Action onChange;
-
-    protected override void OnRectTransformDimensionsChange()
-    {
-        base.OnRectTransformDimensionsChange();
-
-        onChange?.Invoke();
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:723616e563b2ca1cb55ed8fba03901b322322c3577601ec909918fab1e6832c6
+size 381

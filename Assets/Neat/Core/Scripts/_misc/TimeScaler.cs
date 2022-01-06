@@ -1,31 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TimeScaler : MonoBehaviour
-{
-    [Range(.1f, 2f)]
-    public float timeScale;
-    public bool playOnAwake;
-
-    private void Awake()
-    {
-        if (playOnAwake)
-            Scale();
-    }
-
-    public void Scale()
-    {
-        Time.timeScale = timeScale;
-    }
-
-    public void Stop()
-    {
-        Time.timeScale = 0f;
-    }
-
-    public void Normal()
-    {
-        Time.timeScale = 1f;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:159338f4ee5a19c766c3ff071685786c0bfe41880321a5f9b44dd91f46acf8c2
+size 494

@@ -1,26 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using Neat.Audio;
-using Neat.GameManager;
-
-namespace Neat.Audio.Music
-{
-    public class ChartToolbar : MonoBehaviour
-    {
-        private ChartPlayer _controller;
-        public ChartPlayer controller
-        {
-            get
-            {
-                if (_controller == null)
-                    _controller = GetComponent<ChartPlayer>();
-                return _controller;
-            }
-        }
-
-        public AudioLoaderButton loadAudioButton;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8cb50ff77039007c19a6d5c03fe224fff0f30f3e3903d2839834cb20cec886ba
+size 579

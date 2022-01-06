@@ -1,35 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Neat.Audio.Music
-{
-    public class HighwayInputHandler : MonoBehaviour
-    {
-        private NoteHighway highway;
-
-        //private HighwayHoverHandler _hover;
-        //public HighwayHoverHandler hover => _hover == null ? _hover = new HighwayHoverHandler() : _hover;
-        public HighwayHoverHandler hover;
-        // click handler ??
-
-        private void Awake()
-        {
-            highway = GetComponent<NoteHighway>();
-            hover = new HighwayHoverHandler();
-            hover.enabled = true;
-            // hover.Enable(enabled);
-        }
-
-        private void Update()
-        {
-            // print(Input.mousePosition);
-            hover.GetInput();
-
-            // hover.GetInput();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:720cd9bd5a26f235c6179f99378f3bf369bcbc0ebd7559c189fc10b21d9d7e28
+size 875

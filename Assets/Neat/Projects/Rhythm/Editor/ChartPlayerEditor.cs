@@ -1,30 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using Neat.GameManager;
-
-namespace Neat.Audio.Music
-{
-    [CustomEditor(typeof(ChartPlayer))]
-    public class ChartPlayerEditor : Editor
-    {
-        private float skip;
-
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            var _target = (ChartPlayer)target;
-
-            if (GUILayout.Button("Load"))
-            {
-                _target.LoadChart(_target.chart);
-            }
-            if (GUILayout.Button("Remove All"))
-            {
-                _target.ui.timingBar.DiscardAll();
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9a3392dac6a6d381862b1de3a31da9df6942a7eb0bfb5cbc5b8077d7f95d108d
+size 655

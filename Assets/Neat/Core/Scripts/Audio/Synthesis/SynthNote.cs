@@ -1,30 +1,3 @@
-﻿using UnityEngine;
-
-namespace Neat.Audio.Synthesis
-{
-    public class SynthNote
-    {
-        public int value;
-        public double freq;
-        public double increment;
-        public double phase;
-        public float volume;
-
-        public SynthNote(int value)
-        {
-            this.value = value;
-
-            // update frequency and increment
-            freq = Mathf.Pow(2, (float)(value - 69) / 12f) * 440f;
-            increment = freq * 2f * Mathf.PI / AudioSettings.outputSampleRate;
-        }
-
-        public void UpdatePhase()
-        {
-            phase += increment;
-
-            if (phase > Mathf.PI * 2)
-                phase = 0;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9e09f93effa52b2312c228318123e57d5211d2d69e0babab7ef4daba13d07dc8
+size 677

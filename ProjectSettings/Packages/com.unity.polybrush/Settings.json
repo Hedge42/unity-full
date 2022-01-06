@@ -1,28 +1,3 @@
-{
-    "m_Name": "Settings",
-    "m_Path": "ProjectSettings/Packages/com.unity.polybrush/Settings.json",
-    "m_Dictionary": {
-        "m_DictionaryValues": [
-            {
-                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "Editor.FloatingWindow",
-                "value": "{\"m_Value\":false}"
-            },
-            {
-                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                "key": "Mesh.RebuildColliders",
-                "value": "{\"m_Value\":true}"
-            },
-            {
-                "type": "UnityEngine.Polybrush.BrushMirror, Unity.Polybrush, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "Brush.MirrorAxis",
-                "value": "{\"m_Value\":0}"
-            },
-            {
-                "type": "UnityEngine.Polybrush.MirrorCoordinateSpace, Unity.Polybrush, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "Brush.MirrorSpace",
-                "value": "{\"m_Value\":0}"
-            }
-        ]
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f681de0844344c7050fe2d98f2fcae24caf507ab880a8bd0654d9aa995e73d56
+size 5985

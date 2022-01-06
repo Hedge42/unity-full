@@ -1,35 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using Note = Melanchall.DryWetMidi.Interaction.Note;
-using Melanchall.DryWetMidi.Common;
-
-namespace Neat.Audio.Midi
-{
-	[CustomEditor(typeof(MidiWriter))]
-	public class MidiWriterEditor : Editor
-	{
-		public override void OnInspectorGUI()
-		{
-			base.OnInspectorGUI();
-
-			MidiWriter writer = (MidiWriter)target;
-
-			if (GUILayout.Button("Add notes"))
-			{
-				var m = MidiWriter.Create();
-
-				Note a = new Note((SevenBitNumber)1, 1, 1);
-				Note b = new Note((SevenBitNumber)2, 1, 2);
-				Note c = new Note((SevenBitNumber)3, 1, 3);
-
-				MidiWriter.AddNote(m, a);
-				MidiWriter.AddNote(m, c);
-				MidiWriter.AddNote(m, b);
-
-				MidiReader.PrintNotes(m);
-			}
-		}
-	}
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:144ba78b59ff44bcc4a777ff4ea76a498da9c22a87b4b8184e7e1901fcdf5444
+size 770

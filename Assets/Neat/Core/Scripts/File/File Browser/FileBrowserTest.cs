@@ -1,24 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
-namespace Neat.GameManager.FileBrowser
-{
-    public class FileBrowserTest : MonoBehaviour
-    {
-        public Button btn;
-        public TextMeshProUGUI tmp;
-
-        public void Click()
-        {
-            FileBrowser.instance.Show(Application.persistentDataPath, UpdateText);
-        }
-
-        private void UpdateText(string text)
-        {
-            tmp.text = text;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c141299f5e36a4509ca9bba044558031da42d42dfc79be6e058c1eb9f83fdb08
+size 509

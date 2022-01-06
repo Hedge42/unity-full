@@ -1,32 +1,3 @@
-﻿using UnityEditor;
-using UnityEngine;
-using UnityEngine.UIElements;
-
-namespace Neat.Tools
-{
-    // [CustomEditor(typeof(ScriptableObject), true)]
-    public class ScriptableObjectEditor : Editor
-    {
-        protected object[] instances;
-
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            if (GUILayout.Button("hello"))
-            {
-                DisplayAllInstances();
-            }
-        }
-
-        // display all instances?
-        public void DisplayAllInstances()
-        {
-            var p = PerformanceElement.Start("Finding ScriptableObject instances...");
-            instances = EditorFunctions.GetAllInstances(target.GetType());
-            p.Stop();
-
-            Debug.Log($"Instances found: {instances.Length}");
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:0969f3f705e6c29e2fbb020cb72f457575cd397c47166be67cf3030de4d5772b
+size 808

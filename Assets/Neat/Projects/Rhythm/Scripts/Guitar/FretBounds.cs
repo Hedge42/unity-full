@@ -1,22 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Neat.Audio.Music
-{
-    [Serializable]
-    public struct FretBounds
-    {
-        public int numStrings;
-        public int numFrets;
-
-        public FretBounds(int _strings, int _frets)
-        {
-            numStrings = _strings;
-            numFrets = _frets;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1d880246866bf3650503e9e913adca97bfa59384f203135388c34545f388541e
+size 429

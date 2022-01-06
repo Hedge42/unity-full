@@ -1,32 +1,3 @@
-﻿using System.Collections.Generic;
-
-namespace Neat.GameManager
-{
-    public class ActionMap
-    {
-        private Dictionary<GameAction, GamepadControl> map;
-
-        public ActionMap()
-        {
-            map = GetDefault();
-        }
-
-        public GamepadControl Get(GameAction a)
-        {
-            return map[a];
-        }
-        public void Set(GameAction a, GamepadControl c)
-        {
-            map[a] = c;
-        }
-
-        public Dictionary<GameAction, GamepadControl> GetDefault()
-        {
-            return new Dictionary<GameAction, GamepadControl>()
-            {
-                { GameAction.Jump, GamepadControl.BumperLeft },
-                { GameAction.Interact, GamepadControl.FaceBottom },
-            };
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e5923064da429d671d9668e23dfd272b6ae77717bfe1a77922f8aaed7f429ea7
+size 754

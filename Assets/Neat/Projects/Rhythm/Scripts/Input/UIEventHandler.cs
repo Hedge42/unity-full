@@ -1,21 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
-namespace Neat.Audio.Music
-{
-    public abstract class UIEventHandler : MonoBehaviour, IPointerClickHandler,
-        IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler,
-        IDragHandler, IInitializePotentialDragHandler, IEndDragHandler
-    {
-        // this probably shouldn't be the way it is
-        public virtual void OnDrag(PointerEventData eventData) { }
-        public virtual void OnEndDrag(PointerEventData eventData) { }
-        public virtual void OnInitializePotentialDrag(PointerEventData eventData) { }
-        public virtual void OnPointerClick(PointerEventData eventData) { }
-        public virtual void OnPointerDown(PointerEventData eventData) { }
-        public virtual void OnPointerEnter(PointerEventData eventData) { }
-        public virtual void OnPointerExit(PointerEventData eventData) { }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:06e5c60fa4f7493570314dc8ed2870ea30f328c1cb6531d406da97c4f4cfac0d
+size 942

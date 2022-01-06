@@ -1,33 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace Neat.Tools.UI
-{
-    [ExecuteInEditMode()]
-    public class ProgressBar : MonoBehaviour
-    {
-
-        public int min;
-        public int max;
-        public int current;
-        public Image mask;
-        public Image fill;
-        public Color color;
-
-        private void Update()
-        {
-            GetCurrentFill();
-        }
-        void GetCurrentFill()
-        {
-            float currentOffset = current - min;
-            float maxOffset = max - min;
-            float fillAmount = currentOffset / maxOffset;
-            mask.fillAmount = fillAmount;
-
-            fill.color = color;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4f44d6411e4a665213e81e22ef5c785b046f5f0f38044c016fb9fb648d828fb2
+size 716

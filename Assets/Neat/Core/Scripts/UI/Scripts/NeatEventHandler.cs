@@ -1,31 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-
-namespace Neat.Tools.UI
-{
-    public class NeatEventHandler : MonoBehaviour,
-        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
-    {
-        public UnityAction<PointerEventData> onPointerEnter { get; set; }
-        public UnityAction<PointerEventData> onPointerExit { get; set; }
-        public UnityAction<PointerEventData> onPointerClick { get; set; }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            onPointerClick?.Invoke(eventData);
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            onPointerEnter?.Invoke(eventData);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            onPointerExit?.Invoke(eventData);
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:802780cc4b2fcde9dbd02cd833b0f33701ca5dfdb1424dbe43bab25debda2797
+size 916

@@ -1,36 +1,3 @@
-﻿using UnityEditor;
-
-namespace StarterAssets
-{
-    public static class ScriptingDefineUtils
-    {
-        public static bool CheckScriptingDefine(string scriptingDefine)
-        {
-            BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-            var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-            return defines.Contains(scriptingDefine);
-        }
-
-        public static void SetScriptingDefine(string scriptingDefine)
-        {
-            BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-            var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-            if (!defines.Contains(scriptingDefine))
-            {
-                defines += $";{scriptingDefine}";
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, defines);
-            }
-        }
-
-        public static void RemoveScriptingDefine(string scriptingDefine)
-        {
-            BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
-            var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-            if (defines.Contains(scriptingDefine))
-            {
-                string newDefines = defines.Replace(scriptingDefine, "");
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefines);
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:12efcb1e8be7ece178e3000b79d8a3f0e3ca004d546cb8d4605651e74d481bf9
+size 1486

@@ -1,15 +1,3 @@
-{
-    "name": "Neat.Demos.Fighter",
-    "references": [
-        "GUID:d42dc60d617885441b7b5e90ba69b4d3"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:475fcb0f6968dcf6d3f0af5b8749c68e8c7b041c94f782476c3ef9dd9cc3eb27
+size 379

@@ -1,35 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Demos.Fighter
-{
-    public class BtnRequirement
-    {
-        public int btnDown;
-        public int btnHoldable;
-
-        public BtnRequirement(string btn)
-        {
-            bool holdable = false;
-
-            for (int i = btn.Length - 1; i >= 0; i--)
-            {
-                if (btn[i] == '*')
-                {
-                    holdable = true;
-                    continue;
-                }
-                else
-                {
-                    int btnValue = Fighter.BtnToBitValue(btn[i]);
-
-                    if (holdable)
-                        btnHoldable |= btnValue;
-                    else
-                        btnDown |= btnValue;
-                }
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ea31a50864684eb5d217f567ca5d0ebbf7af9d48e39790e5c97c7168762f5b09
+size 816

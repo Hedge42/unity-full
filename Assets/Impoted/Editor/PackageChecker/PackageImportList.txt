@@ -1,2 +1,3 @@
-﻿com.unity.cinemachine
-com.unity.inputsystem
+version https://git-lfs.github.com/spec/v1
+oid sha256:5905d6c87f413c72f61b368e5a07ca2ca418926f417cd1f7a69759b2443ea5d7
+size 46

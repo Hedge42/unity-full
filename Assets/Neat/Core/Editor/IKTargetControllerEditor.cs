@@ -1,19 +1,3 @@
-﻿using UnityEditor;
-using UnityEngine;
-
-namespace Neat.Music
-{
-    [CustomEditor(typeof(IKTargetGroup), true)]
-    public class IKTargetControllerEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            if (GUILayout.Button("Find targets in children"))
-            {
-                (target as IKTargetGroup).FindTargets();
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:cdffed8281ca7d338c5fc2987560fc3e88e002d71307e4c4391f6ef04482823e
+size 427

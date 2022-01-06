@@ -1,24 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Neat.Tools;
-using Neat.Experimental;
-using Neat.Tools;
-
-namespace Neat.Audio.Music
-{
-    [RequireComponent(typeof(Fretboard))]
-    public class FretboardDisplaySetting : MonoBehaviour
-    {
-        private Fretboard _fretboard;
-        private Fretboard fretboard => this.CacheGetComponent(ref _fretboard);
-        [BeginDisabledGroup]
-        public int minFret; [EndDisabledGroup]
-        public int maxFret;
-        public Fret.BorderMode borderMode;
-        public Fret.PlayableMode fretMode;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b6f1b7d5fe0f67b290548dec14630a63ea4c52f8948f9f7942c6ba831a20e422
+size 649

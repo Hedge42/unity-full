@@ -1,28 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Audio;
-
-namespace Neat.Audio
-{
-    public class MicManager : MonoBehaviour
-    {
-        public AudioMixerGroup microphoneMixer;
-        public bool printMicrophonesOnStart;
-
-        private void Start()
-        {
-            if (printMicrophonesOnStart)
-            {
-                foreach (string mic in Microphone.devices)
-                {
-                    AudioSource source = gameObject.AddComponent<AudioSource>();
-                    source.clip = Microphone.Start(mic, true, 10, AudioSettings.outputSampleRate);
-                    source.outputAudioMixerGroup = microphoneMixer;
-                    source.Play();
-                }
-            }
-        }
-    }
-}
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:ec9f472415ed4c4b31db376fff7d08dd429ddc9b9105c212d5116ffbac2df800
+size 780

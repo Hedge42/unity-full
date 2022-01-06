@@ -1,31 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.Audio;
-
-namespace Neat.Audio
-{
-    [CustomEditor(typeof(MixerSlider))]
-    public class VolumeSliderEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            // base.OnInspectorGUI();
-
-            // create popup of all mixers
-
-            var _target = (MixerSlider)target;
-
-            string[] names = new string[3];
-            names[0] = "Master";
-            names[1] = "Music";
-            names[2] = "SFX";
-
-            GUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Mixer channel");
-            _target.targetMixerGroup = EditorGUILayout.Popup(_target.targetMixerGroup, names);
-            GUILayout.EndHorizontal();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5159d3238cb635df6e6e6bc7be357b34b407a26bf86d4a7d743560cb68d5bc4b
+size 818

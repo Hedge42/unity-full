@@ -1,33 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Demos.Fighter
-{
-    [System.Serializable]
-    public class InputSetting
-    {
-        public KeyCode punch;
-        public KeyCode kick;
-        public KeyCode special;
-        public KeyCode guard;
-
-        public KeyCode up;
-        public KeyCode down;
-        public KeyCode left;
-        public KeyCode right;
-
-        public InputSetting()
-        {
-            punch = KeyCode.J;
-            kick = KeyCode.N;
-            special = KeyCode.K;
-            guard = KeyCode.M;
-
-            up = KeyCode.Space;
-            down = KeyCode.S;
-            left = KeyCode.A;
-            right = KeyCode.D;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d904697de3a1151ddc1b61a413134a0c00d66c8e198423074a38ed6657d90267
+size 721

@@ -1,34 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Neat.States;
-
-namespace Neat.Audio.Music
-{
-    public class InputController : MonoBehaviour
-    {
-        public new bool enabled;
-        public InputState state { get; private set; }
-        public bool hasInput => state != null;
-
-        public void GetInput()
-        {
-            if (hasInput)
-                state.GetInput();
-        }
-
-        public void SetInputState(InputState s)
-        {
-            state = s;
-        }
-
-        private void idk()
-        {
-            // make chart input
-            new ChartPlayerInput(GetComponent<ChartPlayer>());
-
-            // new KeyOverlayInput(GetComponent<KeyOverlayInput>());
-            // new NoteInputHandler(GetComponent<NoteInputHandler>());
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ba119ff972297ad1f46be2045b548f00413bb1d17e580f2c99d1305ac8a25ca3
+size 815

@@ -1,17 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using static Neat.Tools.Functions;
-
-[CustomEditor(typeof(ColorOverTime))]
-public class ColorEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        var _target = (ColorOverTime)target;
-
-        // GUIListItem<Color>("Combo Colors", ref _target.comboColors);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:74568883e783622f26fbfa6d60b2a4004c27d9140e56efafce2901cd4beedab6
+size 416

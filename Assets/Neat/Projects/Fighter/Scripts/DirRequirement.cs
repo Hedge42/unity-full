@@ -1,25 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Neat.Demos.Fighter
-{
-    public class DirRequirement
-    {
-        public int dir;
-        public bool isHoldable;
-        public bool isOptional;
-
-        public DirRequirement(string s)
-        {
-            isHoldable = s.Contains("*");
-            isOptional = s.Contains("?");
-
-            foreach (char ch in s)
-            {
-                if (int.TryParse(ch.ToString(), out int result))
-                    dir |= result;
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f07ea31dc50940bfac04bbaa2faf34eb7e01641e98c7153b574043148a64376b
+size 556

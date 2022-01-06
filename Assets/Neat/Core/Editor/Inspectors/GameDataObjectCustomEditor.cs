@@ -1,21 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using Neat.Tools;
-
-namespace Neat.Experimental.Tutorials
-{
-    [CustomEditor(typeof(GameDataObject))]
-    public class GameDataObjectCustomEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            if (GUILayout.Button("Open Editor"))
-            {
-                ExtendedEditorWindow.Open(target as GameDataObject);
-            }
-            base.OnInspectorGUI();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:aeeadce4ec5fc519a0d125652d969b20846de214508961d8dce34edbbfde8246
+size 516

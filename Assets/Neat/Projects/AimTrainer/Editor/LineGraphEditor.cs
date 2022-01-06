@@ -1,20 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
-[CustomEditor(typeof(LineGraph))]
-public class LineGraphEditor : Editor
-{
-    private LineGraph _target => (LineGraph)target;
-
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("Generate random"))
-        {
-            _target.GenerateRandom();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2afa1a41be2e456629b1fc85294d1bf32da09f278f27fc8c91348c65e7c88fed
+size 424

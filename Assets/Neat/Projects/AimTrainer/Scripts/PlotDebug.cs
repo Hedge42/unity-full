@@ -1,14 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-// https://www.youtube.com/watch?v=thA3zv0IoUM&t=358s
-public class PlotDebug : MonoBehaviour
-{
-    public AnimationCurve plot = new AnimationCurve();
-
-    public void AddKey(float value)
-    {
-        plot.AddKey(Time.realtimeSinceStartup, value);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1dea4abc33fd3fc5448933948dcc0a126b1f05ac970ddbe121d60133009c2fe8
+size 339

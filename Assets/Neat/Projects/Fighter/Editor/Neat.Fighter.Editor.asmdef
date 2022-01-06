@@ -1,18 +1,3 @@
-{
-    "name": "Neat.Demos.Fighter.Editor",
-    "references": [
-        "GUID:6cacbb79a15586844822c319eb9ba79b",
-        "GUID:33dc2dd0c778c22448be2f030bae4212"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:cd0aa5a81859eac6bae36992d4129038554d83cadc110389fb3d604ea13ceee4
+size 457

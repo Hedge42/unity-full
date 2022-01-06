@@ -1,23 +1,3 @@
-﻿using System;
-using System.Reflection;
-using UnityEngine;
-
-namespace Neat.Tools
-{
-    public abstract class GuiInspector : ScriptableObject
-    {
-        public abstract MemberInfo[] FindMembers();
-
-        public static GuiInspector fromObjectType(Type targetType)
-        {
-            // using attribute map
-            return GuiInspectorMap.instance[targetType];
-        }
-        public static GuiInspector fromInspectorType(Type inspectorType)
-        {
-            return GuiInspectorMap.instance[inspectorType];
-        }
-
-        public abstract void DrawLayout(object target, object value);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:77fa32fccc9d1da345114c0efb25370fc60fd6ff45b24ef2cb02e97c94a89532
+size 613
