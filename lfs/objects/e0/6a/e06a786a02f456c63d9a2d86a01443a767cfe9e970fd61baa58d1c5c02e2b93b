@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using Neat.Tools;
+
+// CameraInteractable
+public class Interactable : MonoBehaviour
+{
+    public Object data;
+    public UnityEvent<Object> onInteract;
+    public UnityEvent<Object> onView;
+
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+    }
+
+    public void View()
+    {
+        onView?.Invoke(data);
+    }
+    public void Interact()
+    {
+        onInteract?.Invoke(data);
+    }
+
+
+}

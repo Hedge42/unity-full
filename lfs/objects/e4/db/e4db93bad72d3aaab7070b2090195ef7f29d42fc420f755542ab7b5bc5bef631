@@ -1,0 +1,46 @@
+﻿using UnityEngine;
+using System.Collections;
+
+[ExecuteInEditMode]
+public class FPSDisplay : MonoBehaviour
+{
+    // http://wiki.unity3d.com/index.php/FramesPerSecond
+
+    private static FPSDisplay instance;
+
+    public bool displayMilliseconds;
+
+    public GUIStyleSkin skin;
+
+    private float deltaTime = 0.0f;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
+
+    void Update()
+    {
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+    }
+
+    void OnGUI()
+    {
+        var rect = skin.rect;
+        rect.height = 20;
+
+        float msec = deltaTime * 1000.0f;
+        float fps = 1.0f / deltaTime;
+        string text = displayMilliseconds ?
+            string.Format($"{1:0.} fps ({0:0.0} ms)", msec, fps) :
+            //$"{fps} fps ({msec.ToString("f0")})" :
+            string.Format("{0:0.} fps", fps);
+            //$"{fps} fps";
+
+        GUI.Label(rect, text, skin.style);
+        // GUI.Label(rect, displayMilliseconds ? string.Format("{1:0.} fps ({0:0.0} ms)", deltaTime * 1000.0f, 1.0f / deltaTime) : string.Format("{0:0.} fps", 1.0f / deltaTime), style);
+    }
+}
