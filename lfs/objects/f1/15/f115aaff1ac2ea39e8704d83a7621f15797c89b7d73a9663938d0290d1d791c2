@@ -1,0 +1,110 @@
+using Neat.InputHelpers;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Neat.Tools
+{
+    public class NeatPlayerController : MonoBehaviour
+    {
+        public CharacterController controller;
+        public Animator animator;
+        public Keybinds keybinds;
+
+        public float maxVelocityChange;
+        public bool crouching;
+        public bool aiming;
+        [Range(1f, 10f)]
+        public float maxSpeed;
+        [Range(0f, 10f)]
+        public float jumpSpeed;
+        [Range(0, 1)]
+        public float crouchHeightMultiplier;
+
+        public Vector3 localVelocity => transform.InverseTransformDirection(controller.velocity); // https://answers.unity.com/questions/193398/velocity-relative-to-local.html
+        private Vector3 scaledMove;
+        private Vector3 dampMove;
+        private Vector3 velocity;
+        // data
+
+        public Vector3 moveInput;
+
+        public ForceMode jumpMode;
+
+        public bool acceptInput { get; set; }
+
+        private void Awake()
+        {
+            controller.isTrigger = false;
+            controller.detectCollisions = true;
+        }
+        private void Update()
+        {
+            scaledMove = moveInput * maxSpeed;
+            dampMove = Vector3.MoveTowards(dampMove, scaledMove, maxVelocityChange * Time.deltaTime);
+
+            // apply character movement
+            var xz = transform.rotation * dampMove;// * Time.deltaTime;
+
+            if (!controller.isGrounded)
+                velocity.y -= 9.81f * Time.deltaTime;
+
+            velocity = new Vector3(xz.x, velocity.y, xz.z);
+
+            controller.Move(velocity * Time.deltaTime);
+
+            // update animator parameters
+            animator.SetBool("Aiming", aiming);
+            animator.SetBool("Crouching", crouching);
+            animator.SetBool("Airborne", !controller.isGrounded);
+            animator.SetFloat("Move X", localVelocity.x);
+            animator.SetFloat("Move Y", localVelocity.z);
+        }
+
+        public void SetInput(Vector3 input)
+        {
+            moveInput = input;
+        }
+
+        private Vector2 mouseCum;
+        public void SetLook(InputAction.CallbackContext context)
+        {
+            var mouse = context.ReadValue<Vector2>();
+            mouseCum += mouse;
+            Debug.Log("Mouse: " + mouseCum);
+        }
+        public void SetMove(InputAction.CallbackContext context)
+        {
+            moveInput = context.ReadValue<Vector3>();
+        }
+        public void SetCrouching(InputAction.CallbackContext context)
+        {
+            crouching = context.ReadValue<bool>();
+        }
+        public void SetAiming(InputAction.CallbackContext context)
+        {
+            //context.va
+            //aiming = context.ReadValue<bool>();
+            //keybinds.FPS.AltFire.per
+            //aiming = context.
+            StartCoroutine(Aiming(context));
+        }
+        private IEnumerator Aiming(InputAction.CallbackContext context)
+        {
+            aiming = context.ReadValueAsButton();
+            yield return new WaitWhile(() => context.ReadValueAsButton());
+            aiming = context.ReadValueAsButton();
+        }
+
+        
+        public void Jump()
+        {
+            if (controller.isGrounded)
+            {
+                velocity.y = jumpSpeed;
+                //rb.AddForce(Vector3.up * jumpSpeed, jumpMode);
+            }
+        }
+    }
+}

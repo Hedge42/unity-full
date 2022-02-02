@@ -1,0 +1,30 @@
+﻿using UnityEditor;
+using UnityEngine;
+
+namespace Neat.Tools
+{
+    // IDK what this is don't use it pls
+
+    [CustomPropertyDrawer(typeof(BeginFoldoutAttribute))]
+    [CustomPropertyDrawer(typeof(EndFoldoutAttribute))]
+    public class FoldoutPropertyDrawer : PropertyDrawer
+    {
+        private bool foldout;
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            if (attribute is BeginFoldoutAttribute)
+            {
+                foldout = EditorGUI.Foldout(position, foldout, label);
+            }
+            else if (attribute is EndFoldoutAttribute)
+            {
+                // ???
+            }
+
+            base.OnGUI(position, property, label);
+        }
+    }
+
+    public class BeginFoldoutAttribute : PropertyAttribute { }
+    public class EndFoldoutAttribute : PropertyAttribute { }
+}

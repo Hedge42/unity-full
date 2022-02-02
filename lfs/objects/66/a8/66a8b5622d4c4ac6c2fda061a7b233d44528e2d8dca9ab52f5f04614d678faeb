@@ -1,0 +1,215 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+[ExecuteInEditMode]
+public class Inventory : MonoBehaviour
+{
+    [ContextMenuItem("Get in children", "FindChildren")]
+    public List<GameObject> items;
+
+    [ContextMenuItem("Equip", "EquipCurrent")]
+    public int current;
+
+    public bool alphaKeyEquip;
+    public bool guiDisplay;
+
+    public GUIStyleSkin skin;
+
+    public UnityEvent<GameObject> onEquip;
+    public UnityEvent<GameObject> onUnequip;
+
+    private void OnEnable()
+    {
+        //Equip(current);
+        EquipFirstEnabled();
+    }
+    private void Start()
+    {
+        //Equip(current);
+    }
+    private void OnGUI()
+    {
+        if (guiDisplay)
+        {
+            GUI.skin = skin.skin;
+            var position = skin.rect;
+            position.height = 20;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                GUI.Label(position, $"[{i}]: {items[i].name}", skin.style);
+
+                position.y += position.height;
+            }
+        }
+    }
+    private void Update()
+    {
+        if (alphaKeyEquip)
+        {
+            GetNumRowInput();
+        }
+
+        // scan
+    }
+
+    public void Scan(RaycastHit hit)
+    {
+        var col = hit.collider;
+        if (col != null)
+        {
+            var item = col.gameObject.GetComponent<Interactable>();
+            if (item != null)
+            {
+                //item.
+                item.showPrompt = true;
+            }
+        }
+    }
+
+    /// <param name="unique">Should this disable all other items?</param>
+    public void Equip(int index, bool unique = true)
+    {
+        current = index % items.Count;
+
+        if (unique) // also disable other items
+        {
+            for (int i = 0; i < items.Count; i++)
+                items[i].SetActive(i == current);
+        }
+        else // just enable this item
+        {
+            items[current].SetActive(true);
+        }
+
+        onEquip?.Invoke(items[current]);
+
+        var e = items[current].GetComponent<Equippable>();
+        if (e != null)
+        {
+            e.onEquip?.Invoke();
+        }
+    }
+
+    [ContextMenu("Find children")]
+    public void FindChildren()
+    {
+        items.Clear();
+
+        foreach (Transform child in transform)
+        {
+            items.Add(child.gameObject);
+        }
+
+        Equip(GetIndex());
+    }
+    public void EquipCurrent()
+    {
+        Equip(current);
+    }
+
+    public void EquipFirstEnabled()
+    {
+        int i = 0;
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                Equip(current = i);
+                return;
+            }
+            i++;
+        }
+
+        // nothing is enabled... hmmm...
+        Debug.LogWarning("Nothing equipped in inventory");
+    }
+
+
+    public void UseCurrent(InputAction.CallbackContext context)
+    {
+        var usable = items[current].GetComponent<Usable>();
+        if (usable != null)
+            usable.Use(context);
+    }
+
+    public void CycleNext()
+    {
+        current = (current + 1) % items.Count;
+        items[current].SetActive(true);
+    }
+    public void Add(GameObject item)
+    {
+        items.Add(item);
+    }
+    public void Remove(GameObject item)
+    {
+        items.Remove(item);
+    }
+    public void Remove(int item)
+    {
+        items.RemoveAt(item);
+    }
+    public void RemoveCurrent()
+    {
+        items.RemoveAt(current);
+    }
+    private void GetNumRowInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Equip(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Equip(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Equip(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Equip(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Equip(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Equip(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            Equip(6);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Equip(7);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Equip(8);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Equip(9);
+        }
+    }
+
+    [ContextMenu("Get current index")]
+    private int GetIndex()
+    {
+        // return the index of the first active virtual camera in the list
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].gameObject.activeSelf)
+                return current = i;
+        }
+        return current;
+    }
+}
