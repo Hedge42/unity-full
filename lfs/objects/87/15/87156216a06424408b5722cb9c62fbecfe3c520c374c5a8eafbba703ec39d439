@@ -1,0 +1,71 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class ShaderEffect : MonoBehaviour
+{
+    public bool onEnable;
+    public ShaderControl[] controls;
+    public float duration;
+
+    public Material mat;
+
+    public UnityEvent onFinsh;
+
+    private void OnEnable()
+    {
+        if (onEnable)
+            Play(mat);
+    }
+
+    public void Play(Material mat)
+    {
+        StartCoroutine(PlayRoutine(mat));
+    }
+    IEnumerator PlayRoutine(Material mat)
+    {
+        var elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            yield return new WaitForEndOfFrame();
+
+            elapsed += Time.deltaTime;
+            foreach (var control in controls)
+            {
+                var t = elapsed / duration;
+                var value = control.GetValue(t);
+
+                mat.SetFloat(control.exposedParameter, value);
+            }
+        }
+
+        onFinsh?.Invoke();
+    }
+}
+[System.Serializable]
+public class ShaderControl
+{
+    public string exposedParameter;
+    public bool enabled;
+    public AnimationCurve curve;
+    public float frequency;
+
+    public float amp => range.y - range.x;
+
+    public Vector2 range;
+
+    public float GetValue(float t)
+    {
+        // apply frequency with overflow
+        t *= frequency;
+        t -= (int)t;
+
+        var value = curve.Evaluate(t) * amp;
+        value *= amp;
+        value += range.x;
+
+        return value;
+    }
+}
