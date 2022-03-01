@@ -1,0 +1,179 @@
+using Neat.Audio.Vizualization;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LineRendererAudioVisualizer : MonoBehaviour
+{
+    public enum Bands
+    {
+        _8,
+        _64,
+    }
+    public enum Shape
+    {
+        Line,
+        Circle,
+    }
+
+    public LineRenderer line;
+    public VisualizerListener visualizer;
+    public AudioSource source;
+
+    public bool mirror;
+    public float pointDistance;
+    public float range;
+    //public int numPoints;
+    //public FFTWindow fft;
+    public Bands bands;
+    public Shape shape;
+    public Vector3[] points;
+
+    public int numBands => bands == Bands._8 ? 8 : 64;
+
+    private void Start()
+    {
+        InitializePoints();
+    }
+    private void Update()
+    {
+        UpdatePoints();
+    }
+
+    [ContextMenu("initialize points")]
+    public void InitializePoints()
+    {
+        var count = numBands;
+        if (mirror)
+            count = (count * 2) - 1;
+
+        points = new Vector3[count];
+        line.positionCount = count;
+
+        if (shape == Shape.Line)
+        {
+            for (int i = 0; i < line.positionCount; i++)
+                points[i] = Vector3.right * pointDistance * i;
+        }
+        else if (shape == Shape.Circle)
+        {
+            PointGenerator.Circle(points, 1f);
+        }
+
+
+        line.SetPositions(points);
+    }
+
+    protected void UpdatePoints()
+    {
+        // affect y
+        for (int i = 0; i < points.Length; i++)
+        {
+            int index = i;
+            if (i >= numBands)
+            {
+                // [i == bands - 2] → [bands - 2]
+                // [i == bands - 1] → [bands - 1]
+                // [i == bands + 0] → [bands - 2]
+                // [i == bands + 1] → [bands - 3]
+                // [i == bands + 2] → [bands - 4]
+                index = (numBands - 1) - (i % numBands);
+            }
+
+            var sample = bands == Bands._8 ?
+                visualizer.freqBandBuffer[index] : visualizer.freqBandBuffer64[index];
+
+            var y = sample * range;
+
+            points[i].y = y;
+        }
+
+        line.SetPositions(points);
+    }
+}
+
+// point generator
+public class PointGenerator
+{
+    public static void Circle(Vector3[] points, float radius, bool xz = true)
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            var t = (float)(i) / (float)points.Length;
+            var theta = Mathf.Lerp(0, 2 * Mathf.PI, t);
+
+            var x = radius * Mathf.Sin(theta);
+            var y = radius * Mathf.Cos(theta);
+
+            if (xz)
+            {
+                points[i] = new Vector3(x, 0, y);
+            }
+            else
+            {
+                points[i] = new Vector3(x, y, 0);
+            }
+        }
+    }
+
+    public static void Line(Vector3[] points, Vector3 direction, float scale)
+    {
+        var spacing = direction.normalized * scale;
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = i * spacing;
+        }
+    }
+    
+    public static void SineWave(Vector3[] points, float freq, float amp, float offset = 0f)
+    {
+        // freq as cycles?
+        for (int i = 0; i < points.Length; i++)
+        {
+            var t = (float)i / (float)points.Length;
+            var x = t * 2 * Mathf.PI * freq;
+            points[i].y = amp * Mathf.Sin(offset + x);
+        }
+    }
+    public static void AddSineWave(Vector3[] points, float freq, float amp, float offset = 0f)
+    {
+        // freq as cycles?
+        for (int i = 0; i < points.Length; i++)
+        {
+            var t = (float)i / (float)points.Length;
+            var x = t * 2 * Mathf.PI * freq;
+            points[i].y += amp * Mathf.Sin(offset + x);
+        }
+    }
+
+    public static void Scale(Vector3[] points, AnimationCurve curve)
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            var t = (float)i / (float)points.Length;
+
+            points[i].y *= curve.Evaluate(t);
+        }
+    }
+    public static void SwizzleYZ(Vector3[] points)
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            var temp = points[i].y;
+            points[i].y = points[i].z;
+            points[i].z = temp;
+        }
+    }
+    public static void ToCircle(Vector3[] points, float radius)
+    {
+        // modify xz ?
+        for (int i = 0; i < points.Length; i++)
+        {
+            var t = (float)i / (float)points.Length;
+            var phase = Mathf.Lerp(0, 2 * Mathf.PI, t);
+
+            points[i].y = Mathf.Sin(phase) * radius;
+            points[i].x = Mathf.Cos(phase) * radius;
+        }
+    }
+}
