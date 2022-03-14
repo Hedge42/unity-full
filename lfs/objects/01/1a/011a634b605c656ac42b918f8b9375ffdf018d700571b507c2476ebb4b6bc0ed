@@ -1,0 +1,139 @@
+﻿using UnityEngine;
+
+[RequireComponent(typeof(MidiMap))]
+[ExecuteInEditMode]
+public class MidiMapGui : MonoBehaviour
+{
+    public MidiMap map;
+    public MidiInput input;
+
+    public GUIStyleSkin skin;
+
+    public Texture texStartListening;
+    public Texture texStopListening;
+    public Texture texToolbarUp;
+    public Texture texToolbarDown;
+
+    private DrumTrigger listening;
+
+    private bool foldout;
+
+    private void OnGUI()
+    {
+        var rect = new Rect(skin.rect);
+        GUI.skin = skin.skin;
+
+        rect.height = 20f; // line height
+        var buttonWidth = 25f;
+
+        // toolbar ?
+        rect.x = skin.rect.x;
+        rect.width = buttonWidth;
+
+        if (foldout)
+        {
+            foldout = !GUI.Button(rect, texToolbarDown); // wtf?
+            // foldout is true until the button is pressed
+        }
+        else
+        {
+            foldout = GUI.Button(rect, texToolbarUp);
+            return;
+        }
+
+        rect.y += rect.height;
+
+        foreach (var dt in map.triggers)
+        {
+            // pad name
+            rect.x = skin.rect.x;
+            rect.width = skin.rect.width - buttonWidth;
+
+            // allow input for name ??
+            // dt.name = GUI.TextField(rect, dt.name);
+            GUI.Label(rect, dt.name);
+
+            // add new input ?
+            rect.x += rect.width;
+            rect.width = buttonWidth;
+            if (GUI.Button(rect, "+"))
+            {
+                Debug.Log("Add new input!");
+                dt.Add(0);
+            }
+
+            rect.y += rect.height; // next line
+
+            for (int i = 0; i < dt.notes.Length; i++)
+            {
+                rect.x = skin.rect.x + buttonWidth; // indent
+                rect.width = skin.rect.width - (buttonWidth * 3); // shrink width by the number of buttons
+
+                // parse note value int from text input
+                var text = GUI.TextField(rect, dt.notes[i].ToString());
+                if (int.TryParse(text, out int result))
+                    dt.notes[i] = result;
+
+                // show 'listening' or 'stop listening' button to assign input to next keyboard OR midi input...
+                rect.x += rect.width;
+                rect.width = buttonWidth;
+                if (listening != null && listening.name.Equals(dt.name)) // currently listening for next input
+                {
+                    if (GUI.Button(rect, texStopListening))
+                    {
+                        StopListening(dt);
+                    }
+                }
+                else // default
+                {
+                    if (GUI.Button(rect, texStartListening))
+                    {
+                        StartListening(dt);
+                    }
+                }
+
+                // show (-) button to remove input
+                rect.x += rect.width;
+                rect.width = buttonWidth;
+                if (GUI.Button(rect, "-"))
+                {
+                    var note = dt.notes[i];
+                    dt.Remove(note);
+                }
+
+
+                rect.y += rect.height;
+            }
+        }
+    }
+
+    private void StartListening(DrumTrigger dt)
+    {
+        Debug.Log($"Started listening for next input on '{dt.name}'...");
+
+        input.onHit?.AddListener(AssignInput);
+
+        listening = dt;
+    }
+
+    private void StopListening(DrumTrigger dt)
+    {
+        Debug.Log($"Stopped listening for next input on '{dt.name}'");
+        input.onHit?.RemoveListener(AssignInput);
+        listening = null;
+    }
+
+    void AssignInput(int key, float velocity)
+    {
+        if (listening != null)
+        {
+            listening.Add(key);
+            Debug.Log($"Assigned '{key}' to '{listening.name}'");
+        }
+        else
+        {
+            Debug.Log($"Tried assigning '{key}' to null object");
+        }
+
+    }
+}

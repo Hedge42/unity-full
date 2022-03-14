@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Neat/Resources/UI/neat_styles.uss?fileID=7433441132597879392&amp;guid=feb24474b07c54f42b5fca81deb20c17&amp;type=3#neat_styles" />
+    <ui:Label text="Title" display-tooltip-when-elided="true" name="Text" class="title" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" class="title-btn" />
+</ui:UXML>

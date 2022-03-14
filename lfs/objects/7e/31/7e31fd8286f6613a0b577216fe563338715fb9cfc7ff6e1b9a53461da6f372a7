@@ -1,0 +1,49 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+namespace Neat.Tools.UI
+{
+    // should attach to DontDestroyOnLoad GameManager
+    public class PauseListener : MonoBehaviour
+    {
+        public UnityEvent onPause;
+        public UnityEvent onResume;
+        public UnityEvent<bool> onPauseChanged;
+        public UnityEvent<bool> onResumeChanged;
+
+        private void Awake()
+        {
+            PauseManager.onPause.AddListener(OnPause);
+            PauseManager.onResume.AddListener(OnResume);
+            PauseManager.onPauseChanged.AddListener(OnPauseChanged);
+            PauseManager.onResumeChanged.AddListener(OnResumeChanged);
+        }
+        private void OnDestroy()
+        {
+            PauseManager.onPause.RemoveListener(OnPause);
+            PauseManager.onResume.RemoveListener(OnResume);
+            PauseManager.onPauseChanged.RemoveListener(OnPauseChanged);
+            PauseManager.onResumeChanged.RemoveListener(OnResumeChanged);
+        }
+
+        public void OnPause()
+        {
+            onPause?.Invoke();
+        }
+        public void OnResume()
+        {
+            onResume?.Invoke();
+        }
+        public void OnPauseChanged(bool value)
+        {
+            onPauseChanged?.Invoke(value);
+        }
+        public void OnResumeChanged(bool value)
+        {
+            onResumeChanged?.Invoke(value);
+        }
+    }
+}

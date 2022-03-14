@@ -1,0 +1,81 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+
+namespace Neat.InputHelpers
+{
+    public class KeybindsComponent : MonoBehaviour
+    {
+        private Keybinds _keybinds;
+        public Keybinds keybinds => _keybinds ??= new Keybinds();
+
+        // values
+        public Vector3 move;
+        public Vector2 look;
+        public bool crouch;
+        public Vector2 scroll;
+
+        // value events
+        public UnityEvent<Vector2> onLook;
+        public UnityEvent<Vector3> onMove;
+        public UnityEvent<bool> onCrouch;
+        public UnityEvent<Vector2> onScroll;
+
+        // PlayerInput-like events
+        public UnityEvent<InputAction.CallbackContext> OnRightClick;
+        public UnityEvent<InputAction.CallbackContext> OnPrimaryFire;
+        public UnityEvent<InputAction.CallbackContext> onJump;
+
+
+
+        private void Awake()
+        {
+            //keybinds.FPS.
+
+            var input = keybinds.FPS;
+            input.PrimaryFire.performed += PrimaryPerformed;
+            input.AltFire.started += SecondaryStarted;
+            input.Jump.started += JumpStarted;
+        }
+        private void Update()
+        {
+            move = keybinds.FPS.Move.ReadValue<Vector3>();
+            onMove?.Invoke(move);
+
+            look = keybinds.FPS.Look.ReadValue<Vector2>();
+            onLook?.Invoke(look);
+
+            crouch = keybinds.FPS.Crouch.ReadValue<bool>();
+            onCrouch?.Invoke(crouch);
+
+            scroll = keybinds.FPS.Scroll.ReadValue<Vector2>();
+            //if (scroll.magnitude > 0)
+                //Debug.Log("nice! " + scroll);
+            onScroll?.Invoke(scroll);
+        }
+
+        private void OnEnable()
+        {
+            keybinds.Enable();
+        }
+        private void OnDisable()
+        {
+            keybinds.Disable();
+        }
+        public void PrimaryPerformed(InputAction.CallbackContext context)
+        {
+            OnPrimaryFire?.Invoke(context);
+        }
+        public void SecondaryStarted(InputAction.CallbackContext context)
+        {
+            OnRightClick?.Invoke(context);
+        }
+        public void JumpStarted(InputAction.CallbackContext context)
+        {
+            onJump?.Invoke(context);
+        }
+    }
+}

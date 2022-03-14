@@ -1,0 +1,62 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using Neat.Tools;
+using UnityEngine.InputSystem;
+
+// CameraInteractable
+public class Interactable : MonoBehaviour
+{
+    public GUIStyleSkin skin;
+    //public Object data;
+    //public UnityEvent<Object> onInteract;
+    //public UnityEvent<Object> onView;
+
+    [LayerMask]
+    public int layer;
+
+    public bool showPrompt;
+
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+    }
+    private void OnGUI()
+    {
+        if (showPrompt)
+        {
+            GUI.skin = skin.skin;
+            var rect = skin.rect;
+            rect.height = 20f;
+
+            GUI.Label(skin.rect, "F to pickup", skin.style);
+        }
+    }
+    private void Update()
+    {
+        if (showPrompt)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                // add this gameObject to the player's inventory
+                throw new System.NotImplementedException();
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        showPrompt = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        showPrompt = false;
+    }
+    bool isPlayer(Collider other)
+    {
+        return LayerMask.LayerToName(other.gameObject.layer)
+             .ToLower().Equals("player");
+    }
+}

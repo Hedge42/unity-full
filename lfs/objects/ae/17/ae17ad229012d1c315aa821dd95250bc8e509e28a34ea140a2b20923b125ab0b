@@ -1,0 +1,105 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Pauseable : MonoBehaviour
+{
+    public bool pauseOnStart;
+
+    public UnityEvent onPause;
+    public UnityEvent onResume;
+    public UnityEvent<bool> onPauseChanged;
+    public UnityEvent<bool> onResumeChanged;
+
+    private IEnumerator Start()
+    {
+        PauseManager.instance.onPause.AddListener(OnPause);
+        PauseManager.instance.onResume.AddListener(OnResume);
+        PauseManager.instance.onPauseChanged.AddListener(OnPauseChanged);
+        PauseManager.instance.onResumeChanged.AddListener(OnResumeChanged);
+
+        yield return new WaitForEndOfFrame();
+
+        if (pauseOnStart)
+            PauseManager.instance.Pause();
+    }
+    private void OnDestroy()
+    {
+        PauseManager.instance.onPause.RemoveListener(OnPause);
+        PauseManager.instance.onResume.RemoveListener(OnResume);
+        PauseManager.instance.onPauseChanged.RemoveListener(OnPauseChanged);
+        PauseManager.instance.onResumeChanged.RemoveListener(OnResumeChanged);
+    }
+
+    public void OnPause()
+    {
+        onPause?.Invoke();
+    }
+    public void OnResume()
+    {
+        onResume?.Invoke();
+    }
+    public void OnPauseChanged(bool value)
+    {
+        onPauseChanged?.Invoke(value);
+    }
+    public void OnResumeChanged(bool value)
+    {
+        onResumeChanged?.Invoke(value);
+    }
+}
+
+public class PauseManager : ScriptableObject
+{
+    public static PauseManager instance;
+
+    public UnityEvent onPause;
+    public UnityEvent onResume;
+    public UnityEvent<bool> onPauseChanged;
+    public UnityEvent<bool> onResumeChanged;
+
+    public bool isPaused { get; private set; }
+
+    [RuntimeInitializeOnLoadMethod]
+    public static void Initialize()
+    {
+        instance = ScriptableObject.CreateInstance<PauseManager>();
+
+        instance.onPause = new UnityEvent();
+        instance.onResume = new UnityEvent();
+        instance.onPauseChanged = new UnityEvent<bool>();
+        instance.onResumeChanged = new UnityEvent<bool>();
+}
+
+    public void Pause()
+    {
+        isPaused = true;
+
+        onPauseChanged?.Invoke(isPaused);
+        onResumeChanged?.Invoke(!isPaused);
+        onPause?.Invoke();
+    }
+    public void Resume()
+    {
+        isPaused = false;
+
+        onPauseChanged?.Invoke(isPaused);
+        onResumeChanged?.Invoke(!isPaused);
+        onResume?.Invoke();
+    }
+    public void SetPause(bool value)
+    {
+        if (value)
+            Pause();
+        else
+            Resume();
+    }
+    public void SetResume(bool value)
+    {
+        if (value)
+            Resume();
+        else
+            Pause();
+    }
+}

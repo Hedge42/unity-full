@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="FoldoutField" src="project://database/Assets/Neat/Resources/UI/Fields/FoldoutField.uxml?fileID=9197481963319205126&amp;guid=92a26bce92bdebb4792045d9468a41d5&amp;type=3#FoldoutField" />
+    <ui:Template name="MinMaxField" src="project://database/Assets/Neat/Resources/UI/Fields/MinMaxField.uxml?fileID=9197481963319205126&amp;guid=c7c6c19f210b11c47acd9f5cb3957935&amp;type=3#MinMaxField" />
+    <ui:Template name="DropdownField" src="project://database/Assets/Neat/Resources/UI/Fields/DropdownField.uxml?fileID=9197481963319205126&amp;guid=d89cac98f32e6e945885afe07f2260bf&amp;type=3#DropdownField" />
+    <ui:Template name="TextField" src="project://database/Assets/Neat/Resources/UI/Fields/TextField.uxml?fileID=9197481963319205126&amp;guid=8731e472b6959284e86760170f23557d&amp;type=3#TextField" />
+    <ui:Template name="SliderField" src="project://database/Assets/Neat/Resources/UI/Fields/SliderField.uxml?fileID=9197481963319205126&amp;guid=6224b0515b8b14f4b979456f9d0d03ff&amp;type=3#SliderField" />
+    <Style src="project://database/Assets/Neat/Resources/UI/neat_styles.uss?fileID=7433441132597879392&amp;guid=feb24474b07c54f42b5fca81deb20c17&amp;type=3#neat_styles" />
+    <ui:ScrollView name="ScrollView" class="menu" style="flex-direction: column; flex-shrink: 0; flex-grow: 1; height: 71px; background-color: rgb(42, 42, 42); transition-property: all, width; transition-duration: 0s, 0.5s; transition-timing-function: ease, ease-out; transition-delay: 0s, 0s;">
+        <ui:Instance template="FoldoutField" name="FoldoutField" />
+        <ui:Instance template="MinMaxField" name="MinMaxField" />
+        <ui:Instance template="DropdownField" name="DropdownField" />
+        <ui:Instance template="TextField" name="TextField" />
+        <ui:Instance template="SliderField" name="SliderField" />
+    </ui:ScrollView>
+</ui:UXML>

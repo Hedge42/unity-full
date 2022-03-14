@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Neat/Resources/UI/neat_styles.uss?fileID=7433441132597879392&amp;guid=feb24474b07c54f42b5fca81deb20c17&amp;type=3#neat_styles" />
+    <ui:VisualElement name="MenuItem" class="menu-item">
+        <ui:Label text="Slider" display-tooltip-when-elided="true" name="Label" class="menu-item-label" />
+        <ui:VisualElement name="ItemContent" class="menu-item-content">
+            <ui:Slider picking-mode="Ignore" value="42" high-value="100" name="Slider" />
+            <ui:TextField picking-mode="Ignore" text="filler..." name="NumField" class="menu-num-field menu-text-field" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

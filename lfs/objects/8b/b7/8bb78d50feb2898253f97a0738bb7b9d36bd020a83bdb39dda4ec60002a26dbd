@@ -1,0 +1,134 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.VFX;
+
+public class HeroScroller : MonoBehaviour
+{
+    public const string TILING = "_Tiling";
+    public const string SPEED = "_Speed";
+
+    public MeshRenderer mesh;
+
+    public HeroNote notePrefab;
+
+
+    public Transform timer; // ?
+
+    public float length => mesh.transform.localScale.y;
+
+    public float speed;
+    public int numLanes;
+
+    public bool centeredLanes;
+
+    public Vector3[] lanePositions;
+    private float laneSize;
+
+    private Material material;
+    private Vector3 adjustedScale;
+    private float adjustedSpeed => speed / length;
+    private Vector3 startScale;
+
+    private void Awake()
+    {
+        material = mesh.GetComponent<Renderer>().material;
+        startScale = mesh.transform.localScale;
+    }
+    private void Update()
+    {
+        ScaleTiling();
+        UpdateSpeed();
+        UpdateTimerPosition();
+    }
+
+    private void UpdateTimerPosition()
+    {
+        timer.localPosition = TimePosition(Time.time);
+    }
+
+    private void OnValidate()
+    {
+        lanePositions = GetLanePositions();
+    }
+
+    Vector3 TimePosition(float time)
+    {
+        return Vector3.forward * speed * time;
+    }
+    Vector3[] GetLanePositions()
+    {
+        var totalWidth = mesh.transform.localScale.x;
+        laneSize = totalWidth / (float)numLanes;
+
+        var array = new Vector3[numLanes];
+
+        for (int i = 0; i < numLanes; i++)
+        {
+            if (centeredLanes)
+            {
+                var offset = (laneSize / 2) - (totalWidth / 2);
+                array[i] = new Vector3(laneSize * i + offset, 0);
+            }
+            else
+            {
+                array[i] = new Vector3(laneSize * i, 0);
+            }
+        }
+
+        return array;
+    }
+    public void ScaleTiling()
+    {
+        var ls = mesh.transform.localScale;
+        var x = ls.x / startScale.x;
+        var y = ls.y / startScale.y;
+        adjustedScale = new Vector3(x, y);
+
+        if (material.HasVector(TILING))
+        {
+            material.SetVector(TILING, adjustedScale);
+        }
+        else
+        {
+            Debug.LogWarning($"Vector \"{TILING}\" not found");
+        }
+    }
+    public void UpdateSpeed()
+    {
+        if (material.HasFloat(SPEED))
+        {
+            material.SetFloat(SPEED, adjustedSpeed * adjustedScale.y);
+        }
+        else
+        {
+            Debug.LogWarning($"Float \"{SPEED}\" not found");
+        }
+    }
+
+    public void Hit(int lane)
+    {
+        //var prop = "SpawnPosition";
+        //vfx.SetVector3(prop, lanePositions[lane % numLanes]);
+        //vfx.Play();
+        var pos = lanePositions[lane % numLanes];
+
+        var note = GameObject.Instantiate(notePrefab, timer);
+        note.transform.localPosition = CurrentPosition(lane);
+        note.transform.localScale = Vector3.one * laneSize;
+        note.gameObject.SetActive(true);
+    }
+
+    Vector3 CurrentPosition(int lane)
+    {
+        return ButtonPosition(lane) - timer.localPosition;
+    }
+    Vector3 ButtonPosition(int lane)
+    {
+        return lanePositions[lane % numLanes];
+    }
+    Vector3 FarPosition(int lane)
+    {
+        return lanePositions[lane % numLanes] + Vector3.forward * length;
+    }
+}
