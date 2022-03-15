@@ -1,0 +1,164 @@
+using Neat.Tools;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.VFX;
+
+public class Drumset : MonoBehaviour
+{
+    public Drum[] drums;
+
+    public Dictionary<int, List<Drum>> map;
+
+    public MidiInput input;
+    public MidiMap mm;
+
+    public AnimationCurve curve;
+    public float duration;
+    public float scale;
+
+    [MinMax(0f, 1f)]
+    public Vector2 velocityRemap;
+
+    public ColorFilterObject waveColorFilter;
+    public ColorFilterObject waveHitFilter;
+    public ColorFilterObject drumColorFilter;
+
+    public UnityEvent<Drum, float> onHit;
+    public UnityEvent<float> onHitValue;
+    public UnityEvent<int, float> onHitIndex;
+
+    //public ColorFilterObject drumHitFilter;
+
+    private void Start()
+    {
+        BuildMap(mm.triggers);
+        SetColors();
+    }
+
+    public void BuildMap(DrumTrigger[] triggers)
+    {
+        //Debug.Log("Building map...");
+        map = new Dictionary<int, List<Drum>>();
+        for(int i_drum = 0; i_drum < drums.Length; i_drum++)
+        //foreach (var drum in drums) // component
+        {
+            var drum = drums[i_drum];
+            drum.setIndex = i_drum;
+            for (int i = 0; i < triggers.Length; i++)
+            {
+                var trigger = triggers[i];
+                //foreach (var trigger in triggers) // serialized data
+                //{
+                if (trigger.name.RoughlyEquals(drum.name))
+                {
+                    foreach (var key in trigger.notes) // keys
+                    {
+                        if (!map.ContainsKey(key))
+                            map[key] = new List<Drum>();
+
+                        drum.triggerIndex = i;
+                        map[key].Add(drum);
+                    }
+                }
+                //}
+            }
+        }
+    }
+    public void Hit(int key, float velocity)
+    {
+        //onHitIndex?.Invoke(key, velocity);
+        // drum.source.Play() OR this.source.PlayOneShot() ??
+
+        if (map.ContainsKey(key))
+        {
+            // .2 → 0
+            // .6 → 1
+            // Debug.Log($"Hit recognized key '{key}'");
+            var range = velocityRemap.y - velocityRemap.x;
+            var a = Mathf.Clamp01(velocity - velocityRemap.x);
+            var t = Mathf.Clamp01(a / range);
+
+            velocity = t;
+
+            foreach (var drum in map[key])
+            {
+                Hit(drum, velocity);
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Hit unrecognized key '{key}'");
+        }
+    }
+    public void Hit(Drum drum, float velocity)
+    {
+        Debug.Log($"{drum.name} {velocity * 100:f0}%");
+
+        onHit?.Invoke(drum, velocity);
+        onHitValue?.Invoke(velocity);
+
+        drum.StartCoroutine(_AnimateScale(drum, velocity));
+
+        drum.Play(velocity);
+    }
+    public void OnRaycastHit(RaycastHit hit)
+    {
+        var drum = hit.collider?.gameObject.GetComponent<Drum>();
+        if (drum != null)
+        {
+            Hit(drum, 1f);
+        }
+    }
+    private IEnumerator _AnimateScale(Drum drum, float velocity)
+    {
+        // drum.StopAllCoroutines();
+        //drum.StopCoroutine(_Hit(drum));
+
+
+        var startTime = Time.time;
+        var endTime = startTime + duration;
+        var endScale = drum.startScale + drum.startScale * (scale * velocity);
+
+        while (Time.time < endTime)
+        {
+            var t = (Time.time - startTime) / duration;
+
+            t = curve.Evaluate(t);
+
+            drum.transform.localScale = Vector3.Lerp(drum.startScale, endScale, t);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        drum.transform.localScale = drum.startScale;
+    }
+
+    [ContextMenu("Get child components")]
+    public void FindChildren()
+    {
+        drums = GetComponentsInChildren<Drum>();
+    }
+
+    [ContextMenu("Set Colors")]
+    public void SetColors()
+    {
+        var palette = GetComponent<ColorPaletteHdrBase>();
+        palette.Generate(drums.Length);
+
+        int i = 0;
+        foreach (var d in drums)
+        {
+            var color = palette.colors[i];
+
+            d.SetPadColor(color, drumColorFilter);
+
+            var waveBase = waveColorFilter.Apply(palette.colors[i]);
+            var waveHit = waveHitFilter.Apply(waveBase);
+            d.wave.SetColors(waveBase, waveHit);
+
+            i++;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+public class DrumHeroMap : MonoBehaviour
+{
+    public HeroScroller scroller;
+    public Drumset drums;
+
+    private IEnumerable<Color> colors;
+
+    private void Awake()
+    {
+        drums.onHit.AddListener(OnHit);
+        colors = drums.drums.Select(d => d.color);
+    }
+
+    void OnHit(Drum d, float v)
+    {
+        int i = d.setIndex;
+        scroller.Hit(i, out HeroNote _note);
+
+        _note.GetComponent<Renderer>().materials[0].SetColor("_BaseColor", colors.ElementAt(i));
+    }
+}

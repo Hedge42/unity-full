@@ -1,0 +1,159 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public static class Sampling
+{
+    public static float[] Clone(float[] spectrum)
+    {
+        var _values = new float[spectrum.Length];
+        for (int i = 0; i < spectrum.Length; i++)
+        {
+            _values[i] = spectrum[i];
+        }
+        return _values;
+    }
+    public static float[] ApplyScaleCurve(float[] spectrum, AnimationCurve curve)
+    {
+        //var a = new float[spectrum.Length];
+        for (int i = 0; i < spectrum.Length; i++)
+        {
+            var t = (float)i / (float)spectrum.Length;
+
+            var scale = curve.Evaluate(t);
+            spectrum[i] = spectrum[i] * scale;
+        }
+        return spectrum;
+    }
+    public static float[] ApplyScale(float[] samples, float scale)
+    {
+        for (int i = 0; i < samples.Length; i++)
+        {
+            samples[i] *= scale;
+        }
+
+        return samples;
+    }
+    public static float[] ApplySelectionCurve(float[] samples, AnimationCurve curve)
+    {
+        List<float> _list = new List<float>();
+
+        float curve_i = 0f;
+        float delta = 1f / (float)samples.Length;
+
+        float avg_sum = 0f;
+        int avg_count = 0;
+        float next = 0f;
+        for (int j = 0; j < samples.Length; j++)
+        {
+            avg_sum += samples[j];
+            avg_count += 1;
+
+            if (j >= next)
+            {
+                var t = (float)j / (float)samples.Length;
+                var spec = avg_sum / (float)avg_count;
+                _list.Add(spec);
+                next = j + 1 / curve.Evaluate(t);
+
+                avg_sum = 0f;
+                avg_count = 0;
+            }
+        }
+
+        //while (curve_i < samples.Length - 1)
+        //{
+        //    var t = curve_i / samples.Length;
+
+        //    var _i = (int)curve_i;
+
+        //    _list.Add(samples[_i]);
+
+        //    curve_i += 1 / curve.Evaluate(t);
+        //}
+
+
+
+        //_list.ToArray()
+        //var arr = new float[samples.Length];
+        //_list.CopyTo(arr);
+
+
+        //var arr = _list.ToArray();
+        //var dif = samples.Length - arr.Length;
+        //Debug.Log($"Threw out {dif} samples...");
+
+        return _list.ToArray();
+        //return arr;
+    }
+    public static float[] ApplyWiggle(float[] spectrum, float wiggle)
+    {
+        for (int i = 1; i < spectrum.Length; i++)
+        {
+            var distance = spectrum[i] - spectrum[i - 1];
+            distance = Mathf.Clamp(distance, -wiggle, wiggle);
+            spectrum[i] = spectrum[i - 1] + distance;
+        }
+        return spectrum;
+    }
+    public static float[] ApplyThreshold(float[] spectrum, float threshold, bool keepThresholdedValues)
+    {
+        for (int i = 0; i < spectrum.Length; i++)
+        {
+            // support negative values...
+            var sample = spectrum[i];
+            if (sample < threshold)
+            {
+                spectrum[i] = 0f;
+            }
+            else if (!keepThresholdedValues)
+            {
+                spectrum[i] -= threshold;
+            }
+        }
+        return spectrum;
+    }
+    public static float[] ApplyTrim(float[] samples, float t)
+    {
+        var len = (int)(samples.Length * t);
+        var arr = new float[len];
+        for (int i = 0; i < len; i++)
+        {
+            arr[i] = samples[i];
+        }
+        return arr;
+    }
+    public static float[] ApplyDecay(float[] samples, float[] values, float decay)
+    {
+        var minLength = Mathf.Min(samples.Length, values.Length);
+        for (int i = 0; i < minLength; i++)
+        {
+            var f = values[i] - (decay * Time.deltaTime);
+            if (samples[i] < f)
+                samples[i] = f;
+        }
+        return samples;
+    }
+    public static float[] ApplyStep(float[] samples, float[] values, float maxStep)
+    {
+        var minLength = Mathf.Min(samples.Length, values.Length);
+        var _max = maxStep * Time.deltaTime;
+        for (int i = 0; i < minLength; i++)
+        {
+            if (samples[i] > values[i] + _max)
+            {
+                samples[i] = values[i] + _max;
+            }
+        }
+        return samples;
+    }
+
+    public static float Average(float[] spectrum)
+    {
+        var sum = 0f;
+        foreach (var f in spectrum)
+        {
+            sum += f;
+        }
+        return sum / (float)spectrum.Length;
+    }
+}
