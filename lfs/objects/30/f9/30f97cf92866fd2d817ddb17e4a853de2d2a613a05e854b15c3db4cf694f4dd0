@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+public class DrumHeroMap : MonoBehaviour
+{
+    public HeroScroller scroller;
+    public Drumset drums;
+
+    private Dictionary<int, int> laneMap;
+
+    private void Awake()
+    {
+        drums.onHit.AddListener(OnHit);
+        SetupDrumset(drums);
+    }
+
+    void OnHit(Drum d, float v)
+    {
+        var id = d.GetInstanceID();
+        HeroNote _note;
+
+        if (laneMap.ContainsKey(id))
+        {
+            var laneIndex = laneMap[id];
+            scroller.HitLane(laneIndex, out _note);
+            _note.GetComponent<Renderer>().materials[0].SetColor("_BaseColor", d.color);
+        }
+        else if (d.type == Drum.Type.Bar)
+        {
+            scroller.HitBar(out _note);
+            var color = GetComponent<ColorFilter>().Apply(d.color); // more intensity...
+            _note.GetComponent<Renderer>().material.SetColor("_BaseColor", d.color);
+            _note.GetComponent<Renderer>().material.SetColor("_Emission", color);
+        }
+    }
+    Dictionary<int, int> GetDrumLaneMap(Drumset set)
+    {
+        var value = new Dictionary<int, int>();
+        int lane = 0;
+
+        foreach (var drum in set.drums)
+        {
+            if (drum.type != Drum.Type.Bar)
+            {
+                value.Add(drum.GetInstanceID(), lane++);
+            }
+        }
+
+        return value;
+    }
+    public void SetupDrumset(Drumset set)
+    {
+        laneMap = GetDrumLaneMap(set);
+        set.onHit.AddListener(OnHit);
+        scroller.SetupLanes(laneMap.Count);
+    }
+}

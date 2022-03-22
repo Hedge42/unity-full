@@ -1,0 +1,126 @@
+using Neat.Audio.Vizualization;
+using System;
+using System.Collections;
+using UnityEngine;
+
+[RequireComponent(typeof(LineRenderer))]
+public class DesktopLineVisualizer : MonoBehaviour
+{
+    public enum Shape
+    {
+        Line,
+        Circle,
+    }
+
+    public LineRenderer line;
+
+    public int numBands;
+    public float totalLength;
+    public float range;
+    public bool mirror;
+    public bool flip;
+    public Shape shape;
+    public Vector3[] points;
+
+    [Range(0f, .1f)]
+    public float threshold;
+    public bool keepThresholdedValues;
+
+    public float decay;
+
+    public AnimationCurve scaleCurve;
+    public AnimationCurve selectionCurve;
+
+    [Range(1f, 5f)]
+    public float curveScale;
+    public float maxStep;
+    //public float wiggle;
+
+    private float[] values;
+
+
+
+
+    private void OnValidate()
+    {
+        InitializePoints();
+    }
+    private void Start()
+    {
+        InitializePoints();
+    }
+    private void Update()
+    {
+        UpdatePoints(values);
+    }
+
+    [ContextMenu("initialize points")]
+    public void InitializePoints()
+    {
+        var count = numBands;
+        if (mirror)
+            count = (count * 2) - 1;
+
+        values = new float[count];
+        points = new Vector3[count];
+        line.positionCount = count;
+        var pointDistance = totalLength / (float)count;
+
+        if (shape == Shape.Line)
+        {
+            for (int i = 0; i < line.positionCount; i++)
+                points[i] = Vector3.right * pointDistance * i;
+        }
+        else if (shape == Shape.Circle)
+        {
+            PointGenerator.Circle(points, 1f);
+        }
+
+
+        line.SetPositions(points);
+    }
+
+    public void UpdatePoints(float[] spectrum)
+    {
+        var _values = Sampling.Clone(spectrum);
+
+        _values = Sampling.ApplySelectionCurve(spectrum, selectionCurve);
+        _values = Sampling.ApplyThreshold(_values, threshold, keepThresholdedValues); // scaled threshold
+
+        _values = Sampling.ApplyScale(_values, Mathf.Abs(range));
+        _values = Sampling.ApplyScaleCurve(_values, scaleCurve);
+        _values = Sampling.ApplyDecay(_values, values, decay);
+        _values = Sampling.ApplyStep(_values, values, maxStep);
+        _values = Sampling.ApplyNegative(_values, range);
+        //_values = Sampling.ApplyWiggle(_values, wiggle);
+
+        values = _values;
+
+        // affect y
+        var points = new Vector3[values.Length];
+        PointGenerator.Line(points, Vector3.right, totalLength);
+        for (int i = 0; i < values.Length; i++)
+        {
+            int index = i;
+
+            // loop backward
+            if (flip)
+            {
+                index = values.Length - (index + 1);
+            }
+
+            var y = values[index];
+            points[i].y = y * range;
+
+            // set 2 points
+            if (mirror)
+            {
+                var last = points.Length - (1 + i);
+                points[last].y = y; // self if last point
+            }
+        }
+
+        line.positionCount = points.Length;
+        line.SetPositions(points);
+    }
+}

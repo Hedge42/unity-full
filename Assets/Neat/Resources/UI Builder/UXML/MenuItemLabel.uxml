@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Label text="Text" display-tooltip-when-elided="true" name="ItemLabel" class="menu-item-label" />
+</ui:UXML>
