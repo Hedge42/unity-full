@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Bezier : MonoBehaviour
+{
+
+    public Vector3 _a;
+    public Vector3 _b;
+    public Vector3 _c;
+
+    private void OnDrawGizmos()
+    {
+    }
+
+    public static Vector3 QuadraticInterpolate(Vector3 a, Vector3 b, Vector3 c, float t)
+    {
+        var ab = Vector3.Lerp(a, b, t);
+        var bc = Vector3.Lerp(b, c, t);
+        return Vector3.Lerp(ab, bc, t);
+    }
+    public static Vector3 Quadratic(Vector3 a, Vector3 b, Vector3 c, float t)
+    {
+        // https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
+        // (1 - t) ((1-t) * p0 + t * p1) + t * ((1-t) * p1 + t * p2)
+        return (1 - t) * ((1 - t) * a + t * b) + t * ((1 - t) * b + t * c);
+    }
+    public static Vector3 QuadraticDerivative(Vector3 a, Vector3 b, Vector3 c, float t)
+    {
+        // https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
+
+        // 2(1-t)(p1-p0) + 2t(p2-p1)
+        return 2 * (1 - t) * (b - a) + 2 * t * (c - b);
+    }
+
+}
